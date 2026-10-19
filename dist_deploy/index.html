@@ -47,9 +47,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   
   <link rel="icon" type="image/png" href="assets/blinkit_logo.png">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=3.2">
 </head>
 <body class="light-theme">
   <!-- Blinkit Official Pixel-Matched Header (Exact to user reference screenshot) -->
@@ -295,7 +298,7 @@
       <section class="todays-deals-showcase" id="todays-deals-section">
         <div class="deals-scroller-wrap" id="deals-scroller-wrap">
           <div class="deals-track" id="deals-track">
-            <div class="deal-card" id="card-prod_milk_cow">
+            <div class="deal-card" id="card-prod_milk_cow" data-id="prod_milk_cow">
               <div class="deal-img-box" onclick="window.marketApp.openImageLightbox('prod_milk_cow')" style="cursor: pointer;" title="Tap to view full image">
                 <img src="assets/prod_milk_cow.jpg" alt="Pure Desi A2 Cow Milk" class="deal-img" loading="lazy" />
               </div>
@@ -315,7 +318,7 @@
                 </div>
               </div>
             </div>
-            <div class="deal-card" id="card-prod_palak">
+            <div class="deal-card" id="card-prod_palak" data-id="prod_palak">
               <div class="deal-img-box" onclick="window.marketApp.openImageLightbox('prod_palak')" style="cursor: pointer;" title="Tap to view full image">
                 <img src="assets/prod_spinach.jpg" alt="Fresh Palak (Spinach)" class="deal-img" loading="lazy" />
               </div>
@@ -335,7 +338,7 @@
                 </div>
               </div>
             </div>
-            <div class="deal-card" id="card-prod_tomatoes">
+            <div class="deal-card" id="card-prod_tomatoes" data-id="prod_tomatoes">
               <div class="deal-img-box" onclick="window.marketApp.openImageLightbox('prod_tomatoes')" style="cursor: pointer;" title="Tap to view full image">
                 <img src="assets/prod_tomatoes.jpg" alt="Fresh Country Tomatoes" class="deal-img" loading="lazy" />
               </div>
@@ -355,7 +358,7 @@
                 </div>
               </div>
             </div>
-            <div class="deal-card" id="card-prod_curd_pot">
+            <div class="deal-card" id="card-prod_curd_pot" data-id="prod_curd_pot">
               <div class="deal-img-box" onclick="window.marketApp.openImageLightbox('prod_curd_pot')" style="cursor: pointer;" title="Tap to view full image">
                 <img src="assets/prod_curd_pot.jpg" alt="Clay Pot Farm Curd" class="deal-img" loading="lazy" />
               </div>
@@ -375,7 +378,7 @@
                 </div>
               </div>
             </div>
-            <div class="deal-card" id="card-prod_methi">
+            <div class="deal-card" id="card-prod_methi" data-id="prod_methi">
               <div class="deal-img-box" onclick="window.marketApp.openImageLightbox('prod_methi')" style="cursor: pointer;" title="Tap to view full image">
                 <img src="assets/prod_methi.jpg" alt="Fresh Methi Leaves" class="deal-img" loading="lazy" />
               </div>
@@ -395,7 +398,7 @@
                 </div>
               </div>
             </div>
-            <div class="deal-card" id="card-prod_kothimeera">
+            <div class="deal-card" id="card-prod_kothimeera" data-id="prod_kothimeera">
               <div class="deal-img-box" onclick="window.marketApp.openImageLightbox('prod_kothimeera')" style="cursor: pointer;" title="Tap to view full image">
                 <img src="assets/prod_coriander.jpg" alt="Fresh Coriander (Kothimeera)" class="deal-img" loading="lazy" />
               </div>
@@ -415,7 +418,7 @@
                 </div>
               </div>
             </div>
-            <div class="deal-card" id="card-prod_rtc_sambar_curry">
+            <div class="deal-card" id="card-prod_rtc_sambar_curry" data-id="prod_rtc_sambar_curry">
               <div class="deal-img-box" onclick="window.marketApp.openImageLightbox('prod_rtc_sambar_curry')" style="cursor: pointer;" title="Tap to view full image">
                 <img src="assets/prod_rtc_sambar_curry.jpg" alt="Sambar Ready Cook Kit" class="deal-img" loading="lazy" />
               </div>
@@ -435,7 +438,7 @@
                 </div>
               </div>
             </div>
-            <div class="deal-card" id="card-prod_onions">
+            <div class="deal-card" id="card-prod_onions" data-id="prod_onions">
               <div class="deal-img-box" onclick="window.marketApp.openImageLightbox('prod_onions')" style="cursor: pointer;" title="Tap to view full image">
                 <img src="assets/prod_onions.jpg" alt="Kurnool Sweet Onions" class="deal-img" loading="lazy" />
               </div>
@@ -455,7 +458,7 @@
                 </div>
               </div>
             </div>
-            <div class="deal-card" id="card-prod_bhendi">
+            <div class="deal-card" id="card-prod_bhendi" data-id="prod_bhendi">
               <div class="deal-img-box" onclick="window.marketApp.openImageLightbox('prod_bhendi')" style="cursor: pointer;" title="Tap to view full image">
                 <img src="assets/prod_bhendi.jpg" alt="Tender Country Bhendi (Okra)" class="deal-img" loading="lazy" />
               </div>
@@ -475,7 +478,7 @@
                 </div>
               </div>
             </div>
-            <div class="deal-card" id="card-prod_vankaya">
+            <div class="deal-card" id="card-prod_vankaya" data-id="prod_vankaya">
               <div class="deal-img-box" onclick="window.marketApp.openImageLightbox('prod_vankaya')" style="cursor: pointer;" title="Tap to view full image">
                 <img src="assets/prod_vankaya.jpg" alt="Country Brinjals (Vankaya)" class="deal-img" loading="lazy" />
               </div>
@@ -1347,6 +1350,6 @@
 
   <!-- Audio Chimes & Synthesis (Web Audio API in app.js) -->
   
-  <script src="app.js"></script>
+  <script src="app.js?v=3.2"></script>
 </body>
 </html>

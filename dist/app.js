@@ -4372,15 +4372,6 @@
       }
     }
 
-    refreshProductCard(prodId) {
-      const prod = PRODUCTS_DATA.find((p) => p.id === prodId);
-      if (!prod) return;
-      const cards = document.querySelectorAll(`[id="card-${prodId}"]`);
-      cards.forEach((el) => {
-        el.outerHTML = this.renderProductCardHtml(prod);
-      });
-    }
-
                 selectProductUnit(prodId, unit, price, event) {
       if (event) event.stopPropagation();
       const prod = PRODUCTS_DATA.find((p) => p.id === prodId);
@@ -4557,44 +4548,52 @@
       const prod = PRODUCTS_DATA.find((p) => p.id === prodId);
       if (!prod) return;
       const cartQty = this.cart[prodId] || 0;
-      const cards = document.querySelectorAll(`[id="card-${prodId}"]`);
-      cards.forEach((card) => {
-        // If this is a deal-card in the horizontal slider, preserve deal-card structure!
-        if (card.classList.contains('deal-card') || card.closest('.deals-track')) {
-          const btnRow = card.querySelector('.prod-unit-add-row');
-          if (btnRow) {
-            let actionBtnHtml = '';
-            if (cartQty > 0) {
-              actionBtnHtml = `
-                <div class="active-cart-stepper deal-stepper">
-                  <button type="button" class="cart-step-btn" onclick="window.marketApp.modifyCartQty('${prod.id}', -1)" aria-label="Decrease quantity">−</button>
-                  <span class="step-num">${cartQty}</span>
-                  <button type="button" class="cart-step-btn" onclick="window.marketApp.modifyCartQty('${prod.id}', 1)" aria-label="Increase quantity">+</button>
-                </div>
-              `;
-            } else {
-              actionBtnHtml = `
-                <button type="button" class="btn-blinkit-add" onclick="window.marketApp.modifyCartQty('${prod.id}', 1)" aria-label="Add to cart">ADD</button>
-              `;
-            }
-            const existingBtn = btnRow.querySelector('.btn-blinkit-add, .active-cart-stepper, .btn-blinkit-add-wrap');
-            if (existingBtn) {
-              const temp = document.createElement('div');
-              temp.innerHTML = actionBtnHtml.trim();
-              existingBtn.replaceWith(temp.firstElementChild);
-            }
-          }
-          return;
-        }
 
-        // For standard catalog grid cards
+      // 1. Update any deal cards in the horizontal deals track (NEVER replace outer card or image)
+      const dealCards = document.querySelectorAll(`.deals-track [id="card-${prodId}"], #deals-track [id="card-${prodId}"], .deals-track .deal-card[data-id="${prodId}"]`);
+      dealCards.forEach((dealCard) => {
+        const btnRow = dealCard.querySelector('.prod-unit-add-row');
+        if (btnRow) {
+          let actionBtnHtml = '';
+          if (cartQty > 0) {
+            actionBtnHtml = `
+              <div class="active-cart-stepper deal-stepper">
+                <button type="button" class="cart-step-btn" onclick="window.marketApp.modifyCartQty('${prod.id}', -1)" aria-label="Decrease quantity">−</button>
+                <span class="step-num">${cartQty}</span>
+                <button type="button" class="cart-step-btn" onclick="window.marketApp.modifyCartQty('${prod.id}', 1)" aria-label="Increase quantity">+</button>
+              </div>
+            `;
+          } else {
+            actionBtnHtml = `
+              <button type="button" class="btn-blinkit-add" onclick="window.marketApp.modifyCartQty('${prod.id}', 1)" aria-label="Add to cart">ADD</button>
+            `;
+          }
+          const existingBtn = btnRow.querySelector('.btn-blinkit-add, .active-cart-stepper, .btn-blinkit-add-wrap, .deal-stepper');
+          if (existingBtn) {
+            const temp = document.createElement('div');
+            temp.innerHTML = actionBtnHtml.trim();
+            existingBtn.replaceWith(temp.firstElementChild);
+          } else {
+            const temp = document.createElement('div');
+            temp.innerHTML = actionBtnHtml.trim();
+            btnRow.appendChild(temp.firstElementChild);
+          }
+        }
+      });
+
+      // 2. Update catalog grid cards (strictly excluding anything in deals-track)
+      const catalogCards = document.querySelectorAll(`[id="card-${prodId}"]`);
+      catalogCards.forEach((card) => {
+        if (card.closest('.deals-track') || card.closest('#deals-track') || card.closest('.todays-deals-showcase') || card.classList.contains('deal-card')) {
+          return; // Strictly skip deals track cards
+        }
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = this.renderProductCardHtml(prod);
         const newCard = tempDiv.firstElementChild;
         if (newCard) card.replaceWith(newCard);
       });
 
-      // If lightbox is currently open for this item, refresh its button state
+      // 3. If lightbox is currently open for this item, refresh its button state
       const lightbox = document.getElementById('image-lightbox-backdrop');
       if (lightbox && !lightbox.classList.contains('hidden') && this.activeLightboxProdId === prodId) {
         this.renderImageLightboxContent(prod);
