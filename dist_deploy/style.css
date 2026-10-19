@@ -93,7 +93,8 @@ body {
   color: var(--text-primary);
   line-height: 1.55;
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
+  padding-top: 66px !important;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -160,9 +161,12 @@ body {
    HEADER & NAVIGATION
    ===================================================================== */
 .site-header {
-  position: sticky;
-  top: 0;
-  z-index: 999;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 999 !important;
   background: #ffffff !important;
   border-bottom: 1px solid #eeeeee;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
@@ -2430,26 +2434,31 @@ body.light-theme .hero-gradient-overlay {
   inset: 0;
   background: rgba(0, 0, 0, 0.65);
   backdrop-filter: blur(6px);
-  z-index: 1000;
+  z-index: 1200;
   display: flex;
   justify-content: flex-end;
+  align-items: flex-start;
   transition: opacity 0.3s ease;
 }
 
 .cart-drawer-overlay.hidden {
-  display: none;
+  display: none !important;
 }
 
 .cart-drawer {
   width: 100%;
-  max-width: 480px;
-  height: 100%;
+  max-width: 460px;
+  height: auto !important;
+  max-height: 94vh !important;
   background: var(--bg-surface);
-  border-left: 1px solid var(--border-strong);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  margin: 16px 20px 16px auto;
   display: flex;
   flex-direction: column;
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
   animation: slide-in-right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
 }
 
 @keyframes slide-in-right {
@@ -2567,14 +2576,13 @@ body.light-theme .hero-gradient-overlay {
 .ops-dot { background: var(--amber-400); }
 .zero-dot { background: #ef4444; }
 
-/* Cart Items Container */
+/* Cart Items Container - Auto-fits items tightly with zero empty space */
 .cart-items-container {
-  flex: 1;
-  overflow-y: auto;
-  padding: 16px 24px;
+  flex: 0 0 auto !important;
+  padding: 14px 20px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .cart-empty-state {
@@ -2681,11 +2689,12 @@ body.light-theme .hero-gradient-overlay {
   padding: 0 4px;
 }
 
-/* Drawer Footer */
+/* Drawer Footer - Sits snugly directly below items */
 .drawer-footer {
-  padding: 20px 24px;
+  padding: 16px 20px 20px 20px;
   background: var(--bg-card);
   border-top: 1px solid var(--border-subtle);
+  flex-shrink: 0;
 }
 
 .fulfillment-selector {
@@ -6569,14 +6578,16 @@ body.light-theme .order-total-amount {
    EXACT BLINKIT HEADER STYLES (Matching User's Reference Screenshot)
    ===================================================================== */
 .site-header.blinkit-exact-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 999 !important;
   background: #ffffff !important;
   border-bottom: 1px solid #eeeeee !important;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
-  padding: 0;
-  width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+  padding: 0 !important;
 }
 
 .blinkit-header-inner {
@@ -7483,17 +7494,27 @@ body.light-theme .order-total-amount {
 html, body {
   width: 100%;
   max-width: 100vw;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 @media (max-width: 768px) {
-  /* 1. Header Wrapper */
+  body {
+    padding-top: 96px !important;
+  }
+
+  /* 1. Header Wrapper - Fixed constant on scroll */
   .site-header.blinkit-exact-header {
-    padding: 8px 10px 8px 10px !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 999 !important;
+    padding: 6px 10px 8px 10px !important;
     width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
     background: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
   }
 
   .blinkit-header-inner {
@@ -7590,6 +7611,38 @@ html, body {
   .blinkit-search-input {
     width: 100% !important;
     font-size: 12.5px !important;
+  }
+
+  /* Auto-Fitting Mobile Bottom Sheet Cart Drawer */
+  .cart-drawer-overlay {
+    align-items: flex-end !important;
+    justify-content: center !important;
+  }
+
+  .cart-drawer {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    height: auto !important;
+    max-height: 88vh !important;
+    border-radius: 24px 24px 0 0 !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-top: 1px solid var(--border-subtle) !important;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.25) !important;
+    animation: drawer-slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .cart-items-container {
+    flex: 0 0 auto !important;
+    padding: 12px 16px !important;
+    gap: 8px !important;
+  }
+
+  .drawer-footer {
+    padding: 14px 16px 28px 16px !important;
   }
 
   /* Main Container & Grid */
@@ -12053,14 +12106,16 @@ body:not(.light-theme) {
    HEADER LAYOUT: ADDRESS BAR & SEARCH BAR VERY NEAR TO FRESHCUTS
    ========================================================================== */
 .site-header.blinkit-exact-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 999 !important;
   background: #ffffff !important;
   border-bottom: 1px solid #eeeeee !important;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
   padding: 0 !important;
-  width: 100%;
 }
 
 .blinkit-header-inner {
@@ -12311,8 +12366,18 @@ body:not(.light-theme) {
 
 /* Mobile responsive header */
 @media (max-width: 860px) {
+  body {
+    padding-top: 96px !important;
+  }
   .site-header.blinkit-exact-header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 999 !important;
     padding: 6px 10px 8px 10px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
   }
   .blinkit-header-inner {
     display: flex !important;
@@ -12752,11 +12817,15 @@ body:not(.light-theme) {
   backdrop-filter: blur(4px) !important;
 }
 
-/* Hide bottom nav bar and WhatsApp widget while any modal is open */
+/* Hide bottom nav bar and WhatsApp widget while any modal or cart drawer is open */
 body.has-modal-open .mobile-bottom-nav-bar,
 body.has-modal-open .wa-floating-widget,
+body.has-cart-open .mobile-bottom-nav-bar,
+body.has-cart-open .wa-floating-widget,
 .modal-backdrop:not(.hidden) ~ .mobile-bottom-nav-bar,
-.modal-backdrop:not(.hidden) ~ #wa-floating-widget {
+.modal-backdrop:not(.hidden) ~ #wa-floating-widget,
+.cart-drawer-overlay:not(.hidden) ~ .mobile-bottom-nav-bar,
+.cart-drawer-overlay:not(.hidden) ~ #wa-floating-widget {
   display: none !important;
 }
 

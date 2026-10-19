@@ -4712,7 +4712,9 @@
           }
         });
 
+        const drawerFooter = document.getElementById('drawer-footer');
         if (validCartItems.length === 0) {
+          if (drawerFooter) drawerFooter.style.display = 'none';
           this.dom.cartItemsList.innerHTML = `
             <div class="cart-empty-state">
               <div class="empty-icon">🌱</div>
@@ -4722,6 +4724,7 @@
             </div>
           `;
         } else {
+          if (drawerFooter) drawerFooter.style.display = 'block';
           this.dom.cartItemsList.innerHTML = validCartItems.map(({ prod, qty, id }) => {
             const farmer = (prod.farmerKey && FARMERS_DB[prod.farmerKey]) ? FARMERS_DB[prod.farmerKey] : null;
             const selWeight = this.getProductWeight(id) || prod.unit || '1 unit';
@@ -4754,8 +4757,19 @@
 
     toggleCartDrawer() {
       if (this.dom.cartDrawerOverlay) {
+        const isOpening = this.dom.cartDrawerOverlay.classList.contains('hidden');
         this.dom.cartDrawerOverlay.classList.toggle('hidden');
+        if (isOpening) {
+          document.body.classList.add('has-cart-open');
+          this.updateCartUi();
+        } else {
+          document.body.classList.remove('has-cart-open');
+        }
       }
+    }
+
+    updateCartUI() {
+      this.updateCartUi();
     }
 
     closeCartOnBackdrop(event) {
