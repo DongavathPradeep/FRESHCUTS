@@ -4436,9 +4436,9 @@
 
       return `
         <div class="product-card" id="card-${prod.id}" data-id="${prod.id}" data-category="${prod.category || 'vegetables'}">
-          <div class="prod-image-wrapper">
+          <div class="prod-image-wrapper" onclick="window.marketApp.openImageLightbox('${prod.id}')" style="cursor: pointer;" title="Tap to view big image">
             <img src="${prod.image}" alt="${cleanTitle}" class="prod-img" loading="lazy" />
-            <button type="button" class="prod-wishlist-btn" onclick="this.classList.toggle('active')" aria-label="Save to Wishlist">
+            <button type="button" class="prod-wishlist-btn" onclick="event.stopPropagation(); this.classList.toggle('active')" aria-label="Save to Wishlist">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.2">
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
               </svg>
@@ -4556,13 +4556,135 @@
     refreshProductCard(prodId) {
       const prod = PRODUCTS_DATA.find((p) => p.id === prodId);
       if (!prod) return;
+      const cartQty = this.cart[prodId] || 0;
       const cards = document.querySelectorAll(`[id="card-${prodId}"]`);
       cards.forEach((card) => {
+        // If this is a deal-card in the horizontal slider, preserve deal-card structure!
+        if (card.classList.contains('deal-card') || card.closest('.deals-track')) {
+          const btnRow = card.querySelector('.prod-unit-add-row');
+          if (btnRow) {
+            let actionBtnHtml = '';
+            if (cartQty > 0) {
+              actionBtnHtml = `
+                <div class="active-cart-stepper deal-stepper">
+                  <button type="button" class="cart-step-btn" onclick="window.marketApp.modifyCartQty('${prod.id}', -1)" aria-label="Decrease quantity">−</button>
+                  <span class="step-num">${cartQty}</span>
+                  <button type="button" class="cart-step-btn" onclick="window.marketApp.modifyCartQty('${prod.id}', 1)" aria-label="Increase quantity">+</button>
+                </div>
+              `;
+            } else {
+              actionBtnHtml = `
+                <button type="button" class="btn-blinkit-add" onclick="window.marketApp.modifyCartQty('${prod.id}', 1)" aria-label="Add to cart">ADD</button>
+              `;
+            }
+            const existingBtn = btnRow.querySelector('.btn-blinkit-add, .active-cart-stepper, .btn-blinkit-add-wrap');
+            if (existingBtn) {
+              const temp = document.createElement('div');
+              temp.innerHTML = actionBtnHtml.trim();
+              existingBtn.replaceWith(temp.firstElementChild);
+            }
+          }
+          return;
+        }
+
+        // For standard catalog grid cards
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = this.renderProductCardHtml(prod);
         const newCard = tempDiv.firstElementChild;
         if (newCard) card.replaceWith(newCard);
       });
+
+      // If lightbox is currently open for this item, refresh its button state
+      const lightbox = document.getElementById('image-lightbox-backdrop');
+      if (lightbox && !lightbox.classList.contains('hidden') && this.activeLightboxProdId === prodId) {
+        this.renderImageLightboxContent(prod);
+      }
+    }
+
+    openImageLightbox(prodId) {
+      const prod = PRODUCTS_DATA.find((p) => p.id === prodId);
+      if (!prod) return;
+      this.activeLightboxProdId = prodId;
+
+      let backdrop = document.getElementById('image-lightbox-backdrop');
+      if (!backdrop) {
+        backdrop = document.createElement('div');
+        backdrop.id = 'image-lightbox-backdrop';
+        backdrop.className = 'modal-backdrop hidden';
+        backdrop.onclick = () => this.closeImageLightbox();
+        backdrop.innerHTML = `
+          <div class="modal-dialog image-lightbox-dialog" onclick="event.stopPropagation()">
+            <button class="lightbox-close-btn" onclick="window.marketApp.closeImageLightbox()" aria-label="Close Preview">✕</button>
+            <div class="lightbox-content" id="image-lightbox-content"></div>
+          </div>
+        `;
+        document.body.appendChild(backdrop);
+      }
+
+      this.renderImageLightboxContent(prod);
+      backdrop.classList.remove('hidden');
+      document.body.classList.add('has-modal-open');
+      sound.playAddSound();
+    }
+
+    renderImageLightboxContent(prod) {
+      const contentEl = document.getElementById('image-lightbox-content');
+      if (!contentEl) return;
+      const activeUnit = prod.selectedUnit || prod.unit || (prod.options && prod.options[0] ? prod.options[0].unit : '1 unit');
+      const activePrice = prod.selectedPrice || prod.price || (prod.options && prod.options[0] ? prod.options[0].price : 0);
+      const cartQty = this.cart[prod.id] || 0;
+      const cleanTitle = (prod.title || '').trim();
+      const mrpPrice = Math.round(Number(activePrice) * 1.25);
+
+      let actionBtnHtml = '';
+      if (cartQty > 0) {
+        actionBtnHtml = `
+          <div class="active-cart-stepper lightbox-stepper">
+            <button type="button" class="cart-step-btn" onclick="window.marketApp.modifyCartQty('${prod.id}', -1)" aria-label="Decrease quantity">−</button>
+            <span class="step-num">${cartQty} in basket</span>
+            <button type="button" class="cart-step-btn" onclick="window.marketApp.modifyCartQty('${prod.id}', 1)" aria-label="Increase quantity">+</button>
+          </div>
+        `;
+      } else {
+        actionBtnHtml = `
+          <button type="button" class="btn-lightbox-add" onclick="window.marketApp.modifyCartQty('${prod.id}', 1)">
+            <span>Add to Basket • ₹${Math.round(Number(activePrice))}</span>
+          </button>
+        `;
+      }
+
+      contentEl.innerHTML = `
+        <div class="lightbox-hero-wrap">
+          <img src="${prod.image}" alt="${cleanTitle}" class="lightbox-big-img" />
+          <span class="lightbox-zoom-badge">🔍 High-Res Preview</span>
+        </div>
+        <div class="lightbox-details">
+          <div class="lightbox-tag-row">
+            <span class="delivery-time-tag">⏱️ 23-Min Instant Delivery</span>
+            <span class="freshness-tag">🌿 100% Farm Fresh</span>
+          </div>
+          <h2 class="lightbox-title">${cleanTitle}</h2>
+          ${prod.telugu ? `<div class="lightbox-telugu">${prod.telugu}</div>` : ''}
+          <div class="lightbox-pricing-block">
+            <span class="lightbox-price">₹${Math.round(Number(activePrice))}</span>
+            <span class="lightbox-mrp">₹${mrpPrice}</span>
+            <span class="lightbox-unit">/ ${activeUnit}</span>
+            <span class="lightbox-discount-badge">Save 20%</span>
+          </div>
+          <p class="lightbox-desc">${prod.desc || 'Direct farm harvested, crisp, natural and nutrient dense. Cleaned, graded, and quality inspected.'}</p>
+          
+          <div class="lightbox-actions-cluster">
+            ${actionBtnHtml}
+          </div>
+        </div>
+      `;
+    }
+
+    closeImageLightbox() {
+      const backdrop = document.getElementById('image-lightbox-backdrop');
+      if (backdrop) backdrop.classList.add('hidden');
+      document.body.classList.remove('has-modal-open');
+      this.activeLightboxProdId = null;
     }
 
     updateCartUi() {
@@ -5945,9 +6067,26 @@
         });
       }
 
-      // Factor in active referral offer discount
-      const discount = (this.referralDiscount && subtotal > 0) ? Math.min(this.referralDiscount, subtotal) : 0;
-      const payableAmount = Math.max(0, subtotal - discount);
+      // Factor in active referral offer and coupon/subscription discount
+      const referralDisc = (this.referralDiscount && subtotal > 0) ? Math.min(this.referralDiscount, subtotal) : 0;
+      let couponDiscount = 0;
+      if (this.activeCouponCode && subtotal > 0) {
+        const code = this.activeCouponCode.toUpperCase().trim();
+        if (code === 'FRESH50') {
+          couponDiscount = Math.min(50, Math.max(0, subtotal - referralDisc));
+        } else if (code === 'VIPPASS') {
+          couponDiscount = Math.round((subtotal - referralDisc) * 0.15);
+        } else if (code === 'SUB99' || code.includes('SUB')) {
+          couponDiscount = Math.min(30, Math.max(0, subtotal - referralDisc));
+        } else if (code === 'FIRSTBUY') {
+          couponDiscount = Math.min(40, Math.max(0, subtotal - referralDisc));
+        } else {
+          couponDiscount = Math.min(25, Math.max(0, subtotal - referralDisc));
+        }
+      }
+      this.activeCouponDiscount = couponDiscount;
+      const totalSavings = referralDisc + couponDiscount;
+      const payableAmount = Math.max(1, subtotal - totalSavings);
 
       const farmerPercent = subtotal > 0 ? ((totalFarmerPayout / subtotal) * 100).toFixed(1) : '61.8';
       this.paymentState.rawSubtotal = subtotal;
@@ -5977,8 +6116,38 @@
 
         <div class="pay-amount-card">
           <div class="pay-amount-left">
-            <div class="pay-lbl">Total Payable Amount ${discount > 0 ? `<span style="font-size:0.75rem; color:var(--emerald-400);">(₹${subtotal.toFixed(2)} − ₹${discount.toFixed(2)} Referral Offer Applied)</span>` : ''}</div>
+            <div class="pay-lbl">
+              Total Payable Amount
+              ${totalSavings > 0 ? `<span style="font-size:0.75rem; color:#a7f3d0; margin-left:6px;">(Subtotal: ₹${subtotal.toFixed(0)} ${referralDisc > 0 ? `− ₹${referralDisc.toFixed(0)} Referral` : ''} ${couponDiscount > 0 ? `− ₹${couponDiscount.toFixed(0)} (${this.activeCouponCode})` : ''})</span>` : ''}
+            </div>
             <div class="pay-sum">₹${payableAmount.toFixed(2)}</div>
+          </div>
+        </div>
+
+        <!-- Coupon or Subscription Apply Bar -->
+        <div class="pay-coupon-bar">
+          <div class="coupon-title-row">
+            <span class="coupon-bar-title">🎟️ Apply Coupon or Subscription Pass</span>
+            ${couponDiscount > 0 ? `<span class="coupon-success-pill">✓ Applied: <strong>${this.activeCouponCode}</strong> (Saved ₹${couponDiscount})</span>` : ''}
+          </div>
+          <div class="coupon-input-cluster">
+            <input type="text" id="pay-coupon-input" class="pay-coupon-input" placeholder="Enter Code: FRESH50, VIPPASS, SUB99" value="${this.activeCouponCode || ''}" onkeydown="if(event.key==='Enter') window.marketApp.applyPaymentCoupon()" />
+            ${couponDiscount > 0 ? `
+              <button type="button" class="btn-coupon-remove" onclick="window.marketApp.removePaymentCoupon()">Remove</button>
+            ` : `
+              <button type="button" class="btn-coupon-apply" onclick="window.marketApp.applyPaymentCoupon()">Apply</button>
+            `}
+          </div>
+          <div class="coupon-quick-chips">
+            <button type="button" class="coupon-chip ${this.activeCouponCode === 'FRESH50' ? 'active' : ''}" onclick="window.marketApp.quickApplyCoupon('FRESH50')">
+              <strong>FRESH50</strong> • Flat ₹50 OFF
+            </button>
+            <button type="button" class="coupon-chip ${this.activeCouponCode === 'VIPPASS' ? 'active' : ''}" onclick="window.marketApp.quickApplyCoupon('VIPPASS')">
+              <strong>VIPPASS</strong> • 15% VIP Discount
+            </button>
+            <button type="button" class="coupon-chip ${this.activeCouponCode === 'SUB99' ? 'active' : ''}" onclick="window.marketApp.quickApplyCoupon('SUB99')">
+              <strong>SUB99</strong> • Pass: Free Delivery + ₹30
+            </button>
           </div>
         </div>
 
@@ -6208,6 +6377,33 @@
           }
         }, 50);
       }
+    }
+
+    applyPaymentCoupon() {
+      const input = document.getElementById('pay-coupon-input');
+      const code = (input ? input.value : '').trim().toUpperCase();
+      if (!code) {
+        this.showToastNotification('⚠️ Please enter a coupon or subscription code');
+        return;
+      }
+      this.quickApplyCoupon(code);
+    }
+
+    quickApplyCoupon(code) {
+      if (!code) return;
+      this.activeCouponCode = code.toUpperCase().trim();
+      sound.playAddSound();
+      this.showToastNotification(`🎉 Applied "${this.activeCouponCode}"! Discount reflected in payable amount.`);
+      this.openPaymentModal();
+    }
+
+    removePaymentCoupon() {
+      const prev = this.activeCouponCode;
+      this.activeCouponCode = null;
+      this.activeCouponDiscount = 0;
+      sound.playAlertChime();
+      this.showToastNotification(`Removed coupon ${prev || ''}`);
+      this.openPaymentModal();
     }
 
     updateCardPreview() {

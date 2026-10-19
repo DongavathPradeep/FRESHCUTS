@@ -13269,3 +13269,371 @@ body.has-modal-open .wa-floating-widget,
     align-self: flex-end;
   }
 }
+
+/* ========================================================================== */
+/* PRODUCT BIG IMAGE LIGHTBOX VIEWER                                         */
+/* ========================================================================== */
+.image-lightbox-dialog {
+  max-width: 540px !important;
+  width: 92% !important;
+  background: #ffffff !important;
+  border-radius: 20px !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45) !important;
+  overflow: hidden !important;
+  position: relative !important;
+  animation: lightboxPop 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+@keyframes lightboxPop {
+  0% { transform: scale(0.92); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.lightbox-close-btn {
+  position: absolute !important;
+  top: 14px !important;
+  right: 14px !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  background: rgba(15, 23, 42, 0.7) !important;
+  color: #ffffff !important;
+  border: none !important;
+  font-size: 1.1rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  z-index: 10 !important;
+  transition: background 0.2s ease, transform 0.15s ease !important;
+}
+
+.lightbox-close-btn:hover {
+  background: rgba(15, 23, 42, 0.95) !important;
+  transform: scale(1.08) !important;
+}
+
+.lightbox-content {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.lightbox-hero-wrap {
+  width: 100% !important;
+  height: 320px !important;
+  background: #f8fafc !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  overflow: hidden !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+}
+
+.lightbox-big-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  padding: 18px !important;
+  transition: transform 0.3s ease !important;
+}
+
+.lightbox-hero-wrap:hover .lightbox-big-img {
+  transform: scale(1.08) !important;
+}
+
+.lightbox-zoom-badge {
+  position: absolute !important;
+  bottom: 12px !important;
+  right: 12px !important;
+  background: rgba(15, 23, 42, 0.8) !important;
+  color: #ffffff !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  padding: 4px 10px !important;
+  border-radius: 20px !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+.lightbox-details {
+  padding: 20px 24px 24px 24px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+.lightbox-tag-row {
+  display: flex !important;
+  gap: 8px !important;
+  align-items: center !important;
+}
+
+.delivery-time-tag {
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  padding: 4px 8px !important;
+  border-radius: 6px !important;
+}
+
+.freshness-tag {
+  background: #dcfce7 !important;
+  color: #15803d !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  padding: 4px 8px !important;
+  border-radius: 6px !important;
+}
+
+.lightbox-title {
+  font-size: 1.35rem !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
+  margin: 0 !important;
+}
+
+.lightbox-telugu {
+  font-size: 0.95rem !important;
+  color: #059669 !important;
+  font-weight: 700 !important;
+}
+
+.lightbox-pricing-block {
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 8px !important;
+  margin: 4px 0 !important;
+}
+
+.lightbox-price {
+  font-size: 1.55rem !important;
+  font-weight: 800 !important;
+  color: #0c831f !important;
+}
+
+.lightbox-mrp {
+  font-size: 1.05rem !important;
+  color: #94a3b8 !important;
+  text-decoration: line-through !important;
+}
+
+.lightbox-unit {
+  font-size: 0.88rem !important;
+  color: #64748b !important;
+  font-weight: 600 !important;
+}
+
+.lightbox-discount-badge {
+  background: #fee2e2 !important;
+  color: #dc2626 !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  padding: 3px 8px !important;
+  border-radius: 6px !important;
+}
+
+.lightbox-desc {
+  font-size: 0.88rem !important;
+  color: #475569 !important;
+  line-height: 1.55 !important;
+  margin: 0 !important;
+}
+
+.lightbox-actions-cluster {
+  margin-top: 10px !important;
+}
+
+.btn-lightbox-add {
+  width: 100% !important;
+  background: #0c831f !important;
+  color: #ffffff !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  padding: 13px 20px !important;
+  border: none !important;
+  border-radius: 12px !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 12px rgba(12, 131, 31, 0.25) !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn-lightbox-add:hover {
+  background: #09701a !important;
+  transform: translateY(-1px) !important;
+}
+
+.lightbox-stepper {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  background: #0c831f !important;
+  border-radius: 12px !important;
+  padding: 6px 14px !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+}
+
+.lightbox-stepper .cart-step-btn {
+  background: transparent !important;
+  color: #ffffff !important;
+  font-size: 1.3rem !important;
+  border: none !important;
+  cursor: pointer !important;
+  padding: 4px 12px !important;
+}
+
+/* ========================================================================== */
+/* PAYMENT GATEWAY COUPON & SUBSCRIPTION APPLY BAR                            */
+/* ========================================================================== */
+.pay-coupon-bar {
+  background: #f8fafc !important;
+  border: 1px dashed #cbd5e1 !important;
+  border-radius: 14px !important;
+  padding: 12px 14px !important;
+  margin-bottom: 16px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+.coupon-title-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.coupon-bar-title {
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  color: #1e293b !important;
+}
+
+.coupon-success-pill {
+  background: #dcfce7 !important;
+  color: #15803d !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  padding: 3px 8px !important;
+  border-radius: 6px !important;
+  border: 1px solid #86efac !important;
+}
+
+.coupon-input-cluster {
+  display: flex !important;
+  gap: 8px !important;
+}
+
+.pay-coupon-input {
+  flex: 1 !important;
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 8px !important;
+  padding: 9px 12px !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  color: #0f172a !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.pay-coupon-input:focus {
+  outline: none !important;
+  border-color: #0c831f !important;
+  box-shadow: 0 0 0 3px rgba(12, 131, 31, 0.15) !important;
+}
+
+.btn-coupon-apply {
+  background: #0c831f !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  padding: 0 16px !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease !important;
+}
+
+.btn-coupon-apply:hover {
+  background: #09701a !important;
+}
+
+.btn-coupon-remove {
+  background: #fee2e2 !important;
+  color: #dc2626 !important;
+  border: 1px solid #fca5a5 !important;
+  border-radius: 8px !important;
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  padding: 0 14px !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease !important;
+}
+
+.btn-coupon-remove:hover {
+  background: #fecaca !important;
+}
+
+.coupon-quick-chips {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+}
+
+.coupon-chip {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #334155 !important;
+  font-size: 0.72rem !important;
+  padding: 5px 10px !important;
+  border-radius: 20px !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
+
+.coupon-chip:hover {
+  border-color: #0c831f !important;
+  background: #f0fdf4 !important;
+  color: #0c831f !important;
+}
+
+.coupon-chip.active {
+  background: #0c831f !important;
+  color: #ffffff !important;
+  border-color: #0c831f !important;
+}
+
+/* ========================================================================== */
+/* DEAL STEPPER FOR HORIZONTAL SLIDER                                         */
+/* ========================================================================== */
+.deal-stepper {
+  height: 31px !important;
+  width: 76px !important;
+  padding: 0 4px !important;
+  border-radius: 6px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  background: #0c831f !important;
+  color: #ffffff !important;
+}
+
+.deal-stepper .cart-step-btn {
+  background: transparent !important;
+  color: #ffffff !important;
+  font-size: 1rem !important;
+  font-weight: 800 !important;
+  border: none !important;
+  cursor: pointer !important;
+  padding: 0 4px !important;
+  line-height: 1 !important;
+}
+
+.deal-stepper .step-num {
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+}
+

@@ -296,7 +296,7 @@
         <div class="deals-scroller-wrap" id="deals-scroller-wrap">
           <div class="deals-track" id="deals-track">
             <div class="deal-card" id="card-prod_milk_cow">
-              <div class="deal-img-box">
+              <div class="deal-img-box" onclick="window.marketApp.openImageLightbox('prod_milk_cow')" style="cursor: pointer;" title="Tap to view full image">
                 <img src="assets/prod_milk_cow.jpg" alt="Pure Desi A2 Cow Milk" class="deal-img" loading="lazy" />
               </div>
               <div class="deal-info">
@@ -316,7 +316,7 @@
               </div>
             </div>
             <div class="deal-card" id="card-prod_palak">
-              <div class="deal-img-box">
+              <div class="deal-img-box" onclick="window.marketApp.openImageLightbox('prod_palak')" style="cursor: pointer;" title="Tap to view full image">
                 <img src="assets/prod_spinach.jpg" alt="Fresh Palak (Spinach)" class="deal-img" loading="lazy" />
               </div>
               <div class="deal-info">
@@ -336,7 +336,7 @@
               </div>
             </div>
             <div class="deal-card" id="card-prod_tomatoes">
-              <div class="deal-img-box">
+              <div class="deal-img-box" onclick="window.marketApp.openImageLightbox('prod_tomatoes')" style="cursor: pointer;" title="Tap to view full image">
                 <img src="assets/prod_tomatoes.jpg" alt="Fresh Country Tomatoes" class="deal-img" loading="lazy" />
               </div>
               <div class="deal-info">
@@ -356,7 +356,7 @@
               </div>
             </div>
             <div class="deal-card" id="card-prod_curd_pot">
-              <div class="deal-img-box">
+              <div class="deal-img-box" onclick="window.marketApp.openImageLightbox('prod_curd_pot')" style="cursor: pointer;" title="Tap to view full image">
                 <img src="assets/prod_curd_pot.jpg" alt="Clay Pot Farm Curd" class="deal-img" loading="lazy" />
               </div>
               <div class="deal-info">
@@ -376,7 +376,7 @@
               </div>
             </div>
             <div class="deal-card" id="card-prod_methi">
-              <div class="deal-img-box">
+              <div class="deal-img-box" onclick="window.marketApp.openImageLightbox('prod_methi')" style="cursor: pointer;" title="Tap to view full image">
                 <img src="assets/prod_methi.jpg" alt="Fresh Methi Leaves" class="deal-img" loading="lazy" />
               </div>
               <div class="deal-info">
@@ -396,7 +396,7 @@
               </div>
             </div>
             <div class="deal-card" id="card-prod_kothimeera">
-              <div class="deal-img-box">
+              <div class="deal-img-box" onclick="window.marketApp.openImageLightbox('prod_kothimeera')" style="cursor: pointer;" title="Tap to view full image">
                 <img src="assets/prod_coriander.jpg" alt="Fresh Coriander (Kothimeera)" class="deal-img" loading="lazy" />
               </div>
               <div class="deal-info">
@@ -416,7 +416,7 @@
               </div>
             </div>
             <div class="deal-card" id="card-prod_rtc_sambar_curry">
-              <div class="deal-img-box">
+              <div class="deal-img-box" onclick="window.marketApp.openImageLightbox('prod_rtc_sambar_curry')" style="cursor: pointer;" title="Tap to view full image">
                 <img src="assets/prod_rtc_sambar_curry.jpg" alt="Sambar Ready Cook Kit" class="deal-img" loading="lazy" />
               </div>
               <div class="deal-info">
@@ -436,7 +436,7 @@
               </div>
             </div>
             <div class="deal-card" id="card-prod_onions">
-              <div class="deal-img-box">
+              <div class="deal-img-box" onclick="window.marketApp.openImageLightbox('prod_onions')" style="cursor: pointer;" title="Tap to view full image">
                 <img src="assets/prod_onions.jpg" alt="Kurnool Sweet Onions" class="deal-img" loading="lazy" />
               </div>
               <div class="deal-info">
@@ -456,7 +456,7 @@
               </div>
             </div>
             <div class="deal-card" id="card-prod_bhendi">
-              <div class="deal-img-box">
+              <div class="deal-img-box" onclick="window.marketApp.openImageLightbox('prod_bhendi')" style="cursor: pointer;" title="Tap to view full image">
                 <img src="assets/prod_bhendi.jpg" alt="Tender Country Bhendi (Okra)" class="deal-img" loading="lazy" />
               </div>
               <div class="deal-info">
@@ -476,7 +476,7 @@
               </div>
             </div>
             <div class="deal-card" id="card-prod_vankaya">
-              <div class="deal-img-box">
+              <div class="deal-img-box" onclick="window.marketApp.openImageLightbox('prod_vankaya')" style="cursor: pointer;" title="Tap to view full image">
                 <img src="assets/prod_vankaya.jpg" alt="Country Brinjals (Vankaya)" class="deal-img" loading="lazy" />
               </div>
               <div class="deal-info">
@@ -660,6 +660,18 @@
       <button class="modal-close-btn" onclick="window.marketApp.closeReceiptModal()">✕</button>
       <div class="modal-content" id="receipt-modal-content">
         <!-- Rendered by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL: PRODUCT BIG IMAGE LIGHTBOX VIEWER   -->
+  <!-- ========================================== -->
+  <div class="modal-backdrop hidden" id="image-lightbox-backdrop" onclick="window.marketApp.closeImageLightbox()">
+    <div class="modal-dialog image-lightbox-dialog" onclick="event.stopPropagation()">
+      <button class="lightbox-close-btn" onclick="window.marketApp.closeImageLightbox()" aria-label="Close Preview">✕</button>
+      <div class="lightbox-content" id="image-lightbox-content">
+        <!-- Rendered dynamically by app.js -->
       </div>
     </div>
   </div>
