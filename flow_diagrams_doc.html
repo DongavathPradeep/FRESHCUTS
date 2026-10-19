@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jaya Raithu Market — System & Operational Flow Diagrams</title>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+    @page {
+      size: A4 portrait;
+      margin: 8mm 12mm 8mm 12mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      color: #0f172a;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.38;
+      font-size: 9pt;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      max-height: 260mm;
+      overflow: hidden;
+    }
+
+    .page:not(:last-child) {
+      page-break-after: always;
+      break-after: page;
+    }
+
+    /* Cover / Header Section */
+    .doc-header {
+      border-bottom: 2.5px solid #059669;
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .brand-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 19pt;
+      font-weight: 800;
+      color: #064e3b;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .brand-telugu {
+      font-size: 12pt;
+      color: #d97706;
+      font-weight: 700;
+      margin-left: 6px;
+    }
+
+    .brand-sub {
+      font-size: 9pt;
+      color: #059669;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .doc-meta {
+      text-align: right;
+      font-size: 8pt;
+      color: #64748b;
+      line-height: 1.35;
+    }
+
+    .badge-chip {
+      background: #ecfdf5;
+      color: #047857;
+      border: 1px solid #a7f3d0;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 7.5pt;
+      display: inline-block;
+      margin-bottom: 3px;
+    }
+
+    /* Section Styles */
+    .section-header {
+      background: #f8fafc;
+      border-left: 4px solid #059669;
+      padding: 6px 12px;
+      margin-bottom: 10px;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12pt;
+      font-weight: 700;
+      color: #064e3b;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-desc {
+      font-size: 8.5pt;
+      color: #475569;
+      margin-top: 2px;
+      line-height: 1.35;
+    }
+
+    /* Diagram Card Frame */
+    .diagram-card {
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 6px 6px;
+      background: #ffffff;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .mermaid {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .mermaid svg {
+      max-width: 100% !important;
+      height: auto !important;
+      max-height: 95mm !important;
+    }
+
+    /* Tables */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 7.5pt;
+      margin-top: 4px;
+    }
+
+    .data-table th {
+      background: #064e3b;
+      color: #ffffff;
+      padding: 4px 6px;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .data-table td {
+      padding: 3px 6px;
+      border-bottom: 1px solid #e2e8f0;
+      color: #334155;
+    }
+
+    .data-table tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    .highlight-cell {
+      font-weight: 700;
+      color: #059669;
+    }
+
+    /* Callouts */
+    .callout-box {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 6px;
+      padding: 5px 10px;
+      font-size: 7.5pt;
+      color: #166534;
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-bar {
+      margin-top: auto;
+      padding-top: 6px;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      font-size: 7.5pt;
+      color: #94a3b8;
+    }
+  </style>
+
+  <script src="mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      themeVariables: {
+        fontSize: '13px',
+        primaryColor: '#ecfdf5',
+        primaryTextColor: '#064e3b',
+        primaryBorderColor: '#059669',
+        lineColor: '#059669',
+        secondaryColor: '#fef3c7',
+        tertiaryColor: '#f8fafc'
+      },
+      fontFamily: 'Plus Jakarta Sans, sans-serif',
+      flowchart: {
+        curve: 'basis',
+        htmlLabels: true,
+        useMaxWidth: true
+      }
+    });
+  </script>
+</head>
+<body>
+
+  <!-- ========================================================================= -->
+  <!-- PAGE 1: END-TO-END SUPPLY CHAIN & FULFILLMENT FLOW                        -->
+  <!-- ========================================================================= -->
+  <div class="page">
+    <div>
+      <header class="doc-header">
+        <div>
+          <div class="brand-title">Jaya Raithu Market <span class="brand-telugu">జయ రైతు మార్కెట్</span></div>
+          <div class="brand-sub">Farm-to-Fork Direct Sourcing & Zero-Waste Omnichannel Agritech Model</div>
+        </div>
+        <div class="doc-meta">
+          <span class="badge-chip">PAGE 1 OF 4 • OFFICIAL OPERATIONAL FLOWS</span><br>
+          <strong>Hub:</strong> Banjara Hills Store #01 (Telangana)<br>
+          <strong>Cluster:</strong> 50–120 km Peri-Urban Belt
+        </div>
+      </header>
+
+      <div class="section-header">
+        <h2 class="section-title">1. End-to-End Supply Chain Flow (Farm Gate to Dining Table in 12 Hours)</h2>
+        <p class="section-desc">Eliminates 5 to 7 traditional APMC middlemen. Produce harvested in the evening arrives on urban retail misting racks by 5:00 AM, guaranteeing 60%+ farmer realization and peak leaf hydration.</p>
+      </div>
+
+      <div class="diagram-card">
+        <pre class="mermaid">
+flowchart TD
+    subgraph S1 ["1. Upstream Farm Gate (03:00 PM - 07:00 PM)"]
+        FARM["Partner Farmers & FPOs (Chevella, Vikarabad, Shamshabad)"]
+        VCC["Village Collection Center (VCC): Calibrated Electronic Weighing"]
+        QA["Quality Assay & Grading (Grade A: +20% Mandi Bonus)"]
+        SMS["Instant SMS Weigh Ticket & Encrypted Lot QR Tag"]
+        FARM --> VCC --> QA --> SMS
+    end
+
+    subgraph S2 ["2. Cold Linehaul Transit (09:00 PM - 01:00 AM)"]
+        HDPE["Standardized Food-Grade HDPE Perforated Crates (Zero Bruising)"]
+        REEFER["Insulated Night Transit Reefer Vans (IoT Temperature Logged)"]
+        HDPE --> REEFER
+    end
+
+    subgraph S3 ["3. Urban Central Hub & Climate Storage (01:00 AM - 05:00 AM)"]
+        INTAKE["FEFO Barcode Intake & Thermodynamic Segregation"]
+        ZONE_A["Zone A (2°-6°C, 94% RH): Leafy Greens, Broccoli"]
+        ZONE_B["Zone B (10°-14°C, 82% RH): Tomatoes, Gourds, Fruits"]
+        ZONE_C["Zone C (20°-25°C, Aerated): Onions, Potatoes, Garlic"]
+        INTAKE --> ZONE_A
+        INTAKE --> ZONE_B
+        INTAKE --> ZONE_C
+    end
+
+    subgraph S4 ["4. Omnichannel Distribution (06:00 AM - 09:30 PM)"]
+        STORE["Flagship Walk-in Store (Ultrasonic Misting Racks & POS)"]
+        MILK["Wave 1: Morning Subscription Run (06:00 - 08:30 AM via e-Bikes)"]
+        EXPRESS["Wave 2: Hyperlocal 30-min Quick Delivery"]
+        STORE --- MILK --- EXPRESS
+    end
+
+    subgraph S5 ["5. Consumer Experience & T+1 Settlement"]
+        CUST["Household Kitchen (Delivered in &lt; 12-16 hrs)"]
+        BILL["Smart POS Bill + QR Provenance (Scan for GPS Farm Map)"]
+        UPI["Automated Escrow Bank Transfer: T+1 UPI Direct to Farmer"]
+        CUST --> BILL --> UPI
+    end
+
+    SMS --> HDPE
+    REEFER --> INTAKE
+    ZONE_A --> STORE
+    ZONE_B --> MILK
+    ZONE_C --> EXPRESS
+    STORE --> CUST
+    MILK --> CUST
+    EXPRESS --> CUST
+        </pre>
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Chain Stage</th>
+            <th>Operational Window</th>
+            <th>Core Action & Standards</th>
+            <th>Preservation / Quality Metric</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Farm Harvest & VCC</strong></td>
+            <td>03:00 PM – 07:00 PM</td>
+            <td>Electronic weighing, quality grading, perforated HDPE crate packing</td>
+            <td>Zero rough jute bag bruising; hydration locked</td>
+          </tr>
+          <tr>
+            <td><strong>Night Reefer Linehaul</strong></td>
+            <td>09:00 PM – 01:00 AM</td>
+            <td>Insulated transport within 50–120 km radius to Banjara Hills hub</td>
+            <td>Night transit minimizes metabolic heat build-up</td>
+          </tr>
+          <tr>
+            <td><strong>Urban 3-Zone Storage</strong></td>
+            <td>01:00 AM – 05:00 AM</td>
+            <td>Zone A (4°C, 94% RH), Zone B (11°C, 82% RH), Zone C (22°C Aerated)</td>
+            <td>Thermodynamic segregation stops yellowing</td>
+          </tr>
+          <tr>
+            <td><strong>Delivery & Walk-in Store</strong></td>
+            <td>06:00 AM – 08:30 AM</td>
+            <td>Electric bike batch milk-run & misting rack displays</td>
+            <td><span class="highlight-cell">Delivered within 12–16 hrs of harvest</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer class="footer-bar">
+      <div>Jaya Raithu Market — Confidential Operational Architecture Blueprint</div>
+      <div>Section 1: Supply Chain Flow • Page 1 of 4</div>
+    </footer>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- PAGE 2: 5-TIER ZERO-WASTE PRODUCE CASCADE                                 -->
+  <!-- ========================================================================= -->
+  <div class="page">
+    <div>
+      <header class="doc-header">
+        <div>
+          <div class="brand-title">Jaya Raithu Market <span class="brand-telugu">జయ రైతు మార్కెట్</span></div>
+          <div class="brand-sub">The 5-Tier Zero-Waste Produce Cascade Funnel</div>
+        </div>
+        <div class="doc-meta">
+          <span class="badge-chip">PAGE 2 OF 4 • ZERO-WASTE REVOLUTION</span><br>
+          <strong>Landfill Waste:</strong> &lt; 1.9% (Industry: 25%–35%)<br>
+          <strong>Method:</strong> Algorithmic Devaluation & Culinary Prep
+        </div>
+      </header>
+
+      <div class="section-header">
+        <h2 class="section-title">2. The 5-Tier Zero-Waste Produce Cascade Flow (&lt; 3% Net Spoilage)</h2>
+        <p class="section-desc">To conquer perishable shrinkage, fresh produce moves through an automated algorithmic devaluation and repurposing funnel. Unsold items from Day 1 are discounted or converted into gourmet value-add kitchen packs.</p>
+      </div>
+
+      <div class="diagram-card">
+        <pre class="mermaid">
+flowchart TD
+    T1["Tier 1: Fresh Premium Retail (0 - 24 hrs post-harvest)<br/>• 100% Full Retail Price | 32% Gross Margin<br/>• Ultrasonic Misting Racks & Priority Morning Subscriptions"]
+    
+    T2["Tier 2: 'Fresh Save' Dynamic Markdowns (24 - 42 hrs)<br/>• 25% - 40% Discount | Physical Clearance Shelf & App Tab<br/>• Recovers 100% Farm Procurement Cost + 8% Margin | Fast Cooking"]
+
+    T3["Tier 3: Value-Addition Prep Kitchen (42 - 56 hrs)<br/>• Pre-chopped Sambar/Stir-fry Packs (450g) | Vacuum Peeled Garlic (250g)<br/>• Cold-Pressed Raw Juices | Artisanal Farm Tomato Chutney<br/>• Transforms surplus into 120% - 160% of Raw Retail Value"]
+
+    T4["Tier 4: B2B Institutional Offtake (56 - 68 hrs)<br/>• Wholesale 20kg Crates @ 50% - 60% Value<br/>• Supplied to Cloud Kitchens, Hostels, Catering Vendors for same-night cooking"]
+
+    T5["Tier 5: Circular Bio-Recovery Loop (68 hrs+)<br/>• Residual Peels, Stems & Non-Edible Spoilage<br/>• On-site Vermicomposting & Black Soldier Fly Larvae (BSFL) Bins<br/>• Organic Fertilizer returned to partner farmers at subsidized rates"]
+
+    T1 -->|FEFO Countdown / Ripening| T2
+    T2 -->|Surplus Whole Edible Stock| T3
+    T3 -->|Surplus Whole Bulk Crates| T4
+    T3 -.->|Peels & Pulp Trimmings| T5
+    T4 -->|Residual Organic Waste| T5
+        </pre>
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Cascade Tier</th>
+            <th>Lifecycle Window</th>
+            <th>Primary Channel / Action</th>
+            <th>Economic Recovery & Margin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Tier 1: Premium Retail</strong></td>
+            <td>Day 0 – Day 1 (First 24 hrs)</td>
+            <td>Misting racks, morning milk-run baskets, 30m express delivery</td>
+            <td><span class="highlight-cell">100% Retail Price (32% Gross Margin)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Tier 2: "Fresh Save" Markdown</strong></td>
+            <td>Day 1 PM – Day 2 AM (24–42 hrs)</td>
+            <td>Clearance shelf & dedicated app tab with 35% discount</td>
+            <td><strong>70%–80% Value (Recovers farm cost + 8%)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Tier 3: Prep Kitchen Deli</strong></td>
+            <td>Day 2 (42–56 hrs)</td>
+            <td>Pre-cut vegetable packs, peeled garlic, cold juices, chutney</td>
+            <td><span class="highlight-cell">120%–160% Raw Value (High-Margin Value Add)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Tier 4: B2B Offtake</strong></td>
+            <td>Day 2 PM (56–68 hrs)</td>
+            <td>Bulk crates sold to cloud kitchens, hostel messes, tiffin centers</td>
+            <td><strong>50%–60% Value (Covers procurement & transit)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Tier 5: Circular Recovery</strong></td>
+            <td>Peels, stems, trim (68+ hrs)</td>
+            <td>Vermicomposting & Black Soldier Fly Larvae organic bio-fertilizer</td>
+            <td><strong>Closed loop: Soil nutrients back to farmers</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout-box">
+        <span>♻️</span>
+        <div><strong>Zero Landfill Impact:</strong> Produce waste sent to landfills is constrained to <strong>under 1.9%</strong>, converting potential loss into organic fertilizer and high-margin kitchen packs.</div>
+      </div>
+    </div>
+
+    <footer class="footer-bar">
+      <div>Jaya Raithu Market — Confidential Operational Architecture Blueprint</div>
+      <div>Section 2: Zero-Waste Cascade • Page 2 of 4</div>
+    </footer>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- PAGE 3: TECHNOLOGY ARCHITECTURE & DATA SYNC                               -->
+  <!-- ========================================================================= -->
+  <div class="page">
+    <div>
+      <header class="doc-header">
+        <div>
+          <div class="brand-title">Jaya Raithu Market <span class="brand-telugu">జయ రైతు మార్కెట్</span></div>
+          <div class="brand-sub">Technology Architecture & Real-Time Data Synchronization</div>
+        </div>
+        <div class="doc-meta">
+          <span class="badge-chip">PAGE 3 OF 4 • AGRITECH SOFTWARE STACK</span><br>
+          <strong>Inventory:</strong> FEFO Barcode Serialization<br>
+          <strong>Settlement:</strong> Direct T+1 UPI Escrow Gateway
+        </div>
+      </header>
+
+      <div class="section-header">
+        <h2 class="section-title">3. Technology Architecture & Real-Time Data Synchronization</h2>
+        <p class="section-desc">Hardware edge devices at the farm gate connect seamlessly with cloud FEFO inventory algorithms and customer channels to automate stock rotation and direct farmer payouts.</p>
+      </div>
+
+      <div class="diagram-card">
+        <pre class="mermaid">
+flowchart TD
+    subgraph Edge ["Hardware & IoT Edge Layer"]
+        SCALE["Electronic Weigh Scale (Avery Loadcell API at VCCs)"]
+        SENSORS["Multi-Zone IoT Telemetry (Temp, Humidity, Ethylene ppm)"]
+        SCANNER["Store POS Scanners (Weigh-and-Print Barcode)"]
+    end
+
+    subgraph CloudEngine ["Jaya Central Agritech Cloud Engine"]
+        FEFO["Batch & FEFO Inventory Engine (Barcode expiration timers)"]
+        PRICING["Dynamic Markdown Engine (Automated 35% evening discount rules)"]
+        AI_DEMAND["AI Demand Predictor (Weather, festivals & sales velocity)"]
+        ESCROW["T+1 UPI Payment Gateway (Automated farmer settlement)"]
+    end
+
+    subgraph ConsumerLayer ["Omnichannel Consumer Layer"]
+        POS["In-Store POS Terminal (Banjara Hills Hub)"]
+        APP["Consumer Mobile & Web App (Real-Time Shelf Sync)"]
+        WHATSAPP["WhatsApp Commerce Bot (Telugu/English Voice & 1-Click Orders)"]
+    end
+
+    SCALE -->|Weight & Lot QR Payload| FEFO
+    SENSORS -->|Live Climate Telemetry| FEFO
+    AI_DEMAND -->|Daily Harvest Purchase Orders| SCALE
+
+    FEFO --> PRICING
+    PRICING --> POS
+    PRICING --> APP
+    PRICING --> WHATSAPP
+
+    SCANNER -->|Real-Time Stock Decrement| FEFO
+    APP -->|Digital Orders Placed| FEFO
+    WHATSAPP -->|Subscriptions Scheduled| FEFO
+
+    POS --> ESCROW
+    APP --> ESCROW
+    WHATSAPP --> ESCROW
+        </pre>
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Software Component</th>
+            <th>Key Responsibility</th>
+            <th>Business Output</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>FEFO Inventory Engine</strong></td>
+            <td>Tracks exact harvest hour per QR lot; alerts staff when lots hit 24h &amp; 42h windows</td>
+            <td>Zero expired goods on flagship shelves</td>
+          </tr>
+          <tr>
+            <td><strong>Dynamic Markdown Engine</strong></td>
+            <td>Pushes algorithmic discounts to app &amp; POS simultaneously at 06:30 PM</td>
+            <td>Rapid sell-through of day-1 produce</td>
+          </tr>
+          <tr>
+            <td><strong>WhatsApp Commerce Bot</strong></td>
+            <td>Enables 1-click morning basket subscription and regional voice ordering in Telugu</td>
+            <td>68% lower customer acquisition cost</td>
+          </tr>
+          <tr>
+            <td><strong>T+1 Escrow Bank Service</strong></td>
+            <td>Auto-reconciles POS sales and disburses bank payouts directly to farmer UPI VPA</td>
+            <td>Guaranteed next-morning farmer payment</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer class="footer-bar">
+      <div>Jaya Raithu Market — Confidential Operational Architecture Blueprint</div>
+      <div>Section 3: Technology Architecture • Page 3 of 4</div>
+    </footer>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- PAGE 4: CONSUMER RUPEE VALUE DISTRIBUTION                                 -->
+  <!-- ========================================================================= -->
+  <div class="page">
+    <div>
+      <header class="doc-header">
+        <div>
+          <div class="brand-title">Jaya Raithu Market <span class="brand-telugu">జయ రైతు మార్కెట్</span></div>
+          <div class="brand-sub">Consumer Rupee Value Distribution & Unit Economics</div>
+        </div>
+        <div class="doc-meta">
+          <span class="badge-chip">PAGE 4 OF 4 • FINANCIAL EQUITY MODEL</span><br>
+          <strong>Farmer Realization:</strong> 61.0% (Mandi: 28.0%)<br>
+          <strong>Middlemen Commissions:</strong> ₹0.00 (Eliminated)
+        </div>
+      </header>
+
+    <div class="diagram-card" style="padding: 4px; margin-bottom: 4px;">
+      <pre class="mermaid">
+flowchart LR
+    subgraph M ["Traditional APMC Mandi (₹100 Bill)"]
+        direction TB
+        M1["Farmer: ₹28.00 (28%)"]
+        M2["Middlemen: ₹24.00 (24%)"]
+        M3["Spoilage: ₹18.00 (18%)"]
+        M4["Transit: ₹12.00 (12%)"]
+        M5["Retailer: ₹18.00 (18%)"]
+        M1 --- M2 --- M3 --- M4 --- M5
+    end
+
+    subgraph J ["Jaya Raithu Market (₹95 Bill)"]
+        direction TB
+        J1["Farmer Direct: ₹58.00 (61%)"]
+        J2["Middlemen: ₹0.00 (0%)"]
+        J3["Cold-Chain: ₹11.00 (11.6%)"]
+        J4["Net Spoilage: ₹2.85 (3%)"]
+        J5["Hub Gross Margin: ₹23.15 (24.4%)"]
+        J1 --- J2 --- J3 --- J4 --- J5
+    end
+      </pre>
+    </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Cost Component</th>
+            <th>Traditional Mandi Chain</th>
+            <th>Jaya Raithu Market</th>
+            <th>Economic Variance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Retail Price Paid by Customer</strong></td>
+            <td>₹100.00</td>
+            <td><strong>₹95.00</strong></td>
+            <td><span class="highlight-cell">₹5.00 Consumer Saving (5% Cheaper)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Direct Farmer Realization</strong></td>
+            <td>₹28.00 (28%)</td>
+            <td><strong>₹58.00 (61.0%)</strong></td>
+            <td><span class="highlight-cell">+107% Higher Farmer Cash Inflow</span></td>
+          </tr>
+          <tr>
+            <td><strong>Middlemen / Commission Agents</strong></td>
+            <td>₹24.00 (24%)</td>
+            <td><strong>₹0.00 (0%)</strong></td>
+            <td>100% Intermediary Elimination</td>
+          </tr>
+          <tr>
+            <td><strong>Transit Spoilage / Shrinkage</strong></td>
+            <td>₹18.00 (18%)</td>
+            <td><strong>₹2.85 (3.0%)</strong></td>
+            <td>84% Reduction in Produce Waste</td>
+          </tr>
+          <tr>
+            <td><strong>Logistics & Cold-Chain Handling</strong></td>
+            <td>₹12.00 (12%)</td>
+            <td><strong>₹11.00 (11.6%)</strong></td>
+            <td>Standardized reusable HDPE crates</td>
+          </tr>
+          <tr>
+            <td><strong>Platform & Store Gross Profit</strong></td>
+            <td>₹18.00 (18%)</td>
+            <td><strong>₹23.15 (24.4%)</strong></td>
+            <td>Healthy, Sustainable Unit Economics</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout-box">
+        <span>🌾</span>
+        <div><strong>Executive Summary:</strong> The Jaya Raithu Market model provides an equitable, high-margin, scalable agritech blueprint that pays farmers more, sells to consumers cheaper, and achieves near-zero waste.</div>
+      </div>
+    </div>
+
+    <footer class="footer-bar">
+      <div>Jaya Raithu Market — Confidential Operational Architecture Blueprint</div>
+      <div>Section 4: Financial Model • Page 4 of 4</div>
+    </footer>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+# Operating System Files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Temporary & Browser Profiles
+temp_chrome_profile/
+temp_edge_profile/
+scratch/
+__pycache__/
+*.pyc
+
+# Large Binaries & Executables
+*.exe
+cloudflared.exe
+
+# Zip Archives
+*.zip
+
+# Log files & Temporary Data
+*.log
+dom_check.txt
+active_url.txt
+cloud_live_site.json
+
+# Temporary Test Files & Screenshots
+test.html
+test.pdf
+test_chrome.pdf
+test_runner.js
+cloud_site_qr.png
+qr_*.png
+tunnel_qr*.png
+verify_*.png
