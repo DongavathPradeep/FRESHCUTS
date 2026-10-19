@@ -13138,7 +13138,10 @@ body.has-modal-open .wa-floating-widget,
 
 .catalog-section-header .section-telugu,
 .catalog-section .section-telugu,
-.section-header-titles .section-telugu {
+.section-header-titles .section-telugu,
+.catalog-section-header .section-subtitle,
+.catalog-section .section-subtitle,
+.section-header-titles .section-subtitle {
   font-size: 0.92rem !important;
   font-weight: 600 !important;
   color: #f1f5f9 !important;
@@ -13147,13 +13150,20 @@ body.has-modal-open .wa-floating-widget,
   display: block !important;
 }
 
-.catalog-section-header.section-header-leaf-items .section-telugu { color: #a7f3d0 !important; }
-.catalog-section-header.section-header-ready-to-cook .section-telugu { color: #fed7aa !important; }
-.catalog-section-header.section-header-dairy-morning .section-telugu { color: #bfdbfe !important; }
-.catalog-section-header.section-header-vegetables .section-telugu { color: #bbf7d0 !important; }
-.catalog-section-header.section-header-kitchen-spices .section-telugu { color: #fef08a !important; }
-.catalog-section-header.section-header-appliances .section-telugu { color: #e2e8f0 !important; }
-.catalog-section-header.section-header-other .section-telugu { color: #ddd6fe !important; }
+.catalog-section-header.section-header-leaf-items .section-telugu,
+.catalog-section-header.section-header-leaf-items .section-subtitle { color: #a7f3d0 !important; }
+.catalog-section-header.section-header-ready-to-cook .section-telugu,
+.catalog-section-header.section-header-ready-to-cook .section-subtitle { color: #fed7aa !important; }
+.catalog-section-header.section-header-dairy-morning .section-telugu,
+.catalog-section-header.section-header-dairy-morning .section-subtitle { color: #bfdbfe !important; }
+.catalog-section-header.section-header-vegetables .section-telugu,
+.catalog-section-header.section-header-vegetables .section-subtitle { color: #bbf7d0 !important; }
+.catalog-section-header.section-header-kitchen-spices .section-telugu,
+.catalog-section-header.section-header-kitchen-spices .section-subtitle { color: #fef08a !important; }
+.catalog-section-header.section-header-appliances .section-telugu,
+.catalog-section-header.section-header-appliances .section-subtitle { color: #e2e8f0 !important; }
+.catalog-section-header.section-header-other .section-telugu,
+.catalog-section-header.section-header-other .section-subtitle { color: #ddd6fe !important; }
 
 .section-badge-count {
   font-size: 0.85rem !important;
@@ -13252,7 +13262,8 @@ body.has-modal-open .wa-floating-widget,
   .section-title {
     font-size: 1rem;
   }
-  .section-telugu {
+  .section-telugu,
+  .section-subtitle {
     font-size: 0.76rem;
   }
   .section-badge-count {

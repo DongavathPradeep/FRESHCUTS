@@ -65,7 +65,7 @@
       village: 'Kotepally, Vikarabad Forest Belt',
       distanceKm: 52,
       acres: 18.0,
-      cropFocus: 'Pure A2 Cow Milk, Buffalo Milk, Clay Pot Curd (Perugu), Malai Paneer & Bilona Ghee',
+      cropFocus: 'Pure A2 Cow Milk, Buffalo Milk, Clay Pot Curd , Malai Paneer & Bilona Ghee',
       farmingMethod: 'Free-Grazing Indigenous Gir & Murrah Cattle Cooperative',
       soilType: 'Herbal Fodder Pasturelands',
       avatar: 'assets/prod_dairy_fresh.jpg',
@@ -98,7 +98,7 @@
       village: 'Kurnool & Nandyal River Basin',
       distanceKm: 215,
       acres: 42.0,
-      cropFocus: 'Kurnool Sona Masoori Rice, Uggani Borugulu, Small Desi Garlic & Shallots',
+      cropFocus: 'Kurnool Sona Masoori Rice, Spiced Puffed Rice Borugulu, Small Desi Garlic & Shallots',
       farmingMethod: 'River Basin Zero-Chemical Sourcing Cooperative',
       soilType: 'Alluvial Black Cotton Soils',
       avatar: 'assets/crates_harvest.jpg',
@@ -130,7 +130,7 @@
       village: 'Pulivendula & Rajampet Belt, YSR Kadapa',
       distanceKm: 380,
       acres: 28.5,
-      cropFocus: 'Kadapa Gundu Red Chillies, Unpolished Kandi Pappu, Erra Karam & Pasupu',
+      cropFocus: 'Kadapa Gundu Red Chillies, Unpolished Kandi Pappu, Red Chilli Spice Paste & Pasupu',
       farmingMethod: 'Indigenous Desi Compost & Solar-Dried Processing',
       soilType: 'Deep Red & Black Clay Soils',
       avatar: 'assets/farmer_anji_reddy.jpg',
@@ -165,7 +165,6 @@
     {
       id: 'prod_milk_cow',
       title: 'Pure Desi A2 Cow Milk (1L Glass Bottle)',
-      teluguTitle: '',
       category: 'dairy-morning',
       zoneName: 'Chilled Dairy Vault (3°C)',
       harvestHoursAgo: 3,
@@ -185,7 +184,6 @@
     {
       id: 'prod_milk_buffalo',
       title: 'Rich Farm Buffalo Milk (6.5% Fat - 1L)',
-      teluguTitle: '',
       category: 'dairy-morning',
       zoneName: 'Chilled Dairy Vault (3°C)',
       harvestHoursAgo: 4,
@@ -205,7 +203,6 @@
     {
       id: 'prod_curd_meegada',
       title: 'Clay Pot Farm Curd (500g)',
-      teluguTitle: '',
       category: 'dairy-morning',
       zoneName: 'Chilled Dairy Vault (4°C)',
       harvestHoursAgo: 6,
@@ -223,9 +220,28 @@
       desc: 'Set in porous terracotta pots using heirloom mother culture. Thick, velvety sweet curd with a thick layer of natural golden malai (meegada).'
     },
     {
+      id: 'prod_curd_pot',
+      title: 'Clay Pot Farm Curd (500g)',
+      category: 'dairy-morning',
+      zoneName: 'Chilled Dairy Vault (4°C)',
+      harvestHoursAgo: 6,
+      grade: 'Traditional Set Pot',
+      farmerKey: 'krishna_dairy',
+      price: 45,
+      mandiPrice: 55,
+      unit: '500g',
+      image: 'assets/prod_curd_pot.jpg',
+      farmerPayoutPercent: 67,
+      lotNumber: 'CR-POT-303',
+      tier: 1,
+      options: [{ unit: '500g', price: 45 }, { unit: '1kg', price: 85 }],
+      isMarkdown: false,
+      isKitchen: false,
+      desc: 'Set in porous terracotta pots using natural mother culture. Thick, velvety curd with natural golden malai.'
+    },
+    {
       id: 'prod_paneer_fresh',
       title: 'Fresh Farm Malai Paneer (200g Block)',
-      teluguTitle: '',
       category: 'dairy-morning',
       zoneName: 'Chilled Dairy Vault (4°C)',
       harvestHoursAgo: 5,
@@ -245,7 +261,6 @@
     {
       id: 'prod_butter_white',
       title: 'Farm White Butter (150g)',
-      teluguTitle: '',
       category: 'dairy-morning',
       zoneName: 'Chilled Dairy Vault (4°C)',
       harvestHoursAgo: 8,
@@ -265,7 +280,6 @@
     {
       id: 'prod_ghee_bilona',
       title: 'A2 Desi Cow Bilona Cultured Ghee (250ml)',
-      teluguTitle: '',
       category: 'dairy-morning',
       zoneName: 'Heritage Pantry (Room Temp)',
       harvestHoursAgo: 24,
@@ -285,7 +299,6 @@
     {
       id: 'prod_buttermilk_spiced',
       title: 'Refreshing Spiced Buttermilk (300ml)',
-      teluguTitle: '',
       category: 'dairy-morning',
       zoneName: 'Chilled Dairy Vault (4°C)',
       harvestHoursAgo: 4,
@@ -305,7 +318,6 @@
     {
       id: 'prod_batter_dosa',
       title: 'Farm Stone-Ground Idli & Dosa Batter (1kg)',
-      teluguTitle: '',
       category: 'dairy-morning',
       zoneName: 'Chilled Pantry (5°C)',
       harvestHoursAgo: 5,
@@ -325,7 +337,6 @@
     {
       id: 'prod_eggs_country',
       title: 'Free-Range Country Eggs (6 pcs)',
-      teluguTitle: '',
       category: 'dairy-morning',
       zoneName: 'Farm Fresh Crates (Room Temp)',
       harvestHoursAgo: 12,
@@ -349,7 +360,6 @@
     {
       id: 'prod_tomatoes',
       title: 'Heirloom Vine Tomatoes (Desi - 1kg)',
-      teluguTitle: '',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 8,
@@ -369,7 +379,6 @@
     {
       id: 'prod_chillies_green',
       title: 'Country Green Chillies (250g)',
-      teluguTitle: '',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 7,
@@ -389,7 +398,6 @@
     {
       id: 'prod_carrots',
       title: 'Crunchy Sweet Farm Carrots (500g)',
-      teluguTitle: '',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 10,
@@ -409,7 +417,6 @@
     {
       id: 'prod_beans',
       title: 'Tender Stringless French Beans (500g)',
-      teluguTitle: '',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 9,
@@ -429,7 +436,6 @@
     {
       id: 'prod_cauliflower',
       title: 'Farm Fresh Crisp Cauliflower (1 Whole Head)',
-      teluguTitle: '',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 11,
@@ -449,7 +455,6 @@
     {
       id: 'prod_cabbage',
       title: 'Sweet Green Cabbage (1 Whole Head)',
-      teluguTitle: '',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 12,
@@ -469,7 +474,6 @@
     {
       id: 'prod_bottle_gourd',
       title: 'Country Bottle Gourd',
-      teluguTitle: '',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 8,
@@ -489,7 +493,6 @@
     {
       id: 'prod_ridge_gourd',
       title: 'Country Ridge Gourd (500g)',
-      teluguTitle: '',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 9,
@@ -509,7 +512,6 @@
     {
       id: 'prod_bitter_gourd',
       title: 'Country Bitter Gourd (500g)',
-      teluguTitle: '',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 10,
@@ -529,7 +531,6 @@
     {
       id: 'prod_bhendi',
       title: 'Tender Lady Finger (1kg)',
-      teluguTitle: '',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 7,
@@ -549,7 +550,6 @@
     {
       id: 'prod_vankaya',
       title: 'Country Brinjal (1kg)',
-      teluguTitle: '',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 8,
@@ -564,12 +564,11 @@
       tier: 1,
       isMarkdown: false,
       isKitchen: false,
-      desc: 'Glossy purple striped heirloom brinjals. Non-bitter, seedless interior crafted for iconic stuffed Gutti Vankaya.'
+      desc: 'Glossy purple striped heirloom brinjals. Non-bitter, seedless interior crafted for iconic stuffed Stuffed Baby Brinjal.'
     },
     {
       id: 'prod_capsicum',
       title: 'Crisp Green Bell Peppers (Capsicum - 1kg)',
-      teluguTitle: '',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 10,
@@ -589,7 +588,6 @@
     {
       id: 'prod_cucumber_salad',
       title: 'Crisp Salad Keera Cucumber (500g)',
-      teluguTitle: '',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 6,
@@ -609,7 +607,6 @@
     {
       id: 'prod_cucumber_yellow',
       title: 'Yellow Cucumber (1 pc)',
-      teluguTitle: '',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 12,
@@ -624,12 +621,11 @@
       tier: 1,
       isMarkdown: false,
       isKitchen: false,
-      desc: 'Authentic round yellow-striped country cucumber with natural tanginess. Irreplaceable ingredient for authentic Dosakaya Pappu and spicy pachadi.'
+      desc: 'Authentic round yellow-striped country cucumber with natural tanginess. Irreplaceable ingredient for authentic Yellow Cucumber Lentil Dal and spicy pachadi.'
     },
     {
       id: 'prod_drumstick',
       title: 'Country Drumsticks (3 pcs)',
-      teluguTitle: '',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 8,
@@ -649,7 +645,6 @@
     {
       id: 'prod_lemons',
       title: 'Fresh Country Lemons (Pack of 4)',
-      teluguTitle: '',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 14,
@@ -669,7 +664,6 @@
     {
       id: 'prod_green_peas',
       title: 'Sweet Green Peas (250g)',
-      teluguTitle: '',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 9,
@@ -689,7 +683,6 @@
     {
       id: 'prod_beetroot',
       title: 'Organic Sweet Country Beetroot (500g)',
-      teluguTitle: '',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 15,
@@ -713,7 +706,6 @@
     {
       id: 'prod_palak',
       title: 'Fresh Spinach (Palak - 250g)',
-      teluguTitle: '',
       category: 'zone-a',
       zoneName: 'Zone A: 4°C Misting Rack',
       harvestHoursAgo: 6,
@@ -733,7 +725,6 @@
     {
       id: 'prod_methi',
       title: 'Fresh Fenugreek (Methi - 200g)',
-      teluguTitle: '',
       category: 'zone-a',
       zoneName: 'Zone A: 4°C Misting Rack',
       harvestHoursAgo: 7,
@@ -753,7 +744,6 @@
     {
       id: 'prod_kothimeera',
       title: 'Fresh Coriander (150g bunch)',
-      teluguTitle: '',
       category: 'zone-a',
       zoneName: 'Zone A: 4°C Misting Rack',
       harvestHoursAgo: 5,
@@ -773,7 +763,6 @@
     {
       id: 'prod_pudina',
       title: 'Fresh Mint (Pudina - 150g)',
-      teluguTitle: '',
       category: 'zone-a',
       zoneName: 'Zone A: 4°C Misting Rack',
       harvestHoursAgo: 6,
@@ -793,7 +782,6 @@
     {
       id: 'prod_curry_leaves',
       title: 'Fresh Curry Leaves (100g)',
-      teluguTitle: '',
       category: 'zone-a',
       zoneName: 'Zone A: 4°C Misting Rack',
       harvestHoursAgo: 4,
@@ -813,7 +801,6 @@
     {
       id: 'prod_gongura',
       title: 'Tangy Andhra Red-Stem Gongura (1 Bunch)',
-      teluguTitle: '',
       category: 'zone-a',
       zoneName: 'Zone A: 4°C Misting Rack',
       harvestHoursAgo: 7,
@@ -828,12 +815,11 @@
       tier: 1,
       isMarkdown: false,
       isKitchen: false,
-      desc: 'Legendary red-stem tangy sorrel leaves. High iron content; the quintessential soul of Andhra Gongura Pappu and Pachadi.'
+      desc: 'Legendary red-stem tangy sorrel leaves. High iron content; the quintessential soul of Andhra Sorrel Leaves Lentil Dal and Pachadi.'
     },
     {
       id: 'prod_thotakura',
       title: 'Fresh Amaranth Leaves (1 Bunch)',
-      teluguTitle: '',
       category: 'zone-a',
       zoneName: 'Zone A: 4°C Misting Rack',
       harvestHoursAgo: 8,
@@ -857,7 +843,6 @@
     {
       id: 'prod_onions',
       title: 'Kurnool Sweet Red Onions (1kg)',
-      teluguTitle: '',
       category: 'zone-c',
       zoneName: 'Zone C: 22°C Aerated Racks',
       harvestHoursAgo: 48,
@@ -877,7 +862,6 @@
     {
       id: 'prod_potatoes',
       title: 'Organic Mountain Potatoes (1kg)',
-      teluguTitle: '',
       category: 'zone-c',
       zoneName: 'Zone C: 22°C Aerated Racks',
       harvestHoursAgo: 48,
@@ -897,7 +881,6 @@
     {
       id: 'prod_ginger',
       title: 'Fresh Ginger Root (250g)',
-      teluguTitle: '',
       category: 'zone-c',
       zoneName: 'Zone C: 22°C Aerated Racks',
       harvestHoursAgo: 36,
@@ -917,7 +900,6 @@
     {
       id: 'prod_garlic_country',
       title: 'Fresh Country Garlic (250g)',
-      teluguTitle: '',
       category: 'zone-c',
       zoneName: 'Zone C: 22°C Aerated Racks',
       harvestHoursAgo: 50,
@@ -937,7 +919,6 @@
     {
       id: 'prod_coconut',
       title: 'Fresh Sweet Coconut (1 pc)',
-      teluguTitle: '',
       category: 'zone-c',
       zoneName: 'Farm Fresh Crates (Room Temp)',
       harvestHoursAgo: 24,
@@ -961,7 +942,6 @@
     {
       id: 'prod_fs_tomatoes',
       title: 'Fresh Save: Ripe Vine Tomatoes (1kg)',
-      teluguTitle: '',
       category: 'tier2-clearance',
       zoneName: 'Tier 2 "Fresh Save" Clearance',
       harvestHoursAgo: 29,
@@ -981,7 +961,6 @@
     {
       id: 'prod_fs_palak',
       title: 'Fresh Save: Day-1 Palak Greens (bunch)',
-      teluguTitle: '',
       category: 'tier2-clearance',
       zoneName: 'Tier 2 "Fresh Save" Clearance',
       harvestHoursAgo: 26,
@@ -1004,8 +983,7 @@
     // =========================================================================
     {
       id: 'prod_rtc_gutti_vankaya',
-      title: 'Gutti Vankaya Slit & Stuffed Prep Kit (400g)',
-      teluguTitle: '',
+      title: 'Stuffed Baby Brinjal Slit & Stuffed Prep Kit (400g)',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 8,
@@ -1026,8 +1004,7 @@
     },
     {
       id: 'prod_curry_bendakaya_pulusu',
-      title: 'Rayalaseema Bendakaya Pulusu Cooking Kit (450g)',
-      teluguTitle: '',
+      title: 'Rayalaseema Ladyfinger Tangy Curry Cooking Kit (450g)',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 8,
@@ -1048,8 +1025,7 @@
     },
     {
       id: 'prod_rtc_tomato_pappu',
-      title: 'Rayalaseema Tomato Pappu Meal Kit (450g)',
-      teluguTitle: '',
+      title: 'Rayalaseema Tomato Lentil Dal Meal Kit (450g)',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 10,
@@ -1070,8 +1046,7 @@
     },
     {
       id: 'prod_rtc_palakura_pappu',
-      title: 'Rayalaseema Palakura Pappu Meal Kit (400g)',
-      teluguTitle: '',
+      title: 'Rayalaseema Spinach Lentil Dal Meal Kit (400g)',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 6,
@@ -1092,8 +1067,7 @@
     },
     {
       id: 'prod_rtc_gongura_pappu',
-      title: 'Rayalaseema Gongura Pappu Ready Kit (400g)',
-      teluguTitle: '',
+      title: 'Rayalaseema Sorrel Leaves Lentil Dal Ready Kit (400g)',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 8,
@@ -1114,8 +1088,7 @@
     },
     {
       id: 'prod_rtc_dosakaya_pappu',
-      title: 'Rayalaseema Dosakaya Pappu Cut Kit (450g)',
-      teluguTitle: '',
+      title: 'Rayalaseema Yellow Cucumber Lentil Dal Cut Kit (450g)',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 10,
@@ -1136,8 +1109,7 @@
     },
     {
       id: 'prod_rtc_menthi_pappu',
-      title: 'Tender Menthi Pappu Cooking Kit (350g)',
-      teluguTitle: '',
+      title: 'Tender Fenugreek Leaves Lentil Dal Cooking Kit (350g)',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 6,
@@ -1159,7 +1131,6 @@
     {
       id: 'prod_curry_dal_tadka',
       title: 'Dhaba Style Dal Tadka & Jeera Tempering Kit (400g)',
-      teluguTitle: '',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 12,
@@ -1181,7 +1152,6 @@
     {
       id: 'prod_curry_chana_masala',
       title: 'Desi Chana Masala / Senagala Curry Kit (400g)',
-      teluguTitle: '',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 14,
@@ -1202,8 +1172,7 @@
     },
     {
       id: 'prod_curry_dondakaya_fry',
-      title: 'Rayalaseema Dondakaya Fry / Tindora Masala Kit (400g)',
-      teluguTitle: '',
+      title: 'Rayalaseema Crispy Ivy Gourd Fry / Tindora Masala Kit (400g)',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 8,
@@ -1225,7 +1194,6 @@
     {
       id: 'prod_curry_kakarakaya_fry',
       title: 'Crispy Kakarakaya Vepudu / Bitter Gourd Kit (350g)',
-      teluguTitle: '',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 10,
@@ -1246,8 +1214,7 @@
     },
     {
       id: 'prod_curry_aratikaya_vepudu',
-      title: 'Andhra Aratikaya Vepudu / Raw Banana Fry Kit (400g)',
-      teluguTitle: '',
+      title: 'Andhra Raw Banana Pepper Roast / Raw Banana Fry Kit (400g)',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 12,
@@ -1269,7 +1236,6 @@
     {
       id: 'prod_curry_mirchi_ka_salan',
       title: 'Hyderabadi Mirchi Ka Salan Prep Kit (400g)',
-      teluguTitle: '',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 8,
@@ -1291,7 +1257,6 @@
     {
       id: 'prod_curry_paneer_masala',
       title: 'Creamy Farm Paneer Butter Masala Kit (450g)',
-      teluguTitle: '',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 4,
@@ -1313,7 +1278,6 @@
     {
       id: 'prod_curry_aloo_kurma',
       title: 'Rayalaseema Aloo Kurma / Potato Gravy Kit (450g)',
-      teluguTitle: '',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 10,
@@ -1335,7 +1299,6 @@
     {
       id: 'prod_curry_mushroom_curry',
       title: 'Farm Fresh Mushroom Pepper Masala Kit (350g)',
-      teluguTitle: '',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 6,
@@ -1357,7 +1320,6 @@
     {
       id: 'prod_rtc_sambar_deluxe',
       title: 'Authentic Sambar Veggies Cut Kit (500g)',
-      teluguTitle: '',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 8,
@@ -1379,7 +1341,6 @@
     {
       id: 'prod_kit_sambar',
       title: 'Gourmet Sambar Cut Mix Kit (450g)',
-      teluguTitle: '',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 32,
@@ -1398,9 +1359,29 @@
       desc: 'Pre-chopped drumstick, pumpkin, shallots, carrots & curry leaves. Washed in ozone water; saves 20 min prep!'
     },
     {
+      id: 'prod_rtc_sambar_curry',
+      title: 'Sambar Ready Cook Kit (450g)',
+      category: 'curry-kits',
+      zoneName: 'Curry Items & Fresh Kits',
+      harvestHoursAgo: 12,
+      grade: 'Kitchen Grade A+',
+      farmerKey: 'anji_reddy',
+      price: 49,
+      mandiPrice: 65,
+      unit: '450g kit',
+      image: 'assets/prod_rtc_sambar_curry.jpg',
+      farmerPayoutPercent: 65,
+      lotNumber: 'KT-SMB-450',
+      tier: 3,
+      options: [{ unit: '450g kit', price: 49 }],
+      isMarkdown: false,
+      isKitchen: true,
+      isCurry: true,
+      desc: 'Pre-chopped drumstick, pumpkin, shallots, carrots & fresh curry leaves. Zero chopping; straight to pot!'
+    },
+    {
       id: 'prod_rtc_miriyala_chaaru',
       title: 'Rayalaseema Pepper Rasam / Chaaru Kit (350g)',
-      teluguTitle: '',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 10,
@@ -1426,7 +1407,6 @@
     {
       id: 'prod_gg_paste',
       title: 'Roti Pachadi Ginger-Garlic Paste (200g Jar)',
-      teluguTitle: '',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 12,
@@ -1447,7 +1427,6 @@
     {
       id: 'prod_kit_garlic',
       title: 'Peeled Fresh Country Garlic (250g)',
-      teluguTitle: '',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 40,
@@ -1469,7 +1448,6 @@
     {
       id: 'prod_rtc_sambar_shallots',
       title: 'Peeled Sambar Shallots (250g)',
-      teluguTitle: '',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 12,
@@ -1491,7 +1469,6 @@
     {
       id: 'prod_kitchen_coconut',
       title: 'Fresh Grated Country Coconut (200g Pouch)',
-      teluguTitle: '',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 8,
@@ -1500,7 +1477,7 @@
       price: 40,
       mandiPrice: 55,
       unit: '200g fresh pouch',
-      image: 'assets/prod_coconut.jpg',
+      image: 'assets/prod_fresh_grated_coconut.jpg',
       farmerPayoutPercent: 68,
       lotNumber: 'KT-CCN-01',
       tier: 3,
@@ -1512,7 +1489,6 @@
     {
       id: 'prod_kitchen_tadka_box',
       title: 'Daily Popu / Tadka Master Spice Mix Box (350g)',
-      teluguTitle: '',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 24,
@@ -1533,8 +1509,7 @@
     },
     {
       id: 'prod_rtc_erra_karam',
-      title: 'Rayalaseema Stoneground Erra Karam (200g Jar)',
-      teluguTitle: '',
+      title: 'Rayalaseema Stoneground Red Chilli Spice Paste (200g Jar)',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 14,
@@ -1556,7 +1531,6 @@
     {
       id: 'prod_kitchen_dosa_batter',
       title: 'Fresh Stoneground Dosa & Idli Batter (1kg Pouch)',
-      teluguTitle: '',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 10,
@@ -1577,7 +1551,6 @@
     {
       id: 'prod_kitchen_sesame_oil',
       title: 'Cold-Pressed Pure Gingelly / Sesame Cooking Oil (500ml)',
-      teluguTitle: '',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 48,
@@ -1598,8 +1571,7 @@
     },
     {
       id: 'prod_rtc_ragi_sankati',
-      title: 'Rayalaseema Ragi Sankati Instant Mix (1kg)',
-      teluguTitle: '',
+      title: 'Rayalaseema Ragi Ragi Meal Instant Mix (1kg)',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 24,
@@ -1620,8 +1592,7 @@
     },
     {
       id: 'prod_rtc_uggani_mix',
-      title: 'Kurnool Uggani Ready-to-Toss Kit (450g)',
-      teluguTitle: '',
+      title: 'Kurnool Spiced Puffed Rice Ready-to-Toss Kit (450g)',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 12,
@@ -1643,7 +1614,6 @@
     {
       id: 'prod_rtc_mirchi_bajji',
       title: 'Rayalaseema Mirchi Bajji Ready-to-Fry Pack (6 pcs)',
-      teluguTitle: '',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 6,
@@ -1665,7 +1635,6 @@
     {
       id: 'prod_kitchen_herb_trio',
       title: 'Fresh Herb Trio: Coriander, Mint & Curry Leaves (250g)',
-      teluguTitle: '',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 6,
@@ -1686,7 +1655,6 @@
     {
       id: 'prod_rtc_sambar_masala_dal',
       title: 'Ready Sambar Dal & Roasted Spice Kit (350g)',
-      teluguTitle: '',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 24,
@@ -1708,7 +1676,6 @@
     {
       id: 'prod_kit_juice',
       title: 'Raw Sugarcane & Ginger Juice (300ml)',
-      teluguTitle: '',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 4,
@@ -1733,7 +1700,6 @@
     {
       id: 'prod_kurnool_rice',
       title: 'Kurnool Sona Masoori Raw Rice (5kg Bag)',
-      teluguTitle: '',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 720,
@@ -1754,7 +1720,6 @@
     {
       id: 'prod_rayala_ragi',
       title: 'Rayalaseema Stone-Ground Ragi Flour (1kg)',
-      teluguTitle: '',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 36,
@@ -1770,12 +1735,11 @@
       isMarkdown: false,
       isKitchen: false,
       isRayalaseema: true,
-      desc: 'Whole grain red ragi slow-milled on traditional emery stones in Anantapur. Rich in bio-available calcium, fiber and iron. Perfect for authentic Ragi Sankati and crispy ragi dosas.'
+      desc: 'Whole grain red ragi slow-milled on traditional emery stones in Anantapur. Rich in bio-available calcium, fiber and iron. Perfect for authentic Ragi Ragi Meal and crispy ragi dosas.'
     },
     {
       id: 'prod_rayala_jonna',
-      title: 'Rayalaseema Jowar / Jonna Flour (1kg)',
-      teluguTitle: '',
+      title: 'Rayalaseema Jowar Flour (1kg)',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 40,
@@ -1795,8 +1759,7 @@
     },
     {
       id: 'prod_anantapur_peanuts',
-      title: 'Anantapur Sweet Pod Groundnuts / Palleelu (1kg)',
-      teluguTitle: '',
+      title: 'Anantapur Sweet Pod Groundnuts (1kg)',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 48,
@@ -1817,7 +1780,6 @@
     {
       id: 'prod_rayala_kandi_pappu',
       title: 'Rayalaseema Unpolished Toor Dal (1kg)',
-      teluguTitle: '',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 60,
@@ -1838,7 +1800,6 @@
     {
       id: 'prod_rayala_pesara_pappu',
       title: 'Rayalaseema Moong Dal (Moong Dal - 1kg)',
-      teluguTitle: '',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 50,
@@ -1858,8 +1819,7 @@
     },
     {
       id: 'prod_kurnool_borugulu',
-      title: 'Kurnool Crisp Uggani Borugulu / Murmura (500g)',
-      teluguTitle: '',
+      title: 'Kurnool Crisp Spiced Puffed Rice Borugulu / Murmura (500g)',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 24,
@@ -1875,12 +1835,11 @@
       isMarkdown: false,
       isKitchen: false,
       isRayalaseema: true,
-      desc: 'Authentic thick puffed rice produced in Kurnool traditional clay kilns. Stays crisp and firm upon water-rinsing, giving authentic texture to morning Uggani.'
+      desc: 'Authentic thick puffed rice produced in Kurnool traditional clay kilns. Stays crisp and firm upon water-rinsing, giving authentic texture to morning Spiced Puffed Rice.'
     },
     {
       id: 'prod_kadapa_red_chillies',
       title: 'Kadapa Gundu Dried Red Chillies (250g)',
-      teluguTitle: '',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Spices',
       harvestHoursAgo: 72,
@@ -1901,7 +1860,6 @@
     {
       id: 'prod_madanapalle_tomatoes',
       title: 'Madanapalle Country Heirloom Tomatoes (1kg)',
-      teluguTitle: '',
       category: 'zone-b',
       zoneName: 'Zone B: Farm Fresh Direct',
       harvestHoursAgo: 14,
@@ -1922,7 +1880,6 @@
     {
       id: 'prod_punganur_ghee',
       title: 'Punganur Desi Cow Pure Bilona Ghee (500ml Glass Jar)',
-      teluguTitle: '',
       category: 'dairy-morning',
       zoneName: 'Chilled Dairy Vault (4°C)',
       harvestHoursAgo: 24,
@@ -1938,12 +1895,11 @@
       isMarkdown: false,
       isKitchen: false,
       isRayalaseema: true,
-      desc: 'Handmade Vedic bilona ghee churned from cultured whole curd of indigenous Punganur dwarf cows of Chittoor. Rich golden granules, divine aroma, poured hot over Ragi Sankati.'
+      desc: 'Handmade Vedic bilona ghee churned from cultured whole curd of indigenous Punganur dwarf cows of Chittoor. Rich golden granules, divine aroma, poured hot over Ragi Ragi Meal.'
     },
     {
       id: 'prod_rayala_tamarind',
-      title: 'Rayalaseema Desi Tart Tamarind / Chintapandu (500g)',
-      teluguTitle: '',
+      title: 'Rayalaseema Desi Tart Tamarind (500g)',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Spices',
       harvestHoursAgo: 96,
@@ -1964,7 +1920,6 @@
     {
       id: 'prod_rayala_korralu',
       title: 'Rayalaseema Korralu / Foxtail Millet (1kg)',
-      teluguTitle: '',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 48,
@@ -1985,7 +1940,6 @@
     {
       id: 'prod_rayala_putnala',
       title: 'Rayalaseema Putnala Pappu / Roasted Gram (500g)',
-      teluguTitle: '',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 24,
@@ -2001,12 +1955,11 @@
       isMarkdown: false,
       isKitchen: false,
       isRayalaseema: true,
-      desc: 'Golden roasted gram split seeds. The secret hero ingredient of Kurnool Uggani podi, South Indian tiffin chutneys, and crunchy teatime mixtures.'
+      desc: 'Golden roasted gram split seeds. The secret hero ingredient of Kurnool Spiced Puffed Rice podi, South Indian tiffin chutneys, and crunchy teatime mixtures.'
     },
     {
       id: 'prod_kadapa_turmeric',
-      title: 'Kadapa Pure Farm Turmeric Powder / Pasupu (250g)',
-      teluguTitle: '',
+      title: 'Kadapa Pure Farm Turmeric Powder (250g)',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Spices',
       harvestHoursAgo: 120,
@@ -2027,7 +1980,6 @@
     {
       id: 'prod_chittoor_jaggery',
       title: 'Chittoor Organic Sugarcane Jaggery / Bellam (1kg)',
-      teluguTitle: '',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 48,
@@ -2048,7 +2000,6 @@
     {
       id: 'prod_rayala_dosakaya',
       title: 'Rayalaseema Heirloom Round Dosakaya (1kg)',
-      teluguTitle: '',
       category: 'zone-b',
       zoneName: 'Zone B: Farm Fresh Direct',
       harvestHoursAgo: 12,
@@ -2064,12 +2015,11 @@
       isMarkdown: false,
       isKitchen: false,
       isRayalaseema: true,
-      desc: 'Firm, crisp, golden-yellow striped country cooking cucumber. Tested non-bitter, highly crunchy, perfect for Dosakaya Pappu, Dosakaya Mukkalu and raw pachadi.'
+      desc: 'Firm, crisp, golden-yellow striped country cooking cucumber. Tested non-bitter, highly crunchy, perfect for Yellow Cucumber Lentil Dal, Dosakaya Mukkalu and raw pachadi.'
     },
     {
       id: 'prod_rayala_arikalu',
       title: 'Rayalaseema Arikalu / Kodo Millet (1kg)',
-      teluguTitle: '',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 48,
@@ -2090,7 +2040,6 @@
     {
       id: 'prod_rayala_senaga_pappu',
       title: 'Rayalaseema Desi Senaga Pappu / Chana Dal (1kg)',
-      teluguTitle: '',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 55,
@@ -2111,7 +2060,6 @@
     {
       id: 'prod_rayala_lemons',
       title: 'Rayalaseema Thin-Skin Juicy Country Lemons (6 pcs)',
-      teluguTitle: '',
       category: 'zone-b',
       zoneName: 'Zone B: Farm Fresh Direct',
       harvestHoursAgo: 10,
@@ -2132,7 +2080,6 @@
     {
       id: "prod_atta_aashirvaad",
       title: "Aashirvaad Sharbati Whole Wheat Atta",
-      teluguTitle: '',
       department: "grocery",
       category: "atta-rice-dal",
       zoneName: "Grains & Flours Vault",
@@ -2154,7 +2101,6 @@
     {
       id: "prod_atta_fortune",
       title: "Fortune Chakki Fresh 100% Atta",
-      teluguTitle: '',
       department: "grocery",
       category: "atta-rice-dal",
       zoneName: "Grains & Flours Vault",
@@ -2176,7 +2122,6 @@
     {
       id: "prod_rice_basmati",
       title: "Royal Daawat Super Basmati Rice",
-      teluguTitle: '',
       department: "grocery",
       category: "atta-rice-dal",
       zoneName: "Grains & Flours Vault",
@@ -2198,7 +2143,6 @@
     {
       id: "prod_dal_moong",
       title: "Tata Sampann Yellow Moong Dal",
-      teluguTitle: '',
       department: "grocery",
       category: "atta-rice-dal",
       zoneName: "Pulses & Dals Vault",
@@ -2220,7 +2164,6 @@
     {
       id: "prod_dal_urad",
       title: "Premium Urad Dal Gota (Minapa Pappu)",
-      teluguTitle: '',
       department: "grocery",
       category: "atta-rice-dal",
       zoneName: "Pulses & Dals Vault",
@@ -2242,7 +2185,6 @@
     {
       id: "prod_oil_sunflower",
       title: "Fortune Sunlite Refined Sunflower Oil",
-      teluguTitle: '',
       department: "grocery",
       category: "oil-ghee-masala",
       zoneName: "Oils & Ghee Hub",
@@ -2264,7 +2206,6 @@
     {
       id: "prod_oil_groundnut",
       title: "Wood-Pressed Pure Groundnut Oil",
-      teluguTitle: '',
       department: "grocery",
       category: "oil-ghee-masala",
       zoneName: "Oils & Ghee Hub",
@@ -2286,7 +2227,6 @@
     {
       id: "prod_masala_tikhalal",
       title: "Everest Tikhalal Hot Chilli Powder",
-      teluguTitle: '',
       department: "grocery",
       category: "oil-ghee-masala",
       zoneName: "Spices & Seasonings",
@@ -2308,7 +2248,6 @@
     {
       id: "prod_salt_tata",
       title: "Tata Salt Vacuum Evaporated Iodized",
-      teluguTitle: '',
       department: "grocery",
       category: "oil-ghee-masala",
       zoneName: "Spices & Seasonings",
@@ -2330,7 +2269,6 @@
     {
       id: "prod_bread_wheat",
       title: "English Oven 100% Whole Wheat Bread",
-      teluguTitle: '',
       department: "grocery",
       category: "dairy-bread-eggs",
       zoneName: "Bakery Counter",
@@ -2352,7 +2290,6 @@
     {
       id: "prod_bisc_goodday",
       title: "Britannia Good Day Butter & Cashew",
-      teluguTitle: '',
       department: "grocery",
       category: "bakery-biscuits",
       zoneName: "Bakery Counter",
@@ -2374,7 +2311,6 @@
     {
       id: "prod_bisc_darkfantasy",
       title: "Sunfeast Dark Fantasy Choco Fills",
-      teluguTitle: '',
       department: "grocery",
       category: "bakery-biscuits",
       zoneName: "Bakery Counter",
@@ -2396,7 +2332,6 @@
     {
       id: "prod_dry_almonds",
       title: "California Whole Almonds (Badam)",
-      teluguTitle: '',
       department: "grocery",
       category: "dryfruits-cereals",
       zoneName: "Nuts & Superfoods",
@@ -2418,7 +2353,6 @@
     {
       id: "prod_dry_cashews",
       title: "Farm Jumbo Cashew Nuts (Kaju W240)",
-      teluguTitle: '',
       department: "grocery",
       category: "dryfruits-cereals",
       zoneName: "Nuts & Superfoods",
@@ -2440,7 +2374,6 @@
     {
       id: "prod_cereal_cornflakes",
       title: "Kellogg's Real Almond & Honey Corn Flakes",
-      teluguTitle: '',
       department: "grocery",
       category: "dryfruits-cereals",
       zoneName: "Breakfast Cereals",
@@ -2462,7 +2395,6 @@
     {
       id: "prod_meat_chicken",
       title: "Farm Tender Chicken Curry Cut (Skinless)",
-      teluguTitle: '',
       department: "grocery",
       category: "chicken-meat-fish",
       zoneName: "Fresh Meat Cold Room (2°C)",
@@ -2484,7 +2416,6 @@
     {
       id: "prod_meat_boneless",
       title: "Fresh Tender Boneless Chicken Breast",
-      teluguTitle: '',
       department: "grocery",
       category: "chicken-meat-fish",
       zoneName: "Fresh Meat Cold Room (2°C)",
@@ -2506,7 +2437,6 @@
     {
       id: "prod_meat_prawns",
       title: "Fresh Cleaned & Deveined Sea Prawns",
-      teluguTitle: '',
       department: "grocery",
       category: "chicken-meat-fish",
       zoneName: "Fresh Meat Cold Room (2°C)",
@@ -2528,7 +2458,6 @@
     {
       id: "prod_kitchen_salt",
       title: "Tata Salt Vacuum Evaporated Iodized",
-      teluguTitle: '',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2551,7 +2480,6 @@
     {
       id: "prod_kitchen_jilakara",
       title: "Organic Jeera / Cumin Seeds",
-      teluguTitle: '',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2574,7 +2502,6 @@
     {
       id: "prod_kitchen_avalu",
       title: "Crisp Brown Mustard Seeds",
-      teluguTitle: '',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2597,7 +2524,6 @@
     {
       id: "prod_kitchen_chekka_lavangalu",
       title: "Whole Cinnamon Bark & Cloves",
-      teluguTitle: '',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2620,7 +2546,6 @@
     {
       id: "prod_kitchen_dhaniyalu",
       title: "Aromatic Coriander Seeds",
-      teluguTitle: '',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2643,7 +2568,6 @@
     {
       id: "prod_kitchen_mentulu",
       title: "Golden Fenugreek Seeds",
-      teluguTitle: '',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2666,7 +2590,6 @@
     {
       id: "prod_kitchen_pasupu",
       title: "Salem Pure Turmeric Powder",
-      teluguTitle: '',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2689,7 +2612,6 @@
     {
       id: "prod_kitchen_inguva",
       title: "LG Compounded Asafoetida (Hing)",
-      teluguTitle: '',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2712,7 +2634,6 @@
     {
       id: "prod_kitchen_yalukalu",
       title: "Fragrant Green Cardamom",
-      teluguTitle: '',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2735,7 +2656,6 @@
     {
       id: "prod_kitchen_miriyalu",
       title: "Malabar Black Peppercorns",
-      teluguTitle: '',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2758,7 +2678,6 @@
     {
       id: "prod_kitchen_karam",
       title: "Guntur Hot Red Chilli Powder",
-      teluguTitle: '',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2781,7 +2700,6 @@
     {
       id: "prod_kitchen_sambar_podi",
       title: "Authentic Homemade Sambar Powder",
-      teluguTitle: '',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2804,7 +2722,6 @@
     {
       id: "prod_kitchen_garam_masala",
       title: "Royal Shahi Garam Masala Powder",
-      teluguTitle: '',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2827,7 +2744,6 @@
     {
       id: "prod_app_copper_bottle",
       title: "Pure Hammered Ayurvedic Copper Bottle (1000ml)",
-      teluguTitle: '',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -2850,7 +2766,6 @@
     {
       id: "prod_app_mixer_grinder",
       title: "Philips HL7756 750W 3-Jar Mixer Grinder",
-      teluguTitle: '',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -2873,7 +2788,6 @@
     {
       id: "prod_app_castiron_tawa",
       title: "Heavy Pre-Seasoned Cast Iron Dosa Tawa (28cm)",
-      teluguTitle: '',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -2896,7 +2810,6 @@
     {
       id: "prod_app_pressure_cooker",
       title: "Prestige Deluxe Alpha Tri-Ply Cooker (3L)",
-      teluguTitle: '',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -2919,7 +2832,6 @@
     {
       id: "prod_app_kadhai_steel",
       title: "Tri-Ply Stainless Steel Kadhai with Lid (2.5L)",
-      teluguTitle: '',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -2942,7 +2854,6 @@
     {
       id: "prod_app_clay_handi",
       title: "Traditional Terracotta Cooking Handi (2.5L)",
-      teluguTitle: '',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -2965,7 +2876,6 @@
     {
       id: "prod_app_brass_tadka",
       title: "Heavy Brass Talimpu Tadka Pan with Wood Handle",
-      teluguTitle: '',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -2988,7 +2898,6 @@
     {
       id: "prod_app_brass_mortar",
       title: "Solid Brass Rolu Mortar & Pestle (Heavy Duty)",
-      teluguTitle: '',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -3011,7 +2920,6 @@
     {
       id: "prod_app_veg_chopper",
       title: "Pigeon Quick Pull 3-Blade Veg Chopper (900ml)",
-      teluguTitle: '',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -3034,7 +2942,6 @@
     {
       id: "prod_app_spatula_set",
       title: "Natural Teakwood Cooking Spatulas (6 Pcs Set)",
-      teluguTitle: '',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -3057,7 +2964,6 @@
     {
       id: "prod_app_knife_set",
       title: "Chef Knife, Scissors & Peeler Set (3 Pcs)",
-      teluguTitle: '',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -3080,7 +2986,6 @@
     {
       id: "prod_app_storage_jars",
       title: "Modular Airtight Food Storage Jars (6 Pcs)",
-      teluguTitle: '',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -3103,7 +3008,6 @@
     {
       id: "prod_snack_lays",
       title: "Lay's Classic Salted Potato Chips (50g)",
-      teluguTitle: '',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Snacks & Drinks",
@@ -3125,7 +3029,6 @@
     {
       id: "prod_snack_namkeen",
       title: "Haldiram's Nagpur Spicy Aloo Bhujia (200g)",
-      teluguTitle: '',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Snacks & Drinks",
@@ -3147,7 +3050,6 @@
     {
       id: "prod_choco_silk",
       title: "Cadbury Dairy Milk Silk Chocolate (60g)",
-      teluguTitle: '',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Sweets & Chocolates",
@@ -3169,7 +3071,6 @@
     {
       id: "prod_drink_juice",
       title: "Real Fruit Power Alphonso Mango Juice (1L)",
-      teluguTitle: '',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Drinks & Juices",
@@ -3191,7 +3092,6 @@
     {
       id: "prod_bev_tatatea",
       title: "Tata Tea Gold Fine Leaves & CTC (500g)",
-      teluguTitle: '',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Tea & Coffee",
@@ -3213,7 +3113,6 @@
     {
       id: "prod_instant_maggi",
       title: "Maggi 2-Minute Masala Instant Noodles (Pack of 4)",
-      teluguTitle: '',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Instant Foods",
@@ -3235,7 +3134,6 @@
     {
       id: "prod_icecream_vanilla",
       title: "Amul Vanilla Gold Ice Cream Tub (1L)",
-      teluguTitle: '',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Ice Creams & More",
@@ -3257,7 +3155,6 @@
     {
       id: "prod_snack_kurkure",
       title: "Kurkure Masala Munch Crispy Snacks (75g)",
-      teluguTitle: 'కుర్‌కురే మసాలా మంచ్',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Snacks & Munchies",
@@ -3279,7 +3176,6 @@
     {
       id: "prod_bisc_oreo",
       title: "Cadbury Oreo Vanilla Creme Sandwich Biscuits (120g)",
-      teluguTitle: 'ఓరియో వెనిల్లా క్రీమ్ బిస్కెట్లు',
       department: "grocery",
       category: "bakery-biscuits",
       zoneName: "Biscuits & Cookies",
@@ -3301,7 +3197,6 @@
     {
       id: "prod_bisc_bourbon",
       title: "Britannia Bourbon Chocolate Sandwich Biscuits (150g)",
-      teluguTitle: 'బ్రిటానియా బోర్బన్ బిస్కెట్లు',
       department: "grocery",
       category: "bakery-biscuits",
       zoneName: "Biscuits & Cookies",
@@ -3323,7 +3218,6 @@
     {
       id: "prod_snack_haldiram_aloo_bhujia",
       title: "Haldiram's Nagpur Aloo Bhujia Namkeen (150g)",
-      teluguTitle: 'హల్దీరామ్స్ ఆలూ భుజియా',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Namkeen & Savouries",
@@ -3345,7 +3239,6 @@
     {
       id: "prod_drink_thumsup",
       title: "Thums Up Toofani Carbonated Soft Drink (750ml)",
-      teluguTitle: 'థమ్స్ అప్ కూల్ డ్రింక్',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Cold Drinks & Juices",
@@ -3367,7 +3260,6 @@
     {
       id: "prod_dairy_butter_amul",
       title: "Amul Pasteurised Salted Butter (100g)",
-      teluguTitle: 'అముల్ బటర్ (వెన్న)',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Breakfast Dairy",
@@ -4174,7 +4066,7 @@
           id: 'leaf-items',
           icon: '🥬',
           title: 'Fresh Leafy Greens & Country Herbs',
-          telugu: 'తాజా ఆకుకూరలు & దేశీ పచ్చి మూలికలు',
+          subTitle: 'Fresh local leafy greens, tender herbs & daily harvested bunches',
           badgeText: 'Farm Harvested Fresh',
           filterFn: (p) => this.classifyProduct(p) === 'leaf-items'
         },
@@ -4182,7 +4074,7 @@
           id: 'ready-to-cook',
           icon: '🍲',
           title: 'Ready to Cook & Fresh Meal Kits',
-          telugu: 'కూర వంట కిట్లు & కట్ చేసిన తాజా కూరగాయలు (Real Cut Produce Only)',
+          subTitle: 'Chef pre-cut meal kits, sambar veggies & fresh curry preparations',
           badgeText: 'Pre-Cut Raw Produce',
           filterFn: (p) => this.classifyProduct(p) === 'ready-to-cook'
         },
@@ -4190,7 +4082,7 @@
           id: 'dairy-morning',
           icon: '🥛',
           title: 'Fresh Farm Dairy & Morning Essentials',
-          telugu: 'స్వచ్ఛమైన A2 పాలు, మీగడ పెరుగు, తాజా పనీర్ & వెన్న',
+          subTitle: 'Pure A2 milk, clay pot curd, farm paneer & country butter',
           badgeText: 'Daily Morning Fresh',
           filterFn: (p) => this.classifyProduct(p) === 'dairy-morning'
         },
@@ -4198,7 +4090,7 @@
           id: 'vegetables',
           icon: '🍅',
           title: 'Fresh Farm Vegetables & Roots',
-          telugu: 'పొలం నుండి తెచ్చిన తాజా కూరగాయలు & దుంపలు',
+          subTitle: 'Direct farm fresh vegetables, gourds & native root crops',
           badgeText: 'Direct From Farmers',
           filterFn: (p) => this.classifyProduct(p) === 'vegetables' || this.classifyProduct(p) === 'tier2-clearance'
         },
@@ -4206,7 +4098,7 @@
           id: 'kitchen-spices',
           icon: '🌾',
           title: 'Kitchen Essentials, Spices & Regional Grains',
-          telugu: 'వంటగది సరుకులు, రాయలసీమ మసాలాలు & పప్పులు',
+          subTitle: 'Authentic stoneground spices, pure oils, pulses & regional grains',
           badgeText: 'Traditional Stoneground',
           filterFn: (p) => ['kitchen-spices', 'atta-rice-dal', 'oil-ghee-masala', 'rayalaseema'].includes(this.classifyProduct(p))
         },
@@ -4214,7 +4106,7 @@
           id: 'appliances',
           icon: '🍳',
           title: 'Kitchenware, Cookware & Appliances',
-          telugu: 'వంట పాత్రలు, ఇనుప తవాలు, మిక్సీ గ్రైండర్లు & కత్తులు',
+          subTitle: 'Heavy-duty cookware, cast iron tawas, mixer grinders & kitchen tools',
           badgeText: 'Heavy Duty Kitchen Essentials',
           filterFn: (p) => this.classifyProduct(p) === 'appliances'
         },
@@ -4222,7 +4114,7 @@
           id: 'other',
           icon: '🛒',
           title: 'Snacks, Bakery & Daily Munchies',
-          telugu: 'బేకరీ, టీ-కాఫీ, డ్రై ఫ్రూట్స్ & స్నాక్స్',
+          subTitle: 'Daily bakery essentials, beverages, dry fruits & munchies',
           badgeText: 'Everyday Convenience',
           filterFn: (p) => ['snacks-bakery', 'chicken-meat-fish'].includes(this.classifyProduct(p))
         }
@@ -4253,7 +4145,7 @@
                   <span class="section-icon">${sec.icon}</span>
                   <div class="section-header-titles">
                     <h3 class="section-title">${sec.title}</h3>
-                    <span class="section-telugu">${sec.telugu}</span>
+                    <span class="section-subtitle">${sec.subTitle}</span>
                   </div>
                 </div>
                 <div class="section-header-right">
@@ -4805,7 +4697,22 @@
 
       // Render Drawer Item Rows
       if (this.dom.cartItemsList) {
-        if (itemIds.length === 0) {
+        // Collect all valid cart items with qty > 0
+        const validCartItems = [];
+        itemIds.forEach((id) => {
+          const qty = this.cart[id] || 0;
+          if (qty <= 0) return;
+          let prod = PRODUCTS_DATA.find((p) => p.id === id);
+          if (!prod) {
+            if (id === 'prod_curd_pot') prod = PRODUCTS_DATA.find((p) => p.id === 'prod_curd_meegada');
+            if (id === 'prod_rtc_sambar_curry') prod = PRODUCTS_DATA.find((p) => p.id === 'prod_kit_sambar');
+          }
+          if (prod) {
+            validCartItems.push({ prod, qty, id });
+          }
+        });
+
+        if (validCartItems.length === 0) {
           this.dom.cartItemsList.innerHTML = `
             <div class="cart-empty-state">
               <div class="empty-icon">🌱</div>
@@ -4815,28 +4722,27 @@
             </div>
           `;
         } else {
-          this.dom.cartItemsList.innerHTML = itemIds.map((id) => {
-            const prod = PRODUCTS_DATA.find((p) => p.id === id);
-            const qty = this.cart[id];
-            const farmer = FARMERS_DB[prod.farmerKey];
-            const selWeight = this.getProductWeight(id);
-            const itemPrice = this.getProductPrice(id, selWeight);
+          this.dom.cartItemsList.innerHTML = validCartItems.map(({ prod, qty, id }) => {
+            const farmer = (prod.farmerKey && FARMERS_DB[prod.farmerKey]) ? FARMERS_DB[prod.farmerKey] : null;
+            const selWeight = this.getProductWeight(id) || prod.unit || '1 unit';
+            const itemPrice = this.getProductPrice(id, selWeight) || prod.price || 0;
             const lineTotal = itemPrice * qty;
+            const farmerLabel = farmer ? `🌱 ${farmer.name} (${farmer.distanceKm} km)` : `✓ 100% Quality Checked (Direct Source)`;
 
             return `
-              <div class="cart-item-row">
+              <div class="cart-item-row" data-id="${prod.id}">
                 <img src="${prod.image}" alt="${prod.title}" class="cart-item-thumb">
                 <div class="cart-item-details">
                   <div class="cart-item-title">${prod.title} <span class="cart-pack-tag">(${selWeight})</span></div>
-                  <div class="cart-item-farmer">🌱 ${farmer?.name} (${farmer?.distanceKm} km)</div>
+                  <div class="cart-item-farmer">${farmerLabel}</div>
                   <div class="cart-item-price-unit">₹${itemPrice} / ${selWeight}</div>
                 </div>
                 <div class="cart-item-controls">
                   <div class="cart-item-subtotal">₹${lineTotal.toFixed(2)}</div>
                   <div class="cart-qty-mini">
-                    <button onclick="window.marketApp.modifyCartQty('${prod.id}', -1)">−</button>
+                    <button type="button" onclick="window.marketApp.modifyCartQty('${id}', -1)" aria-label="Decrease quantity">−</button>
                     <span>${qty}</span>
-                    <button onclick="window.marketApp.modifyCartQty('${prod.id}', 1)">+</button>
+                    <button type="button" onclick="window.marketApp.modifyCartQty('${id}', 1)" aria-label="Increase quantity">+</button>
                   </div>
                 </div>
               </div>
@@ -7081,7 +6987,7 @@
                 <div class="preset-title">🧺 Daily Morning Essentials Basket</div>
                 <ul class="preset-items">
                   <li>• 1x Fresh Country Spinach (Palak) — ₹24</li>
-                  <li>• 1x Fragrant Coriander (Kothimeera) — ₹15</li>
+                  <li>• 1x Fragrant Coriander  — ₹15</li>
                   <li>• 1L Pure A2 Farm Cow Milk — ₹68</li>
                   <li>• 1kg Vine Country Tomatoes — ₹38</li>
                 </ul>
@@ -7334,7 +7240,7 @@
             • 1kg Kurnool Red Onions: ₹32<br>
             • 1kg Organic Mountain Potatoes: ₹34<br>
             • 250g Country Green Chillies: ₹18<br>
-            • 1x Fragrant Coriander (Kothimeera): ₹15<br>
+            • 1x Fragrant Coriander : ₹15<br>
             🌱 <em>Guaranteed 63% direct payout to rural Telangana farmers.</em>
           `;
           this.appendWaMessage(reply, 'bot', target);
@@ -7365,7 +7271,7 @@
           const reply = `
             ✅ <strong>Morning Essentials Basket Added! (₹145.00)</strong><br>
             • 1x Country Spinach (Palak) — ₹24<br>
-            • 1x Fragrant Coriander (Kothimeera) — ₹15<br>
+            • 1x Fragrant Coriander  — ₹15<br>
             • 1L Pure A2 Farm Cow Milk — ₹68<br>
             • 1kg Heirloom Vine Tomatoes — ₹38<br>
             🌱 <em>₹96.50 directly credited to Farmer Anji Reddy via UPI.</em><br>
@@ -7534,7 +7440,7 @@
             • Heirloom Tomatoes: <strong>₹38/kg</strong> (Mandi: ₹50)<br>
             • Country Spinach (Palak): <strong>₹24/bunch</strong> (Mandi: ₹34)<br>
             • Tender Bhendi: <strong>₹42/kg</strong> (Mandi: ₹56)<br>
-            • Gutti Vankaya: <strong>₹44/kg</strong> (Mandi: ₹58)<br>
+            • Stuffed Baby Brinjal: <strong>₹44/kg</strong> (Mandi: ₹58)<br>
             • Kurnool Onions: <strong>₹32/kg</strong> (Mandi: ₹42)<br>
             • Mountain Potatoes: <strong>₹34/kg</strong> (Mandi: ₹44)<br>
             • Pure A2 Milk: <strong>₹68/L</strong> (Store: ₹80)<br>
@@ -7645,8 +7551,8 @@
         }
 
         // 2. Intelligent Vegetable NLP Parser
-        // Split text by commas, 'and', 'మరియు', '+' to parse multiple items
-        const segments = lower.split(/,|\band\b|\bమరియు\b|\+/);
+        // Split text by commas, 'and', '+' to parse multiple items
+        const segments = lower.split(/,|\band\b|\+/);
         let itemsAdded = 0;
         const recognizedItems = [];
 
@@ -7656,12 +7562,12 @@
 
           // Extract quantity
           let qty = 1;
-          const qtyMatch = s.match(/(\d+(?:\.\d+)?)\s*(?:kg|kgs|కిలో|కేజీ|లీటర్|లీటర్లు|gm|gms|g|bunch|bunches|కట్ట|కట్టలు|packets?|packs?|litres?|l)?/);
+          const qtyMatch = s.match(/(\d+(?:\.\d+)?)\s*(?:kg|kgs|gm|gms|g|bunch|bunches|packets?|packs?|litres?|l)?/);
           if (qtyMatch && parseFloat(qtyMatch[1]) > 0) {
             qty = parseFloat(qtyMatch[1]);
-          } else if (s.includes('half') || s.includes('సగం')) {
+          } else if (s.includes('half')) {
             qty = 0.5;
-          } else if (s.includes('quarter') || s.includes('పావు') || s.includes('250')) {
+          } else if (s.includes('quarter') || s.includes('250')) {
             qty = 0.25;
           }
 
@@ -7689,11 +7595,11 @@
         } else {
           // Polite and helpful conversational fallback
           const fallbackMsg = `
-            🙏 <strong>నమస్కారం!</strong> We received your note: "<em>${text}</em>"<br><br>
+            👋 <strong>Hello!</strong> We received your note: "<em>${text}</em>"<br><br>
             To add vegetables to your morning order, you can say things like:<br>
             • <em>"family pack"</em> or <em>"2kg tomatoes and 1kg onions"</em><br>
             • <em>"remove potatoes"</em> or <em>"remove milk"</em><br>
-            • <em>"టమాటాలు 1 కిలో, 2 పాలకూర కట్టలు"</em><br><br>
+            • <em>"Tomatoes 1 kg, 2 Spinach bunches"</em><br><br>
             Or tap below to choose directly:
             <div style="margin-top:8px; display:flex; flex-wrap:wrap; gap:6px;">
               <button class="wa-chip" style="background:#00a884; color:#fff;" onclick="window.marketApp.sendWaPrompt('family_pack', '${target}')">👨‍👩‍👧‍👦 Family Pack</button>
@@ -8636,64 +8542,64 @@
 
       // 3. Strict synonym lookup dictionary for specific items
       const synonyms = {
-        'tomato': ['tomato', 'tomatoes', 'tamatar', 'thakkali', 'టమాటా', 'టమోటా'],
-        'palak': ['palak', 'spinach', 'paalak', 'palakura', 'పాలకూర'],
-        'methi': ['methi', 'fenugreek', 'menthi', 'menthikura', 'మెంతి'],
-        'curry leaves': ['curry leaves', 'karivepaku', 'curry leaf', 'కరివేపాకు'],
-        'coriander': ['coriander', 'kothimeera', 'dhaniyalu leaves', 'cilantro', 'కొత్తిమీర'],
-        'pudina': ['pudina', 'mint', 'పుదీనా'],
-        'gongura': ['gongura', 'sour greens', 'erra gongura', 'గోంగూర'],
-        'thotakura': ['thotakura', 'amaranth', 'తోటకూర'],
-        'onion': ['onion', 'onions', 'pyaz', 'ullipaya', 'ullipayalu', 'shallots', 'shallot', 'ఉల్లిపాయ'],
-        'potato': ['potato', 'potatoes', 'aloo', 'alu', 'bangaladumpa', 'బంగాళాదుంప'],
-        'bhendi': ['bhendi', 'bhindi', 'okra', 'lady finger', 'bendakaya', 'బెండకాయ'],
-        'brinjal': ['brinjal', 'brinjals', 'eggplant', 'vankaya', 'baingan', 'gutti vankaya', 'వంకాయ'],
-        'chilli': ['chilli', 'chillies', 'chilly', 'mirchi', 'pachi mirchi', 'మిర్చి', 'పచ్చిమిర్చి'],
-        'carrot': ['carrot', 'carrots', 'gajar', 'క్యారెట్'],
-        'beetroot': ['beetroot', 'beet', 'బీట్‌రూట్'],
-        'cabbage': ['cabbage', 'patta gobi', 'క్యాబేజీ'],
-        'cauliflower': ['cauliflower', 'gobi', 'phool gobi', 'కాలీఫ్లవర్'],
-        'garlic': ['garlic', 'vellulli', 'lahsun', 'వెల్లుల్లి'],
-        'ginger': ['ginger', 'allam', 'adrak', 'అల్లం'],
-        'peas': ['peas', 'green peas', 'matar', 'batani', 'బఠాణీ'],
-        'cucumber': ['cucumber', 'keera', 'dosakaya', 'కీరా', 'దోసకాయ'],
-        'drumstick': ['drumstick', 'drumsticks', 'munakkada', 'munagakaya', 'మునగకాయ'],
-        'bitter gourd': ['bitter gourd', 'karela', 'kakarakaya', 'కాకరకాయ'],
-        'bottle gourd': ['bottle gourd', 'sorakaya', 'lauki', 'సొరకాయ'],
-        'ridge gourd': ['ridge gourd', 'beerakaya', 'turai', 'బీరకాయ'],
-        'lemon': ['lemon', 'lemons', 'nimma', 'nimmakaya', 'నిమ్మకాయ'],
-        'milk': ['milk', 'doodh', 'paalu', 'cow milk', 'buffalo milk', 'పాలు'],
-        'curd': ['curd', 'dahi', 'perugu', 'meegada perugu', 'పెరుగు'],
-        'paneer': ['paneer', 'cottage cheese', 'malai paneer', 'పనీర్'],
-        'butter': ['butter', 'makhan', 'venna', 'white butter', 'వెన్న'],
-        'buttermilk': ['buttermilk', 'chaas', 'majjiga', 'మజ్జిగ'],
-        'ghee': ['ghee', 'neyyi', 'bilona ghee', 'నెయ్యి'],
-        'egg': ['egg', 'eggs', 'guddu', 'gudlu', 'anda', 'గుడ్లు'],
-        'batter': ['batter', 'dosa batter', 'idli batter', 'దోశ పిండి'],
-        'sambar': ['sambar', 'saambar', 'sambhar', 'సాంబార్'],
-        'rasam': ['rasam', 'chaaru', 'miriyala chaaru', 'రసం', 'చారు'],
-        'ragi': ['ragi', 'sankati', 'ragi mudda', 'రాగి'],
-        'uggani': ['uggani', 'borugulu', 'ఉగ్గాని', 'బొరుగులు'],
-        'bajji': ['bajji', 'mirchi bajji', 'బజ్జి'],
-        'salt': ['salt', 'uppu', 'tata salt', 'ఉప్పు'],
-        'turmeric': ['turmeric', 'pasupu', 'haldi', 'పసుపు'],
-        'jeera': ['jeera', 'jilakara', 'cumin', 'జీలకర్ర'],
-        'mustard': ['mustard', 'avalu', 'ఆవాలు'],
-        'pepper': ['pepper', 'black pepper', 'miriyalu', 'మిరియాలు'],
-        'cardamom': ['cardamom', 'yalukalu', 'యాలకులు'],
-        'cloves': ['clove', 'cloves', 'lavangalu', 'లవంగాలు'],
-        'cinnamon': ['cinnamon', 'chekka', 'దాల్చినచెక్క'],
-        'hing': ['hing', 'inguva', 'ఇంగువ'],
-        'knife': ['knife', 'knives', 'chef knife', 'peeler', 'scissors', 'కత్తి'],
-        'cooker': ['cooker', 'pressure cooker', 'కుక్కర్'],
-        'tawa': ['tawa', 'cast iron tawa', 'dosa tawa', 'తవా'],
-        'kadhai': ['kadhai', 'kadai', 'frying pan', 'కడాయి'],
-        'mixer': ['mixer', 'grinder', 'mixer grinder', 'మిక్సీ'],
-        'chopper': ['chopper', 'veg chopper', 'చాపర్'],
-        'handi': ['handi', 'terracotta handi', 'హండి'],
-        'mortar': ['mortar', 'pestle', 'rolu', 'రోలు'],
-        'bottle': ['copper bottle', 'water bottle', 'సీసా'],
-        'spatula': ['spatula', 'spatulas', 'గరిటెలు']
+        'tomato': ['tomato', 'tomatoes', 'tamatar', 'thakkali', '', ''],
+        'palak': ['palak', 'spinach', 'paalak', 'palakura', ''],
+        'methi': ['methi', 'fenugreek', 'menthi', 'menthikura', ''],
+        'curry leaves': ['curry leaves', 'karivepaku', 'curry leaf', ''],
+        'coriander': ['coriander', 'kothimeera', 'dhaniyalu leaves', 'cilantro', ''],
+        'pudina': ['pudina', 'mint', ''],
+        'gongura': ['gongura', 'sour greens', 'erra gongura', ''],
+        'thotakura': ['thotakura', 'amaranth', ''],
+        'onion': ['onion', 'onions', 'pyaz', 'ullipaya', 'ullipayalu', 'shallots', 'shallot', ''],
+        'potato': ['potato', 'potatoes', 'aloo', 'alu', 'bangaladumpa', ''],
+        'bhendi': ['bhendi', 'bhindi', 'okra', 'lady finger', 'bendakaya', ''],
+        'brinjal': ['brinjal', 'brinjals', 'eggplant', 'vankaya', 'baingan', 'gutti vankaya', ''],
+        'chilli': ['chilli', 'chillies', 'chilly', 'mirchi', 'pachi mirchi', '', ''],
+        'carrot': ['carrot', 'carrots', 'gajar', ''],
+        'beetroot': ['beetroot', 'beet', '‌'],
+        'cabbage': ['cabbage', 'patta gobi', ''],
+        'cauliflower': ['cauliflower', 'gobi', 'phool gobi', ''],
+        'garlic': ['garlic', 'vellulli', 'lahsun', ''],
+        'ginger': ['ginger', 'allam', 'adrak', ''],
+        'peas': ['peas', 'green peas', 'matar', 'batani', ''],
+        'cucumber': ['cucumber', 'keera', 'dosakaya', '', ''],
+        'drumstick': ['drumstick', 'drumsticks', 'munakkada', 'munagakaya', ''],
+        'bitter gourd': ['bitter gourd', 'karela', 'kakarakaya', ''],
+        'bottle gourd': ['bottle gourd', 'sorakaya', 'lauki', ''],
+        'ridge gourd': ['ridge gourd', 'beerakaya', 'turai', ''],
+        'lemon': ['lemon', 'lemons', 'nimma', 'nimmakaya', ''],
+        'milk': ['milk', 'doodh', 'paalu', 'cow milk', 'buffalo milk', ''],
+        'curd': ['curd', 'dahi', 'perugu', 'meegada perugu', ''],
+        'paneer': ['paneer', 'cottage cheese', 'malai paneer', ''],
+        'butter': ['butter', 'makhan', 'venna', 'white butter', ''],
+        'buttermilk': ['buttermilk', 'chaas', 'majjiga', ''],
+        'ghee': ['ghee', 'neyyi', 'bilona ghee', ''],
+        'egg': ['egg', 'eggs', 'guddu', 'gudlu', 'anda', ''],
+        'batter': ['batter', 'dosa batter', 'idli batter', ' '],
+        'sambar': ['sambar', 'saambar', 'sambhar', ''],
+        'rasam': ['rasam', 'chaaru', 'miriyala chaaru', '', ''],
+        'ragi': ['ragi', 'sankati', 'ragi mudda', ''],
+        'uggani': ['uggani', 'borugulu', '', ''],
+        'bajji': ['bajji', 'mirchi bajji', ''],
+        'salt': ['salt', 'uppu', 'tata salt', ''],
+        'turmeric': ['turmeric', 'pasupu', 'haldi', ''],
+        'jeera': ['jeera', 'jilakara', 'cumin', ''],
+        'mustard': ['mustard', 'avalu', ''],
+        'pepper': ['pepper', 'black pepper', 'miriyalu', ''],
+        'cardamom': ['cardamom', 'yalukalu', ''],
+        'cloves': ['clove', 'cloves', 'lavangalu', ''],
+        'cinnamon': ['cinnamon', 'chekka', ''],
+        'hing': ['hing', 'inguva', ''],
+        'knife': ['knife', 'knives', 'chef knife', 'peeler', 'scissors', ''],
+        'cooker': ['cooker', 'pressure cooker', ''],
+        'tawa': ['tawa', 'cast iron tawa', 'dosa tawa', ''],
+        'kadhai': ['kadhai', 'kadai', 'frying pan', ''],
+        'mixer': ['mixer', 'grinder', 'mixer grinder', ''],
+        'chopper': ['chopper', 'veg chopper', ''],
+        'handi': ['handi', 'terracotta handi', ''],
+        'mortar': ['mortar', 'pestle', 'rolu', ''],
+        'bottle': ['copper bottle', 'water bottle', ''],
+        'spatula': ['spatula', 'spatulas', '']
       };
 
       for (const [key, aliasList] of Object.entries(synonyms)) {
