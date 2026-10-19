@@ -5,19 +5,28 @@ echo Remote: https://github.com/DongavathPradeep/FRESHCUTS.git
 echo ======================================================================
 set PATH=C:\Users\%USERNAME%\AppData\Local\Programs\Git\cmd;%PATH%
 
-git push -u origin main
+echo.
+echo Pushing all files, styles, and product images to GitHub...
+echo (A GitHub login popup may appear in your browser - please approve it)
+echo.
+
+git push -u origin main --force
 
 if %ERRORLEVEL% NEQ 0 (
     echo.
     echo ------------------------------------------------------------------
-    echo Notice: If the repository doesn't exist yet on GitHub:
-    echo 1. Open https://github.com/new?name=FRESHCUTS
-    echo 2. Click 'Create repository' (leave all checkboxes unselected)
-    echo 3. Run this script again or run 'gh auth login'
+    echo Push failed or was cancelled.
+    echo If prompted to sign in, please choose "Sign in with your browser".
     echo ------------------------------------------------------------------
 ) else (
     echo.
-    echo Successfully pushed to https://github.com/DongavathPradeep/FRESHCUTS
+    echo ==================================================================
+    echo SUCCESS! All files and images uploaded to:
+    echo https://github.com/DongavathPradeep/FRESHCUTS
+    echo.
+    echo Your website will be live in 1 minute at:
+    echo https://dongavathpradeep.github.io/FRESHCUTS/
+    echo ==================================================================
 )
 
 echo.
