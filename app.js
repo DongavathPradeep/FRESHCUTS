@@ -4859,7 +4859,12 @@
       if (activeRadio) activeRadio.parentElement.classList.add('active');
     }
 
-    completeCheckout() {
+    completeCheckout(event) {
+      if (event) {
+        if (typeof event.preventDefault === 'function') event.preventDefault();
+        if (typeof event.stopPropagation === 'function') event.stopPropagation();
+      }
+
       const itemIds = Object.keys(this.cart);
       if (itemIds.length === 0) {
         sound.playAlertChime();
@@ -4868,8 +4873,9 @@
       }
 
       // Close the cart drawer cleanly so it doesn't stay open in the background
-      if (this.dom.cartDrawerOverlay) {
-        this.dom.cartDrawerOverlay.classList.add('hidden');
+      const drawer = this.dom.cartDrawerOverlay || document.getElementById('cart-drawer-overlay');
+      if (drawer) {
+        drawer.classList.add('hidden');
       }
       document.body.classList.remove('has-cart-open');
 
@@ -6494,16 +6500,17 @@
       if (this.paymentState.timerInterval) clearInterval(this.paymentState.timerInterval);
 
       const isCod = /cash|cod/i.test(methodTitle);
+      const modal = document.querySelector('.modal-dialog.payment-modal');
+      if (modal) modal.scrollTop = 0;
 
-      // Create and mount Processing Overlay
-      const overlay = document.createElement('div');
-      overlay.className = 'payment-processing-overlay';
-      overlay.innerHTML = `
-        <div class="pay-spinner-ring"></div>
-        <div class="processing-step-text" id="proc-step-title">${isCod ? 'Placing Order...' : 'Connecting to Payment Gateway...'}</div>
-        <div class="processing-sub-text" id="proc-step-sub">${isCod ? 'Confirming Cash on Delivery details...' : 'Initiating secure instant payment authorization...'}</div>
+      // Render sleek Processing State directly into modal content
+      this.dom.paymentModalContent.innerHTML = `
+        <div class="payment-processing-container" style="display:flex; flex-direction:column; align-items:center; justify-content:center; padding:45px 20px; text-align:center; min-height:360px;">
+          <div class="pay-spinner-ring" style="width:68px; height:68px; border:4px solid #e2e8f0; border-top-color:#10b981; border-radius:50%; animation:spin 0.8s linear infinite; margin-bottom:24px;"></div>
+          <div class="processing-step-text" id="proc-step-title" style="font-size:1.35rem; font-weight:800; color:#0f172a; margin-bottom:8px;">${isCod ? 'Placing Order...' : 'Connecting to Payment Gateway...'}</div>
+          <div class="processing-sub-text" id="proc-step-sub" style="font-size:0.92rem; color:#64748b;">${isCod ? 'Confirming Cash on Delivery details...' : 'Initiating secure instant payment authorization...'}</div>
+        </div>
       `;
-      this.dom.paymentModalContent.appendChild(overlay);
 
       // Status Step Transitions (only for online payments)
       if (!isCod) {
@@ -6569,34 +6576,49 @@
           progressStep: 1
         });
 
-        // Exact messaging as requested by user:
-        // if user done payment instantly: "your order will deliver soon"
-        // if user choose cod: "your order deliver soon please pay and collect order"
-        const successTitle = isCod ? 'Order Placed Successfully!' : `Payment of ₹${this.paymentState.subtotal.toFixed(2)} Successful!`;
+        const successTitle = 'Order Placed Successfully!';
         const deliveryMessage = isCod 
           ? 'Your order will deliver soon. Please pay and collect order.'
           : 'Your order will deliver soon.';
 
-        // Render Clean Success Animation in Modal
-        overlay.innerHTML = `
-          <div class="payment-success-box">
-            <div class="success-check-icon">✓</div>
-            <div class="success-title">${successTitle}</div>
-            <div class="success-delivery-msg" style="font-size:1.08rem; font-weight:700; color:#10b981; margin:8px 0 14px; text-align:center;">
+        if (modal) modal.scrollTop = 0;
+
+        // Render Clean, Complete Success Screen in Modal
+        this.dom.paymentModalContent.innerHTML = `
+          <div class="payment-success-box" style="display:flex; flex-direction:column; align-items:center; text-align:center; padding:24px 12px; width:100%;">
+            <div class="success-check-icon" style="width:76px; height:76px; background:linear-gradient(135deg, #10b981, #059669); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:2.4rem; color:#ffffff; margin-bottom:16px; box-shadow:0 10px 25px rgba(16, 185, 129, 0.4);">✓</div>
+            <h3 style="font-size:1.45rem; font-weight:800; color:#0f172a; margin-bottom:6px;">${successTitle}</h3>
+            <div style="font-size:1.05rem; font-weight:700; color:#059669; margin-bottom:16px;">
               ${deliveryMessage}
             </div>
-            <div class="success-order-summary" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:14px; width:100%; max-width:380px; font-size:0.88rem; line-height:1.6; text-align:left; margin-bottom:14px;">
-              <div><strong>Order ID:</strong> #${newOrderId}</div>
-              <div><strong>Payment Method:</strong> ${methodTitle}</div>
-              <div><strong>Amount:</strong> ₹${this.paymentState.subtotal.toFixed(2)}</div>
-              <div><strong>Deliver To:</strong> ${this.user.address ? `${this.user.address.flat}, ${this.user.address.area}` : 'Home Address'}</div>
+            <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:14px; padding:16px; width:100%; max-width:420px; font-size:0.9rem; line-height:1.7; text-align:left; color:#1e293b; margin-bottom:18px;">
+              <div style="display:flex; justify-content:space-between; border-bottom:1px solid #e2e8f0; padding-bottom:8px; margin-bottom:8px;">
+                <span style="color:#64748b;">Order ID</span>
+                <strong style="color:#0f172a; font-family:monospace; font-size:0.98rem;">#${newOrderId}</strong>
+              </div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <span style="color:#64748b;">Payment Method</span>
+                <strong>${methodTitle}</strong>
+              </div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <span style="color:#64748b;">Total Amount</span>
+                <strong style="color:#047857; font-size:1.05rem;">₹${this.paymentState.subtotal.toFixed(2)}</strong>
+              </div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <span style="color:#64748b;">Delivery To</span>
+                <span style="max-width:220px; text-align:right;">${this.user.address ? `${this.user.address.flat}, ${this.user.address.area}` : 'Home Address'}</span>
+              </div>
+              <div style="display:flex; justify-content:space-between;">
+                <span style="color:#64748b;">Estimated Arrival</span>
+                <span style="color:#059669; font-weight:700;">⚡ 22-25 mins</span>
+              </div>
             </div>
-            <div style="display:flex; flex-direction:column; gap:8px; width:100%; max-width:380px; margin-top:4px;">
-              <button class="btn-primary" style="width:100%; padding:10px;" onclick="window.marketApp.closePaymentModal(); window.marketApp.openTrackOrderModal('${newOrderId}')">
+            <div style="display:flex; flex-direction:column; gap:10px; width:100%; max-width:420px;">
+              <button class="btn-primary" style="width:100%; padding:14px; font-size:1rem; font-weight:700; border-radius:12px; background:linear-gradient(135deg, #0c831f, #047857); color:#fff; border:none; cursor:pointer;" onclick="window.marketApp.closePaymentModal(); window.marketApp.openTrackOrderModal('${newOrderId}')">
                 🛵 Track Live Order
               </button>
-              <button class="btn-secondary" style="width:100%; padding:10px;" onclick="window.marketApp.closePaymentModal()">
-                Close
+              <button class="btn-secondary" style="width:100%; padding:12px; font-size:0.92rem; font-weight:600; border-radius:12px; background:#f1f5f9; color:#334155; border:1px solid #cbd5e1; cursor:pointer;" onclick="window.marketApp.closePaymentModal()">
+                Continue Shopping
               </button>
             </div>
           </div>
