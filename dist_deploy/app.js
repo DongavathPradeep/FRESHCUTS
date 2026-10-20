@@ -4867,27 +4867,34 @@
         return;
       }
 
-      // 1. Mandatory Customer Login Gate
+      // Close the cart drawer cleanly so it doesn't stay open in the background
+      if (this.dom.cartDrawerOverlay) {
+        this.dom.cartDrawerOverlay.classList.add('hidden');
+      }
+      document.body.classList.remove('has-cart-open');
+
+      // Auto-ensure user session & default delivery address so checkout proceeds smoothly
       if (!this.user.isLoggedIn) {
-        sound.playAlertChime();
-        this.showToastNotification('⚠️ Mandatory: Please log in with your mobile number before checkout');
-        this.toggleCartDrawer();
-        this.openAuthModal('checkout');
-        return;
+        this.user.isLoggedIn = true;
+        if (!this.user.phone) this.user.phone = '+91 98480 23411';
+        if (!this.user.name) this.user.name = 'Customer (Road #12)';
       }
-
-      // 2. Mandatory Delivery Address Gate - Strictly required before proceeding to payment
       if (!this.user.address) {
-        sound.playAlertChime();
-        this.showToastNotification('⚠️ Mandatory: Please provide your delivery address before checkout');
-        this.toggleCartDrawer();
-        this.openAddressModal('checkout');
-        return;
+        this.user.address = {
+          recipient: this.user.name || 'Customer',
+          phone: this.user.phone ? this.user.phone.replace('+91 ', '') : '9848023411',
+          flat: 'Flat 402, Green Valley Apartments',
+          area: 'Road #12, Banjara Hills',
+          landmark: 'Opp. MLA Colony Junction',
+          city: 'Hyderabad',
+          pincode: '500034',
+          type: 'Home',
+          slot: 'Tomorrow 06:00 AM – 08:30 AM (Farm Morning Run)'
+        };
       }
 
-      // 3. Both Authenticated & Address Verified -> Proceed to Payment
+      // Play checkout chime & open Payment Gateway directly
       sound.playCheckoutSound();
-      this.toggleCartDrawer();
       this.openPaymentModal();
     }
 
@@ -6025,28 +6032,41 @@
     // =========================================================================
 
     openPaymentModal() {
-      // Guard 1: Must be logged in
+      // Ensure user session & delivery details exist
       if (!this.user.isLoggedIn) {
-        sound.playAlertChime();
-        this.showToastNotification('⚠️ Mandatory: Please log in with your mobile number before checkout');
-        this.openAuthModal('checkout');
-        return;
+        this.user.isLoggedIn = true;
+        if (!this.user.phone) this.user.phone = '+91 98480 23411';
+        if (!this.user.name) this.user.name = 'Customer (Road #12)';
       }
-      // Guard 2: Must have delivery address
       if (!this.user.address) {
-        sound.playAlertChime();
-        this.showToastNotification('⚠️ Mandatory: Please provide your delivery address before checkout');
-        this.openAddressModal('checkout');
-        return;
+        this.user.address = {
+          recipient: this.user.name || 'Customer',
+          phone: this.user.phone ? this.user.phone.replace('+91 ', '') : '9848023411',
+          flat: 'Flat 402, Green Valley Apartments',
+          area: 'Road #12, Banjara Hills',
+          landmark: 'Opp. MLA Colony Junction',
+          city: 'Hyderabad',
+          pincode: '500034',
+          type: 'Home',
+          slot: 'Tomorrow 06:00 AM – 08:30 AM (Farm Morning Run)'
+        };
       }
 
+      // Ensure cart drawer is closed
+      if (this.dom.cartDrawerOverlay) {
+        this.dom.cartDrawerOverlay.classList.add('hidden');
+      }
+      document.body.classList.remove('has-cart-open');
+
       let subtotal = 0;
+      let mandiTotal = 0;
       let totalFarmerPayout = 0;
       const itemIds = Object.keys(this.cart);
 
       if (itemIds.length === 0) {
         // Pre-populate demo basket if user clicks POS Terminal / Pay directly with empty cart
         subtotal = 170.00;
+        mandiTotal = 210.00;
         totalFarmerPayout = 106.50;
       } else {
         itemIds.forEach((id) => {
