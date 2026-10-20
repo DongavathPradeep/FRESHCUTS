@@ -2773,6 +2773,37 @@ body.light-theme .hero-gradient-overlay {
   color: var(--emerald-400);
 }
 
+.cart-savings-badge {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px dashed var(--emerald-400);
+  border-radius: var(--radius-sm);
+  color: #047857;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  line-height: 1.35;
+  animation: fadeIn 0.25s ease;
+}
+
+.cart-savings-badge.hidden {
+  display: none !important;
+}
+
+.cart-item-mandi-tag {
+  text-decoration: line-through;
+  color: #94a3b8;
+  font-size: 0.76rem;
+  font-weight: 600;
+  margin-right: 5px;
+}
+
 .btn-checkout-primary {
   width: 100%;
   background: linear-gradient(135deg, var(--emerald-600), var(--emerald-700));

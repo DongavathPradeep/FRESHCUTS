@@ -591,7 +591,7 @@
         <div class="cart-promo-container">
           <div class="promo-input-row">
             <span class="promo-icon">🎁</span>
-            <input type="text" id="cart-promo-input" class="cart-promo-input" placeholder="Referral code (e.g. FRIEND50)" />
+            <input type="text" id="cart-promo-input" class="cart-promo-input" placeholder="Promo or Coupon code (e.g. FRIEND50, SAVE20)" onkeydown="if(event.key==='Enter') window.marketApp.applyReferralCoupon()" />
             <button class="btn-promo-apply" onclick="window.marketApp.applyReferralCoupon()">Apply</button>
           </div>
           <div id="promo-success-pill" class="promo-success-pill hidden">
@@ -614,17 +614,17 @@
         </div>
 
         <div class="drawer-totals">
-          <div class="totals-row">
-            <span>Subtotal</span>
+          <div class="totals-row" id="cart-subtotal-row">
+            <span id="cart-subtotal-label">Item Total (Market / Mandi Price)</span>
             <span id="cart-subtotal">₹0.00</span>
           </div>
-          <div class="totals-row savings-row">
+          <div class="totals-row savings-row" id="cart-savings-row">
             <span>Customer Direct-Farm Savings</span>
             <span class="text-emerald" id="cart-savings">- ₹0.00</span>
           </div>
           <div class="totals-row referral-discount-row hidden" id="referral-discount-row">
-            <span>🎁 Referral Offer Discount</span>
-            <span class="text-emerald" id="referral-discount-val">- ₹50.00</span>
+            <span id="referral-discount-label">🎁 Coupon / Promo Discount</span>
+            <span class="text-emerald" id="referral-discount-val">- ₹0.00</span>
           </div>
           <div class="totals-row delivery-row">
             <span>Eco-Crate Linehaul Fee</span>
@@ -633,6 +633,9 @@
           <div class="totals-row grand-total-row">
             <span>Final Bill Amount</span>
             <span class="grand-total-val" id="cart-grand-total">₹0.00</span>
+          </div>
+          <div class="cart-savings-badge hidden" id="cart-savings-badge">
+            🎉 You save ₹0.00 on this direct-farm order!
           </div>
         </div>
 

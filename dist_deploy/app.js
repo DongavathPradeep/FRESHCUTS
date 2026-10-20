@@ -4580,8 +4580,9 @@
 
     updateCartUi() {
       let totalCount = 0;
-      let subtotal = 0;
-      let totalSavings = 0;
+      let farmSubtotal = 0; // Farm-direct produce total (e.g. 45 + 24 = 69)
+      let mandiSubtotal = 0; // Market / Mandi MRP total (e.g. 55 + 34 = 89)
+      let totalSavings = 0; // Customer Direct-Farm Savings (e.g. 89 - 69 = 20)
       let totalFarmerShare = 0;
 
       const itemIds = Object.keys(this.cart);
@@ -4593,20 +4594,33 @@
           totalCount += qty;
           const selWeight = this.getProductWeight(id);
           const itemPrice = this.getProductPrice(id, selWeight);
-          const itemMandi = this.getProductMandiPrice(id, selWeight);
+          const itemMandi = this.getProductMandiPrice(id, selWeight) || itemPrice;
           const linePrice = itemPrice * qty;
-          subtotal += linePrice;
+          const lineMandi = itemMandi * qty;
+          farmSubtotal += linePrice;
+          mandiSubtotal += lineMandi;
 
-          if (itemMandi) {
+          if (itemMandi > itemPrice) {
             totalSavings += (itemMandi - itemPrice) * qty;
           }
           totalFarmerShare += linePrice * (prod.farmerPayoutPercent / 100);
         }
       });
 
-      // Referral Discount Computation
-      const activeDiscount = (this.referralDiscount && subtotal > 0) ? Math.min(this.referralDiscount, subtotal) : 0;
-      const grandTotal = Math.max(0, subtotal - activeDiscount);
+      // Active Coupon / Promo Computation
+      const activeCode = this.activeCouponCode || this.referralCodeApplied || null;
+      let couponDiscount = 0;
+      if (activeCode && farmSubtotal > 0) {
+        couponDiscount = this.calculateCouponDiscount(activeCode, farmSubtotal);
+      } else if (this.referralDiscount && farmSubtotal > 0) {
+        couponDiscount = Math.min(this.referralDiscount, farmSubtotal);
+      }
+      this.activeCouponDiscount = couponDiscount;
+      this.referralDiscount = couponDiscount;
+
+      // Final payable bill amount: farmSubtotal minus any coupon discount
+      const grandTotal = Math.max(0, farmSubtotal - couponDiscount);
+      const combinedTotalSavings = totalSavings + couponDiscount;
 
       // Update Header Badges
       if (this.dom.cartCount) this.dom.cartCount.textContent = totalCount;
@@ -4635,19 +4649,71 @@
       }
 
       // Update Drawer Totals
-      if (this.dom.cartSubtotal) this.dom.cartSubtotal.textContent = `₹${subtotal.toFixed(2)}`;
-      if (this.dom.cartSavings) this.dom.cartSavings.textContent = `- ₹${totalSavings.toFixed(2)}`;
-      if (this.dom.cartGrandTotal) this.dom.cartGrandTotal.textContent = `₹${grandTotal.toFixed(2)}`;
+      const subtotalLabel = document.getElementById('cart-subtotal-label');
+      const savingsRow = document.getElementById('cart-savings-row');
+      const savingsBadge = document.getElementById('cart-savings-badge');
 
-      // Update Referral Discount Row in Cart Drawer
+      if (this.dom.cartSubtotal) {
+        if (totalSavings > 0) {
+          if (subtotalLabel) subtotalLabel.textContent = 'Item Total (Market / Mandi Price)';
+          this.dom.cartSubtotal.textContent = `₹${mandiSubtotal.toFixed(2)}`;
+        } else {
+          if (subtotalLabel) subtotalLabel.textContent = 'Subtotal';
+          this.dom.cartSubtotal.textContent = `₹${farmSubtotal.toFixed(2)}`;
+        }
+      }
+
+      if (this.dom.cartSavings) {
+        if (totalSavings > 0) {
+          if (savingsRow) {
+            savingsRow.classList.remove('hidden');
+            savingsRow.style.display = 'flex';
+          }
+          this.dom.cartSavings.textContent = `- ₹${totalSavings.toFixed(2)}`;
+        } else {
+          if (savingsRow) {
+            savingsRow.classList.add('hidden');
+            savingsRow.style.display = 'none';
+          }
+          this.dom.cartSavings.textContent = `- ₹0.00`;
+        }
+      }
+
+      // Update Referral / Coupon Discount Row in Cart Drawer
       const refRow = document.getElementById('referral-discount-row');
       const refVal = document.getElementById('referral-discount-val');
+      const refLabel = document.getElementById('referral-discount-label');
       if (refRow && refVal) {
-        if (activeDiscount > 0) {
+        if (couponDiscount > 0) {
           refRow.classList.remove('hidden');
-          refVal.textContent = `- ₹${activeDiscount.toFixed(2)}`;
+          refRow.style.display = 'flex';
+          if (refLabel) refLabel.textContent = `🎁 Coupon Discount (${activeCode || 'PROMO'})`;
+          refVal.textContent = `- ₹${couponDiscount.toFixed(2)}`;
         } else {
           refRow.classList.add('hidden');
+          refRow.style.display = 'none';
+        }
+      }
+
+      if (this.dom.cartGrandTotal) {
+        this.dom.cartGrandTotal.textContent = `₹${grandTotal.toFixed(2)}`;
+      }
+
+      // Total savings callout badge in drawer
+      if (savingsBadge) {
+        if (combinedTotalSavings > 0 && totalCount > 0) {
+          savingsBadge.classList.remove('hidden');
+          savingsBadge.style.display = 'flex';
+          if (couponDiscount > 0 && totalSavings > 0) {
+            savingsBadge.innerHTML = `🎉 Total Savings: <strong>₹${combinedTotalSavings.toFixed(2)}</strong> (₹${totalSavings.toFixed(2)} Farm Direct + ₹${couponDiscount.toFixed(2)} Coupon)`;
+          } else if (couponDiscount > 0) {
+            savingsBadge.innerHTML = `🎉 Total Savings: <strong>₹${couponDiscount.toFixed(2)}</strong> (${activeCode} Coupon applied)`;
+          } else {
+            savingsBadge.innerHTML = `🎉 Customer Direct-Farm Savings: <strong>₹${totalSavings.toFixed(2)}</strong> lower than Mandi!`;
+          }
+        } else {
+          savingsBadge.classList.add('hidden');
+          savingsBadge.style.display = 'none';
         }
       }
 
@@ -4729,7 +4795,9 @@
             const farmer = (prod.farmerKey && FARMERS_DB[prod.farmerKey]) ? FARMERS_DB[prod.farmerKey] : null;
             const selWeight = this.getProductWeight(id) || prod.unit || '1 unit';
             const itemPrice = this.getProductPrice(id, selWeight) || prod.price || 0;
+            const itemMandi = this.getProductMandiPrice(id, selWeight) || prod.mandiPrice || 0;
             const lineTotal = itemPrice * qty;
+            const lineMandi = itemMandi * qty;
             const farmerLabel = farmer ? `🌱 ${farmer.name} (${farmer.distanceKm} km)` : `✓ 100% Quality Checked (Direct Source)`;
 
             return `
@@ -4738,10 +4806,16 @@
                 <div class="cart-item-details">
                   <div class="cart-item-title">${prod.title} <span class="cart-pack-tag">(${selWeight})</span></div>
                   <div class="cart-item-farmer">${farmerLabel}</div>
-                  <div class="cart-item-price-unit">₹${itemPrice} / ${selWeight}</div>
+                  <div class="cart-item-price-unit">
+                    ₹${itemPrice} / ${selWeight}
+                    ${itemMandi > itemPrice ? `<span class="cart-item-mandi-tag">(Mandi ₹${itemMandi})</span>` : ''}
+                  </div>
                 </div>
                 <div class="cart-item-controls">
-                  <div class="cart-item-subtotal">₹${lineTotal.toFixed(2)}</div>
+                  <div class="cart-item-subtotal">
+                    ${lineMandi > lineTotal ? `<span class="cart-item-mandi-tag">₹${lineMandi.toFixed(2)}</span>` : ''}
+                    <span>₹${lineTotal.toFixed(2)}</span>
+                  </div>
                   <div class="cart-qty-mini">
                     <button type="button" onclick="window.marketApp.modifyCartQty('${id}', -1)" aria-label="Decrease quantity">−</button>
                     <span>${qty}</span>
@@ -5979,36 +6053,36 @@
           const prod = PRODUCTS_DATA.find((p) => p.id === id);
           const qty = this.cart[id];
           if (prod && qty > 0) {
-            const lineTotal = prod.price * qty;
+            const selWeight = this.getProductWeight(id);
+            const itemPrice = this.getProductPrice(id, selWeight);
+            const itemMandi = this.getProductMandiPrice(id, selWeight) || itemPrice;
+            const lineTotal = itemPrice * qty;
             subtotal += lineTotal;
+            mandiTotal += itemMandi * qty;
             totalFarmerPayout += lineTotal * (prod.farmerPayoutPercent / 100);
           }
         });
       }
 
-      // Factor in active referral offer and coupon/subscription discount
-      const referralDisc = (this.referralDiscount && subtotal > 0) ? Math.min(this.referralDiscount, subtotal) : 0;
+      const directSavings = Math.max(0, mandiTotal - subtotal);
+      const activeCode = this.activeCouponCode || this.referralCodeApplied || null;
       let couponDiscount = 0;
-      if (this.activeCouponCode && subtotal > 0) {
-        const code = this.activeCouponCode.toUpperCase().trim();
-        if (code === 'FRESH50') {
-          couponDiscount = Math.min(50, Math.max(0, subtotal - referralDisc));
-        } else if (code === 'VIPPASS') {
-          couponDiscount = Math.round((subtotal - referralDisc) * 0.15);
-        } else if (code === 'SUB99' || code.includes('SUB')) {
-          couponDiscount = Math.min(30, Math.max(0, subtotal - referralDisc));
-        } else if (code === 'FIRSTBUY') {
-          couponDiscount = Math.min(40, Math.max(0, subtotal - referralDisc));
-        } else {
-          couponDiscount = Math.min(25, Math.max(0, subtotal - referralDisc));
-        }
+      if (activeCode && subtotal > 0) {
+        couponDiscount = this.calculateCouponDiscount(activeCode, subtotal);
+      } else if (this.referralDiscount && subtotal > 0) {
+        couponDiscount = Math.min(this.referralDiscount, subtotal);
       }
       this.activeCouponDiscount = couponDiscount;
-      const totalSavings = referralDisc + couponDiscount;
-      const payableAmount = Math.max(1, subtotal - totalSavings);
+      this.referralDiscount = couponDiscount;
+
+      const payableAmount = Math.max(0, subtotal - couponDiscount);
 
       const farmerPercent = subtotal > 0 ? ((totalFarmerPayout / subtotal) * 100).toFixed(1) : '61.8';
       this.paymentState.rawSubtotal = subtotal;
+      this.paymentState.mandiTotal = mandiTotal;
+      this.paymentState.directSavings = directSavings;
+      this.paymentState.couponDiscount = couponDiscount;
+      this.paymentState.couponCode = activeCode;
       this.paymentState.subtotal = payableAmount;
       this.paymentState.totalFarmerPayout = totalFarmerPayout;
       this.paymentState.farmerPercent = farmerPercent;
@@ -6037,7 +6111,11 @@
           <div class="pay-amount-left">
             <div class="pay-lbl">
               Total Payable Amount
-              ${totalSavings > 0 ? `<span style="font-size:0.75rem; color:#a7f3d0; margin-left:6px;">(Subtotal: ₹${subtotal.toFixed(0)} ${referralDisc > 0 ? `− ₹${referralDisc.toFixed(0)} Referral` : ''} ${couponDiscount > 0 ? `− ₹${couponDiscount.toFixed(0)} (${this.activeCouponCode})` : ''})</span>` : ''}
+              ${(directSavings > 0 || couponDiscount > 0) ? `
+                <span style="font-size:0.75rem; color:#a7f3d0; margin-left:6px;">
+                  (Market: ₹${mandiTotal.toFixed(0)} ${directSavings > 0 ? `− ₹${directSavings.toFixed(0)} Direct Farm Savings` : ''} ${couponDiscount > 0 ? `− ₹${couponDiscount.toFixed(0)} (${activeCode})` : ''})
+                </span>
+              ` : ''}
             </div>
             <div class="pay-sum">₹${payableAmount.toFixed(2)}</div>
           </div>
@@ -6047,10 +6125,10 @@
         <div class="pay-coupon-bar">
           <div class="coupon-title-row">
             <span class="coupon-bar-title">🎟️ Apply Coupon or Subscription Pass</span>
-            ${couponDiscount > 0 ? `<span class="coupon-success-pill">✓ Applied: <strong>${this.activeCouponCode}</strong> (Saved ₹${couponDiscount})</span>` : ''}
+            ${couponDiscount > 0 ? `<span class="coupon-success-pill">✓ Applied: <strong>${activeCode}</strong> (Saved ₹${couponDiscount.toFixed(2)})</span>` : ''}
           </div>
           <div class="coupon-input-cluster">
-            <input type="text" id="pay-coupon-input" class="pay-coupon-input" placeholder="Enter Code: FRESH50, VIPPASS, SUB99" value="${this.activeCouponCode || ''}" onkeydown="if(event.key==='Enter') window.marketApp.applyPaymentCoupon()" />
+            <input type="text" id="pay-coupon-input" class="pay-coupon-input" placeholder="Enter Code: FRIEND50, SAVE20, FRESH50" value="${activeCode || ''}" onkeydown="if(event.key==='Enter') window.marketApp.applyPaymentCoupon()" />
             ${couponDiscount > 0 ? `
               <button type="button" class="btn-coupon-remove" onclick="window.marketApp.removePaymentCoupon()">Remove</button>
             ` : `
@@ -6058,14 +6136,20 @@
             `}
           </div>
           <div class="coupon-quick-chips">
-            <button type="button" class="coupon-chip ${this.activeCouponCode === 'FRESH50' ? 'active' : ''}" onclick="window.marketApp.quickApplyCoupon('FRESH50')">
+            <button type="button" class="coupon-chip ${activeCode === 'FRIEND50' ? 'active' : ''}" onclick="window.marketApp.quickApplyCoupon('FRIEND50')">
+              <strong>FRIEND50</strong> • ₹50 OFF
+            </button>
+            <button type="button" class="coupon-chip ${activeCode === 'SAVE20' ? 'active' : ''}" onclick="window.marketApp.quickApplyCoupon('SAVE20')">
+              <strong>SAVE20</strong> • ₹20 Direct OFF
+            </button>
+            <button type="button" class="coupon-chip ${activeCode === 'FRESH50' ? 'active' : ''}" onclick="window.marketApp.quickApplyCoupon('FRESH50')">
               <strong>FRESH50</strong> • Flat ₹50 OFF
             </button>
-            <button type="button" class="coupon-chip ${this.activeCouponCode === 'VIPPASS' ? 'active' : ''}" onclick="window.marketApp.quickApplyCoupon('VIPPASS')">
+            <button type="button" class="coupon-chip ${activeCode === 'VIPPASS' ? 'active' : ''}" onclick="window.marketApp.quickApplyCoupon('VIPPASS')">
               <strong>VIPPASS</strong> • 15% VIP Discount
             </button>
-            <button type="button" class="coupon-chip ${this.activeCouponCode === 'SUB99' ? 'active' : ''}" onclick="window.marketApp.quickApplyCoupon('SUB99')">
-              <strong>SUB99</strong> • Pass: Free Delivery + ₹30
+            <button type="button" class="coupon-chip ${activeCode === 'SUB99' ? 'active' : ''}" onclick="window.marketApp.quickApplyCoupon('SUB99')">
+              <strong>SUB99</strong> • Pass: ₹30 OFF
             </button>
           </div>
         </div>
@@ -6310,18 +6394,12 @@
 
     quickApplyCoupon(code) {
       if (!code) return;
-      this.activeCouponCode = code.toUpperCase().trim();
-      sound.playAddSound();
-      this.showToastNotification(`🎉 Applied "${this.activeCouponCode}"! Discount reflected in payable amount.`);
+      this.applyReferralCoupon(code);
       this.openPaymentModal();
     }
 
     removePaymentCoupon() {
-      const prev = this.activeCouponCode;
-      this.activeCouponCode = null;
-      this.activeCouponDiscount = 0;
-      sound.playAlertChime();
-      this.showToastNotification(`Removed coupon ${prev || ''}`);
+      this.removeReferralCoupon();
       this.openPaymentModal();
     }
 
@@ -6432,6 +6510,10 @@
           authCode: authCode,
           method: methodTitle,
           amount: this.paymentState.subtotal,
+          mandiTotal: this.paymentState.mandiTotal,
+          directSavings: this.paymentState.directSavings,
+          couponDiscount: this.paymentState.couponDiscount,
+          couponCode: this.paymentState.couponCode,
           farmerPayout: this.paymentState.totalFarmerPayout,
           farmerPercent: this.paymentState.farmerPercent,
           timestamp: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })
@@ -6545,8 +6627,10 @@
       const itemIds = Object.keys(this.cart);
       let itemsListHtml = '';
 
+      let mandiTotal = 0;
       if (this.paymentState.lastTxn) {
         subtotal = this.paymentState.lastTxn.amount;
+        mandiTotal = this.paymentState.lastTxn.mandiTotal || subtotal;
         totalFarmerPayout = this.paymentState.lastTxn.farmerPayout;
         itemsListHtml = `
           <tr>
@@ -6590,28 +6674,40 @@
           </tr>
         `;
         subtotal = 170.00;
+        mandiTotal = 220.00;
         totalFarmerPayout = 106.50;
       } else {
         itemsListHtml = itemIds.map((id) => {
           const prod = PRODUCTS_DATA.find((p) => p.id === id);
           const qty = this.cart[id];
-          const lineTotal = prod.price * qty;
+          const selWeight = this.getProductWeight(id);
+          const itemPrice = this.getProductPrice(id, selWeight);
+          const itemMandi = this.getProductMandiPrice(id, selWeight) || itemPrice;
+          const lineTotal = itemPrice * qty;
           subtotal += lineTotal;
+          mandiTotal += itemMandi * qty;
           totalFarmerPayout += lineTotal * (prod.farmerPayoutPercent / 100);
 
           return `
             <tr>
               <td>${prod.title} (Lot #${prod.lotNumber})</td>
               <td>${qty}</td>
-              <td>₹${prod.price.toFixed(2)}</td>
+              <td>₹${itemPrice.toFixed(2)}</td>
               <td style="text-align:right">₹${lineTotal.toFixed(2)}</td>
             </tr>
           `;
         }).join('');
       }
 
-      const farmerPercent = ((totalFarmerPayout / subtotal) * 100).toFixed(1);
       const isPaid = !!this.paymentState.lastTxn;
+      const lastTxn = this.paymentState.lastTxn;
+      const posMandi = lastTxn ? (lastTxn.mandiTotal || subtotal) : mandiTotal;
+      const posDirectSavings = lastTxn ? (lastTxn.directSavings || 0) : Math.max(0, mandiTotal - subtotal);
+      const posCouponDiscount = lastTxn ? (lastTxn.couponDiscount || 0) : (this.activeCouponDiscount || this.referralDiscount || 0);
+      const posCouponCode = lastTxn ? lastTxn.couponCode : (this.activeCouponCode || this.referralCodeApplied || null);
+      const posFinalBill = lastTxn ? lastTxn.amount : Math.max(0, subtotal - posCouponDiscount);
+
+      const farmerPercent = subtotal > 0 ? ((totalFarmerPayout / subtotal) * 100).toFixed(1) : '61.8';
 
       this.dom.receiptModalContent.innerHTML = `
         <div class="pos-bill">
@@ -6661,9 +6757,21 @@
 
           <div class="pos-totals">
             <div class="pos-tot-row">
-              <span>Item Subtotal:</span>
-              <span>₹${subtotal.toFixed(2)}</span>
+              <span>Item Total (Market / Mandi Price):</span>
+              <span>₹${posMandi.toFixed(2)}</span>
             </div>
+            ${posDirectSavings > 0 ? `
+            <div class="pos-tot-row" style="color:#059669; font-weight:600;">
+              <span>Customer Direct-Farm Savings:</span>
+              <span>- ₹${posDirectSavings.toFixed(2)}</span>
+            </div>
+            ` : ''}
+            ${posCouponDiscount > 0 ? `
+            <div class="pos-tot-row" style="color:#059669; font-weight:600;">
+              <span>🎁 Coupon Discount (${posCouponCode || 'PROMO'}):</span>
+              <span>- ₹${posCouponDiscount.toFixed(2)}</span>
+            </div>
+            ` : ''}
             <div class="pos-tot-row">
               <span>Eco Packaging & Reusable Crate:</span>
               <span>₹0.00 (Waived)</span>
@@ -6674,14 +6782,14 @@
             </div>
             <div class="pos-tot-row pos-grand">
               <span>TOTAL BILL AMOUNT:</span>
-              <span>₹${subtotal.toFixed(2)}</span>
+              <span>₹${posFinalBill.toFixed(2)}</span>
             </div>
           </div>
 
           <div class="pos-farmer-box">
             <strong>🌱 FARMER EQUITY DISCLOSURE 🌱</strong><br>
-            Of this ₹${subtotal.toFixed(2)} bill, exactly <strong>₹${totalFarmerPayout.toFixed(2)} (${farmerPercent}%)</strong> 
-            has been earmarked for immediate T+1 UPI bank transfer to our our local partner farmers.
+            Of this ₹${posFinalBill.toFixed(2)} bill, exactly <strong>₹${totalFarmerPayout.toFixed(2)} (${farmerPercent}%)</strong> 
+            has been earmarked for immediate T+1 UPI bank transfer to our local partner farmers.
           </div>
 
           <div class="pos-barcode">
@@ -8294,7 +8402,29 @@
       window.open(`https://api.whatsapp.com/send?text=${msg}`, '_blank');
     }
 
-    applyReferralCoupon(explicitCode) {
+    calculateCouponDiscount(rawCode, subtotal) {
+      if (!rawCode || subtotal <= 0) return 0;
+      const code = rawCode.toUpperCase().trim();
+      let discount = 0;
+      if (code === 'VIPPASS') {
+        discount = Math.round(subtotal * 0.15);
+      } else if (code === 'FRIEND50' || code === 'FRESH50' || code === 'FARM50' || code === 'OFFER50' || code === 'SAVE50' || code === 'RAITHU50' || code.includes('50')) {
+        discount = 50;
+      } else if (code === 'FIRSTBUY' || code === 'FIRST40' || code.includes('40')) {
+        discount = 40;
+      } else if (code === 'SUB99' || code.includes('SUB') || code.includes('30')) {
+        discount = 30;
+      } else if (code === 'SAVE20' || code === 'FARM20' || code === 'OFFER20' || code.includes('20')) {
+        discount = 20;
+      } else if (code.startsWith('JAYA-')) {
+        discount = 50;
+      } else {
+        discount = 25;
+      }
+      return Math.min(discount, subtotal);
+    }
+
+    applyReferralCoupon(explicitCode = null) {
       let code = explicitCode;
       if (!code) {
         const input = document.getElementById('cart-promo-input');
@@ -8303,50 +8433,65 @@
 
       if (!code) {
         sound.playAlertChime();
-        this.showToastNotification('Please enter a referral or promo code (e.g. FRIEND50 or JAYA-FARM-9848)');
+        this.showToastNotification('Please enter a referral or promo code (e.g. FRIEND50, SAVE20)');
         return;
       }
 
-      const validCodes = ['FRIEND50', 'JAYA-FARM-9848', 'FARM50', 'OFFER50', 'SAVE50', 'RAITHU50'];
       const normalized = code.toUpperCase().trim();
-
-      if (validCodes.includes(normalized) || normalized.startsWith('JAYA-') || normalized.includes('50')) {
-        this.referralDiscount = 50;
-        this.referralCodeApplied = normalized;
-
-        const pill = document.getElementById('promo-success-pill');
-        if (pill) {
-          pill.classList.remove('hidden');
-          pill.innerHTML = `
-            <span>🎉 Code <strong>${normalized}</strong> applied! ₹50.00 OFF</span>
-            <button class="btn-promo-remove" onclick="window.marketApp.removeReferralCoupon()" title="Remove coupon">✕</button>
-          `;
+      const itemIds = Object.keys(this.cart);
+      let farmSubtotal = 0;
+      itemIds.forEach((id) => {
+        const qty = this.cart[id];
+        if (qty > 0) {
+          const selWeight = this.getProductWeight(id);
+          farmSubtotal += this.getProductPrice(id, selWeight) * qty;
         }
-        const input = document.getElementById('cart-promo-input');
-        if (input) input.value = normalized;
+      });
 
-        sound.playCheckoutSound();
-        this.showToastNotification(`🎉 Referral code ${normalized} applied! ₹50.00 discount granted.`);
-        this.updateCartUi();
-        if (this.dom.referralModalBackdrop && !this.dom.referralModalBackdrop.classList.contains('hidden')) {
-          this.closeReferralModal();
-          this.toggleCartDrawer();
-        }
-      } else {
+      if (farmSubtotal <= 0) {
         sound.playAlertChime();
-        this.showToastNotification('⚠️ Invalid promo code. Try FRIEND50 or JAYA-FARM-9848');
+        this.showToastNotification('Please add items to your basket before applying coupon');
+        return;
+      }
+
+      const discount = this.calculateCouponDiscount(normalized, farmSubtotal);
+      this.referralDiscount = discount;
+      this.referralCodeApplied = normalized;
+      this.activeCouponCode = normalized;
+      this.activeCouponDiscount = discount;
+
+      const pill = document.getElementById('promo-success-pill');
+      if (pill) {
+        pill.classList.remove('hidden');
+        pill.innerHTML = `
+          <span>🎉 Code <strong>${normalized}</strong> applied! ₹${discount.toFixed(2)} OFF</span>
+          <button class="btn-promo-remove" onclick="window.marketApp.removeReferralCoupon()" title="Remove coupon">✕</button>
+        `;
+      }
+      const input = document.getElementById('cart-promo-input');
+      if (input) input.value = normalized;
+
+      sound.playCheckoutSound();
+      this.showToastNotification(`🎉 Coupon ${normalized} applied! ₹${discount.toFixed(2)} discount granted.`);
+      this.updateCartUi();
+      if (this.dom.referralModalBackdrop && !this.dom.referralModalBackdrop.classList.contains('hidden')) {
+        this.closeReferralModal();
+        this.toggleCartDrawer();
       }
     }
 
     removeReferralCoupon() {
+      const prev = this.referralCodeApplied || this.activeCouponCode;
       this.referralDiscount = 0;
       this.referralCodeApplied = null;
+      this.activeCouponCode = null;
+      this.activeCouponDiscount = 0;
       const pill = document.getElementById('promo-success-pill');
       if (pill) pill.classList.add('hidden');
       const input = document.getElementById('cart-promo-input');
       if (input) input.value = '';
       sound.playAddSound();
-      this.showToastNotification('Referral discount coupon removed.');
+      this.showToastNotification(`Coupon ${prev || ''} removed.`);
       this.updateCartUi();
     }
 
