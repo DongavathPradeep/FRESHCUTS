@@ -358,7 +358,7 @@
     },
     {
       id: 'prod_curd_meegada',
-      title: 'Clay Pot Farm Curd (500g)',
+      title: 'Creamy Meegada Clay Pot Curd (500g)',
       category: 'dairy-morning',
       zoneName: 'Chilled Dairy Vault (4°C)',
       harvestHoursAgo: 6,
@@ -377,7 +377,7 @@
     },
     {
       id: 'prod_curd_pot',
-      title: 'Clay Pot Farm Curd (500g)',
+      title: 'Fresh Traditional Farm Curd (500g)',
       category: 'dairy-morning',
       zoneName: 'Chilled Dairy Vault (4°C)',
       harvestHoursAgo: 6,
@@ -3653,7 +3653,7 @@
     },
     'rayalaseema': {
       id: 'rayalaseema',
-      name: 'Rayalaseema',
+      name: 'Traditional Specials',
       subtitle: 'Stoneground red chilli paste, dried chillies, peanuts & millets',
       icon: '🌶️',
       image: 'assets/prod_erra_karam.jpg'
