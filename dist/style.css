@@ -14324,24 +14324,38 @@ body.has-cart-open .wa-floating-widget,
 
 /* MOBILE RESPONSIVE RULES FOR SUPERMARKET INTERFACE */
 @media (max-width: 991px) {
+  html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
   .supermarket-layout {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    margin-top: 10px;
-    padding: 0 12px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    margin-top: 8px;
+    margin-bottom: 70px;
+    padding: 0 10px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
   }
 
   .supermarket-sidebar {
-    position: sticky;
-    top: 68px;
-    z-index: 45;
+    position: relative;
+    top: auto;
+    z-index: 10;
     border-radius: 14px;
-    padding: 8px 10px;
+    padding: 10px 8px;
     max-height: none;
-    overflow-y: visible;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
     background: #ffffff;
     border: 1px solid #e2e8f0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   }
 
   .sidebar-header {
@@ -14354,7 +14368,11 @@ body.has-cart-open .wa-floating-widget,
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     gap: 8px;
-    padding: 4px 2px;
+    padding: 2px 2px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
     scrollbar-width: none;
   }
 
@@ -14365,8 +14383,8 @@ body.has-cart-open .wa-floating-widget,
   .sidebar-cat-item {
     flex: 0 0 auto;
     width: auto;
-    min-width: 96px;
-    max-width: 110px;
+    min-width: 82px;
+    max-width: 96px;
     flex-direction: column;
     text-align: center;
     padding: 8px 6px;
@@ -14375,6 +14393,7 @@ body.has-cart-open .wa-floating-widget,
     border-radius: 12px;
     background: #f8fafc;
     border: 1.5px solid #e2e8f0;
+    box-sizing: border-box;
   }
 
   .sidebar-cat-item:hover {
@@ -14407,30 +14426,45 @@ body.has-cart-open .wa-floating-widget,
     display: none;
   }
 
+  .supermarket-main {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
   .supermarket-top-bar {
-    padding: 12px 14px;
-    border-radius: 14px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
   }
 
   .category-heading-icon-wrap {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    font-size: 18px;
   }
 
   .category-main-heading {
-    font-size: 16.5px;
+    font-size: 15.5px;
   }
 
   .category-subheading {
-    font-size: 12px;
+    font-size: 11.5px;
   }
 
   .supermarket-toolbar {
-    padding: 12px 14px;
-    border-radius: 14px;
-    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    gap: 10px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
   }
 
   .toolbar-search-box {
@@ -14448,7 +14482,7 @@ body.has-cart-open .wa-floating-widget,
 
   .supermarket-select {
     width: 100%;
-    min-width: 130px;
+    min-width: 120px;
   }
 
   .control-group.price-filter-group {
@@ -14458,25 +14492,92 @@ body.has-cart-open .wa-floating-widget,
   .price-input {
     width: 58px;
   }
+
+  .products-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .product-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    padding: 8px !important;
+    box-sizing: border-box !important;
+    border-radius: 12px !important;
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    overflow: hidden !important;
+  }
+
+  .prod-image-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    aspect-ratio: 1 / 1 !important;
+    height: auto !important;
+    background: #f8fafc !important;
+    border-radius: 10px !important;
+    padding: 4px !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .prod-img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+    padding: 2px !important;
+    box-sizing: border-box !important;
+  }
 }
 
 @media (max-width: 640px) {
   .supermarket-layout {
     padding: 0 8px;
     margin-top: 6px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .products-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 10px !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 8px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .product-card {
+    padding: 8px !important;
+  }
+
+  .prod-title {
+    font-size: 12px !important;
+    line-height: 1.3 !important;
+  }
+
+  .prod-price {
+    font-size: 15px !important;
   }
 
   .supermarket-toolbar {
-    padding: 10px 12px;
+    padding: 10px 10px;
   }
 
   .toolbar-controls-cluster {
-    gap: 10px;
+    gap: 8px;
   }
 
   .btn-clear-filters {
