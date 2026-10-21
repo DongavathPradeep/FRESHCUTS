@@ -13820,3 +13820,765 @@ body.has-cart-open .wa-floating-widget,
   visibility: hidden !important;
 }
 
+
+
+/* ============================================================== */
+/* MODERN SUPERMARKET SHOPPING INTERFACE & CATEGORY SIDEBAR STYLES */
+/* ============================================================== */
+
+/* Main 2-Column Supermarket Layout */
+.supermarket-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 24px;
+  max-width: 1400px;
+  margin: 18px auto 48px auto;
+  padding: 0 20px;
+  align-items: start;
+}
+
+/* 1. LEFT CATEGORY SIDEBAR (Sticky on Desktop) */
+.supermarket-sidebar {
+  position: sticky;
+  top: 86px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 16px 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  max-height: calc(100vh - 105px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+  z-index: 20;
+}
+
+.supermarket-sidebar::-webkit-scrollbar {
+  width: 5px;
+}
+.supermarket-sidebar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 6px 14px 6px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.sidebar-header-icon {
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 10px;
+}
+
+.sidebar-header-title {
+  font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.sidebar-header-sub {
+  font-size: 11px;
+  font-weight: 500;
+  color: #16a34a;
+  display: block;
+}
+
+.sidebar-category-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Sidebar Category Item Button */
+.sidebar-cat-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 9px 10px;
+  border: 1.5px solid transparent;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #1e293b;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: inherit;
+}
+
+.sidebar-cat-item:hover {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+  transform: translateX(3px);
+}
+
+.sidebar-cat-item.active {
+  background: #f0fdf4;
+  border-color: #86efac;
+  box-shadow: 0 2px 10px rgba(12, 131, 31, 0.12);
+}
+
+.sidebar-cat-item.active .cat-title {
+  color: #0c831f;
+  font-weight: 700;
+}
+
+.sidebar-cat-item.active .cat-count-badge {
+  color: #15803d;
+  font-weight: 600;
+  background: #dcfce7;
+}
+
+.cat-thumb-box {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  border-radius: 50% !important;
+  overflow: hidden;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+}
+
+.cat-thumb-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50% !important;
+  object-fit: cover;
+  display: block;
+}
+
+.sidebar-cat-item:hover .cat-thumb-box {
+  border-color: #16a34a;
+  transform: scale(1.06);
+  box-shadow: 0 4px 10px rgba(22, 163, 74, 0.2);
+}
+
+.sidebar-cat-item.active .cat-thumb-box {
+  border-color: #0c831f;
+  box-shadow: 0 0 0 3px rgba(12, 131, 31, 0.25), 0 3px 8px rgba(12, 131, 31, 0.2);
+  transform: scale(1.06);
+}
+
+.sidebar-cat-item:hover .cat-thumb-box {
+  border-color: #cbd5e1;
+}
+
+.sidebar-cat-item.active .cat-thumb-box {
+  border-color: #16a34a;
+  box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.2);
+}
+
+.cat-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cat-text-box {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.cat-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1e293b;
+  line-height: 1.3;
+}
+
+.cat-count-badge {
+  align-self: flex-start;
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 3px;
+  padding: 1px 6px;
+  background: #f1f5f9;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+/* 2. RIGHT MAIN CONTENT AREA */
+.supermarket-main {
+  min-width: 0;
+  width: 100%;
+}
+
+/* Top Banner Header */
+.supermarket-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.category-heading-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.category-heading-icon-wrap {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  background: #f0fdf4;
+  border: 1.5px solid #bbf7d0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.category-main-heading {
+  font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+  font-size: 19px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.category-subheading {
+  font-size: 13px;
+  color: #64748b;
+  margin: 3px 0 0 0;
+}
+
+.active-item-counter {
+  padding: 6px 14px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+/* Supermarket Filters & Sorting Toolbar */
+.supermarket-toolbar {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 12px 18px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+  margin-bottom: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toolbar-controls-cluster {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.control-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  white-space: nowrap;
+}
+
+.supermarket-select {
+  height: 40px;
+  padding: 0 32px 0 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1e293b;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  background: #ffffff;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  transition: all 0.2s ease;
+}
+
+.supermarket-select:focus {
+  border-color: #0c831f;
+  box-shadow: 0 0 0 3px rgba(12, 131, 31, 0.12);
+}
+
+.price-inputs-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.price-input {
+  width: 68px;
+  height: 40px;
+  padding: 0 8px;
+  font-size: 13px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #0f172a;
+  outline: none;
+  text-align: center;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.price-input:focus {
+  border-color: #0c831f;
+  box-shadow: 0 0 0 3px rgba(12, 131, 31, 0.12);
+}
+
+.price-separator {
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.btn-clear-filters {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 14px;
+  background: #f1f5f9;
+  border: 1.5px solid #e2e8f0;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.btn-clear-filters:hover {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  color: #dc2626;
+}
+
+/* Active Filter Indicators Container */
+.active-filter-indicators {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+  align-items: center;
+}
+
+.filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f0fdf4;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.filter-pill-remove {
+  background: none;
+  border: none;
+  color: #15803d;
+  cursor: pointer;
+  padding: 0;
+  font-size: 13px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.filter-pill-remove:hover {
+  color: #dc2626;
+}
+
+.btn-clear-all-pills {
+  background: none;
+  border: none;
+  color: #0c831f;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 4px 6px;
+}
+
+/* Supermarket Empty State Card */
+.supermarket-empty-card {
+  background: #ffffff;
+  border: 1.5px dashed #cbd5e1;
+  border-radius: 16px;
+  padding: 48px 24px;
+  text-align: center;
+  margin: 12px 0 24px 0;
+}
+
+.supermarket-empty-card .empty-icon-lg {
+  font-size: 42px;
+  margin-bottom: 12px;
+}
+
+.supermarket-empty-card .empty-heading {
+  font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 8px 0;
+}
+
+.supermarket-empty-card .empty-sub {
+  font-size: 14px;
+  color: #64748b;
+  max-width: 500px;
+  margin: 0 auto 20px auto;
+  line-height: 1.5;
+}
+
+.empty-actions-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Top Horizontal Category Strip Styles (With Real Images) */
+.cat-icon-thumb-box {
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.cat-strip-item:hover .cat-icon-thumb-box {
+  border-color: #0c831f;
+  transform: scale(1.06);
+}
+
+.cat-strip-item.active .cat-icon-thumb-box {
+  border-color: #0c831f;
+  box-shadow: 0 0 0 3px rgba(12, 131, 31, 0.2);
+  transform: scale(1.08);
+}
+
+.cat-strip-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* MOBILE RESPONSIVE RULES FOR SUPERMARKET INTERFACE */
+@media (max-width: 991px) {
+  .supermarket-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 10px;
+    padding: 0 12px;
+  }
+
+  .supermarket-sidebar {
+    position: sticky;
+    top: 68px;
+    z-index: 45;
+    border-radius: 14px;
+    padding: 8px 10px;
+    max-height: none;
+    overflow-y: visible;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  }
+
+  .sidebar-header {
+    display: none;
+  }
+
+  .sidebar-category-nav {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 8px;
+    padding: 4px 2px;
+    scrollbar-width: none;
+  }
+
+  .sidebar-category-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sidebar-cat-item {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 96px;
+    max-width: 110px;
+    flex-direction: column;
+    text-align: center;
+    padding: 8px 6px;
+    gap: 6px;
+    margin-bottom: 0;
+    border-radius: 12px;
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+  }
+
+  .sidebar-cat-item:hover {
+    transform: none;
+  }
+
+  .sidebar-cat-item.active {
+    background: #f0fdf4;
+    border-color: #22c55e;
+  }
+
+  .cat-thumb-box {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    border-radius: 50%;
+  }
+
+  .cat-title {
+    font-size: 11.5px;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.25;
+  }
+
+  .cat-count-badge {
+    display: none;
+  }
+
+  .supermarket-top-bar {
+    padding: 12px 14px;
+    border-radius: 14px;
+  }
+
+  .category-heading-icon-wrap {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    font-size: 20px;
+  }
+
+  .category-main-heading {
+    font-size: 16.5px;
+  }
+
+  .category-subheading {
+    font-size: 12px;
+  }
+
+  .supermarket-toolbar {
+    padding: 12px 14px;
+    border-radius: 14px;
+    gap: 12px;
+  }
+
+  .toolbar-search-box {
+    flex: 1 1 100%;
+  }
+
+  .toolbar-controls-cluster {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .control-group.sort-group {
+    flex: 1 1 auto;
+  }
+
+  .supermarket-select {
+    width: 100%;
+    min-width: 130px;
+  }
+
+  .control-group.price-filter-group {
+    flex: 1 1 auto;
+  }
+
+  .price-input {
+    width: 58px;
+  }
+}
+
+@media (max-width: 640px) {
+  .supermarket-layout {
+    padding: 0 8px;
+    margin-top: 6px;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  .supermarket-toolbar {
+    padding: 10px 12px;
+  }
+
+  .toolbar-controls-cluster {
+    gap: 10px;
+  }
+
+  .btn-clear-filters {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+
+/* ========================================================= */
+/* ENHANCED SUPERMARKET FILTER SECTION (SORT, PRICE CHIPS)  */
+/* ========================================================= */
+.filter-quick-chips-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed #e2e8f0;
+}
+
+.filter-chips-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-right: 4px;
+}
+
+.filter-chip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #334155;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.filter-chip-btn:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+.filter-chip-btn.active {
+  background: #0c831f;
+  color: #ffffff;
+  border-color: #0c831f;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(12, 131, 31, 0.25);
+}
+
+.filter-sort-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.sort-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #334155;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sort-pill-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.sort-pill-btn.active {
+  background: #0c831f;
+  color: #ffffff;
+  border-color: #0c831f;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(12, 131, 31, 0.22);
+}
+
+.sidebar-cat-item {
+  padding: 10px 12px;
+  border-radius: 14px;
+}
+
+.cat-text-box .cat-title {
+  font-size: 14px;
+  font-weight: 600;
+}
