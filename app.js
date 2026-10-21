@@ -164,7 +164,7 @@
     // =========================================================================
     {
       id: 'prod_fruit_banana',
-      title: 'Fresh Robusta Bananas (1 Dozen / 1kg)',
+      title: 'Banana',
       category: 'fresh-fruits',
       zoneName: 'Farm Orchard Crates',
       harvestHoursAgo: 6,
@@ -183,7 +183,7 @@
     },
     {
       id: 'prod_fruit_apple',
-      title: 'Royal Gala Crisp Red Apples (500g)',
+      title: 'Apple',
       category: 'fresh-fruits',
       zoneName: 'Chilled Fruit Bay (4°C)',
       harvestHoursAgo: 14,
@@ -202,7 +202,7 @@
     },
     {
       id: 'prod_fruit_orange',
-      title: 'Nagpur Sweet Juicy Oranges (1kg)',
+      title: 'Orange',
       category: 'fresh-fruits',
       zoneName: 'Farm Orchard Crates',
       harvestHoursAgo: 10,
@@ -221,7 +221,7 @@
     },
     {
       id: 'prod_fruit_mango',
-      title: 'Farm Fresh Banganapalli Mangoes (1kg)',
+      title: 'Mango',
       category: 'fresh-fruits',
       zoneName: 'Direct Orchard Harvest',
       harvestHoursAgo: 8,
@@ -240,7 +240,7 @@
     },
     {
       id: 'prod_fruit_pomegranate',
-      title: 'Fresh Ruby Red Pomegranate (500g)',
+      title: 'Pomegranate',
       category: 'fresh-fruits',
       zoneName: 'Farm Orchard Crates',
       harvestHoursAgo: 12,
@@ -259,7 +259,7 @@
     },
     {
       id: 'prod_fruit_lemons',
-      title: 'Fresh Country Juicy Lemons (Pack of 4)',
+      title: 'Lemon',
       category: 'fresh-fruits',
       zoneName: 'Farm Orchard Crates',
       harvestHoursAgo: 6,
@@ -278,7 +278,7 @@
     },
     {
       id: 'prod_fruit_coconut',
-      title: 'Fresh Sweet Tender Coconut (1 pc)',
+      title: 'Tender Coconut',
       category: 'fresh-fruits',
       zoneName: 'Farm Orchard Crates',
       harvestHoursAgo: 8,
@@ -297,7 +297,7 @@
     },
     {
       id: 'prod_kitchen_dhaniya_powder',
-      title: 'Fresh Roasted Coriander Powder / Dhaniya Powder (250g)',
+      title: 'Dhaniya Powder',
       category: 'masala-spices',
       zoneName: 'Spice Mill Fresh',
       harvestHoursAgo: 8,
@@ -320,7 +320,7 @@
     // =========================================================================
     {
       id: 'prod_milk_cow',
-      title: 'Pure Desi A2 Cow Milk (1L Glass Bottle)',
+      title: 'Cow Milk',
       category: 'dairy-morning',
       zoneName: 'Chilled Dairy Vault (3°C)',
       harvestHoursAgo: 3,
@@ -339,7 +339,7 @@
     },
     {
       id: 'prod_milk_buffalo',
-      title: 'Rich Farm Buffalo Milk (6.5% Fat - 1L)',
+      title: 'Buffalo Milk',
       category: 'dairy-morning',
       zoneName: 'Chilled Dairy Vault (3°C)',
       harvestHoursAgo: 4,
@@ -358,7 +358,7 @@
     },
     {
       id: 'prod_curd_meegada',
-      title: 'Creamy Meegada Clay Pot Curd (500g)',
+      title: 'Meegada Curd',
       category: 'dairy-morning',
       zoneName: 'Chilled Dairy Vault (4°C)',
       harvestHoursAgo: 6,
@@ -377,7 +377,7 @@
     },
     {
       id: 'prod_curd_pot',
-      title: 'Fresh Traditional Farm Curd (500g)',
+      title: 'Curd',
       category: 'dairy-morning',
       zoneName: 'Chilled Dairy Vault (4°C)',
       harvestHoursAgo: 6,
@@ -397,7 +397,7 @@
     },
     {
       id: 'prod_paneer_fresh',
-      title: 'Fresh Farm Malai Paneer (200g Block)',
+      title: 'Paneer',
       category: 'dairy-morning',
       zoneName: 'Chilled Dairy Vault (4°C)',
       harvestHoursAgo: 5,
@@ -416,7 +416,7 @@
     },
     {
       id: 'prod_butter_white',
-      title: 'Farm White Butter (150g)',
+      title: 'White Butter',
       category: 'dairy-morning',
       zoneName: 'Chilled Dairy Vault (4°C)',
       harvestHoursAgo: 8,
@@ -435,7 +435,7 @@
     },
     {
       id: 'prod_ghee_bilona',
-      title: 'A2 Desi Cow Bilona Cultured Ghee (250ml)',
+      title: 'Desi Ghee',
       category: 'dairy-morning',
       zoneName: 'Heritage Pantry (Room Temp)',
       harvestHoursAgo: 24,
@@ -454,7 +454,7 @@
     },
     {
       id: 'prod_buttermilk_spiced',
-      title: 'Refreshing Spiced Buttermilk (300ml)',
+      title: 'Buttermilk',
       category: 'dairy-morning',
       zoneName: 'Chilled Dairy Vault (4°C)',
       harvestHoursAgo: 4,
@@ -473,7 +473,7 @@
     },
     {
       id: 'prod_batter_dosa',
-      title: 'Farm Stone-Ground Idli & Dosa Batter (1kg)',
+      title: 'Dosa Batter',
       category: 'dairy-morning',
       zoneName: 'Chilled Pantry (5°C)',
       harvestHoursAgo: 5,
@@ -492,7 +492,7 @@
     },
     {
       id: 'prod_eggs_country',
-      title: 'Free-Range Country Eggs (6 pcs)',
+      title: 'Eggs',
       category: 'dairy-morning',
       zoneName: 'Farm Fresh Crates (Room Temp)',
       harvestHoursAgo: 12,
@@ -515,7 +515,7 @@
     // =========================================================================
     {
       id: 'prod_tomatoes',
-      title: 'Heirloom Vine Tomatoes (Desi - 1kg)',
+      title: 'Tomato',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 8,
@@ -534,7 +534,7 @@
     },
     {
       id: 'prod_chillies_green',
-      title: 'Country Green Chillies (250g)',
+      title: 'Green Chilli',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 7,
@@ -553,7 +553,7 @@
     },
     {
       id: 'prod_carrots',
-      title: 'Crunchy Sweet Farm Carrots (500g)',
+      title: 'Carrot',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 10,
@@ -572,7 +572,7 @@
     },
     {
       id: 'prod_beans',
-      title: 'Tender Stringless French Beans (500g)',
+      title: 'Beans',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 9,
@@ -591,7 +591,7 @@
     },
     {
       id: 'prod_cauliflower',
-      title: 'Farm Fresh Crisp Cauliflower (1 Whole Head)',
+      title: 'Cauliflower',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 11,
@@ -610,7 +610,7 @@
     },
     {
       id: 'prod_cabbage',
-      title: 'Sweet Green Cabbage (1 Whole Head)',
+      title: 'Cabbage',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 12,
@@ -629,7 +629,7 @@
     },
     {
       id: 'prod_bottle_gourd',
-      title: 'Country Bottle Gourd',
+      title: 'Bottle Gourd',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 8,
@@ -648,7 +648,7 @@
     },
     {
       id: 'prod_ridge_gourd',
-      title: 'Country Ridge Gourd (500g)',
+      title: 'Ridge Gourd',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 9,
@@ -667,7 +667,7 @@
     },
     {
       id: 'prod_bitter_gourd',
-      title: 'Country Bitter Gourd (500g)',
+      title: 'Bitter Gourd',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 10,
@@ -686,7 +686,7 @@
     },
     {
       id: 'prod_bhendi',
-      title: 'Tender Lady Finger (1kg)',
+      title: 'Lady Finger',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 7,
@@ -705,7 +705,7 @@
     },
     {
       id: 'prod_vankaya',
-      title: 'Country Brinjal (1kg)',
+      title: 'Brinjal',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 8,
@@ -724,7 +724,7 @@
     },
     {
       id: 'prod_capsicum',
-      title: 'Crisp Green Bell Peppers (Capsicum - 1kg)',
+      title: 'Capsicum',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 10,
@@ -743,7 +743,7 @@
     },
     {
       id: 'prod_cucumber_salad',
-      title: 'Crisp Salad Keera Cucumber (500g)',
+      title: 'Cucumber',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 6,
@@ -762,7 +762,7 @@
     },
     {
       id: 'prod_cucumber_yellow',
-      title: 'Yellow Cucumber (1 pc)',
+      title: 'Yellow Cucumber',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 12,
@@ -781,7 +781,7 @@
     },
     {
       id: 'prod_drumstick',
-      title: 'Country Drumsticks (3 pcs)',
+      title: 'Drumstick',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 8,
@@ -800,7 +800,7 @@
     },
     {
       id: 'prod_lemons',
-      title: 'Fresh Country Lemons (Pack of 4)',
+      title: 'Lemon',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 14,
@@ -819,7 +819,7 @@
     },
     {
       id: 'prod_green_peas',
-      title: 'Sweet Green Peas (250g)',
+      title: 'Green Peas',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 9,
@@ -838,7 +838,7 @@
     },
     {
       id: 'prod_beetroot',
-      title: 'Organic Sweet Country Beetroot (500g)',
+      title: 'Beetroot',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 15,
@@ -861,7 +861,7 @@
     // =========================================================================
     {
       id: 'prod_palak',
-      title: 'Fresh Spinach (Palak - 250g)',
+      title: 'Palak',
       category: 'zone-a',
       zoneName: 'Zone A: 4°C Misting Rack',
       harvestHoursAgo: 6,
@@ -880,7 +880,7 @@
     },
     {
       id: 'prod_methi',
-      title: 'Fresh Fenugreek (Methi - 200g)',
+      title: 'Methi',
       category: 'zone-a',
       zoneName: 'Zone A: 4°C Misting Rack',
       harvestHoursAgo: 7,
@@ -899,7 +899,7 @@
     },
     {
       id: 'prod_kothimeera',
-      title: 'Fresh Coriander (150g bunch)',
+      title: 'Coriander',
       category: 'zone-a',
       zoneName: 'Zone A: 4°C Misting Rack',
       harvestHoursAgo: 5,
@@ -918,7 +918,7 @@
     },
     {
       id: 'prod_pudina',
-      title: 'Fresh Mint (Pudina - 150g)',
+      title: 'Mint',
       category: 'zone-a',
       zoneName: 'Zone A: 4°C Misting Rack',
       harvestHoursAgo: 6,
@@ -937,7 +937,7 @@
     },
     {
       id: 'prod_curry_leaves',
-      title: 'Fresh Curry Leaves (100g)',
+      title: 'Curry Leaves',
       category: 'zone-a',
       zoneName: 'Zone A: 4°C Misting Rack',
       harvestHoursAgo: 4,
@@ -956,7 +956,7 @@
     },
     {
       id: 'prod_gongura',
-      title: 'Fresh Red-Stem Gongura (1 Bunch)',
+      title: 'Gongura',
       category: 'zone-a',
       zoneName: 'Zone A: 4°C Misting Rack',
       harvestHoursAgo: 7,
@@ -975,7 +975,7 @@
     },
     {
       id: 'prod_thotakura',
-      title: 'Fresh Amaranth Leaves (1 Bunch)',
+      title: 'Thotakura',
       category: 'zone-a',
       zoneName: 'Zone A: 4°C Misting Rack',
       harvestHoursAgo: 8,
@@ -998,7 +998,7 @@
     // =========================================================================
     {
       id: 'prod_onions',
-      title: 'Fresh Red Onions (1kg)',
+      title: 'Onion',
       category: 'zone-c',
       zoneName: 'Zone C: 22°C Aerated Racks',
       harvestHoursAgo: 48,
@@ -1017,7 +1017,7 @@
     },
     {
       id: 'prod_potatoes',
-      title: 'Organic Mountain Potatoes (1kg)',
+      title: 'Potato',
       category: 'zone-c',
       zoneName: 'Zone C: 22°C Aerated Racks',
       harvestHoursAgo: 48,
@@ -1036,7 +1036,7 @@
     },
     {
       id: 'prod_ginger',
-      title: 'Fresh Ginger Root (250g)',
+      title: 'Ginger',
       category: 'zone-c',
       zoneName: 'Zone C: 22°C Aerated Racks',
       harvestHoursAgo: 36,
@@ -1055,7 +1055,7 @@
     },
     {
       id: 'prod_garlic_country',
-      title: 'Fresh Country Garlic (250g)',
+      title: 'Garlic',
       category: 'zone-c',
       zoneName: 'Zone C: 22°C Aerated Racks',
       harvestHoursAgo: 50,
@@ -1074,7 +1074,7 @@
     },
     {
       id: 'prod_coconut',
-      title: 'Fresh Sweet Coconut (1 pc)',
+      title: 'Coconut',
       category: 'zone-c',
       zoneName: 'Farm Fresh Crates (Room Temp)',
       harvestHoursAgo: 24,
@@ -1097,7 +1097,7 @@
     // =========================================================================
     {
       id: 'prod_fs_tomatoes',
-      title: 'Fresh Save: Ripe Vine Tomatoes (1kg)',
+      title: 'Tomato',
       category: 'tier2-clearance',
       zoneName: 'Tier 2 "Fresh Save" Clearance',
       harvestHoursAgo: 29,
@@ -1116,7 +1116,7 @@
     },
     {
       id: 'prod_fs_palak',
-      title: 'Fresh Save: Day-1 Palak Greens (bunch)',
+      title: 'Palak',
       category: 'tier2-clearance',
       zoneName: 'Tier 2 "Fresh Save" Clearance',
       harvestHoursAgo: 26,
@@ -1139,7 +1139,7 @@
     // =========================================================================
     {
       id: 'prod_rtc_gutti_vankaya',
-      title: 'Stuffed Baby Brinjal Slit & Stuffed Prep Kit (400g)',
+      title: 'Gutti Vankaya Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 8,
@@ -1160,7 +1160,7 @@
     },
     {
       id: 'prod_curry_bendakaya_pulusu',
-      title: 'Ladyfinger Tangy Curry Cooking Kit (450g)',
+      title: 'Bendakaya Pulusu Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 8,
@@ -1181,7 +1181,7 @@
     },
     {
       id: 'prod_rtc_tomato_pappu',
-      title: 'Tomato Lentil Dal Meal Kit (450g)',
+      title: 'Tomato Pappu Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 10,
@@ -1202,7 +1202,7 @@
     },
     {
       id: 'prod_rtc_palakura_pappu',
-      title: 'Spinach Lentil Dal Meal Kit (400g)',
+      title: 'Palakura Pappu Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 6,
@@ -1223,7 +1223,7 @@
     },
     {
       id: 'prod_rtc_gongura_pappu',
-      title: 'Gongura Lentil Dal Meal Kit (400g)',
+      title: 'Gongura Pappu Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 8,
@@ -1244,7 +1244,7 @@
     },
     {
       id: 'prod_rtc_dosakaya_pappu',
-      title: 'Yellow Cucumber Lentil Dal Cut Kit (450g)',
+      title: 'Dosakaya Pappu Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 10,
@@ -1265,7 +1265,7 @@
     },
     {
       id: 'prod_rtc_menthi_pappu',
-      title: 'Tender Fenugreek Leaves Lentil Dal Cooking Kit (350g)',
+      title: 'Menthi Pappu Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 6,
@@ -1286,7 +1286,7 @@
     },
     {
       id: 'prod_curry_dal_tadka',
-      title: 'Dhaba Style Dal Tadka & Jeera Tempering Kit (400g)',
+      title: 'Dal Tadka Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 12,
@@ -1307,7 +1307,7 @@
     },
     {
       id: 'prod_curry_chana_masala',
-      title: 'Desi Chana Masala / Senagala Curry Kit (400g)',
+      title: 'Chana Masala Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 14,
@@ -1328,7 +1328,7 @@
     },
     {
       id: 'prod_curry_dondakaya_fry',
-      title: 'Crispy Ivy Gourd Fry / Tindora Kit (400g)',
+      title: 'Dondakaya Fry Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 8,
@@ -1349,7 +1349,7 @@
     },
     {
       id: 'prod_curry_kakarakaya_fry',
-      title: 'Crispy Kakarakaya Vepudu / Bitter Gourd Kit (350g)',
+      title: 'Kakarakaya Fry Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 10,
@@ -1370,7 +1370,7 @@
     },
     {
       id: 'prod_curry_aratikaya_vepudu',
-      title: 'Raw Banana Pepper Roast Fry Kit (400g)',
+      title: 'Aratikaya Fry Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 12,
@@ -1391,7 +1391,7 @@
     },
     {
       id: 'prod_curry_mirchi_ka_salan',
-      title: 'Hyderabadi Mirchi Ka Salan Prep Kit (400g)',
+      title: 'Mirchi Ka Salan Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 8,
@@ -1412,7 +1412,7 @@
     },
     {
       id: 'prod_curry_paneer_masala',
-      title: 'Creamy Farm Paneer Butter Masala Kit (450g)',
+      title: 'Paneer Masala Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 4,
@@ -1433,7 +1433,7 @@
     },
     {
       id: 'prod_curry_aloo_kurma',
-      title: 'Aloo Kurma / Potato Gravy Kit (450g)',
+      title: 'Aloo Kurma Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 10,
@@ -1454,7 +1454,7 @@
     },
     {
       id: 'prod_curry_mushroom_curry',
-      title: 'Farm Fresh Mushroom Pepper Masala Kit (350g)',
+      title: 'Mushroom Curry Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 6,
@@ -1475,7 +1475,7 @@
     },
     {
       id: 'prod_rtc_sambar_deluxe',
-      title: 'Authentic Sambar Veggies Cut Kit (500g)',
+      title: 'Sambar Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 8,
@@ -1496,7 +1496,7 @@
     },
     {
       id: 'prod_kit_sambar',
-      title: 'Gourmet Sambar Cut Mix Kit (450g)',
+      title: 'Sambar Mix Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 32,
@@ -1516,7 +1516,7 @@
     },
     {
       id: 'prod_rtc_sambar_curry',
-      title: 'Sambar Ready Cook Kit (450g)',
+      title: 'Sambar Cook Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 12,
@@ -1537,7 +1537,7 @@
     },
     {
       id: 'prod_rtc_miriyala_chaaru',
-      title: 'Pepper Rasam / Chaaru Kit (350g)',
+      title: 'Pepper Rasam Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 10,
@@ -1562,7 +1562,7 @@
     // =========================================================================
     {
       id: 'prod_gg_paste',
-      title: 'Roti Pachadi Ginger-Garlic Paste (200g Jar)',
+      title: 'Ginger-Garlic Paste',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 12,
@@ -1582,7 +1582,7 @@
     },
     {
       id: 'prod_kit_garlic',
-      title: 'Peeled Fresh Country Garlic (250g)',
+      title: 'Peeled Garlic',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 40,
@@ -1603,7 +1603,7 @@
     },
     {
       id: 'prod_rtc_sambar_shallots',
-      title: 'Peeled Sambar Shallots (250g)',
+      title: 'Sambar Shallots',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 12,
@@ -1624,7 +1624,7 @@
     },
     {
       id: 'prod_kitchen_coconut',
-      title: 'Fresh Grated Country Coconut (200g Pouch)',
+      title: 'Grated Coconut',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 8,
@@ -1644,7 +1644,7 @@
     },
     {
       id: 'prod_kitchen_tadka_box',
-      title: 'Daily Popu / Tadka Master Spice Mix Box (350g)',
+      title: 'Tadka Box',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 24,
@@ -1665,7 +1665,7 @@
     },
     {
       id: 'prod_rtc_erra_karam',
-      title: 'Stoneground Red Chilli Spice Paste (200g Jar)',
+      title: 'Erra Karam',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 14,
@@ -1686,7 +1686,7 @@
     },
     {
       id: 'prod_kitchen_dosa_batter',
-      title: 'Fresh Stoneground Dosa & Idli Batter (1kg Pouch)',
+      title: 'Dosa Batter',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 10,
@@ -1706,7 +1706,7 @@
     },
     {
       id: 'prod_kitchen_sesame_oil',
-      title: 'Cold-Pressed Pure Gingelly / Sesame Cooking Oil (500ml)',
+      title: 'Sesame Oil',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 48,
@@ -1727,7 +1727,7 @@
     },
     {
       id: 'prod_rtc_ragi_sankati',
-      title: 'Ragi Mudda / Ragi Sankati Instant Mix (1kg)',
+      title: 'Ragi Sankati Mix',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 24,
@@ -1748,7 +1748,7 @@
     },
     {
       id: 'prod_rtc_uggani_mix',
-      title: 'Spiced Puffed Rice / Uggani Ready Kit (450g)',
+      title: 'Uggani Mix',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 12,
@@ -1769,7 +1769,7 @@
     },
     {
       id: 'prod_rtc_mirchi_bajji',
-      title: 'Mirchi Bajji Ready-to-Fry Pack (6 pcs)',
+      title: 'Mirchi Bajji Pack',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 6,
@@ -1790,7 +1790,7 @@
     },
     {
       id: 'prod_kitchen_herb_trio',
-      title: 'Fresh Herb Trio: Coriander, Mint & Curry Leaves (250g)',
+      title: 'Herb Trio',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 6,
@@ -1810,7 +1810,7 @@
     },
     {
       id: 'prod_rtc_sambar_masala_dal',
-      title: 'Ready Sambar Dal & Roasted Spice Kit (350g)',
+      title: 'Sambar Dal Kit',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 24,
@@ -1831,7 +1831,7 @@
     },
     {
       id: 'prod_kit_juice',
-      title: 'Raw Sugarcane & Ginger Juice (300ml)',
+      title: 'Sugarcane Juice',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 4,
@@ -1855,7 +1855,7 @@
     // =========================================================================
     {
       id: 'prod_kurnool_rice',
-      title: 'Sona Masoori Raw Rice (5kg Bag)',
+      title: 'Sona Masoori Rice',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 720,
@@ -1875,7 +1875,7 @@
     },
     {
       id: 'prod_rayala_ragi',
-      title: 'Stone-Ground Ragi Flour (1kg)',
+      title: 'Ragi Flour',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 36,
@@ -1895,7 +1895,7 @@
     },
     {
       id: 'prod_rayala_jonna',
-      title: 'Jowar Flour / Jonna Pindi (1kg)',
+      title: 'Jowar Flour',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 40,
@@ -1915,7 +1915,7 @@
     },
     {
       id: 'prod_anantapur_peanuts',
-      title: 'Fresh Raw Groundnuts / Peanuts (1kg)',
+      title: 'Peanuts',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 48,
@@ -1935,7 +1935,7 @@
     },
     {
       id: 'prod_rayala_kandi_pappu',
-      title: 'Unpolished Toor Dal (1kg)',
+      title: 'Toor Dal',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 60,
@@ -1955,7 +1955,7 @@
     },
     {
       id: 'prod_rayala_pesara_pappu',
-      title: 'Yellow Moong Dal (1kg)',
+      title: 'Moong Dal',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 50,
@@ -1975,7 +1975,7 @@
     },
     {
       id: 'prod_kurnool_borugulu',
-      title: 'Crisp Puffed Rice / Borugulu (500g)',
+      title: 'Puffed Rice',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 24,
@@ -1995,7 +1995,7 @@
     },
     {
       id: 'prod_kadapa_red_chillies',
-      title: 'Gundu Dried Red Chillies (250g)',
+      title: 'Dried Red Chillies',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Spices',
       harvestHoursAgo: 72,
@@ -2015,7 +2015,7 @@
     },
     {
       id: 'prod_madanapalle_tomatoes',
-      title: 'Madanapalle Country Heirloom Tomatoes (1kg)',
+      title: 'Country Tomatoes',
       category: 'zone-b',
       zoneName: 'Zone B: Farm Fresh Direct',
       harvestHoursAgo: 14,
@@ -2035,7 +2035,7 @@
     },
     {
       id: 'prod_punganur_ghee',
-      title: 'Punganur Desi Cow Pure Bilona Ghee (500ml Glass Jar)',
+      title: 'Desi Cow Ghee',
       category: 'dairy-morning',
       zoneName: 'Chilled Dairy Vault (4°C)',
       harvestHoursAgo: 24,
@@ -2055,7 +2055,7 @@
     },
     {
       id: 'prod_rayala_tamarind',
-      title: 'Desi Tart Tamarind (500g)',
+      title: 'Tamarind',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Spices',
       harvestHoursAgo: 96,
@@ -2075,7 +2075,7 @@
     },
     {
       id: 'prod_rayala_korralu',
-      title: 'Korralu / Foxtail Millet (1kg)',
+      title: 'Foxtail Millet',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 48,
@@ -2095,7 +2095,7 @@
     },
     {
       id: 'prod_rayala_putnala',
-      title: 'Putnala Pappu / Roasted Gram (500g)',
+      title: 'Putnala Pappu',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 24,
@@ -2115,7 +2115,7 @@
     },
     {
       id: 'prod_kadapa_turmeric',
-      title: 'Pure Farm Turmeric Powder (250g)',
+      title: 'Turmeric Powder',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Spices',
       harvestHoursAgo: 120,
@@ -2135,7 +2135,7 @@
     },
     {
       id: 'prod_chittoor_jaggery',
-      title: 'Organic Sugarcane Jaggery / Bellam (1kg)',
+      title: 'Jaggery (Bellam)',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 48,
@@ -2155,7 +2155,7 @@
     },
     {
       id: 'prod_rayala_dosakaya',
-      title: 'Round Yellow Dosakaya (1kg)',
+      title: 'Dosakaya',
       category: 'zone-b',
       zoneName: 'Zone B: Farm Fresh Direct',
       harvestHoursAgo: 12,
@@ -2175,7 +2175,7 @@
     },
     {
       id: 'prod_rayala_arikalu',
-      title: 'Arikalu / Kodo Millet (1kg)',
+      title: 'Kodo Millet',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 48,
@@ -2195,7 +2195,7 @@
     },
     {
       id: 'prod_rayala_senaga_pappu',
-      title: 'Desi Senaga Pappu / Chana Dal (1kg)',
+      title: 'Chana Dal',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 55,
@@ -2215,7 +2215,7 @@
     },
     {
       id: 'prod_rayala_lemons',
-      title: 'Juicy Country Lemons (6 pcs)',
+      title: 'Country Lemons',
       category: 'zone-b',
       zoneName: 'Zone B: Farm Fresh Direct',
       harvestHoursAgo: 10,
@@ -2234,8 +2234,8 @@
       desc: 'Thin-skinned golden-yellow country lemons from Chittoor citrus groves. High natural acidity and overflowing juice; essential for Pulihora, rasam, sharbat and pickles.'
     },
     {
-      id: "prod_atta_aashirvaad",
-      title: "Aashirvaad Sharbati Whole Wheat Atta",
+      id: 'prod_atta_aashirvaad',
+      title: 'Aashirvaad Atta',
       department: "grocery",
       category: "atta-rice-dal",
       zoneName: "Grains & Flours Vault",
@@ -2255,8 +2255,8 @@
       desc: "Superior MP Sharbati golden wheat grains ground in traditional stone chakkis. 100% whole wheat with zero maida for soft rotis.",
     },
     {
-      id: "prod_atta_fortune",
-      title: "Fortune Chakki Fresh 100% Atta",
+      id: 'prod_atta_fortune',
+      title: 'Fortune Atta',
       department: "grocery",
       category: "atta-rice-dal",
       zoneName: "Grains & Flours Vault",
@@ -2276,8 +2276,8 @@
       desc: "Stone chakki fresh ground wheat flour with dietary fiber. Absorbs water evenly for stay-soft phulkas.",
     },
     {
-      id: "prod_rice_basmati",
-      title: "Royal Daawat Super Basmati Rice",
+      id: 'prod_rice_basmati',
+      title: 'Basmati Rice',
       department: "grocery",
       category: "atta-rice-dal",
       zoneName: "Grains & Flours Vault",
@@ -2297,8 +2297,8 @@
       desc: "Naturally aged Himalayan foothills long slender grains that elongate up to 2.5 times when cooked. Distinct aroma for biryanis.",
     },
     {
-      id: "prod_dal_moong",
-      title: "Tata Sampann Yellow Moong Dal",
+      id: 'prod_dal_moong',
+      title: 'Moong Dal',
       department: "grocery",
       category: "atta-rice-dal",
       zoneName: "Pulses & Dals Vault",
@@ -2318,8 +2318,8 @@
       desc: "Unpolished protein-rich yellow split moong dal with zero artificial coloring. Cooks soft and creamy for dal tadka and kichidi.",
     },
     {
-      id: "prod_dal_urad",
-      title: "Premium Urad Dal Gota (Minapa Pappu)",
+      id: 'prod_dal_urad',
+      title: 'Urad Dal',
       department: "grocery",
       category: "atta-rice-dal",
       zoneName: "Pulses & Dals Vault",
@@ -2339,8 +2339,8 @@
       desc: "Unpolished fat whole white urad gota. High fermentation power for fluffy soft Mallige idlis and crispy golden medu vadas.",
     },
     {
-      id: "prod_oil_sunflower",
-      title: "Fortune Sunlite Refined Sunflower Oil",
+      id: 'prod_oil_sunflower',
+      title: 'Sunflower Oil',
       department: "grocery",
       category: "oil-ghee-masala",
       zoneName: "Oils & Ghee Hub",
@@ -2360,8 +2360,8 @@
       desc: "Light, cholesterol-free cooking oil fortified with Vitamin A and D. Absorbs less oil into puries and daily curries.",
     },
     {
-      id: "prod_oil_groundnut",
-      title: "Wood-Pressed Pure Groundnut Oil",
+      id: 'prod_oil_groundnut',
+      title: 'Groundnut Oil',
       department: "grocery",
       category: "oil-ghee-masala",
       zoneName: "Oils & Ghee Hub",
@@ -2381,8 +2381,8 @@
       desc: "Crushed in traditional wooden cold-press (Ganuga/Mara Chekku) below 35°C from Anantapur farm peanuts. Rich nutty aroma and natural antioxidants.",
     },
     {
-      id: "prod_masala_tikhalal",
-      title: "Everest Tikhalal Hot Chilli Powder",
+      id: 'prod_masala_tikhalal',
+      title: 'Chilli Powder',
       department: "grocery",
       category: "oil-ghee-masala",
       zoneName: "Spices & Seasonings",
@@ -2402,8 +2402,8 @@
       desc: "Fiery red and deeply pungent chilli powder ground from sun-ripened red chillies. Gives rich natural red gravy without artificial color.",
     },
     {
-      id: "prod_salt_tata",
-      title: "Tata Salt Vacuum Evaporated Iodized",
+      id: 'prod_salt_tata',
+      title: 'Tata Salt',
       department: "grocery",
       category: "oil-ghee-masala",
       zoneName: "Spices & Seasonings",
@@ -2423,8 +2423,8 @@
       desc: "India's trusted vacuum-evaporated table salt ensuring the right iodine levels for family health and perfect dissolved balance in food.",
     },
     {
-      id: "prod_bread_wheat",
-      title: "English Oven 100% Whole Wheat Bread",
+      id: 'prod_bread_wheat',
+      title: 'Whole Wheat Bread',
       department: "grocery",
       category: "dairy-bread-eggs",
       zoneName: "Bakery Counter",
@@ -2444,8 +2444,8 @@
       desc: "Baked fresh every morning using whole wheat grain flour with zero trans fats. Soft, spongy crumb ideal for morning toast and sandwiches.",
     },
     {
-      id: "prod_bisc_goodday",
-      title: "Britannia Good Day Butter & Cashew",
+      id: 'prod_bisc_goodday',
+      title: 'Good Day',
       department: "grocery",
       category: "bakery-biscuits",
       zoneName: "Bakery Counter",
@@ -2465,8 +2465,8 @@
       desc: "Crispy golden baked cookies loaded with toasted cashew chunks and creamy dairy butter. The ultimate companion for evening chai.",
     },
     {
-      id: "prod_bisc_darkfantasy",
-      title: "Sunfeast Dark Fantasy Choco Fills",
+      id: 'prod_bisc_darkfantasy',
+      title: 'Dark Fantasy',
       department: "grocery",
       category: "bakery-biscuits",
       zoneName: "Bakery Counter",
@@ -2486,8 +2486,8 @@
       desc: "Crisp baked dark cocoa biscuit with a luscious molten chocolate center that melts in your mouth.",
     },
     {
-      id: "prod_dry_almonds",
-      title: "California Whole Almonds (Badam)",
+      id: 'prod_dry_almonds',
+      title: 'Almonds',
       department: "grocery",
       category: "dryfruits-cereals",
       zoneName: "Nuts & Superfoods",
@@ -2507,8 +2507,8 @@
       desc: "Sweet, crunchy nonpareil California almonds packed with Vitamin E and natural plant protein. Zero preservatives, uniform grading.",
     },
     {
-      id: "prod_dry_cashews",
-      title: "Farm Jumbo Cashew Nuts (Kaju W240)",
+      id: 'prod_dry_cashews',
+      title: 'Cashews',
       department: "grocery",
       category: "dryfruits-cereals",
       zoneName: "Nuts & Superfoods",
@@ -2528,8 +2528,8 @@
       desc: "Crisp, creamy whole white W240 cashew kernels sourced directly from coastal cashew groves. Perfect for payasam, kaju katli, and curries.",
     },
     {
-      id: "prod_cereal_cornflakes",
-      title: "Kellogg's Real Almond & Honey Corn Flakes",
+      id: 'prod_cereal_cornflakes',
+      title: 'Corn Flakes',
       department: "grocery",
       category: "dryfruits-cereals",
       zoneName: "Breakfast Cereals",
@@ -2549,8 +2549,8 @@
       desc: "Crispy golden toasted corn flakes enriched with real almond slices and natural honey. Provides essential B vitamins and iron.",
     },
     {
-      id: "prod_meat_chicken",
-      title: "Farm Tender Chicken Curry Cut (Skinless)",
+      id: 'prod_meat_chicken',
+      title: 'Chicken Curry Cut',
       department: "grocery",
       category: "chicken-meat-fish",
       zoneName: "Fresh Meat Cold Room (2°C)",
@@ -2570,8 +2570,8 @@
       desc: "Tender 10-14 piece curry cut including bone-in pieces for rich broth flavor. Farm-raised with no growth hormones; cleaned and chilled at 2°C.",
     },
     {
-      id: "prod_meat_boneless",
-      title: "Fresh Tender Boneless Chicken Breast",
+      id: 'prod_meat_boneless',
+      title: 'Boneless Chicken',
       department: "grocery",
       category: "chicken-meat-fish",
       zoneName: "Fresh Meat Cold Room (2°C)",
@@ -2591,8 +2591,8 @@
       desc: "Ultra-lean high-protein chicken breast trimmed of all excess fat. Juicy and tender for grilling, stir fry, salads, and butter chicken.",
     },
     {
-      id: "prod_meat_prawns",
-      title: "Fresh Cleaned & Deveined Sea Prawns",
+      id: 'prod_meat_prawns',
+      title: 'Prawns',
       department: "grocery",
       category: "chicken-meat-fish",
       zoneName: "Fresh Meat Cold Room (2°C)",
@@ -2612,8 +2612,8 @@
       desc: "Coastal catch prawns peeled and deveined for zero prep hassle. Sweet, tender flesh that cooks in 4 minutes for royyala vepudu and curry.",
     },
     {
-      id: "prod_kitchen_salt",
-      title: "Tata Salt Vacuum Evaporated Iodized",
+      id: 'prod_kitchen_salt',
+      title: 'Tata Salt',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2634,8 +2634,8 @@
       desc: "India's trusted vacuum evaporated iodized salt for everyday cooking, curries, dal, sambar and seasoning. Dissolves crystal clean with balanced salinity.",
     },
     {
-      id: "prod_kitchen_jilakara",
-      title: "Organic Jeera / Cumin Seeds",
+      id: 'prod_kitchen_jilakara',
+      title: 'Jeera',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2656,8 +2656,8 @@
       desc: "Rich earthy aromatic cumin seeds with high essential oil content. Essential for everyday popu/tadka, jeera rice, rasam, and digestive herbal decoctions.",
     },
     {
-      id: "prod_kitchen_avalu",
-      title: "Crisp Brown Mustard Seeds",
+      id: 'prod_kitchen_avalu',
+      title: 'Mustard Seeds',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2678,8 +2678,8 @@
       desc: "Crisp, pungent brown mustard seeds that crackle perfectly in hot gingelly or peanut oil. The cornerstone of Telugu talimpu, pachadis, and pickles.",
     },
     {
-      id: "prod_kitchen_chekka_lavangalu",
-      title: "Whole Cinnamon Bark & Cloves",
+      id: 'prod_kitchen_chekka_lavangalu',
+      title: 'Cinnamon & Cloves',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2700,8 +2700,8 @@
       desc: "Fragrant Ceylon-style cinnamon bark quills and plump whole clove buds with intense aromatic sweetness. Essential for Rayalaseema biryani, kurma, and mutton vepudu.",
     },
     {
-      id: "prod_kitchen_dhaniyalu",
-      title: "Aromatic Coriander Seeds",
+      id: 'prod_kitchen_dhaniyalu',
+      title: 'Coriander Seeds',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2722,8 +2722,8 @@
       desc: "Naturally sun-dried fragrant whole coriander seeds. Perfect for dry roasting into fresh rasam powder, sambar podi, and home spice blends.",
     },
     {
-      id: "prod_kitchen_mentulu",
-      title: "Golden Fenugreek Seeds",
+      id: 'prod_kitchen_mentulu',
+      title: 'Fenugreek Seeds',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2744,8 +2744,8 @@
       desc: "Clean golden fenugreek seeds known for cooling digestion, healthy blood sugar balance, and indispensable bitterness in fish pulusu, sambar and dosas.",
     },
     {
-      id: "prod_kitchen_pasupu",
-      title: "Salem Pure Turmeric Powder",
+      id: 'prod_kitchen_pasupu',
+      title: 'Turmeric Powder',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2766,8 +2766,8 @@
       desc: "Deep golden Salem turmeric powder stone-ground from pesticide-free finger roots. Naturally rich in curcumin for potent immunity and authentic curry vibrancy.",
     },
     {
-      id: "prod_kitchen_inguva",
-      title: "LG Compounded Asafoetida (Hing)",
+      id: 'prod_kitchen_inguva',
+      title: 'Hing',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2788,8 +2788,8 @@
       desc: "Signature strong compounded hing powder. Just a pinch in hot oil or ghee releases mouthwatering aroma in sambar, rasam, and all South Indian dal recipes.",
     },
     {
-      id: "prod_kitchen_yalukalu",
-      title: "Fragrant Green Cardamom",
+      id: 'prod_kitchen_yalukalu',
+      title: 'Cardamom',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2810,8 +2810,8 @@
       desc: "Whole green 8mm+ cardamom pods with pitch black oil-dense seeds inside. Imparts heavenly aroma to payasam, biryani, filter coffee and masala chai.",
     },
     {
-      id: "prod_kitchen_miriyalu",
-      title: "Malabar Black Peppercorns",
+      id: 'prod_kitchen_miriyalu',
+      title: 'Black Pepper',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2832,8 +2832,8 @@
       desc: "Sun-ripened black peppercorns with intense pungency and pine-citrus aroma. Essential for pongal, pepper rasam, chettinad curries, and soothing sore throats.",
     },
     {
-      id: "prod_kitchen_karam",
-      title: "Hot Red Chilli Powder",
+      id: 'prod_kitchen_karam',
+      title: 'Red Chilli Powder',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2854,8 +2854,8 @@
       desc: "Pure sun-dried Guntur red chillies stone-ground to vibrant scarlet perfection with zero artificial colors. Imparts fiery taste and deep crimson hue to curries, fryums, and chutneys.",
     },
     {
-      id: "prod_kitchen_sambar_podi",
-      title: "Authentic Homemade Sambar Powder",
+      id: 'prod_kitchen_sambar_podi',
+      title: 'Sambar Powder',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2876,8 +2876,8 @@
       desc: "Slow-roasted chana dal, coriander, fenugreek, red chillies, and curry leaves blended into heavenly aromatic sambar powder for soul-satisfying tiffin and meal sambars.",
     },
     {
-      id: "prod_kitchen_garam_masala",
-      title: "Royal Shahi Garam Masala Powder",
+      id: 'prod_kitchen_garam_masala',
+      title: 'Garam Masala',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2898,8 +2898,8 @@
       desc: "Aromatic blend of 14 whole spices including star anise, green cardamom, mace, nutmeg, and black pepper. Adds royal aroma and rich depth to kurmas and biryanis.",
     },
     {
-      id: "prod_app_copper_bottle",
-      title: "Pure Hammered Ayurvedic Copper Bottle (1000ml)",
+      id: 'prod_app_copper_bottle',
+      title: 'Copper Bottle',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -2920,8 +2920,8 @@
       desc: "Handcrafted seamless hammered pure copper vessel for overnight Tamra Jal health benefits. Natural antimicrobial properties and leakproof seal.",
     },
     {
-      id: "prod_app_mixer_grinder",
-      title: "Philips HL7756 750W 3-Jar Mixer Grinder",
+      id: 'prod_app_mixer_grinder',
+      title: 'Mixer Grinder',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -2942,8 +2942,8 @@
       desc: "Heavy-duty 750W copper motor with advanced air ventilation. Grinds hard turmeric, idli batter, wet chutneys, and spices in under 90 seconds.",
     },
     {
-      id: "prod_app_castiron_tawa",
-      title: "Heavy Pre-Seasoned Cast Iron Dosa Tawa (28cm)",
+      id: 'prod_app_castiron_tawa',
+      title: 'Cast Iron Tawa',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -2964,8 +2964,8 @@
       desc: "Pre-seasoned with 100% natural gingelly oil. Delivers hotel-style golden crispy dosas with uniform heat distribution and zero chemical Teflon coating.",
     },
     {
-      id: "prod_app_pressure_cooker",
-      title: "Prestige Deluxe Alpha Tri-Ply Cooker (3L)",
+      id: 'prod_app_pressure_cooker',
+      title: 'Pressure Cooker',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -2986,8 +2986,8 @@
       desc: "Heavy 304 food-grade stainless steel with encapsulated aluminum core. Faster cooking with zero hotspot burning for rice, dal, and stews.",
     },
     {
-      id: "prod_app_kadhai_steel",
-      title: "Tri-Ply Stainless Steel Kadhai with Lid (2.5L)",
+      id: 'prod_app_kadhai_steel',
+      title: 'Steel Kadhai',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -3008,8 +3008,8 @@
       desc: "Even-heating deep curved kadhai with riveted cool-touch handles. Ideal for deep frying, tadka, sautéing vegetables, and slow simmering curries.",
     },
     {
-      id: "prod_app_clay_handi",
-      title: "Traditional Terracotta Cooking Handi (2.5L)",
+      id: 'prod_app_clay_handi',
+      title: 'Clay Handi',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -3030,8 +3030,8 @@
       desc: "Kiln-baked porous red terracotta handi made by village potters. Imparts an authentic earthy aroma and retains 100% nutrients in slow-cooked dals.",
     },
     {
-      id: "prod_app_brass_tadka",
-      title: "Heavy Brass Talimpu Tadka Pan with Wood Handle",
+      id: 'prod_app_brass_tadka',
+      title: 'Tadka Pan',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -3052,8 +3052,8 @@
       desc: "Heavy gauge brass seasoning pan with ergonomic insulated handle. Retains searing heat to crackle mustard, cumin, and curry leaves to perfection.",
     },
     {
-      id: "prod_app_brass_mortar",
-      title: "Solid Brass Rolu Mortar & Pestle (Heavy Duty)",
+      id: 'prod_app_brass_mortar',
+      title: 'Mortar & Pestle',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -3074,8 +3074,8 @@
       desc: "Traditional kitchen rolu-pestle for hand-crushing fresh ginger, garlic, peppercorns, cardamom, and podis to release essential oils.",
     },
     {
-      id: "prod_app_veg_chopper",
-      title: "Pigeon Quick Pull 3-Blade Veg Chopper (900ml)",
+      id: 'prod_app_veg_chopper',
+      title: 'Veg Chopper',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -3096,8 +3096,8 @@
       desc: "Effortless pull-cord mechanism with 3 surgical stainless steel blades. Finely chops onions, tomatoes, chillies, and greens in 5 seconds.",
     },
     {
-      id: "prod_app_spatula_set",
-      title: "Natural Teakwood Cooking Spatulas (6 Pcs Set)",
+      id: 'prod_app_spatula_set',
+      title: 'Wooden Spatulas',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -3118,8 +3118,8 @@
       desc: "Handmade non-scratch wooden spoons and flat turner spatulas. Safe for cast iron, clay, and stainless cookware; will not heat up during cooking.",
     },
     {
-      id: "prod_app_knife_set",
-      title: "Chef Knife, Scissors & Peeler Set (3 Pcs)",
+      id: 'prod_app_knife_set',
+      title: 'Knife & Peeler Set',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -3140,8 +3140,8 @@
       desc: "Ergonomic textured grip handle with laser-tested edge retention. Glides smoothly through pumpkin, sweet potato, and meat with zero slipping.",
     },
     {
-      id: "prod_app_storage_jars",
-      title: "Modular Airtight Food Storage Jars (6 Pcs)",
+      id: 'prod_app_storage_jars',
+      title: 'Storage Jars',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -3162,8 +3162,8 @@
       desc: "Space-saving stackable clear square containers with silicone airtight seal. Keeps dals, rice, spices, and snacks fresh and insect-free.",
     },
     {
-      id: "prod_snack_lays",
-      title: "Lay's Classic Salted Potato Chips (50g)",
+      id: 'prod_snack_lays',
+      title: "Lay's",
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Snacks & Drinks",
@@ -3183,8 +3183,8 @@
       desc: "Crispy golden thinly sliced potato chips sprinkled with light mineral salt. The evergreen teatime crunch.",
     },
     {
-      id: "prod_snack_namkeen",
-      title: "Haldiram's Nagpur Spicy Aloo Bhujia (200g)",
+      id: 'prod_snack_namkeen',
+      title: 'Haldiram Namkeen',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Snacks & Drinks",
@@ -3204,8 +3204,8 @@
       desc: "Crispy thin potato and moth dal strands seasoned with mint, chilli, and dry mango spices. Great topping on upma and poha.",
     },
     {
-      id: "prod_choco_silk",
-      title: "Cadbury Dairy Milk Silk Chocolate (60g)",
+      id: 'prod_choco_silk',
+      title: 'Dairy Milk Silk',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Sweets & Chocolates",
@@ -3225,8 +3225,8 @@
       desc: "Creamier, smoother milk chocolate made with rich dairy milk. Melts delightfully on the tongue.",
     },
     {
-      id: "prod_drink_juice",
-      title: "Real Fruit Power Alphonso Mango Juice (1L)",
+      id: 'prod_drink_juice',
+      title: 'Mango Juice',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Drinks & Juices",
@@ -3246,8 +3246,8 @@
       desc: "Crafted from handpicked Ratnagiri Alphonso mangoes for authentic king-of-fruits thick mango sweetness with zero added preservatives.",
     },
     {
-      id: "prod_bev_tatatea",
-      title: "Tata Tea Gold Fine Leaves & CTC (500g)",
+      id: 'prod_bev_tatatea',
+      title: 'Tata Tea Gold',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Tea & Coffee",
@@ -3267,8 +3267,8 @@
       desc: "A master blend of robust Assam CTC granules and 15% gently rolled fragrant long leaves for unmatched color, strength, and aroma.",
     },
     {
-      id: "prod_instant_maggi",
-      title: "Maggi 2-Minute Masala Instant Noodles (Pack of 4)",
+      id: 'prod_instant_maggi',
+      title: 'Maggi Noodles',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Instant Foods",
@@ -3288,8 +3288,8 @@
       desc: "India's beloved 2-minute instant noodles blended with authentic roasted spices. Fortified with iron for energy.",
     },
     {
-      id: "prod_icecream_vanilla",
-      title: "Amul Vanilla Gold Ice Cream Tub (1L)",
+      id: 'prod_icecream_vanilla',
+      title: 'Vanilla Ice Cream',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Ice Creams & More",
@@ -3309,8 +3309,8 @@
       desc: "Made from 100% pure dairy milk cream with natural Madagascar vanilla extract. Velvety rich texture and zero frozen dessert vegetable oil.",
     },
     {
-      id: "prod_snack_kurkure",
-      title: "Kurkure Masala Munch Crispy Snacks (75g)",
+      id: 'prod_snack_kurkure',
+      title: 'Kurkure',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Snacks & Munchies",
@@ -3330,8 +3330,8 @@
       desc: "Made with trusted kitchen ingredients: rice meal, corn meal, and chickpea flour with authentic Indian spice seasoning.",
     },
     {
-      id: "prod_bisc_oreo",
-      title: "Cadbury Oreo Vanilla Creme Sandwich Biscuits (120g)",
+      id: 'prod_bisc_oreo',
+      title: 'Oreo',
       department: "grocery",
       category: "bakery-biscuits",
       zoneName: "Biscuits & Cookies",
@@ -3351,8 +3351,8 @@
       desc: "Rich dark cocoa biscuits embossed with classic Oreo detailing, filled with smooth and sweet vanilla creme.",
     },
     {
-      id: "prod_bisc_bourbon",
-      title: "Britannia Bourbon Chocolate Sandwich Biscuits (150g)",
+      id: 'prod_bisc_bourbon',
+      title: 'Bourbon',
       department: "grocery",
       category: "bakery-biscuits",
       zoneName: "Biscuits & Cookies",
@@ -3372,8 +3372,8 @@
       desc: "Crunchy chocolate biscuits sprinkled with sparkling sugar crystals and filled with rich chocolate fudge cream.",
     },
     {
-      id: "prod_snack_haldiram_aloo_bhujia",
-      title: "Haldiram's Nagpur Aloo Bhujia Namkeen (150g)",
+      id: 'prod_snack_haldiram_aloo_bhujia',
+      title: 'Aloo Bhujia',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Namkeen & Savouries",
@@ -3393,8 +3393,8 @@
       desc: "Crispy fried potato and gram flour sev tossed in tangy red chilli, fresh mint, and chaat spices.",
     },
     {
-      id: "prod_drink_thumsup",
-      title: "Thums Up Toofani Carbonated Soft Drink (750ml)",
+      id: 'prod_drink_thumsup',
+      title: 'Thums Up',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Cold Drinks & Juices",
@@ -3414,8 +3414,8 @@
       desc: "India's legendary strong spicy fizzy cola with an invigorating punch that tastes like thunder.",
     },
     {
-      id: "prod_dairy_butter_amul",
-      title: "Amul Pasteurised Salted Butter (100g)",
+      id: 'prod_dairy_butter_amul',
+      title: 'Amul Butter',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Breakfast Dairy",
