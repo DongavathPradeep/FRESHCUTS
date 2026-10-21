@@ -5103,16 +5103,16 @@
               ${actionBtnHtml}
             </div>
 
-            <!-- 2. Price row: Bold price + Strikethrough MRP -->
-            <div class="prod-pricing-row">
-              <span class="prod-price">₹${Math.round(Number(activePrice))}</span>
-              <span class="prod-mrp">₹${mrpPrice}</span>
+            <!-- 2. Product Name & Cost row (Name on left, Cost on right as requested) -->
+            <div class="prod-name-cost-row">
+              <h3 class="prod-title" title="${cleanTitle}">${cleanTitle}</h3>
+              <div class="prod-pricing-row">
+                <span class="prod-price">₹${Math.round(Number(activePrice))}</span>
+                <span class="prod-mrp">₹${mrpPrice}</span>
+              </div>
             </div>
 
-            <!-- 3. Clean Title -->
-            <h3 class="prod-title" title="${cleanTitle}">${cleanTitle}</h3>
-
-            <!-- 4. Delivery time guarantee pill -->
+            <!-- 3. Delivery time guarantee pill -->
             <div class="prod-delivery-time">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.5">
                 <circle cx="12" cy="12" r="10"/>
