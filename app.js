@@ -3952,11 +3952,16 @@
     }
 
     bindEvents() {
-      // Tab Navigation
-      document.querySelectorAll('.nav-tab').forEach((tabBtn) => {
-        tabBtn.addEventListener('click', () => {
-          this.switchTab(tabBtn.dataset.tab);
-        });
+      // Sort & Filter Popover Click-Outside Listener
+      document.addEventListener('click', (e) => {
+        const popover = document.getElementById('sort-popover-dropdown');
+        const trigger = document.getElementById('btn-filter-trigger');
+        if (popover && !popover.classList.contains('hidden')) {
+          if (!popover.contains(e.target) && !trigger?.contains(e.target)) {
+            popover.classList.add('hidden');
+            if (trigger) trigger.setAttribute('aria-expanded', 'false');
+          }
+        }
       });
 
       // WhatsApp Inputs
@@ -4350,11 +4355,13 @@
       const headEl = document.getElementById('selected-category-heading');
       const subEl = document.getElementById('selected-category-subheading');
       const secTitleEl = document.getElementById('section-title-text');
+      const compactName = document.getElementById('compact-cat-name');
 
       if (iconEl) iconEl.textContent = catMeta.icon || '🛒';
       if (headEl) headEl.textContent = catMeta.name;
       if (subEl) subEl.textContent = catMeta.subtitle;
       if (secTitleEl) secTitleEl.textContent = catMeta.name;
+      if (compactName) compactName.textContent = catMeta.name;
 
       this.renderSupermarketProducts();
 
@@ -4381,15 +4388,54 @@
       this.handleSupermarketSearch('');
     }
 
+    toggleSortMenu(e) {
+      if (e) e.stopPropagation();
+      const dropdown = document.getElementById('sort-popover-dropdown');
+      const trigger = document.getElementById('btn-filter-trigger');
+      if (!dropdown) return;
+      const isHidden = dropdown.classList.toggle('hidden');
+      if (trigger) trigger.setAttribute('aria-expanded', !isHidden ? 'true' : 'false');
+    }
+
+    selectSortOption(sortVal) {
+      this.handleSortChange(sortVal);
+      const dropdown = document.getElementById('sort-popover-dropdown');
+      const trigger = document.getElementById('btn-filter-trigger');
+      if (dropdown) dropdown.classList.add('hidden');
+      if (trigger) trigger.setAttribute('aria-expanded', 'false');
+    }
+
     handleSortChange(sortVal) {
       this.supermarketSort = sortVal || 'featured';
       const sortSelect = document.getElementById('supermarket-sort-select');
       if (sortSelect && sortSelect.value !== this.supermarketSort) {
         sortSelect.value = this.supermarketSort;
       }
-      document.querySelectorAll('.sort-pill-btn').forEach((b) => {
+      document.querySelectorAll('.sort-pill-btn, .sort-option-btn').forEach((b) => {
         b.classList.toggle('active', b.dataset.sort === this.supermarketSort);
       });
+
+      const labelEl = document.getElementById('active-sort-text');
+      if (labelEl) {
+        if (this.supermarketSort === 'price-asc') {
+          labelEl.textContent = 'Price: Low to High';
+        } else if (this.supermarketSort === 'price-desc') {
+          labelEl.textContent = 'Price: High to Low';
+        } else {
+          labelEl.textContent = 'Sort & Filter';
+        }
+      }
+
+      const triggerBtn = document.getElementById('btn-filter-trigger');
+      if (triggerBtn) {
+        triggerBtn.classList.toggle('has-active-sort', this.supermarketSort !== 'featured');
+      }
+
+      const resetBtn = document.getElementById('btn-compact-reset');
+      if (resetBtn) {
+        resetBtn.classList.toggle('hidden', this.supermarketSort === 'featured' && !this.searchQuery);
+      }
+
       this.renderSupermarketProducts();
     }
 
@@ -4452,10 +4498,25 @@
       const dropdown = document.getElementById('blinkit-search-dropdown');
       if (dropdown) dropdown.classList.add('hidden');
 
+      const sortDropdown = document.getElementById('sort-popover-dropdown');
+      if (sortDropdown) sortDropdown.classList.add('hidden');
+
+      const labelEl = document.getElementById('active-sort-text');
+      if (labelEl) labelEl.textContent = 'Sort & Filter';
+
+      const triggerBtn = document.getElementById('btn-filter-trigger');
+      if (triggerBtn) {
+        triggerBtn.classList.remove('has-active-sort');
+        triggerBtn.setAttribute('aria-expanded', 'false');
+      }
+
+      const resetBtn = document.getElementById('btn-compact-reset');
+      if (resetBtn) resetBtn.classList.add('hidden');
+
       const sortSelect = document.getElementById('supermarket-sort-select');
       if (sortSelect) sortSelect.value = 'featured';
 
-      document.querySelectorAll('.sort-pill-btn').forEach((b) => {
+      document.querySelectorAll('.sort-pill-btn, .sort-option-btn').forEach((b) => {
         b.classList.toggle('active', b.dataset.sort === 'featured');
       });
 
@@ -4549,6 +4610,14 @@
 
       if (counterEl) {
         counterEl.textContent = `${filtered.length} Product${filtered.length === 1 ? '' : 's'}`;
+      }
+      const compactCount = document.getElementById('compact-cat-count');
+      if (compactCount) {
+        compactCount.textContent = `${filtered.length} item${filtered.length === 1 ? '' : 's'}`;
+      }
+      const compactName = document.getElementById('compact-cat-name');
+      if (compactName) {
+        compactName.textContent = q.length > 0 ? `Search: "${q}"` : catMeta.name;
       }
 
       // Update Active Filter Indicators
@@ -6309,7 +6378,15 @@
       if (this.user.isLoggedIn) {
         if (userBtn) {
           userBtn.classList.add('logged-in');
-          userBtn.textContent = this.user.phone || 'Account';
+          userBtn.innerHTML = `
+            <svg class="header-profile-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span class="user-btn-text">Profile</span>
+          `;
+          userBtn.title = `Profile (${this.user.phone || this.user.name || 'Account'})`;
+          userBtn.setAttribute('aria-label', `Profile (${this.user.phone || 'Account'})`);
         }
         if (nameEl) nameEl.textContent = this.user.name || 'S. Ramakrishna';
         if (avatarEl) {
@@ -6329,7 +6406,15 @@
       } else {
         if (userBtn) {
           userBtn.classList.remove('logged-in');
-          userBtn.textContent = 'Login';
+          userBtn.innerHTML = `
+            <svg class="header-profile-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span class="user-btn-text">Login</span>
+          `;
+          userBtn.title = 'Login / Profile';
+          userBtn.setAttribute('aria-label', 'Login / Profile');
         }
         if (nameEl) nameEl.textContent = 'My Account';
         if (avatarEl) {

@@ -52,7 +52,7 @@
   <meta http-equiv="Expires" content="0">
   
   <link rel="icon" type="image/png" href="assets/blinkit_logo.png">
-  <link rel="stylesheet" href="style.css?v=5.1">
+  <link rel="stylesheet" href="style.css?v=5.2">
 </head>
 <body class="light-theme">
   <!-- Blinkit Official Pixel-Matched Header (Exact to user reference screenshot) -->
@@ -115,8 +115,12 @@
 
       <!-- Right side: Login + Cart -->
       <div class="header-right-cluster">
-        <button class="blinkit-login-simple-btn" id="header-user-btn" onclick="window.marketApp.handleUserBtnClick()" title="Login to FRESHCUTS">
-          Login
+        <button class="blinkit-login-simple-btn header-profile-btn" id="header-user-btn" onclick="window.marketApp.handleUserBtnClick()" title="Profile / Account" aria-label="Profile / Account">
+          <svg class="header-profile-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span class="user-btn-text">Profile</span>
         </button>
 
         <button class="blinkit-cart-btn-exact empty" id="open-cart-btn" onclick="window.marketApp.toggleCartDrawer()" title="View Shopping Cart">
@@ -295,51 +299,59 @@
           </nav>
         </aside>
 
-        <!-- 2. RIGHT MAIN CONTENT AREA: SEARCH, FILTERS & PRODUCT GRID -->
+        <!-- 2. RIGHT MAIN CONTENT AREA: COMPACT FILTER BAR & PRODUCT GRID -->
         <section class="supermarket-main" id="supermarket-main">
-          <!-- Active Category Banner & Counter -->
-          <div class="supermarket-top-bar">
-            <div class="category-heading-group">
-              <div class="category-heading-icon-wrap" id="selected-cat-icon">🛒</div>
-              <div>
-                <h2 class="category-main-heading" id="selected-category-heading">All Products</h2>
-                <p class="category-subheading" id="selected-category-subheading">Showing all fresh supermarket groceries, farm produce & daily kitchen essentials</p>
-              </div>
-            </div>
-            <div class="active-item-counter" id="active-item-counter">150+ Products</div>
-          </div>
-
-          <!-- Filters & Sorting Toolbar -->
-          <div class="supermarket-toolbar" id="supermarket-toolbar">
-            <!-- Filters & Sorting Controls Cluster -->
-            <div class="toolbar-controls-cluster">
-              <!-- Quick Sort Pills -->
-              <div class="filter-sort-pills-row" id="filter-sort-pills">
-                <button type="button" class="sort-pill-btn active" data-sort="featured" onclick="window.marketApp.setQuickSort('featured', this)">✦ Featured</button>
-                <button type="button" class="sort-pill-btn" data-sort="price-asc" onclick="window.marketApp.setQuickSort('price-asc', this)">⬇ Price: Low to High</button>
-                <button type="button" class="sort-pill-btn" data-sort="price-desc" onclick="window.marketApp.setQuickSort('price-desc', this)">⬆ Price: High to Low</button>
-              </div>
-
-              <!-- Sort Dropdown (hidden on wide, visible on narrow or fallback) -->
-              <div class="control-group sort-group">
-                <label for="supermarket-sort-select" class="control-label">Sort:</label>
-                <select id="supermarket-sort-select" class="supermarket-select" onchange="window.marketApp.handleSortChange(this.value)">
-                  <option value="featured">Featured / Default</option>
-                  <option value="price-asc">Price: Low to High</option>
-                  <option value="price-desc">Price: High to Low</option>
-                </select>
-              </div>
-
-              <!-- Clear Filters Button -->
-              <button type="button" class="btn-clear-filters" id="btn-clear-filters" onclick="window.marketApp.clearAllFilters()" title="Reset all search & filters">
+          <!-- Compact Modern Filter & Sort Bar -->
+          <div class="supermarket-compact-bar" id="supermarket-compact-bar">
+            <!-- Left: Filter & Sort Trigger Button -->
+            <div class="filter-popover-wrapper">
+              <button type="button" class="btn-filter-trigger" id="btn-filter-trigger" onclick="window.marketApp.toggleSortMenu(event)" aria-expanded="false" title="Sort & Filter products">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="1 4 1 10 7 10"></polyline>
-                  <polyline points="23 20 23 14 17 14"></polyline>
-                  <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path>
+                  <line x1="4" y1="21" x2="4" y2="14"></line>
+                  <line x1="4" y1="10" x2="4" y2="3"></line>
+                  <line x1="12" y1="21" x2="12" y2="12"></line>
+                  <line x1="12" y1="8" x2="12" y2="3"></line>
+                  <line x1="20" y1="21" x2="20" y2="16"></line>
+                  <line x1="20" y1="12" x2="20" y2="3"></line>
+                  <line x1="1" y1="14" x2="7" y2="14"></line>
+                  <line x1="9" y1="8" x2="15" y2="8"></line>
+                  <line x1="17" y1="16" x2="23" y2="16"></line>
                 </svg>
-                Clear Filters
+                <span id="active-sort-text">Sort & Filter</span>
+                <span class="sort-caret-icon">▾</span>
               </button>
+
+              <!-- Popover Dropdown with Low to High, High to Low, Featured -->
+              <div class="sort-popover-dropdown hidden" id="sort-popover-dropdown">
+                <div class="sort-popover-title">Sort Products</div>
+                <button type="button" class="sort-option-btn active" data-sort="featured" onclick="window.marketApp.selectSortOption('featured')">
+                  <span class="sort-opt-icon">✦</span>
+                  <span class="sort-opt-label">Featured / Default</span>
+                  <span class="sort-check-mark">✓</span>
+                </button>
+                <button type="button" class="sort-option-btn" data-sort="price-asc" onclick="window.marketApp.selectSortOption('price-asc')">
+                  <span class="sort-opt-icon">⬇</span>
+                  <span class="sort-opt-label">Price: Low to High</span>
+                  <span class="sort-check-mark">✓</span>
+                </button>
+                <button type="button" class="sort-option-btn" data-sort="price-desc" onclick="window.marketApp.selectSortOption('price-desc')">
+                  <span class="sort-opt-icon">⬆</span>
+                  <span class="sort-opt-label">Price: High to Low</span>
+                  <span class="sort-check-mark">✓</span>
+                </button>
+              </div>
             </div>
+
+            <!-- Middle: Active Category Title & Count -->
+            <div class="compact-cat-indicator" id="compact-cat-indicator">
+              <span class="compact-cat-name" id="compact-cat-name">All Items</span>
+              <span class="compact-cat-count" id="compact-cat-count">159 items</span>
+            </div>
+
+            <!-- Right: Reset / Clear Filter (Hidden when default) -->
+            <button type="button" class="btn-compact-reset hidden" id="btn-compact-reset" onclick="window.marketApp.clearAllFilters()" title="Reset to Featured">
+              ✕ Reset
+            </button>
           </div>
 
           <!-- Active Filter Badges Container -->
@@ -1181,6 +1193,6 @@
 
   <!-- Audio Chimes & Synthesis (Web Audio API in app.js) -->
   
-  <script src="app.js?v=5.1"></script>
+  <script src="app.js?v=5.2"></script>
 </body>
 </html>
