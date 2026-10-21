@@ -14882,3 +14882,52 @@ body.has-cart-open .wa-floating-widget,
   font-size: 14px;
   font-weight: 600;
 }
+
+/* Active Header Cart Button: Clean count (1, 2, 3, 4...) */
+.blinkit-cart-btn-exact.active {
+  background: #0c831f !important;
+  color: #ffffff !important;
+  padding: 0 12px !important;
+  gap: 6px !important;
+}
+
+.blinkit-cart-btn-exact.active .cart-btn-text {
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  letter-spacing: 0.2px !important;
+}
+
+.blinkit-cart-btn-exact .cart-items-bubble {
+  display: none !important;
+}
+
+/* Clean Customer Savings Badge Below Final Bill */
+.cart-savings-badge {
+  margin-top: 10px !important;
+  padding: 8px 12px !important;
+  background: #ecfdf5 !important;
+  border: 1px solid #a7f3d0 !important;
+  border-radius: 8px !important;
+  color: #047857 !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  display: block !important;
+  letter-spacing: 0.1px !important;
+}
+
+@media (max-width: 640px) {
+  .blinkit-cart-btn-exact.active {
+    padding: 0 10px !important;
+    height: 32px !important;
+    gap: 4px !important;
+    min-width: 42px !important;
+  }
+
+  .blinkit-cart-btn-exact.active .cart-btn-text {
+    font-size: 13px !important;
+    font-weight: 800 !important;
+  }
+}
+

@@ -3733,12 +3733,13 @@
       const savedLogin = localStorage.getItem('freshcuts_user_logged_in') === 'true';
       const savedPhone = localStorage.getItem('freshcuts_user_phone') || '';
 
+      const savedName = localStorage.getItem('freshcuts_user_name') || 'Pradeep';
       this.user = {
         isLoggedIn: savedLogin,
-        name: savedLogin ? ('Customer ' + (savedPhone.slice(-4) || '9848')) : '',
+        name: savedLogin ? savedName : '',
         phone: savedPhone || '',
         address: {
-          recipient: savedLogin ? ('Customer ' + (savedPhone.slice(-4) || '9848')) : 'Customer',
+          recipient: savedLogin ? savedName : 'Customer',
           phone: savedPhone ? savedPhone.replace('+91 ', '') : '',
           flat: 'Flat 402, Green Valley Apartments',
           area: 'Road #12, Banjara Hills',
@@ -5408,10 +5409,10 @@
         } else {
           exactCartBtn.classList.remove('empty');
           exactCartBtn.classList.add('active');
-          if (exactCartText) exactCartText.textContent = `${totalCount} item${totalCount > 1 ? 's' : ''} • ₹${grandTotal.toFixed(0)}`;
+          if (exactCartText) exactCartText.textContent = `${totalCount}`;
           if (exactCartBubble) {
-            exactCartBubble.classList.remove('hidden');
-            exactCartBubble.innerHTML = `<span id="cart-count">${totalCount}</span> items • <span id="cart-total-badge">₹${grandTotal.toFixed(2)}</span>`;
+            exactCartBubble.classList.add('hidden');
+            exactCartBubble.style.display = 'none';
           }
         }
       }
@@ -5471,14 +5472,8 @@
       if (savingsBadge) {
         if (combinedTotalSavings > 0 && totalCount > 0) {
           savingsBadge.classList.remove('hidden');
-          savingsBadge.style.display = 'flex';
-          if (couponDiscount > 0 && totalSavings > 0) {
-            savingsBadge.innerHTML = `🎉 Total Savings: <strong>₹${combinedTotalSavings.toFixed(2)}</strong> (₹${totalSavings.toFixed(2)} Farm Direct + ₹${couponDiscount.toFixed(2)} Coupon)`;
-          } else if (couponDiscount > 0) {
-            savingsBadge.innerHTML = `🎉 Total Savings: <strong>₹${couponDiscount.toFixed(2)}</strong> (${activeCode} Coupon applied)`;
-          } else {
-            savingsBadge.innerHTML = `🎉 Customer Direct-Farm Savings: <strong>₹${totalSavings.toFixed(2)}</strong> lower than Mandi!`;
-          }
+          savingsBadge.style.display = 'block';
+          savingsBadge.innerHTML = `Customer Savings : ₹${combinedTotalSavings.toFixed(2)}`;
         } else {
           savingsBadge.classList.add('hidden');
           savingsBadge.style.display = 'none';
@@ -5560,20 +5555,23 @@
         } else {
           if (drawerFooter) drawerFooter.style.display = 'block';
           this.dom.cartItemsList.innerHTML = validCartItems.map(({ prod, qty, id }) => {
-            const farmer = (prod.farmerKey && FARMERS_DB[prod.farmerKey]) ? FARMERS_DB[prod.farmerKey] : null;
             const selWeight = this.getProductWeight(id) || prod.unit || '1 unit';
             const itemPrice = this.getProductPrice(id, selWeight) || prod.price || 0;
             const itemMandi = this.getProductMandiPrice(id, selWeight) || prod.mandiPrice || 0;
             const lineTotal = itemPrice * qty;
             const lineMandi = itemMandi * qty;
-            const farmerLabel = farmer ? `🌱 ${farmer.name} (${farmer.distanceKm} km)` : `✓ 100% Quality Checked (Direct Source)`;
+            const rawTitle = prod.title || prod.name || 'Fresh Item';
+            const cleanTitle = rawTitle
+              .replace(/^(Kurnool|Rayalaseema|Anantapur|Chittoor|Guntur|Mahbubnagar|Ranga\s*Reddy|Telangana|Andhra|Desi|Local|Farm-Fresh|Country)\s+/i, '')
+              .replace(/\b(Curry Cut|Stem-Cut|Leafy Greens|Fresh Bunch|Crisp & Clean|Vine-Ripened|Tender Picked)\b/gi, '')
+              .replace(/\s{2,}/g, ' ')
+              .trim();
 
             return `
               <div class="cart-item-row" data-id="${prod.id}">
-                <img src="${prod.image}" alt="${prod.title}" class="cart-item-thumb">
+                <img src="${prod.image}" alt="${cleanTitle}" class="cart-item-thumb">
                 <div class="cart-item-details">
-                  <div class="cart-item-title">${prod.title} <span class="cart-pack-tag">(${selWeight})</span></div>
-                  <div class="cart-item-farmer">${farmerLabel}</div>
+                  <div class="cart-item-title">${cleanTitle} <span class="cart-pack-tag">(${selWeight})</span></div>
                   <div class="cart-item-price-unit">
                     ₹${itemPrice} / ${selWeight}
                     ${itemMandi > itemPrice ? `<span class="cart-item-mandi-tag">(Mandi ₹${itemMandi})</span>` : ''}
@@ -5721,8 +5719,8 @@
               <div class="login-active-user-info">
                 <div class="login-active-user-avatar">👤</div>
                 <div>
-                  <div class="login-active-user-name">Logged in as ${this.user.name || 'Customer'}</div>
-                  <div class="login-active-user-phone">${(this.user.phone || '').startsWith('+91') ? this.user.phone : '+91 ' + (this.user.phone || '9848023411')} • Active Account</div>
+                  <div class="login-active-user-name">Logged in as ${this.user.name || 'Pradeep'}</div>
+                  <div class="login-active-user-phone" style="color:#16a34a; font-weight:600;">Active Account</div>
                 </div>
               </div>
               <button type="button" id="btn-login-page-logout" class="btn-logout-loginpage" onclick="window.marketApp.logoutUser()" title="Log out from FRESHCUTS">
@@ -5884,7 +5882,8 @@
       // Success Login
       this.user.isLoggedIn = true;
       this.user.phone = `+91 ${this.tempLoginMobile}`;
-      this.user.name = `Customer ${this.tempLoginMobile.slice(-4)}`;
+      const savedName = localStorage.getItem('freshcuts_user_name') || 'Pradeep';
+      this.user.name = savedName;
       if (this.user.address) {
         this.user.address.phone = this.tempLoginMobile;
         this.user.address.recipient = this.user.name;
@@ -5923,7 +5922,12 @@
       sound.playAddSound();
       this.activeProfileTab = activeTab;
 
-      const initials = (this.user.name || 'SR')
+      const userName = (this.user && this.user.name && !this.user.name.startsWith('Customer +91') && !this.user.name.startsWith('Customer 9') && !this.user.name.match(/^Customer \d{4}$/))
+        ? this.user.name
+        : (localStorage.getItem('freshcuts_user_name') || 'Pradeep');
+      this.user.name = userName;
+
+      const initials = (userName || 'P')
         .split(' ')
         .map(n => n[0])
         .join('')
@@ -5931,7 +5935,7 @@
         .toUpperCase();
 
       const addr = this.user.address || {
-        recipient: this.user.name || 'S. Ramakrishna',
+        recipient: this.user.name || 'Pradeep',
         phone: this.user.phone || '9848023411',
         flat: 'Flat 402, Green Valley Apartments',
         area: 'Road #12, Banjara Hills',
@@ -5951,12 +5955,7 @@
           <div class="profile-user-left">
             <div class="profile-big-avatar">${initials}</div>
             <div class="profile-user-details">
-              <h3>${this.user.name}</h3>
-              <div class="profile-phone">📱 ${this.user.phone}</div>
-              <div class="profile-badge-row">
-                <span class="badge-prime">🌱 Prime Direct-Farm Member</span>
-                <span class="badge-safe" style="font-size:0.68rem; padding:2px 8px;">Verified ✓</span>
-              </div>
+              <h3 style="margin:0; font-size:1.15rem; font-weight:700; color:var(--text-primary);">${this.user.name}</h3>
             </div>
           </div>
           <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
@@ -6000,7 +5999,7 @@
             </div>
 
             <div class="addr-saved-card">
-              <div class="addr-card-recipient">👤 ${addr.recipient} (${addr.phone})</div>
+              <div class="addr-card-recipient">👤 ${this.user.name || addr.recipient || 'Pradeep'}</div>
               <div class="addr-card-line">
                 🏢 ${addr.flat}, ${addr.area}, Hyderabad - ${addr.pincode}
                 ${addr.landmark ? `<br><span style="font-size:0.8rem; color:var(--text-dim);">Landmark: ${addr.landmark}</span>` : ''}
@@ -9859,8 +9858,8 @@
             <div class="side-nav-user-meta">
               <div class="side-nav-user-avatar">${initial}</div>
               <div>
-                <div class="side-nav-user-name">${this.user.name || 'Customer'}</div>
-                <div class="side-nav-user-phone">${this.user.phone || ''} • Logged In</div>
+                <div class="side-nav-user-name">${this.user.name || 'Pradeep'}</div>
+                <div class="side-nav-user-phone" style="color:#16a34a; font-weight:600;">Active Account</div>
               </div>
             </div>
             <button type="button" id="btn-side-nav-logout" class="btn-side-nav-logout" onclick="window.marketApp.logoutUser()" title="Log out">

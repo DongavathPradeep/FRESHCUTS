@@ -52,7 +52,7 @@
   <meta http-equiv="Expires" content="0">
   
   <link rel="icon" type="image/png" href="assets/blinkit_logo.png">
-  <link rel="stylesheet" href="style.css?v=5.4">
+  <link rel="stylesheet" href="style.css?v=5.5">
 </head>
 <body class="light-theme">
   <!-- Blinkit Official Pixel-Matched Header (Exact to user reference screenshot) -->
@@ -130,7 +130,7 @@
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
           </svg>
           <span class="cart-btn-text" id="blinkit-cart-text">My Cart</span>
-          <span class="cart-items-bubble hidden" id="blinkit-cart-bubble"><span id="cart-count">0</span> items • <span id="cart-total-badge">₹0.00</span></span>
+          <span class="cart-items-bubble hidden" id="blinkit-cart-bubble" style="display:none !important;"><span id="cart-count">0</span> items • <span id="cart-total-badge">₹0.00</span></span>
         </button>
       </div>
     </div>
@@ -409,24 +409,6 @@
 
       <!-- Drawer Footer & Checkout Action -->
       <div class="drawer-footer" id="drawer-footer">
-        <div class="fulfillment-selector">
-          <label>Fulfillment Channel:</label>
-          <div class="radio-chips">
-            <label class="radio-chip active">
-              <input type="radio" name="fulfillment" value="walkin" checked onchange="window.marketApp.setFulfillment(this.value)">
-              <span>🏪 Walk-in Store POS</span>
-            </label>
-            <label class="radio-chip">
-              <input type="radio" name="fulfillment" value="morning" onchange="window.marketApp.setFulfillment(this.value)">
-              <span>🛵 6:00 AM Milk Run</span>
-            </label>
-            <label class="radio-chip">
-              <input type="radio" name="fulfillment" value="express" onchange="window.marketApp.setFulfillment(this.value)">
-              <span>⚡ 30m Express</span>
-            </label>
-          </div>
-        </div>
-
         <!-- Referral Offer Coupon & Promo Box -->
         <div class="cart-promo-container">
           <div class="promo-input-row">
@@ -441,16 +423,6 @@
           <div class="promo-refer-hint" onclick="window.marketApp.openReferralModal()">
             🎁 Refer a Hyderabad neighbor & get ₹100 farm cash ➔
           </div>
-        </div>
-
-        <!-- Mandatory Delivery Address Requirement Status Box -->
-        <div class="cart-address-gate-box" id="cart-address-gate-box" onclick="window.marketApp.openAddressModal('checkout')">
-          <div class="gate-icon">📍</div>
-          <div class="gate-info">
-            <div class="gate-title" id="cart-gate-title">Delivery Address: <strong>Required</strong></div>
-            <div class="gate-desc" id="cart-gate-desc">Mandatory before proceeding to payment</div>
-          </div>
-          <button class="gate-action-btn" id="cart-gate-btn">Set Address</button>
         </div>
 
         <div class="drawer-totals">
@@ -475,7 +447,7 @@
             <span class="grand-total-val" id="cart-grand-total">₹0.00</span>
           </div>
           <div class="cart-savings-badge hidden" id="cart-savings-badge">
-            🎉 You save ₹0.00 on this direct-farm order!
+            Customer Savings : ₹0.00
           </div>
         </div>
 
@@ -1193,6 +1165,6 @@
 
   <!-- Audio Chimes & Synthesis (Web Audio API in app.js) -->
   
-  <script src="app.js?v=5.4"></script>
+  <script src="app.js?v=5.5"></script>
 </body>
 </html>
