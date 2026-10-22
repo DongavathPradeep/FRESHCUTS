@@ -3727,6 +3727,12 @@
       this.fulfillment = 'walkin';
       this.cart = {}; // { prodId: quantity }
       this.productWeights = {}; // { prodId: '1kg' | '500g' | '2kg' | '3kg' | '5kg' }
+      try {
+        const savedWishlist = JSON.parse(localStorage.getItem('freshcuts_wishlist') || '[]');
+        this.wishlist = new Set(Array.isArray(savedWishlist) ? savedWishlist : ['veg-1', 'veg-2']);
+      } catch (e) {
+        this.wishlist = new Set(['veg-1', 'veg-2']);
+      }
       this.selectedFarmer = null;
 
       // Customer Account & Delivery Address State (Mandatory 10-Digit Mobile + OTP Login Gate)
@@ -5167,8 +5173,8 @@
         <div class="product-card" id="card-${prod.id}" data-id="${prod.id}" data-category="${prod.category || 'vegetables'}">
           <div class="prod-image-wrapper" onclick="window.marketApp.openImageLightbox('${prod.id}')" style="cursor: pointer;" title="Tap to view big image">
             <img src="${prod.image}" alt="${cleanTitle}" class="prod-img" loading="lazy" />
-            <button type="button" class="prod-wishlist-btn" onclick="event.stopPropagation(); this.classList.toggle('active')" aria-label="Save to Wishlist">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.2">
+            <button type="button" class="prod-wishlist-btn ${Boolean(this.wishlist && this.wishlist.has(prod.id)) ? 'active' : ''}" onclick="window.marketApp.toggleWishlist('${prod.id}', event)" aria-label="${Boolean(this.wishlist && this.wishlist.has(prod.id)) ? 'Remove from Wishlist' : 'Save to Wishlist'}" title="${Boolean(this.wishlist && this.wishlist.has(prod.id)) ? 'Remove from Wishlist' : 'Add to Wishlist'}">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="${Boolean(this.wishlist && this.wishlist.has(prod.id)) ? '#ef4444' : 'none'}" stroke="${Boolean(this.wishlist && this.wishlist.has(prod.id)) ? '#ef4444' : '#94a3b8'}" stroke-width="2.2">
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
               </svg>
             </button>
@@ -6045,6 +6051,8 @@
 
       const userPhone = this.user.phone || localStorage.getItem('freshcuts_user_phone') || '+91 95022 61087';
       const credits = this.userWalletCredits || 150;
+      const wishlistCount = this.wishlist ? this.wishlist.size : 0;
+      const wishlistCountTxt = wishlistCount > 0 ? `${wishlistCount} ${wishlistCount === 1 ? 'item saved' : 'items saved'}` : '0 items saved';
 
       this.dom.authModalContent.innerHTML = `
         <div class="zepto-profile-container">
@@ -6073,13 +6081,13 @@
               <div class="zepto-quick-action-icon">🛍️</div>
               <div class="zepto-quick-action-label">Your<br>Orders</div>
             </div>
+            <div class="zepto-quick-action-card" onclick="window.marketApp.closeAuthModal(); window.marketApp.openWishlistModal();">
+              <div class="zepto-quick-action-icon">🤍</div>
+              <div class="zepto-quick-action-label">Your<br>Wishlist</div>
+            </div>
             <div class="zepto-quick-action-card" onclick="window.marketApp.openWhatsAppChat()">
               <div class="zepto-quick-action-icon">💬</div>
               <div class="zepto-quick-action-label">Help &<br>Support</div>
-            </div>
-            <div class="zepto-quick-action-card" onclick="window.marketApp.openWishlistModal()">
-              <div class="zepto-quick-action-icon">🤍</div>
-              <div class="zepto-quick-action-label">Your<br>Wishlist</div>
             </div>
           </div>
 
@@ -6104,55 +6112,16 @@
             </div>
           </div>
 
-          <!-- Section: Your Information -->
-          <h4 class="zepto-section-title">Your Information</h4>
+          <!-- Section: Your Account (Clean, essential, user-friendly options only) -->
+          <h4 class="zepto-section-title">Your Account</h4>
           <div class="zepto-grouped-card">
-            <div class="zepto-list-item" onclick="window.marketApp.openReviewAndEarnModal()">
-              <div class="zepto-list-item-left">
-                <span class="zepto-list-item-icon">💬</span>
-                <span class="zepto-list-item-title">Review & Earn</span>
-              </div>
-              <span class="zepto-list-item-arrow">›</span>
-            </div>
-
-            <div class="zepto-list-item" onclick="window.marketApp.closeAuthModal(); window.marketApp.openOrderHistoryModal();">
-              <div class="zepto-list-item-left">
-                <span class="zepto-list-item-icon">🔄</span>
-                <span class="zepto-list-item-title">Your Refunds</span>
-              </div>
-              <span class="zepto-list-item-arrow">›</span>
-            </div>
-
-            <div class="zepto-list-item" onclick="window.marketApp.openWishlistModal()">
-              <div class="zepto-list-item-left">
-                <span class="zepto-list-item-icon">🤍</span>
-                <span class="zepto-list-item-title">Your Wishlist</span>
-              </div>
-              <span class="zepto-list-item-arrow">›</span>
-            </div>
-
-            <div class="zepto-list-item" onclick="window.marketApp.openGiftCardsModal()">
-              <div class="zepto-list-item-left">
-                <span class="zepto-list-item-icon">💳</span>
-                <span class="zepto-list-item-title">E-Gift Cards</span>
-              </div>
-              <span class="zepto-list-item-arrow">›</span>
-            </div>
-
-            <div class="zepto-list-item" onclick="window.marketApp.openWhatsAppChat()">
-              <div class="zepto-list-item-left">
-                <span class="zepto-list-item-icon">🎧</span>
-                <span class="zepto-list-item-title">Help & Support</span>
-              </div>
-              <span class="zepto-list-item-arrow">›</span>
-            </div>
-
+            <!-- 1. Saved Addresses (Home, Work, Others) -->
             <div class="zepto-list-item" onclick="window.marketApp.toggleProfileAddressesDrawer()">
               <div class="zepto-list-item-left">
                 <span class="zepto-list-item-icon">📍</span>
                 <div>
                   <div class="zepto-list-item-title">Saved Addresses</div>
-                  <div class="zepto-list-item-sub">3 Addresses (Home, Work, Others)</div>
+                  <div class="zepto-list-item-sub">Home, Work, Others (Tap to view details)</div>
                 </div>
               </div>
               <span class="zepto-list-item-arrow">›</span>
@@ -6188,67 +6157,63 @@
               </div>
             </div>
 
+            <!-- 2. Your Wishlist -->
+            <div class="zepto-list-item" onclick="window.marketApp.closeAuthModal(); window.marketApp.openWishlistModal();">
+              <div class="zepto-list-item-left">
+                <span class="zepto-list-item-icon">🤍</span>
+                <div>
+                  <div class="zepto-list-item-title">Your Wishlist</div>
+                  <div class="zepto-list-item-sub">${wishlistCountTxt} • Tap to view all</div>
+                </div>
+              </div>
+              <span class="zepto-list-item-arrow">›</span>
+            </div>
+
+            <!-- 3. Your Refunds -->
+            <div class="zepto-list-item" onclick="window.marketApp.showRefundsPrompt()">
+              <div class="zepto-list-item-left">
+                <span class="zepto-list-item-icon">🔄</span>
+                <div>
+                  <div class="zepto-list-item-title">Your Refunds</div>
+                  <div class="zepto-list-item-sub">Direct source / wallet credit status</div>
+                </div>
+              </div>
+              <span class="zepto-list-item-arrow">›</span>
+            </div>
+
+            <!-- 4. Edit Profile -->
             <div class="zepto-list-item" onclick="window.marketApp.openEditProfileModal()">
               <div class="zepto-list-item-left">
                 <span class="zepto-list-item-icon">👤</span>
-                <span class="zepto-list-item-title">Edit Profile</span>
+                <div>
+                  <div class="zepto-list-item-title">Edit Profile Details</div>
+                  <div class="zepto-list-item-sub">Update customer name, mobile & preferences</div>
+                </div>
               </div>
               <span class="zepto-list-item-arrow">›</span>
             </div>
 
-            <div class="zepto-list-item" onclick="window.marketApp.openReferralModal()">
+            <!-- 5. Customer Support -->
+            <div class="zepto-list-item" onclick="window.marketApp.openWhatsAppChat()">
               <div class="zepto-list-item-left">
-                <span class="zepto-list-item-icon">🎁</span>
-                <span class="zepto-list-item-title">Rewards</span>
-              </div>
-              <span class="zepto-list-item-arrow">›</span>
-            </div>
-
-            <div class="zepto-list-item" onclick="window.marketApp.openPaymentManagementModal()">
-              <div class="zepto-list-item-left">
-                <span class="zepto-list-item-icon">💳</span>
-                <span class="zepto-list-item-title">Payment Management</span>
+                <span class="zepto-list-item-icon">🎧</span>
+                <div>
+                  <div class="zepto-list-item-title">Customer Care & Support</div>
+                  <div class="zepto-list-item-sub">24x7 instant WhatsApp & phone help</div>
+                </div>
               </div>
               <span class="zepto-list-item-arrow">›</span>
             </div>
           </div>
 
-          <!-- Section: Other Information -->
-          <h4 class="zepto-section-title">Other Information</h4>
-          <div class="zepto-grouped-card">
-            <div class="zepto-list-item" onclick="window.marketApp.openSuggestProductsModal()">
-              <div class="zepto-list-item-left">
-                <span class="zepto-list-item-icon">⭐</span>
-                <span class="zepto-list-item-title">Suggest Products</span>
-              </div>
-              <span class="zepto-list-item-arrow">›</span>
-            </div>
-
-            <div class="zepto-list-item" onclick="window.marketApp.toggleNotifications()">
-              <div class="zepto-list-item-left">
-                <span class="zepto-list-item-icon">🔔</span>
-                <span class="zepto-list-item-title">Notifications</span>
-              </div>
-              <span class="zepto-list-item-arrow">›</span>
-            </div>
-
-            <div class="zepto-list-item" onclick="window.marketApp.openAboutUsModal()">
-              <div class="zepto-list-item-left">
-                <span class="zepto-list-item-icon">ℹ️</span>
-                <span class="zepto-list-item-title">General Info</span>
-              </div>
-              <span class="zepto-list-item-arrow">›</span>
-            </div>
-          </div>
-
-          <!-- Log Out Button matching Image 2 -->
+          <!-- Log Out Button -->
           <div class="zepto-logout-container">
             <button type="button" class="btn-zepto-logout" onclick="window.marketApp.logoutUser()">
               Log Out
             </button>
           </div>
 
-          <!-- App Version Footer matching Image 2 -->
+          <!-- App Version Footer -->
           <div class="zepto-app-version-txt">
             App version 26.10.2<br>
             v227-7
@@ -10191,39 +10156,170 @@
       this.openCart();
     }
 
+    selectCategoryFromHome(catKey, event) {
+      this.selectCategory(catKey, false);
+      const target = document.getElementById('supermarket-compact-bar') || document.getElementById('products-grid');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      document.querySelectorAll('.mobile-only-home-categories .zepto-cat-item').forEach(el => {
+        el.classList.remove('selected-home-cat');
+      });
+      if (event && event.currentTarget) {
+        event.currentTarget.classList.add('selected-home-cat');
+      }
+      const catNames = {
+        'vegetables': 'Fruits & Vegetables',
+        'dairy-morning': 'Dairy, Bread & Eggs',
+        'atta-rice-dal': 'Atta, Rice, Oil & Dals',
+        'rayalaseema': 'Meat, Fish & Eggs',
+        'kitchen-spices': 'Masala & Dry Fruits',
+        'ready-to-cook': 'Breakfast & Ready to Cook',
+        'leaf-items': 'Greens & Leaf Items',
+        'snacks-bakery': 'Snacks & Bakery',
+        'fresh-fruits': 'Fresh Fruits & Juices',
+        'oil-ghee-masala': 'Pure Oils & Beverages'
+      };
+      const displayName = catNames[catKey] || 'Selected Category';
+      this.showToast(`🔍 Showing ${displayName}`, 'info');
+    }
+
+    toggleWishlist(productId, event) {
+      if (event) event.stopPropagation();
+      if (!this.wishlist) {
+        this.wishlist = new Set();
+      }
+      const prod = this.products ? this.products.find(p => p.id === productId) : null;
+      const cleanTitle = prod ? (prod.title || 'Item').replace(/^[^\w\s]+/, '').trim() : 'Item';
+      
+      const isWishlisted = this.wishlist.has(productId);
+      if (isWishlisted) {
+        this.wishlist.delete(productId);
+        this.showToast(`🤍 Removed ${cleanTitle} from Wishlist`, 'info');
+      } else {
+        this.wishlist.add(productId);
+        this.showToast(`❤️ Added ${cleanTitle} to Wishlist`, 'success');
+        if (typeof sound !== 'undefined' && sound.playAddSound) {
+          sound.playAddSound();
+        }
+      }
+      
+      try {
+        localStorage.setItem('freshcuts_wishlist', JSON.stringify(Array.from(this.wishlist)));
+      } catch (e) {}
+
+      // Update matching heart buttons in DOM
+      document.querySelectorAll(`.product-card[data-id="${productId}"] .prod-wishlist-btn`).forEach(btn => {
+        const isW = this.wishlist.has(productId);
+        btn.classList.toggle('active', isW);
+        const svg = btn.querySelector('svg');
+        if (svg) {
+          svg.setAttribute('fill', isW ? '#ef4444' : 'none');
+          svg.setAttribute('stroke', isW ? '#ef4444' : '#94a3b8');
+        }
+      });
+
+      // Update wishlist modal if open
+      const modal = document.getElementById('wishlist-modal');
+      if (modal && !modal.classList.contains('hidden')) {
+        this.renderWishlistModalContent();
+      }
+    }
+
     openWishlistModal() {
-      this.showToast('❤️ Saved to Your Wishlist (12 items saved)', 'info');
-    }
-
-    focusSearchInput() {
-      this.closeModal('categories-modal');
-      const input = document.getElementById('search-input') || document.querySelector('.search-input');
-      if (input) {
-        input.focus();
-        input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const modal = document.getElementById('wishlist-modal');
+      if (modal) {
+        this.renderWishlistModalContent();
+        modal.classList.remove('hidden');
+      } else {
+        this.showToast(`❤️ Wishlist (${this.wishlist ? this.wishlist.size : 0} items)`, 'info');
       }
     }
 
-    openWhatsAppChat() {
-      window.open('https://wa.me/919848023411?text=Hi%20FRESHCUTS%20Support,%20I%20need%20assistance%20with%20my%20farm%20order.', '_blank');
-    }
+    renderWishlistModalContent() {
+      const body = document.getElementById('wishlist-modal-body');
+      const countBadge = document.getElementById('wishlist-items-count-badge');
+      if (!body) return;
 
-    showWalletDetails() {
-      const credits = this.userWalletCredits || 150;
-      this.showToast(`👛 Farm Cash Balance: ₹${credits}.00 (Auto-applied at checkout)`, 'info');
-    }
-
-    addWalletBalancePrompt() {
-      const amt = prompt('Enter amount to add to Farm Cash Wallet (₹):', '500');
-      if (amt && !isNaN(amt) && Number(amt) > 0) {
-        this.userWalletCredits = (this.userWalletCredits || 150) + Number(amt);
-        this.showToast(`🎉 ₹${amt} credited to Farm Cash Wallet successfully!`, 'success');
-        this.openUserProfileModal();
+      const count = this.wishlist ? this.wishlist.size : 0;
+      if (countBadge) {
+        countBadge.textContent = `${count} ${count === 1 ? 'item' : 'items'}`;
       }
+
+      if (count === 0) {
+        body.innerHTML = `
+          <div class="wishlist-empty-state">
+            <div class="wishlist-empty-icon">🤍</div>
+            <h4 class="wishlist-empty-title">Your Wishlist is Empty</h4>
+            <p class="wishlist-empty-sub">Tap the heart ♡ on any fresh vegetables, daily dairy, or kitchen kit to save them here for quick re-ordering!</p>
+            <button type="button" class="btn-wishlist-explore" onclick="window.marketApp.closeModal('wishlist-modal')">
+              Explore Fresh Produce ➔
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      const items = Array.from(this.wishlist).map(id => this.products ? this.products.find(p => p.id === id) : null).filter(Boolean);
+
+      const cardsHtml = items.map(prod => {
+        const selWeight = this.getProductWeight(prod.id) || prod.unit || '1 Pack';
+        const activePrice = this.getProductPrice(prod.id, selWeight) || prod.price || 40;
+        const mrpPrice = this.getProductMandiPrice(prod.id, selWeight) || prod.mandiPrice || Math.round(activePrice * 1.25);
+        const cleanTitle = (prod.title || 'Fresh Harvest').replace(/^[^\w\s]+/, '').trim();
+        return `
+          <div class="wishlist-card" id="wishlist-row-${prod.id}">
+            <div class="wishlist-card-left" onclick="window.marketApp.openImageLightbox('${prod.id}')" style="cursor:pointer;" title="View item">
+              <img src="${prod.image}" alt="${cleanTitle}" class="wishlist-card-thumb" loading="lazy" />
+              <div class="wishlist-card-details">
+                <span class="wishlist-card-title">${cleanTitle}</span>
+                <span class="wishlist-card-unit">${selWeight} • 23 min delivery</span>
+                <div class="wishlist-card-pricing">
+                  <span class="wishlist-card-price">₹${Math.round(Number(activePrice))}</span>
+                  <span class="wishlist-card-mrp">₹${Math.round(Number(mrpPrice))}</span>
+                </div>
+              </div>
+            </div>
+            <div class="wishlist-card-actions">
+              <button type="button" class="btn-wishlist-add" onclick="window.marketApp.addWishlistItemToCart('${prod.id}', event)">
+                + ADD
+              </button>
+              <button type="button" class="btn-wishlist-remove" onclick="window.marketApp.toggleWishlist('${prod.id}', event)" title="Remove from Wishlist">
+                ✕
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      body.innerHTML = `
+        <div class="wishlist-items-list">
+          ${cardsHtml}
+        </div>
+        <div class="wishlist-bottom-actions">
+          <button type="button" class="btn-wishlist-add-all" onclick="window.marketApp.addAllWishlistToCart()">
+            🛒 Add All to Basket (${count} items)
+          </button>
+        </div>
+      `;
     }
 
-    openReviewAndEarnModal() {
-      this.showToast('⭐ Rate your delivery & earn ₹25 Farm Cash!', 'info');
+    addWishlistItemToCart(productId, event) {
+      if (event) event.stopPropagation();
+      this.addToBasket(productId);
+    }
+
+    addAllWishlistToCart() {
+      if (!this.wishlist || this.wishlist.size === 0) return;
+      this.wishlist.forEach(id => {
+        this.addToBasket(id);
+      });
+      this.closeModal('wishlist-modal');
+      this.toggleCartDrawer();
+    }
+
+    showRefundsPrompt() {
+      this.showToast('🔄 No pending refund requests. All past returns have been refunded to source / Farm Cash!', 'info');
     }
 
     openGiftCardsModal() {
