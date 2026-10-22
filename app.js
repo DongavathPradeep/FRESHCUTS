@@ -5344,6 +5344,36 @@
       if (lightbox && !lightbox.classList.contains('hidden') && this.activeLightboxProdId === prodId) {
         this.renderImageLightboxContent(prod);
       }
+
+      // 4. Update aisle product card button (mobile aisle screen)
+      const aisleCard = document.querySelector(`.aisle-prod-card[data-id="${prodId}"]`);
+      if (aisleCard) {
+        const imgBox = aisleCard.querySelector('.aisle-card-img-box');
+        if (imgBox) {
+          const existing = imgBox.querySelector('.aisle-card-add-btn, .aisle-card-stepper');
+          let newBtnHtml = '';
+          if (cartQty > 0) {
+            newBtnHtml = `
+              <div class="aisle-card-stepper">
+                <button type="button" class="aisle-step-btn" onclick="window.marketApp.modifyCartQty('${prodId}', -1)" aria-label="Decrease quantity">−</button>
+                <span class="aisle-step-num">${cartQty}</span>
+                <button type="button" class="aisle-step-btn" onclick="window.marketApp.modifyCartQty('${prodId}', 1)" aria-label="Increase quantity">+</button>
+              </div>
+            `;
+          } else {
+            newBtnHtml = `
+              <button type="button" class="aisle-card-add-btn" onclick="window.marketApp.modifyCartQty('${prodId}', 1)">
+                ADD
+              </button>
+            `;
+          }
+          if (existing) {
+            const temp = document.createElement('div');
+            temp.innerHTML = newBtnHtml.trim();
+            existing.replaceWith(temp.firstElementChild);
+          }
+        }
+      }
     }
 
     openImageLightbox(prodId) {
@@ -5501,6 +5531,19 @@
           }
         }
       }
+
+      // Update Mobile Top Header Badges (both Home and Aisle headers)
+      const mobileBadges = document.querySelectorAll('.mobile-cart-badge, #mobile-aisle-cart-badge, #mobile-home-cart-badge');
+      mobileBadges.forEach(b => {
+        b.textContent = totalCount;
+        if (totalCount > 0) {
+          b.classList.remove('hidden');
+          b.style.display = 'flex';
+        } else {
+          b.classList.add('hidden');
+          b.style.display = 'none';
+        }
+      });
 
       // Update Drawer Totals
       const subtotalLabel = document.getElementById('cart-subtotal-label');
@@ -10664,6 +10707,8 @@
           b.classList.toggle('active', b.dataset.subcat === subcatKey);
         });
       }
+      const contentPane = document.getElementById('mobile-aisle-content') || document.querySelector('.mobile-aisle-content');
+      if (contentPane) contentPane.scrollTop = 0;
       this.renderAisleProducts(subcatKey);
     }
 
@@ -10780,6 +10825,23 @@
 
       grid.innerHTML = (filtered.length ? filtered : allItems).map(item => {
         const isWish = this.wishlist && this.wishlist.has(item.id);
+        const cartQty = (this.cart && this.cart[item.id]) || 0;
+        let actionBtn = '';
+        if (cartQty > 0) {
+          actionBtn = `
+            <div class="aisle-card-stepper">
+              <button type="button" class="aisle-step-btn" onclick="window.marketApp.modifyCartQty('${item.id}', -1)" aria-label="Decrease quantity">−</button>
+              <span class="aisle-step-num">${cartQty}</span>
+              <button type="button" class="aisle-step-btn" onclick="window.marketApp.modifyCartQty('${item.id}', 1)" aria-label="Increase quantity">+</button>
+            </div>
+          `;
+        } else {
+          actionBtn = `
+            <button type="button" class="aisle-card-add-btn" onclick="window.marketApp.modifyCartQty('${item.id}', 1)">
+              ADD
+            </button>
+          `;
+        }
         return `
           <div class="aisle-prod-card" data-id="${item.id}">
             <div class="aisle-card-img-box">
@@ -10787,9 +10849,7 @@
               <button type="button" class="aisle-card-heart-btn" onclick="window.marketApp.toggleWishlist('${item.id}', event)" title="Wishlist">
                 ${isWish ? '❤️' : '♡'}
               </button>
-              <button type="button" class="aisle-card-add-btn" onclick="window.marketApp.modifyCartQty('${item.id}', 1)">
-                ADD
-              </button>
+              ${actionBtn}
             </div>
             <div class="aisle-card-price-row">
               <span class="aisle-price-pill">₹${item.price}</span>
