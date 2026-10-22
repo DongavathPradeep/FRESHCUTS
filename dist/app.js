@@ -4520,7 +4520,333 @@
       }
     }
 
+    openAisleScreen(catKey = 'ready-to-cook') {
+      const homeScreen = document.getElementById('mobile-home-screen');
+      const aisleScreen = document.getElementById('mobile-aisle-screen');
+      if (homeScreen) {
+        homeScreen.classList.remove('active');
+        homeScreen.classList.add('hidden');
+      }
+      if (aisleScreen) {
+        aisleScreen.classList.remove('hidden');
+        aisleScreen.classList.add('active');
+        aisleScreen.scrollTop = 0;
+      }
+
+      document.querySelectorAll('.mobile-bottom-nav-bar .nav-tab-btn').forEach(btn => btn.classList.remove('active'));
+
+      const titleEl = document.getElementById('aisle-screen-title');
+      const titleMap = {
+        'ready-to-cook': 'Ready to Cook',
+        'curry-kits': 'Ready to Cook',
+        'fresh-fruits': 'Fresh Fruits',
+        'vegetables': 'Fresh Vegetables',
+        'leaf-items': 'Leaf Items',
+        'fresh-drinks': 'Fresh Drinks & Juices',
+        'kitchen-spices': 'Kitchen Spices & Masala',
+        'appliances': 'Kitchen Appliances',
+        'snacks': 'Snacks & Munchies'
+      };
+      if (titleEl) {
+        titleEl.textContent = titleMap[catKey] || 'Ready to Cook';
+      }
+
+      this.currentAisleCat = catKey;
+      let defaultSubcat = 'all';
+      if (catKey === 'fresh-fruits') defaultSubcat = 'fresh-fruits';
+      else if (catKey === 'curry-kits') defaultSubcat = 'curry-kits';
+      this.selectAisleSubcat(defaultSubcat);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    goBackToHome() {
+      const aisleScreen = document.getElementById('mobile-aisle-screen');
+      if (aisleScreen) {
+        aisleScreen.classList.remove('active');
+        aisleScreen.classList.add('hidden');
+      }
+      const homeScreen = document.getElementById('mobile-home-screen');
+      if (homeScreen) {
+        homeScreen.classList.remove('hidden');
+        homeScreen.classList.add('active');
+      }
+      const homeNavBtn = document.querySelector('.mobile-bottom-nav-bar .nav-tab-btn[data-tab="home"]');
+      if (homeNavBtn) homeNavBtn.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    selectAisleSubcat(subcatKey = 'all', event) {
+      if (event) {
+        document.querySelectorAll('#mobile-aisle-sidebar .aisle-subcat-btn').forEach(b => b.classList.remove('active'));
+        if (event.currentTarget) event.currentTarget.classList.add('active');
+      } else {
+        document.querySelectorAll('#mobile-aisle-sidebar .aisle-subcat-btn').forEach(b => {
+          b.classList.toggle('active', b.dataset.subcat === subcatKey);
+        });
+      }
+      this.currentAisleSubcat = subcatKey;
+      this.renderAisleProducts(subcatKey);
+    }
+
+    toggleAisleSearch() {
+      const searchRow = document.getElementById('mobile-aisle-search-bar-row');
+      if (!searchRow) return;
+      const isHidden = searchRow.classList.toggle('hidden');
+      if (!isHidden) {
+        const input = document.getElementById('mobile-aisle-search-input');
+        if (input) input.focus();
+      }
+    }
+
+    handleAisleSearch(query) {
+      this.aisleSearchQuery = (query || '').trim().toLowerCase();
+      this.renderAisleProducts(this.currentAisleSubcat || 'all');
+    }
+
+    clearAisleSearch() {
+      const input = document.getElementById('mobile-aisle-search-input');
+      if (input) input.value = '';
+      this.handleAisleSearch('');
+    }
+
+    renderAisleProducts(subcatKey = 'all') {
+      const grid = document.getElementById('mobile-aisle-grid');
+      if (!grid) return;
+
+      const q = (this.aisleSearchQuery || '').trim().toLowerCase();
+
+      // Master items database tailored for the Aisle View matching Reference Image
+      const aisleMasterCatalog = [
+        {
+          id: 'prod_rtc_gutti_vankaya',
+          title: 'Gutti Vankaya Kit',
+          price: 62,
+          mrp: 78,
+          discount: 16,
+          unit: '400g kit',
+          subcats: ['all', 'curry-kits', 'select'],
+          img: 'assets/prod_rtc_gutti_vankaya_kit.jpg'
+        },
+        {
+          id: 'prod_rtc_bendakaya_pulusu',
+          title: 'Bendakaya Pulusu Kit',
+          price: 54,
+          mrp: 68,
+          discount: 14,
+          unit: '450g meal kit',
+          subcats: ['all', 'curry-kits'],
+          img: 'assets/prod_rtc_bendakaya_pulusu_kit.jpg'
+        },
+        {
+          id: 'prod_coconut',
+          title: 'Coconut',
+          price: 39,
+          mrp: 96,
+          discount: 57,
+          unit: '1 pc',
+          subcats: ['all', 'select', 'new-launches'],
+          img: 'assets/prod_coconut.jpg'
+        },
+        {
+          id: 'prod_fruit_banana',
+          title: 'Banana Robusta',
+          price: 37,
+          mrp: 72,
+          discount: 35,
+          unit: '4 pcs',
+          subcats: ['all', 'select', 'fresh-fruits'],
+          img: 'assets/prod_fruit_banana.jpg'
+        },
+        {
+          id: 'prod_kothimeera',
+          title: 'Coriander Leaves',
+          price: 22,
+          mrp: 32,
+          discount: 10,
+          unit: '100 g',
+          subcats: ['all', 'select', 'fresh-veg'],
+          img: 'assets/prod_coriander.jpg'
+        },
+        {
+          id: 'prod_curry_mushroom_curry',
+          title: 'Mushroom Button',
+          price: 70,
+          mrp: 94,
+          discount: 24,
+          unit: '200 g',
+          subcats: ['all', 'select', 'new-launches', 'curry-kits'],
+          img: 'assets/prod_rtc_mushroom_pepper_kit.jpg'
+        },
+        {
+          id: 'prod_rtc_tomato_pappu',
+          title: 'Tomato Pappu Kit',
+          price: 52,
+          mrp: 65,
+          discount: 13,
+          unit: '450g meal kit',
+          subcats: ['all', 'sambar-dal'],
+          img: 'assets/prod_rtc_tomato_pappu_kit.jpg'
+        },
+        {
+          id: 'prod_rtc_palakura_pappu',
+          title: 'Palakura Pappu Kit',
+          price: 48,
+          mrp: 60,
+          discount: 12,
+          unit: '400g meal kit',
+          subcats: ['all', 'sambar-dal'],
+          img: 'assets/prod_rtc_palakura_pappu_kit.jpg'
+        },
+        {
+          id: 'prod_rtc_veg_biryani',
+          title: 'Veg Dum Biryani Kit',
+          price: 129,
+          mrp: 160,
+          discount: 31,
+          unit: '750g kit',
+          subcats: ['all', 'meal-kits', 'new-launches'],
+          img: 'assets/prod_rtc_sambar_dal_kit.jpg'
+        },
+        {
+          id: 'prod_rtc_paneer_butter',
+          title: 'Paneer Butter Masala Kit',
+          price: 119,
+          mrp: 149,
+          discount: 30,
+          unit: '500g kit',
+          subcats: ['all', 'curry-kits', 'new-launches'],
+          img: 'assets/prod_rtc_sambar_curry.jpg'
+        },
+        {
+          id: 'prod_rtc_dal_tadka',
+          title: 'Dal Tadka Meal Kit',
+          price: 58,
+          mrp: 72,
+          discount: 14,
+          unit: '400g meal kit',
+          subcats: ['all', 'sambar-dal'],
+          img: 'assets/prod_rtc_dal_tadka_kit.jpg'
+        },
+        {
+          id: 'prod_rtc_drumstick_sambar',
+          title: 'Drumstick Sambar Kit',
+          price: 55,
+          mrp: 70,
+          discount: 15,
+          unit: '450g meal kit',
+          subcats: ['all', 'sambar-dal'],
+          img: 'assets/prod_rtc_sambar_curry.jpg'
+        },
+        {
+          id: 'prod_rtc_bagara_rice',
+          title: 'Bagara Rice Prep Kit',
+          price: 79,
+          mrp: 99,
+          discount: 20,
+          unit: '500g kit',
+          subcats: ['all', 'meal-kits'],
+          img: 'assets/prod_rtc_sambar_dal_kit.jpg'
+        },
+        {
+          id: 'prod_rtc_aloo_kurma',
+          title: 'Aloo Kurma Prep Kit',
+          price: 49,
+          mrp: 65,
+          discount: 16,
+          unit: '400g kit',
+          subcats: ['all', 'curry-kits'],
+          img: 'assets/prod_rtc_aloo_kurma_kit.jpg'
+        },
+        {
+          id: 'prod_tomatoes',
+          title: 'Tomato Local',
+          price: 17,
+          mrp: 52,
+          discount: 35,
+          unit: '500 g',
+          subcats: ['all', 'vegetables', 'fresh-veg'],
+          img: 'assets/prod_tomatoes.jpg'
+        },
+        {
+          id: 'prod_onions',
+          title: 'Onion Pink',
+          price: 59,
+          mrp: 126,
+          discount: 67,
+          unit: '1 kg',
+          subcats: ['all', 'vegetables', 'fresh-veg'],
+          img: 'assets/prod_onions.jpg'
+        },
+        {
+          id: 'prod_fruit_apple',
+          title: 'Royal Gala Apple',
+          price: 89,
+          mrp: 120,
+          discount: 31,
+          unit: '2 pcs',
+          subcats: ['all', 'fresh-fruits'],
+          img: 'assets/cat_fruits.jpg'
+        },
+        {
+          id: 'prod_palak',
+          title: 'Farm Fresh Palak',
+          price: 15,
+          mrp: 25,
+          discount: 10,
+          unit: '1 bunch',
+          subcats: ['all', 'vegetables', 'fresh-veg'],
+          img: 'assets/prod_spinach.jpg'
+        }
+      ];
+
+      let filtered = aisleMasterCatalog.filter((item) => {
+        if (subcatKey !== 'all' && !item.subcats.includes(subcatKey)) {
+          return false;
+        }
+        if (q.length > 0) {
+          return item.title.toLowerCase().includes(q);
+        }
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1 / -1; padding: 40px 10px; text-align: center; color: #64748b;">
+            <div style="font-size: 32px; margin-bottom: 8px;">🔍</div>
+            <div style="font-weight: 700; color: #0f172a; margin-bottom: 4px;">No products found</div>
+            <div style="font-size: 0.82rem;">Try selecting another subcategory on the left.</div>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map((item) => `
+        <div class="aisle-prod-card" data-id="${item.id}">
+          <div class="aisle-card-img-box">
+            <img src="${item.img}" alt="${item.title}" class="aisle-card-img" loading="lazy" />
+            <button type="button" class="aisle-card-heart-btn" onclick="window.marketApp.toggleWishlist('${item.id}', event)" title="Wishlist">
+              ${Boolean(this.wishlist && this.wishlist.has(item.id)) ? '❤️' : '♡'}
+            </button>
+            <button type="button" class="aisle-card-add-btn" onclick="window.marketApp.modifyCartQty('${item.id}', 1); if (typeof window.marketApp.showToast === 'function') window.marketApp.showToast('Added ${item.title} to cart', 'success');">
+              ADD
+            </button>
+          </div>
+          <div class="aisle-card-price-row">
+            <span class="aisle-price-pill">₹${item.price}</span>
+            <span class="aisle-mrp-strike">₹${item.mrp}</span>
+          </div>
+          <div class="aisle-discount-txt">₹${item.discount} OFF</div>
+          <div class="aisle-card-title" title="${item.title}">${item.title}</div>
+          <div class="aisle-card-weight">${item.unit}</div>
+        </div>
+      `).join('');
+    }
+
     selectCategory(catKey, scrollToTop = false) {
+      if (catKey === 'ready-to-cook' || catKey === 'curry-kits') {
+        this.openAisleScreen('ready-to-cook');
+        return;
+      }
       this.switchTab('supermarket-floor');
       this.selectedCategory = catKey || 'all';
       this.activeDepartment = this.selectedCategory;
@@ -5486,7 +5812,7 @@
 
       return `
         <div class="product-card" id="card-${prod.id}" data-id="${prod.id}" data-category="${prod.category || 'vegetables'}">
-          <div class="prod-image-wrapper" onclick="window.marketApp.openImageLightbox('${prod.id}')" style="cursor: pointer;" title="Tap to view big image">
+          <div class="prod-image-wrapper" onclick="${(prod.category === 'curry-kits' || prod.category === 'ready-to-cook' || prod.id.startsWith('prod_rtc_') || (prod.title && prod.title.toLowerCase().includes('kit'))) ? `window.marketApp.openAisleScreen('ready-to-cook')` : `window.marketApp.openImageLightbox('${prod.id}')`}" style="cursor: pointer;" title="Tap to view">
             <img src="${prod.image}" alt="${cleanTitle}" class="prod-img" loading="lazy" />
             <button type="button" class="prod-wishlist-btn ${Boolean(this.wishlist && this.wishlist.has(prod.id)) ? 'active' : ''}" onclick="window.marketApp.toggleWishlist('${prod.id}', event)" aria-label="${Boolean(this.wishlist && this.wishlist.has(prod.id)) ? 'Remove from Wishlist' : 'Save to Wishlist'}" title="${Boolean(this.wishlist && this.wishlist.has(prod.id)) ? 'Remove from Wishlist' : 'Add to Wishlist'}">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="${Boolean(this.wishlist && this.wishlist.has(prod.id)) ? '#ef4444' : 'none'}" stroke="${Boolean(this.wishlist && this.wishlist.has(prod.id)) ? '#ef4444' : '#94a3b8'}" stroke-width="2.2">
@@ -5504,7 +5830,7 @@
 
             <!-- 2. Product Name & Cost row (Name on left, Cost on right as requested) -->
             <div class="prod-name-cost-row">
-              <h3 class="prod-title" title="${cleanTitle}">${cleanTitle}</h3>
+              <h3 class="prod-title" title="${cleanTitle}" onclick="${(prod.category === 'curry-kits' || prod.category === 'ready-to-cook' || prod.id.startsWith('prod_rtc_') || (prod.title && prod.title.toLowerCase().includes('kit'))) ? `window.marketApp.openAisleScreen('ready-to-cook')` : ''}" style="${(prod.category === 'curry-kits' || prod.category === 'ready-to-cook' || prod.id.startsWith('prod_rtc_') || (prod.title && prod.title.toLowerCase().includes('kit'))) ? 'cursor:pointer;' : ''}">${cleanTitle}</h3>
               <div class="prod-pricing-row">
                 <span class="prod-price">₹${Math.round(Number(activePrice))}</span>
                 <span class="prod-mrp">₹${mrpPrice}</span>
@@ -11078,48 +11404,6 @@
       }
     }
 
-    openAisleScreen(catKey) {
-      const homeScreen = document.getElementById('mobile-home-screen');
-      const aisleScreen = document.getElementById('mobile-aisle-screen');
-      if (homeScreen) {
-        homeScreen.classList.remove('active');
-        homeScreen.classList.add('hidden');
-      }
-      if (aisleScreen) {
-        aisleScreen.classList.remove('hidden');
-        aisleScreen.classList.add('active');
-      }
-
-      document.querySelectorAll('.mobile-bottom-nav-bar .nav-tab-btn').forEach(btn => btn.classList.remove('active'));
-
-      const titleEl = document.getElementById('aisle-screen-title');
-      const titleMap = {
-        'vegetables': 'Fresh Farm Vegetables',
-        'masalas': 'Authentic Masalas & Spices',
-        'kitchen-spices': 'Authentic Masalas & Spices',
-        'appliances': 'Kitchen Appliances & Cookware',
-        'kitchenware-appliances': 'Kitchen Appliances & Cookware',
-        'snacks': 'Crispy Snacks & Munchies',
-        'snacks-bakery': 'Crispy Snacks & Munchies',
-        'fresh-fruits': 'Fresh Fruits',
-        'dairy-morning': 'Dairy, Bread & Eggs',
-        'atta-rice-dal': 'Atta, Rice, Oil & Dals',
-        'rayalaseema': 'Meat, Fish & Eggs',
-        'ready-to-cook': 'Packaged Food & Breakfast',
-        'leaf-items': 'Greens & Leaf Items',
-        'fresh-deals': 'Everyday Low Prices'
-      };
-      if (titleEl) {
-        titleEl.textContent = titleMap[catKey] || 'Fruits & Vegetables';
-      }
-
-      let defaultSubcat = 'all';
-      if (catKey === 'fresh-fruits') defaultSubcat = 'fresh-fruits';
-      else if (catKey === 'leaf-items' || catKey === 'vegetables') defaultSubcat = 'all';
-
-      this.selectAisleSubcat(defaultSubcat);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
 
     switchFreshTab(tabKey, event) {
       if (event) {
