@@ -6043,292 +6043,216 @@
         : (localStorage.getItem('freshcuts_user_name') || 'Pradeep');
       this.user.name = userName;
 
-      const initials = (userName || 'P')
-        .split(' ')
-        .filter(Boolean)
-        .map(n => n[0])
-        .join('')
-        .substring(0, 2)
-        .toUpperCase() || 'P';
-
-      const addr = this.user.address || {
-        recipient: this.user.name || 'Pradeep',
-        phone: this.user.phone || '9848023411',
-        flat: 'Flat 402, Green Valley Apartments',
-        area: 'Road #12, Banjara Hills',
-        landmark: 'Opp. MLA Colony Junction',
-        city: 'Hyderabad',
-        pincode: '500034',
-        type: 'Home',
-        slot: 'Tomorrow 06:00 AM – 08:30 AM (Farm Morning Run)'
-      };
-
+      const userPhone = this.user.phone || localStorage.getItem('freshcuts_user_phone') || '+91 95022 61087';
       const credits = this.userWalletCredits || 150;
 
       this.dom.authModalContent.innerHTML = `
-        <!-- Profile Hub Top Card (Requirement 3: Clean Name without Edit Option, No Top Logout) -->
-        <div class="profile-hub-header-card">
-          <div class="profile-user-left">
-            <div class="profile-big-avatar">${initials}</div>
-            <div class="profile-user-details">
-              <h3 id="profile-display-name" style="margin:0; font-size:1.2rem; font-weight:800; color:var(--text-primary);">${this.user.name}</h3>
-              <div style="font-size:0.78rem; color:#16a34a; font-weight:600; margin-top:2px;">✓ Verified Customer</div>
-            </div>
+        <div class="zepto-profile-container">
+          <!-- Header matching Image 2: < Profile -->
+          <div class="zepto-profile-header">
+            <button type="button" class="zepto-nav-back-btn" onclick="window.marketApp.closeAuthModal()" title="Back">
+              ‹
+            </button>
+            <h2 class="zepto-profile-title">Profile</h2>
           </div>
-          <div style="display:flex; flex-direction:column; align-items:flex-end;">
-            <div class="profile-wallet-pill">
-              <div class="profile-wallet-lbl">Farm Cash Wallet</div>
-              <div class="profile-wallet-val">₹${credits}.00</div>
+
+          <!-- Top User Info Block -->
+          <div class="zepto-profile-user-card">
+            <div class="zepto-profile-avatar">
+              👤
             </div>
-          </div>
-        </div>
-
-        <!-- Profile Hub Tab Bar (Requirement 4: Delivery Address, Track Order, Order History directly in profile) -->
-        <div class="profile-hub-nav-tabs">
-          <button class="profile-hub-tab-btn ${activeTab === 'addresses' ? 'active' : ''}" id="tab-btn-addresses" onclick="window.marketApp.switchProfileTab('addresses')">
-            <span>📍 Delivery Addresses</span>
-          </button>
-          <button class="profile-hub-tab-btn ${activeTab === 'track' ? 'active' : ''}" id="tab-btn-track" onclick="window.marketApp.switchProfileTab('track')">
-            <span>🛵 Track Order</span>
-          </button>
-          <button class="profile-hub-tab-btn ${activeTab === 'history' ? 'active' : ''}" id="tab-btn-history" onclick="window.marketApp.switchProfileTab('history')">
-            <span>📜 Order History (${this.orderHistory.length})</span>
-          </button>
-          <button class="profile-hub-tab-btn ${activeTab === 'pos' ? 'active' : ''}" id="tab-btn-pos" onclick="window.marketApp.switchProfileTab('pos')">
-            <span>🧾 POS Terminal</span>
-          </button>
-          <button class="profile-hub-tab-btn" id="tab-btn-login-page" onclick="window.marketApp.openLoginOtpModal('login')" title="Open login & authentication page" style="color:var(--emerald-400);">
-            <span>📱 Login / Switch</span>
-          </button>
-        </div>
-
-        <!-- Profile Hub Body Panes -->
-        <div class="profile-hub-body">
-
-          <!-- PANE 1: ADDRESSES (Requirement 3: Home, Work, Others selector; full address shown on click, no quick switch hyderabad locality) -->
-          <div class="profile-hub-pane ${activeTab === 'addresses' ? 'active' : ''}" id="prof-pane-addresses">
-            <div style="margin-bottom:12px;">
-              <div style="font-size:0.82rem; font-weight:700; color:var(--text-secondary); margin-bottom:8px;">
-                Select Delivery Address:
-              </div>
-              <div class="profile-addr-type-pills">
-                <button type="button" class="addr-type-tab-btn ${this.activeProfileAddressType === 'home' ? 'active' : ''}" id="addr-pill-home" onclick="window.marketApp.selectProfileAddressType('home')">
-                  🏠 Home
-                </button>
-                <button type="button" class="addr-type-tab-btn ${this.activeProfileAddressType === 'work' ? 'active' : ''}" id="addr-pill-work" onclick="window.marketApp.selectProfileAddressType('work')">
-                  💼 Work
-                </button>
-                <button type="button" class="addr-type-tab-btn ${this.activeProfileAddressType === 'others' ? 'active' : ''}" id="addr-pill-others" onclick="window.marketApp.selectProfileAddressType('others')">
-                  📍 Others
-                </button>
-              </div>
-            </div>
-
-            <!-- Full Address Display Card (Requirement 3: Don't show full address initially, show when Home/Work/Others clicked) -->
-            <div id="profile-selected-address-card">
-              ${this.activeProfileAddressType ? `
-                <div class="addr-saved-card">
-                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-                    <div class="addr-card-recipient">👤 ${this.user.name || 'Pradeep'}</div>
-                    <span class="addr-type-tag">${this.activeProfileAddressType.toUpperCase()} • Active</span>
-                  </div>
-                  <div class="addr-card-line">
-                    🏢 ${addr.flat}, ${addr.area}, Hyderabad - ${addr.pincode}
-                    ${addr.landmark ? `<br><span style="font-size:0.8rem; color:var(--text-dim);">Landmark: ${addr.landmark}</span>` : ''}
-                  </div>
-                  <div class="addr-card-slot">
-                    ⏱️ <strong>Preferred Dispatch Slot:</strong> ${addr.slot}
-                  </div>
-                  <button class="btn-secondary-sm" style="width:100%; margin-top:10px;" onclick="window.marketApp.toggleInlineAddressForm()">
-                    ✏️ Edit Detailed Delivery Address & Time Slot
-                  </button>
-                </div>
-              ` : `
-                <div class="addr-tap-hint" style="background:#f8fafc; border:1.5px dashed #cbd5e1; border-radius:12px; padding:18px 14px; text-align:center; color:#64748b; font-size:0.86rem; cursor:pointer;" onclick="window.marketApp.selectProfileAddressType('home')">
-                  👆 Select <strong>🏠 Home</strong>, <strong>💼 Work</strong>, or <strong>📍 Others</strong> above to view full delivery address
-                </div>
-              `}
-            </div>
-
-            <!-- Inline Edit Address Form (Collapsible) -->
-            <div id="inline-addr-form" class="hidden" style="background:var(--bg-card); padding:14px; border-radius:var(--radius-sm); border:1px solid var(--border-subtle); margin-top:10px;">
-              <form onsubmit="event.preventDefault(); window.marketApp.saveAddressFromProfile();">
-                <div class="address-form-grid">
-                  <div>
-                    <label class="form-lbl">Recipient Name *</label>
-                    <input type="text" id="prof-addr-name" class="form-input" required value="${addr.recipient}">
-                  </div>
-                  <div>
-                    <label class="form-lbl">Contact Phone *</label>
-                    <input type="tel" id="prof-addr-phone" class="form-input" required value="${addr.phone}">
-                  </div>
-                  <div class="form-group-full">
-                    <label class="form-lbl">Flat / House / Building *</label>
-                    <input type="text" id="prof-addr-flat" class="form-input" required value="${addr.flat}">
-                  </div>
-                  <div class="form-group-full">
-                    <label class="form-lbl">Street / Area / Locality *</label>
-                    <input type="text" id="prof-addr-area" class="form-input" required value="${addr.area}">
-                  </div>
-                  <div>
-                    <label class="form-lbl">Landmark</label>
-                    <input type="text" id="prof-addr-landmark" class="form-input" value="${addr.landmark || ''}">
-                  </div>
-                  <div>
-                    <label class="form-lbl">Pincode *</label>
-                    <input type="text" id="prof-addr-pincode" class="form-input" required maxlength="6" value="${addr.pincode}">
-                  </div>
-                </div>
-
-                <div style="margin-top:10px; margin-bottom:14px;">
-                  <label class="form-lbl">Preferred Farm Delivery Slot:</label>
-                  <select id="prof-addr-slot" class="delivery-slot-select">
-                    <option value="Tomorrow 06:00 AM – 08:30 AM (Farm Morning Run)" ${addr.slot.includes('06:00') ? 'selected' : ''}>🌅 Wave 1: Tomorrow 06:00 AM – 08:30 AM (Harvest Milk & Greens)</option>
-                    <option value="Tomorrow 09:30 AM – 12:00 PM (Midday Kitchen Sambar)" ${addr.slot.includes('09:30') ? 'selected' : ''}>☀️ Wave 2: Tomorrow 09:30 AM – 12:00 PM (Midday Kitchen Kits)</option>
-                    <option value="Today 06:30 PM – 09:00 PM (Tier 2 Fresh Save)" ${addr.slot.includes('06:30') ? 'selected' : ''}>🌙 Wave 3: Today 06:30 PM – 09:00 PM (Tier 2 Fresh Save Evening)</option>
-                    <option value="⚡ 30-Minute Hyperlocal Express (Banjara / Jubilee)" ${addr.slot.includes('30-Minute') ? 'selected' : ''}>⚡ 30-Minute Hyperlocal Express</option>
-                  </select>
-                </div>
-
-                <button type="submit" class="btn-pay-submit">
-                  <span>💾 Save Changes & Update Delivery Address ➔</span>
-                </button>
-              </form>
+            <div class="zepto-profile-user-info">
+              <h3 id="profile-display-name">${userName}</h3>
+              <p id="profile-display-phone">${userPhone}</p>
             </div>
           </div>
 
-          <!-- PANE 2: TRACK ORDER (Requirement 4: Directly in profile section) -->
-          <div class="profile-hub-pane ${activeTab === 'track' ? 'active' : ''}" id="prof-pane-track">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-              <h4 style="margin:0; font-family:var(--font-heading); font-size:1.05rem; color:var(--text-primary);">Live Order Tracking</h4>
-              <span class="order-status-badge transit">● In Transit</span>
+          <!-- Quick Actions 3-Card Row: Your Orders, Help & Support, Your Wishlist -->
+          <div class="zepto-quick-actions-row">
+            <div class="zepto-quick-action-card" onclick="window.marketApp.closeAuthModal(); window.marketApp.openOrderHistoryModal();">
+              <div class="zepto-quick-action-icon">🛍️</div>
+              <div class="zepto-quick-action-label">Your<br>Orders</div>
             </div>
-
-            <div class="track-active-order-card" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:14px; padding:16px; margin-bottom:14px;">
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                <div>
-                  <div style="font-size:0.75rem; color:#64748b; font-weight:700;">ORDER ID</div>
-                  <div style="font-size:1rem; font-weight:800; color:#0f172a;">#FC-LIVE-84920</div>
-                </div>
-                <div style="text-align:right;">
-                  <div style="font-size:0.75rem; color:#059669; font-weight:700;">ESTIMATED ARRIVAL</div>
-                  <div style="font-size:1rem; font-weight:800; color:#059669;">⏱️ 14 Minutes</div>
-                </div>
-              </div>
-
-              <!-- Progress Steps -->
-              <div class="track-steps-bar" style="display:flex; justify-content:space-between; position:relative; margin:16px 0;">
-                <div style="text-align:center; flex:1;">
-                  <div style="width:26px; height:26px; border-radius:50%; background:#10b981; color:#ffffff; display:flex; align-items:center; justify-content:center; margin:0 auto 4px auto; font-size:0.75rem;">✓</div>
-                  <div style="font-size:0.72rem; font-weight:700; color:#0f172a;">Harvested</div>
-                </div>
-                <div style="text-align:center; flex:1;">
-                  <div style="width:26px; height:26px; border-radius:50%; background:#10b981; color:#ffffff; display:flex; align-items:center; justify-content:center; margin:0 auto 4px auto; font-size:0.75rem;">✓</div>
-                  <div style="font-size:0.72rem; font-weight:700; color:#0f172a;">Packed</div>
-                </div>
-                <div style="text-align:center; flex:1;">
-                  <div style="width:26px; height:26px; border-radius:50%; background:#3b82f6; color:#ffffff; display:flex; align-items:center; justify-content:center; margin:0 auto 4px auto; font-size:0.75rem;">🛵</div>
-                  <div style="font-size:0.72rem; font-weight:800; color:#1d4ed8;">Out for Delivery</div>
-                </div>
-                <div style="text-align:center; flex:1;">
-                  <div style="width:26px; height:26px; border-radius:50%; background:#e2e8f0; color:#94a3b8; display:flex; align-items:center; justify-content:center; margin:0 auto 4px auto; font-size:0.75rem;">🏠</div>
-                  <div style="font-size:0.72rem; color:#64748b;">Delivered</div>
-                </div>
-              </div>
-
-              <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:12px; margin-top:12px;">
-                <div style="font-size:0.8rem; font-weight:700; color:#0f172a; margin-bottom:2px;">🛵 Delivery Partner: Ramesh Kumar</div>
-                <div style="font-size:0.75rem; color:#64748b;">Zero-Emission Electric Delivery Van • Hyderabad Hub #3</div>
-                <div style="display:flex; gap:8px; margin-top:10px;">
-                  <a href="tel:+919876543210" class="btn-secondary-sm" style="flex:1; text-align:center; text-decoration:none; padding:6px;">📞 Call Partner</a>
-                  <button type="button" class="btn-primary-sm" style="flex:1; padding:6px;" onclick="window.marketApp.closeAuthModal(); window.marketApp.openTrackOrderModal();">🗺️ Live GPS View</button>
-                </div>
-              </div>
+            <div class="zepto-quick-action-card" onclick="window.marketApp.openWhatsAppChat()">
+              <div class="zepto-quick-action-icon">💬</div>
+              <div class="zepto-quick-action-label">Help &<br>Support</div>
+            </div>
+            <div class="zepto-quick-action-card" onclick="window.marketApp.openWishlistModal()">
+              <div class="zepto-quick-action-icon">🤍</div>
+              <div class="zepto-quick-action-label">Your<br>Wishlist</div>
             </div>
           </div>
 
-          <!-- PANE 3: ORDER HISTORY (Requirement 4: Directly in profile section) -->
-          <div class="profile-hub-pane ${activeTab === 'history' ? 'active' : ''}" id="prof-pane-history">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-              <h4 style="margin:0; font-family:var(--font-heading); font-size:1.05rem; color:var(--text-primary);">Your Past Orders & Settlement Slips</h4>
-              <span style="font-size:0.75rem; color:var(--emerald-400); font-weight:700;">${this.orderHistory.length} Orders Logged</span>
+          <!-- Wallet Banner Card matching Image 2 -->
+          <div class="zepto-wallet-card" onclick="window.marketApp.showWalletDetails()">
+            <div class="zepto-wallet-top">
+              <div class="zepto-wallet-left-title">
+                <span>👛</span>
+                <span>Farm Cash & Gift Card</span>
+                <span class="zepto-wallet-badge">NEW</span>
+              </div>
+              <span style="color:#9333ea; font-size:16px;">›</span>
             </div>
-
-            <div class="order-history-list">
-              ${this.orderHistory.map(ord => `
-                <div class="order-history-card">
-                  <div class="order-card-header">
-                    <div>
-                      <div class="order-id-txt">${ord.id}</div>
-                      <div class="order-date-txt">📅 ${ord.date} • ${ord.slot}</div>
-                    </div>
-                    ${ord.isCancelled ? `
-                      <span class="order-status-badge cancelled" style="background:#fee2e2; color:#b91c1c; border:1px solid #fecaca; font-weight:800;">
-                        ❌ Cancelled & Refunded
-                      </span>
-                    ` : `
-                      <span class="order-status-badge ${ord.status.includes('Delivered') ? 'delivered' : 'transit'}">
-                        ● ${ord.status}
-                      </span>
-                    `}
-                  </div>
-                  <div class="order-card-items">
-                    🛒 <strong>Items:</strong> ${ord.items}
-                    <div style="font-size:0.76rem; color:var(--text-dim); margin-top:2px;">📍 ${ord.deliveryAddress}</div>
-                    <div style="font-size:0.75rem; color:#059669; margin-top:4px; font-weight:700;">
-                      💳 Payment Account: <span>${ord.paymentAccount || 'customer@okaxis (Same UPI Account)'}</span>
-                    </div>
-                  </div>
-                  <div class="order-card-footer">
-                    <div>
-                      <span class="order-total-amount">₹${ord.total.toFixed(2)}</span>
-                    </div>
-                    <div style="display:flex; gap:8px;">
-                      ${!ord.isCancelled ? `
-                        <button class="btn-danger-outline" style="padding:4px 10px; font-size:0.74rem;" onclick="window.marketApp.closeAuthModal(); window.marketApp.openCancelConfirmationModal('${ord.id}');">
-                          ❌ Cancel Order
-                        </button>
-                        ${ord.isLive || ord.status.includes('Delivery') ? `
-                          <button class="btn-primary" style="padding:4px 10px; font-size:0.74rem;" onclick="window.marketApp.closeAuthModal(); window.marketApp.openTrackOrderModal('${ord.id}');">
-                            🛵 Track Live
-                          </button>
-                        ` : ''}
-                        <button class="btn-order-slip" onclick="window.marketApp.closeAuthModal(); window.marketApp.openPosModal();">
-                          🧾 View Bill
-                        </button>
-                      ` : `
-                        <button class="btn-primary" style="padding:4px 10px; font-size:0.74rem; background:#059669;" onclick="window.marketApp.closeAuthModal(); window.marketApp.openRefundReceiptModal('${ord.id}');">
-                          🧾 Refund Receipt
-                        </button>
-                      `}
-                    </div>
-                  </div>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-
-          <!-- PANE 4: POS TERMINAL -->
-          <div class="profile-hub-pane ${activeTab === 'pos' ? 'active' : ''}" id="prof-pane-pos">
-            <div style="background:var(--bg-card); border:1px solid var(--border-strong); border-radius:var(--radius-md); padding:18px; text-align:center;">
-              <div style="font-size:2rem; margin-bottom:8px;">🧾</div>
-              <h4 style="font-family:var(--font-heading); font-size:1.15rem; color:#ffffff; margin-bottom:6px;">Store Counter POS Register & Tax Invoice</h4>
-              <p style="font-size:0.84rem; color:var(--text-secondary); max-width:440px; margin:0 auto 16px auto; line-height:1.45;">
-                View complete cashier till receipts, transparent itemized pricing, and GST-compliant tax invoices for any active or past order.
-              </p>
-              <button class="btn-primary" style="padding:10px 24px;" onclick="window.marketApp.closeAuthModal(); window.marketApp.openPosModal();">
-                Open Active POS Terminal Slip ➔
+            <div class="zepto-wallet-bottom">
+              <div>
+                <span class="zepto-wallet-balance-txt">Available Balance </span>
+                <span class="zepto-wallet-balance-amt">₹${credits}.00</span>
+              </div>
+              <button type="button" class="btn-zepto-add-balance" onclick="event.stopPropagation(); window.marketApp.addWalletBalancePrompt();">
+                Add Balance
               </button>
             </div>
           </div>
 
-        </div>
+          <!-- Section: Your Information -->
+          <h4 class="zepto-section-title">Your Information</h4>
+          <div class="zepto-grouped-card">
+            <div class="zepto-list-item" onclick="window.marketApp.openReviewAndEarnModal()">
+              <div class="zepto-list-item-left">
+                <span class="zepto-list-item-icon">💬</span>
+                <span class="zepto-list-item-title">Review & Earn</span>
+              </div>
+              <span class="zepto-list-item-arrow">›</span>
+            </div>
 
-        <!-- Requirement 3: Log Out button moved to the very bottom of the profile modal -->
-        <div class="profile-modal-bottom-logout">
-          <button type="button" id="btn-profile-bottom-logout" class="btn-profile-bottom-logout" onclick="window.marketApp.logoutUser()">
-            🚪 Log Out from Account
-          </button>
+            <div class="zepto-list-item" onclick="window.marketApp.closeAuthModal(); window.marketApp.openOrderHistoryModal();">
+              <div class="zepto-list-item-left">
+                <span class="zepto-list-item-icon">🔄</span>
+                <span class="zepto-list-item-title">Your Refunds</span>
+              </div>
+              <span class="zepto-list-item-arrow">›</span>
+            </div>
+
+            <div class="zepto-list-item" onclick="window.marketApp.openWishlistModal()">
+              <div class="zepto-list-item-left">
+                <span class="zepto-list-item-icon">🤍</span>
+                <span class="zepto-list-item-title">Your Wishlist</span>
+              </div>
+              <span class="zepto-list-item-arrow">›</span>
+            </div>
+
+            <div class="zepto-list-item" onclick="window.marketApp.openGiftCardsModal()">
+              <div class="zepto-list-item-left">
+                <span class="zepto-list-item-icon">💳</span>
+                <span class="zepto-list-item-title">E-Gift Cards</span>
+              </div>
+              <span class="zepto-list-item-arrow">›</span>
+            </div>
+
+            <div class="zepto-list-item" onclick="window.marketApp.openWhatsAppChat()">
+              <div class="zepto-list-item-left">
+                <span class="zepto-list-item-icon">🎧</span>
+                <span class="zepto-list-item-title">Help & Support</span>
+              </div>
+              <span class="zepto-list-item-arrow">›</span>
+            </div>
+
+            <div class="zepto-list-item" onclick="window.marketApp.toggleProfileAddressesDrawer()">
+              <div class="zepto-list-item-left">
+                <span class="zepto-list-item-icon">📍</span>
+                <div>
+                  <div class="zepto-list-item-title">Saved Addresses</div>
+                  <div class="zepto-list-item-sub">3 Addresses (Home, Work, Others)</div>
+                </div>
+              </div>
+              <span class="zepto-list-item-arrow">›</span>
+            </div>
+
+            <!-- Expandable Saved Addresses View -->
+            <div id="zepto-addresses-drawer" class="hidden" style="background:#f8fafc; padding:12px 16px; border-bottom:1px solid #f1f5f9;">
+              <div class="profile-addr-type-pills" style="margin-bottom:10px;">
+                <button type="button" class="addr-type-tab-btn active" id="addr-pill-home" onclick="window.marketApp.selectProfileAddressType('home')">
+                  🏠 Home
+                </button>
+                <button type="button" class="addr-type-tab-btn" id="addr-pill-work" onclick="window.marketApp.selectProfileAddressType('work')">
+                  💼 Work
+                </button>
+                <button type="button" class="addr-type-tab-btn" id="addr-pill-others" onclick="window.marketApp.selectProfileAddressType('others')">
+                  📍 Others
+                </button>
+              </div>
+              <div id="profile-selected-address-card">
+                <div class="addr-saved-card" style="margin:0;">
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                    <strong style="font-size:0.88rem; color:#0f172a;">👤 ${userName}</strong>
+                    <span class="addr-type-tag">Home • Primary</span>
+                  </div>
+                  <div style="font-size:0.8rem; color:#475569; line-height:1.4;">
+                    🏢 Flat 402, Green Valley Apartments, Road #12, Banjara Hills, Hyderabad - 500034<br>
+                    <span style="font-size:0.75rem; color:#64748b;">Landmark: Opp. MLA Colony Junction</span>
+                  </div>
+                  <div style="font-size:0.75rem; color:#059669; font-weight:700; margin-top:6px;">
+                    ⏱️ Preferred Slot: Tomorrow 06:00 AM – 08:30 AM
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="zepto-list-item" onclick="window.marketApp.openEditProfileModal()">
+              <div class="zepto-list-item-left">
+                <span class="zepto-list-item-icon">👤</span>
+                <span class="zepto-list-item-title">Edit Profile</span>
+              </div>
+              <span class="zepto-list-item-arrow">›</span>
+            </div>
+
+            <div class="zepto-list-item" onclick="window.marketApp.openReferralModal()">
+              <div class="zepto-list-item-left">
+                <span class="zepto-list-item-icon">🎁</span>
+                <span class="zepto-list-item-title">Rewards</span>
+              </div>
+              <span class="zepto-list-item-arrow">›</span>
+            </div>
+
+            <div class="zepto-list-item" onclick="window.marketApp.openPaymentManagementModal()">
+              <div class="zepto-list-item-left">
+                <span class="zepto-list-item-icon">💳</span>
+                <span class="zepto-list-item-title">Payment Management</span>
+              </div>
+              <span class="zepto-list-item-arrow">›</span>
+            </div>
+          </div>
+
+          <!-- Section: Other Information -->
+          <h4 class="zepto-section-title">Other Information</h4>
+          <div class="zepto-grouped-card">
+            <div class="zepto-list-item" onclick="window.marketApp.openSuggestProductsModal()">
+              <div class="zepto-list-item-left">
+                <span class="zepto-list-item-icon">⭐</span>
+                <span class="zepto-list-item-title">Suggest Products</span>
+              </div>
+              <span class="zepto-list-item-arrow">›</span>
+            </div>
+
+            <div class="zepto-list-item" onclick="window.marketApp.toggleNotifications()">
+              <div class="zepto-list-item-left">
+                <span class="zepto-list-item-icon">🔔</span>
+                <span class="zepto-list-item-title">Notifications</span>
+              </div>
+              <span class="zepto-list-item-arrow">›</span>
+            </div>
+
+            <div class="zepto-list-item" onclick="window.marketApp.openAboutUsModal()">
+              <div class="zepto-list-item-left">
+                <span class="zepto-list-item-icon">ℹ️</span>
+                <span class="zepto-list-item-title">General Info</span>
+              </div>
+              <span class="zepto-list-item-arrow">›</span>
+            </div>
+          </div>
+
+          <!-- Log Out Button matching Image 2 -->
+          <div class="zepto-logout-container">
+            <button type="button" class="btn-zepto-logout" onclick="window.marketApp.logoutUser()">
+              Log Out
+            </button>
+          </div>
+
+          <!-- App Version Footer matching Image 2 -->
+          <div class="zepto-app-version-txt">
+            App version 26.10.2<br>
+            v227-7
+          </div>
         </div>
       `;
 
@@ -10129,99 +10053,209 @@
 
     openOrderHistoryModal() {
       this.closeSideNav();
+      const modal = document.getElementById('order-history-modal');
       const container = document.getElementById('order-history-modal-content');
+      
+      const orders = [
+        {
+          id: 'FC-ORD-84570',
+          title: 'Order delivered',
+          status: 'delivered',
+          total: 84.57,
+          date: 'Placed at 27th Jul 2025, 11:30 am',
+          images: [
+            'assets/prod_rtc_sambar_curry.jpg',
+            'assets/prod_dairy_fresh.jpg',
+            'assets/prod_bread_wheat.jpg'
+          ],
+          itemNames: 'Burger Bun Pack, Rolled Oats, Pure Milk'
+        },
+        {
+          id: 'FC-ORD-15599',
+          title: 'Order delivered',
+          status: 'delivered',
+          total: 155.99,
+          date: 'Placed at 22nd Jul 2025, 10:10 am',
+          images: [
+            'assets/prod_veggies_daily.jpg',
+            'assets/card_gutti_vankaya_verified.png',
+            'assets/card_tomato_pappu_verified.png',
+            'assets/prod_dairy_fresh.jpg',
+            'assets/card_dosakaya_pappu_verified.png'
+          ],
+          itemNames: 'Bitter Gourd, Brinjal, Potatoes, Fresh Milk, Country Onions'
+        },
+        {
+          id: 'FC-ORD-36571',
+          title: 'Order delivered',
+          status: 'delivered',
+          total: 365.71,
+          date: 'Placed at 15th May 2025, 06:44 pm',
+          images: [
+            'assets/prod_bread_wheat.jpg',
+            'assets/mobile_tiles/tile_atta_rice_dal.png',
+            'assets/prod_oil_groundnut.jpg',
+            'assets/mobile_tiles/tile_oil_ghee_masala.png',
+            'assets/prod_snack_lays.jpg'
+          ],
+          itemNames: 'Whole Wheat Bread, Ashirvaad Atta, Cold Pressed Groundnut Oil, Masala Mix, Jam'
+        }
+      ];
+
+      // Merge dynamic user orders from this.orderHistory if available
+      if (this.orderHistory && this.orderHistory.length > 0) {
+        this.orderHistory.forEach((ord, i) => {
+          if (!orders.some(o => o.id === ord.id)) {
+            orders.unshift({
+              id: ord.id,
+              title: ord.status || 'Order delivered',
+              status: 'delivered',
+              total: ord.total || 188.00,
+              date: ord.date || 'Today, 07:15 AM',
+              images: [
+                'assets/prod_rtc_sambar_curry.jpg',
+                'assets/prod_dairy_fresh.jpg',
+                'assets/card_tomato_pappu_verified.png'
+              ],
+              itemNames: ord.items || 'Fresh Farm Produce'
+            });
+          }
+        });
+      }
+
       if (container) {
         container.innerHTML = `
-          <div class="history-modal-container">
-            <div class="history-summary-strip">
-              <div>
-                <strong>Customer: ${this.user.name}</strong> • 📱 ${this.user.phone}
-                <div style="font-size:12px; color:#64748b; margin-top:2px;">Showing all recent farm-to-fork orders with transparent farmer payout shares & instant refund tracking</div>
-              </div>
-              <span class="history-farmer-pill">🌱 ${this.orderHistory.length} Total Orders</span>
-            </div>
-
-            <div style="display:flex; flex-direction:column; gap:14px;">
-              ${this.orderHistory.map(ord => `
-                <div class="history-card-box" id="history-card-${ord.id}">
-                  <div class="history-card-header">
-                    <div>
-                      <div class="history-order-id">${ord.id}</div>
-                      <div style="font-size:11.5px; color:#64748b; margin-top:2px;">📅 ${ord.date} • ${ord.slot}</div>
-                    </div>
-                    ${ord.isCancelled ? `
-                      <div style="display:flex; flex-direction:column; align-items:flex-end; gap:4px;">
-                        <span class="history-status-pill cancelled">
-                          ❌ Cancelled & Refunded
-                        </span>
-                        <span class="history-refund-pill">
-                          💸 ₹${ord.total.toFixed(2)} Credited to Same Account
-                        </span>
-                      </div>
-                    ` : `
-                      <span class="history-status-pill ${ord.isLive || ord.status.includes('transit') || ord.status.includes('Delivery') ? 'transit' : 'delivered'}">
-                        ● ${ord.status}
-                      </span>
-                    `}
+          <div style="padding-bottom: 70px;">
+            ${orders.map(o => `
+              <div class="zepto-order-card">
+                <!-- Top Row: Order delivered ✓  |  ₹total › -->
+                <div class="zepto-order-top-row" onclick="window.marketApp.openPosModal()">
+                  <div class="zepto-order-status-pill">
+                    <span>${o.title}</span>
+                    <span class="zepto-status-check">✓</span>
                   </div>
-
-                  <div class="history-items-text">
-                    <strong>🛒 Items:</strong> ${ord.items}
-                    <div style="font-size:12px; color:#64748b; margin-top:3px;">📍 ${ord.deliveryAddress}</div>
-                    <div style="font-size:12px; color:#059669; margin-top:4px; font-weight:700;">
-                      💳 Payment Account: <strong>${ord.paymentAccount || 'customer@okaxis (Same UPI Account)'}</strong>
-                    </div>
-                    ${ord.isCancelled ? `
-                      <div style="font-size:12px; color:#059669; background:#ecfdf5; border:1px solid #a7f3d0; padding:8px 12px; border-radius:8px; margin-top:6px; font-weight:700; line-height:1.45;">
-                        ⚡ <strong>Automatic Reversal Confirmed:</strong> Exactly ₹${ord.total.toFixed(2)} credited back to your same account (<strong>${ord.paymentAccount || 'customer@okaxis'}</strong>).<br>
-                        <span style="font-size:11px; color:#047857;">Bank UTR: <strong>${ord.refundDetails?.refundUtr || 'UTR948201840291'}</strong> • Refund ID: <strong>${ord.refundDetails?.refundId || 'REF-NPCI-84920'}</strong></span>
-                      </div>
-                    ` : ''}
-                  </div>
-
-                  <div class="history-card-footer">
-                    <div>
-                      <span class="history-total-price">₹${ord.total.toFixed(2)}</span>
-                      ${ord.isCancelled ? `
-                        <span class="history-farmer-pill" style="margin-left:8px; background:#fef2f2; color:#991b1b; border:1px solid #fecaca;">
-                          🛡️ Escrow Unreserved: ₹${ord.farmerShare.toFixed(2)} released safely
-                        </span>
-                      ` : `
-                        <span class="history-farmer-pill" style="margin-left:8px;">
-                          🌾 ₹${ord.farmerShare.toFixed(2)} (${ord.farmerPercent}%) to Farmer
-                        </span>
-                      `}
-                    </div>
-                    <div class="history-actions-row">
-                      ${!ord.isCancelled ? `
-                        ${ord.isLive || ord.status.includes('Delivery') ? `
-                          <button class="btn-primary" style="padding:6px 14px; font-size:12px;" onclick="window.marketApp.closeModal('order-history-modal'); window.marketApp.openTrackOrderModal('${ord.id}')">
-                            🛵 Track Live
-                          </button>
-                        ` : ''}
-                        <button class="btn-order-slip" style="padding:6px 12px; font-size:12px;" onclick="window.marketApp.closeModal('order-history-modal'); window.marketApp.openPosModal();">
-                          🧾 View Bill
-                        </button>
-                        <button class="btn-danger-outline" style="padding:6px 12px; font-size:12px;" onclick="window.marketApp.openCancelConfirmationModal('${ord.id}')">
-                          ❌ Cancel Order
-                        </button>
-                      ` : `
-                        <button class="btn-primary" style="padding:6px 12px; font-size:12px; background:#059669;" onclick="window.marketApp.closeModal('order-history-modal'); window.marketApp.openRefundReceiptModal('${ord.id}')">
-                          🧾 Refund Receipt
-                        </button>
-                      `}
-                      <button class="btn-primary" style="padding:6px 12px; font-size:12px; background:#0c831f;" onclick="window.marketApp.reorderFromHistory('${ord.id}')">
-                        🔄 Reorder
-                      </button>
-                    </div>
+                  <div class="zepto-order-total-block">
+                    <span>₹${o.total.toFixed(2)}</span>
+                    <span style="color:#94a3b8; font-size:16px;">›</span>
                   </div>
                 </div>
-              `).join('')}
+
+                <!-- Placed date subtext -->
+                <div class="zepto-order-placed-date">
+                  ${o.date}
+                </div>
+
+                <!-- Products Thumbnail Strip matching Image 3 -->
+                <div class="zepto-order-thumbs-strip">
+                  ${o.images.map(img => `
+                    <img src="${img}" class="zepto-order-thumb-img" alt="Item" onerror="this.src='assets/cat_all_products.jpg'" />
+                  `).join('')}
+                </div>
+
+                <!-- Order Again Action matching Image 3 -->
+                <div class="zepto-order-card-divider">
+                  <button type="button" class="btn-zepto-order-again" onclick="window.marketApp.reorderItems('${o.id}')">
+                    Order Again
+                  </button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+
+          <!-- Bottom Floating Unlock Free Delivery Banner matching Image 3 -->
+          <div class="zepto-bottom-floating-pill">
+            <div class="floating-pill-content">
+              <span class="floating-pill-icon">🚀</span>
+              <div>
+                <div style="font-size:0.85rem; font-weight:800; color:#ffffff;">Unlock free delivery</div>
+                <div style="font-size:0.75rem; color:#94a3b8;">Shop for ₹99 • Instant 12-Min Delivery</div>
+              </div>
             </div>
+            <span class="floating-pill-badge">Offers ⌃</span>
           </div>
         `;
       }
-      this.openModal('order-history-modal');
+
+      if (modal) {
+        modal.classList.remove('hidden');
+        document.body.classList.add('has-modal-open');
+      }
+    }
+
+    reorderItems(orderId) {
+      sound.playSuccessSound();
+      this.modifyCartQty('prod_fruit_banana', 1);
+      this.modifyCartQty('prod_tomato_country', 1);
+      this.showToast('✨ Previous order items added to your basket! 🛒', 'success');
+      this.closeModal('order-history-modal');
+      this.openCart();
+    }
+
+    openWishlistModal() {
+      this.showToast('❤️ Saved to Your Wishlist (12 items saved)', 'info');
+    }
+
+    focusSearchInput() {
+      this.closeModal('categories-modal');
+      const input = document.getElementById('search-input') || document.querySelector('.search-input');
+      if (input) {
+        input.focus();
+        input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    openWhatsAppChat() {
+      window.open('https://wa.me/919848023411?text=Hi%20FRESHCUTS%20Support,%20I%20need%20assistance%20with%20my%20farm%20order.', '_blank');
+    }
+
+    showWalletDetails() {
+      const credits = this.userWalletCredits || 150;
+      this.showToast(`👛 Farm Cash Balance: ₹${credits}.00 (Auto-applied at checkout)`, 'info');
+    }
+
+    addWalletBalancePrompt() {
+      const amt = prompt('Enter amount to add to Farm Cash Wallet (₹):', '500');
+      if (amt && !isNaN(amt) && Number(amt) > 0) {
+        this.userWalletCredits = (this.userWalletCredits || 150) + Number(amt);
+        this.showToast(`🎉 ₹${amt} credited to Farm Cash Wallet successfully!`, 'success');
+        this.openUserProfileModal();
+      }
+    }
+
+    openReviewAndEarnModal() {
+      this.showToast('⭐ Rate your delivery & earn ₹25 Farm Cash!', 'info');
+    }
+
+    openGiftCardsModal() {
+      this.showToast('💳 Send a Fresh Harvest E-Gift Card to friends!', 'info');
+    }
+
+    toggleProfileAddressesDrawer() {
+      const d = document.getElementById('zepto-addresses-drawer');
+      if (d) d.classList.toggle('hidden');
+    }
+
+    openEditProfileModal() {
+      const current = this.user.name || 'Pradeep';
+      const newName = prompt('Enter your profile name:', current);
+      if (newName && newName.trim()) {
+        this.updateCustomerNameLive(newName.trim());
+        this.showToast(`✓ Profile name updated to ${newName.trim()}!`, 'success');
+        this.openUserProfileModal();
+      }
+    }
+
+    openPaymentManagementModal() {
+      this.showToast('💳 Linked Payment Methods: UPI Google Pay / PhonePe active', 'info');
+    }
+
+    openSuggestProductsModal() {
+      prompt('Which farm product or grocery item would you like us to add?', 'Organic Country Mangoes');
+      this.showToast('🙏 Thank you for your suggestion! Our farm team will review it.', 'success');
+    }
+
+    toggleNotifications() {
+      this.showToast('🔔 Daily Farm Morning Delivery notifications: ENABLED', 'info');
     }
 
     openTrackOrderModal(orderId) {

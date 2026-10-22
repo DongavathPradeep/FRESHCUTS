@@ -52,7 +52,7 @@
   <meta http-equiv="Expires" content="0">
   
   <link rel="icon" type="image/png" href="assets/blinkit_logo.png">
-  <link rel="stylesheet" href="style.css?v=5.7">
+  <link rel="stylesheet" href="style.css?v=5.8">
 </head>
 <body class="light-theme">
   <!-- Blinkit Official Pixel-Matched Header (Exact to user reference screenshot) -->
@@ -970,24 +970,20 @@
   <!-- MODAL 6: ORDER HISTORY                                         -->
   <!-- ============================================================== -->
   <div class="custom-modal-backdrop hidden" id="order-history-modal" onclick="window.marketApp.closeModalOnBackdrop(event, 'order-history-modal')">
-    <div class="custom-modal-dialog modal-wide" onclick="event.stopPropagation()">
-      <div class="custom-modal-header">
-        <div class="modal-heading-group">
-          <span class="modal-badge-icon">📜</span>
-          <div>
-            <h3>Your Order History</h3>
-            <p class="modal-subheading">Past Orders, Itemized Bills & Official Tax Invoices</p>
-          </div>
-        </div>
-        <button class="modal-btn-close" onclick="window.marketApp.closeModal('order-history-modal')">✕</button>
+    <div class="custom-modal-dialog zepto-orders-dialog" onclick="event.stopPropagation()">
+      <!-- Sticky Header matching Image 3: < Your Orders -->
+      <div class="zepto-orders-header">
+        <button type="button" class="zepto-nav-back-btn" onclick="window.marketApp.closeModal('order-history-modal')" title="Back">
+          ‹
+        </button>
+        <h2 class="zepto-orders-title">Your Orders</h2>
       </div>
-      <div class="custom-modal-body" id="order-history-modal-content">
-        <!-- Rendered dynamically by app.js -->
+      <div class="zepto-orders-body" id="order-history-modal-content">
+        <!-- Rendered dynamically by app.js matching Image 3 cards -->
       </div>
     </div>
   </div>
 
-  <!-- ============================================================== -->
   <!-- MODAL 7: TRACK ORDER                                           -->
   <!-- ============================================================== -->
   <div class="custom-modal-backdrop hidden" id="track-order-modal" onclick="window.marketApp.closeModalOnBackdrop(event, 'track-order-modal')">
@@ -1156,140 +1152,179 @@
   <!-- MODAL: CATEGORIES SELECTION MODAL (Requirement 2)              -->
   <!-- ============================================================== -->
   <div class="custom-modal-backdrop hidden" id="categories-modal" onclick="window.marketApp.closeModalOnBackdrop(event, 'categories-modal')">
-    <div class="custom-modal-dialog modal-wide categories-modal-dialog" onclick="event.stopPropagation()">
-      <div class="custom-modal-header">
-        <div class="modal-heading-group">
-          <span class="modal-badge-icon">📁</span>
+    <div class="custom-modal-dialog zepto-categories-dialog" onclick="event.stopPropagation()">
+      <!-- Top Sticky Header matching Image 1: < All Categories  ❤️ 🔍 -->
+      <div class="zepto-cat-header">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <button type="button" class="zepto-nav-back-btn" onclick="window.marketApp.closeModal('categories-modal')" title="Back">
+            ‹
+          </button>
+          <h2 class="zepto-cat-modal-title">All Categories</h2>
+        </div>
+        <div class="zepto-header-actions">
+          <button type="button" class="zepto-header-icon-btn" onclick="window.marketApp.openWishlistModal()" title="Wishlist">
+            ♡
+          </button>
+          <button type="button" class="zepto-header-icon-btn" onclick="window.marketApp.focusSearchInput()" title="Search">
+            🔍
+          </button>
+        </div>
+      </div>
+
+      <!-- Categories Body with 2 Sections matching Image 1 -->
+      <div class="zepto-cat-body">
+        
+        <!-- SECTION 1: Grocery & Kitchen -->
+        <h3 class="zepto-cat-section-heading">Grocery & Kitchen</h3>
+        <div class="zepto-cat-grid">
+          <!-- 1. Fruits & Vegetables -->
+          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromModal('vegetables')">
+            <div class="zepto-cat-img-box">
+              <img src="assets/mobile_tiles/tile_veg_fruits.png" alt="Fruits & Vegetables" />
+            </div>
+            <span class="zepto-cat-name">Fruits &<br>Vegetables</span>
+          </div>
+
+          <!-- 2. Dairy, Bread & Eggs -->
+          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromModal('dairy-morning')">
+            <div class="zepto-cat-img-box">
+              <img src="assets/mobile_tiles/tile_dairy_bread_eggs.png" alt="Dairy, Bread & Eggs" />
+            </div>
+            <span class="zepto-cat-name">Dairy, Bread<br>& Eggs</span>
+          </div>
+
+          <!-- 3. Atta, Rice, Oil & Dals -->
+          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromModal('atta-rice-dal')">
+            <div class="zepto-cat-img-box">
+              <img src="assets/mobile_tiles/tile_atta_rice_dal.png" alt="Atta, Rice, Oil & Dals" />
+            </div>
+            <span class="zepto-cat-name">Atta, Rice,<br>Oil & Dals</span>
+          </div>
+
+          <!-- 4. Meat, Fish & Eggs -->
+          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromModal('rayalaseema')">
+            <div class="zepto-cat-img-box">
+              <img src="assets/mobile_tiles/tile_chicken_meat_fish.png" alt="Meat, Fish & Eggs" />
+            </div>
+            <span class="zepto-cat-name">Meat, Fish<br>& Eggs</span>
+          </div>
+
+          <!-- 5. Masala & Dry Fruits -->
+          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromModal('kitchen-spices')">
+            <div class="zepto-cat-img-box">
+              <img src="assets/mobile_tiles/tile_oil_ghee_masala.png" alt="Masala & Dry Fruits" />
+            </div>
+            <span class="zepto-cat-name">Masala &<br>Dry Fruits</span>
+          </div>
+
+          <!-- 6. Breakfast & Sauces -->
+          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromModal('ready-to-cook')">
+            <div class="zepto-cat-img-box">
+              <img src="assets/mobile_tiles/tile_sauces_spreads.png" alt="Breakfast & Sauces" />
+            </div>
+            <span class="zepto-cat-name">Breakfast &<br>Sauces</span>
+          </div>
+
+          <!-- 7. Packaged Food -->
+          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromModal('ready-to-cook')">
+            <div class="zepto-cat-img-box">
+              <img src="assets/mobile_tiles/tile_instant_food.png" alt="Packaged Food" />
+            </div>
+            <span class="zepto-cat-name">Packaged<br>Food</span>
+          </div>
+
+          <!-- 8. Organics & Farm Specials -->
+          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromModal('leaf-items')">
+            <div class="zepto-cat-img-box">
+              <img src="assets/cat_vegetables.jpg" alt="Leaf Items" />
+            </div>
+            <span class="zepto-cat-name">Greens &<br>Leaf Items</span>
+          </div>
+        </div>
+
+        <!-- SECTION 2: Snacks & Drinks -->
+        <h3 class="zepto-cat-section-heading">Snacks & Drinks</h3>
+        <div class="zepto-cat-grid">
+          <!-- 1. Farm Cafe / Zepto Cafe -->
+          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromModal('dairy-morning')">
+            <div class="zepto-cat-img-box">
+              <img src="assets/prod_rtc_sambar_curry.jpg" alt="Farm Cafe" />
+            </div>
+            <span class="zepto-cat-name">Farm<br>Cafe</span>
+          </div>
+
+          <!-- 2. Tea, Coffee & More -->
+          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromModal('oil-ghee-masala')">
+            <div class="zepto-cat-img-box">
+              <img src="assets/mobile_tiles/tile_tea_coffee.png" alt="Tea, Coffee & More" />
+            </div>
+            <span class="zepto-cat-name">Tea, Coffee<br>& More</span>
+          </div>
+
+          <!-- 3. Ice Creams & More -->
+          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromModal('dairy-morning')">
+            <div class="zepto-cat-img-box">
+              <img src="assets/mobile_tiles/tile_icecreams.png" alt="Ice Creams & More" />
+            </div>
+            <span class="zepto-cat-name">Ice Creams<br>& More</span>
+          </div>
+
+          <!-- 4. Frozen Food -->
+          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromModal('ready-to-cook')">
+            <div class="zepto-cat-img-box">
+              <img src="assets/mobile_tiles/tile_instant_food.png" alt="Frozen Food" />
+            </div>
+            <span class="zepto-cat-name">Frozen<br>Food</span>
+          </div>
+
+          <!-- 5. Sweet Cravings -->
+          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromModal('snacks-bakery')">
+            <div class="zepto-cat-img-box">
+              <img src="assets/mobile_tiles/tile_sweets_chocolates.png" alt="Sweet Cravings" />
+            </div>
+            <span class="zepto-cat-name">Sweet<br>Cravings</span>
+          </div>
+
+          <!-- 6. Cold Drinks & Juice -->
+          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromModal('fresh-fruits')">
+            <div class="zepto-cat-img-box">
+              <img src="assets/mobile_tiles/tile_drinks_juices.png" alt="Cold Drinks & Juice" />
+            </div>
+            <span class="zepto-cat-name">Cold Drinks<br>& Juice</span>
+          </div>
+
+          <!-- 7. Munchies -->
+          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromModal('snacks-bakery')">
+            <div class="zepto-cat-img-box">
+              <img src="assets/mobile_tiles/tile_chips_namkeen.png" alt="Munchies" />
+            </div>
+            <span class="zepto-cat-name">Munchies</span>
+          </div>
+
+          <!-- 8. Biscuits & Cookies -->
+          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromModal('snacks-bakery')">
+            <div class="zepto-cat-img-box">
+              <img src="assets/mobile_tiles/tile_bakery_biscuits.png" alt="Biscuits & Cookies" />
+            </div>
+            <span class="zepto-cat-name">Biscuits &<br>Cookies</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Floating Free Delivery Pill at bottom matching Image 1 & 3 -->
+      <div class="zepto-bottom-floating-pill">
+        <div class="floating-pill-content">
+          <span class="floating-pill-icon">🚀</span>
           <div>
-            <h3>All Farm Categories</h3>
-            <p class="modal-subheading">Choose a department to browse fresh farm harvest</p>
+            <div style="font-size:0.85rem; font-weight:800; color:#ffffff;">Unlock Free Delivery</div>
+            <div style="font-size:0.75rem; color:#94a3b8;">Shop for ₹99 • Direct Farm-to-Fork</div>
           </div>
         </div>
-        <button class="modal-btn-close" onclick="window.marketApp.closeModal('categories-modal')">✕</button>
+        <span class="floating-pill-badge">Offers ⌃</span>
       </div>
-      <div class="custom-modal-body">
-        <div class="categories-picker-grid">
-          <!-- 1. Ready to Cook -->
-          <div class="cat-picker-card" onclick="window.marketApp.selectCategoryFromModal('ready-to-cook')">
-            <div class="cat-picker-icon-box" style="background:#fee2e2;">🍲</div>
-            <div class="cat-picker-details">
-              <h4 class="cat-picker-title">Ready to Cook Items</h4>
-              <p class="cat-picker-desc">Curry kits, chopped veggies, sambar mix & fresh paneer packs</p>
-            </div>
-            <span class="cat-picker-arrow">›</span>
-          </div>
-
-          <!-- 2. Kitchen Spices & Masala Items -->
-          <div class="cat-picker-card" onclick="window.marketApp.selectCategoryFromModal('kitchen-spices')">
-            <div class="cat-picker-icon-box" style="background:#ffedd5;">🌶️</div>
-            <div class="cat-picker-details">
-              <h4 class="cat-picker-title">Masala & Spice Items</h4>
-              <p class="cat-picker-desc">Pure turmeric, chilli powder, whole jeera, mustard & garam masala</p>
-            </div>
-            <span class="cat-picker-arrow">›</span>
-          </div>
-
-          <!-- 3. Fresh Fruits -->
-          <div class="cat-picker-card" onclick="window.marketApp.selectCategoryFromModal('fresh-fruits')">
-            <div class="cat-picker-icon-box" style="background:#fef3c7;">🍎</div>
-            <div class="cat-picker-details">
-              <h4 class="cat-picker-title">Fresh Fruits</h4>
-              <p class="cat-picker-desc">Bananas, sweet papaya, crisp apples, lemons & seasonal fruits</p>
-            </div>
-            <span class="cat-picker-arrow">›</span>
-          </div>
-
-          <!-- 4. Leaf Items & Fresh Greens -->
-          <div class="cat-picker-card" onclick="window.marketApp.selectCategoryFromModal('leaf-items')">
-            <div class="cat-picker-icon-box" style="background:#dcfce7;">🥬</div>
-            <div class="cat-picker-details">
-              <h4 class="cat-picker-title">Leaf Items & Fresh Greens</h4>
-              <p class="cat-picker-desc">Palak, methi, fresh coriander, mint leaves & gongura</p>
-            </div>
-            <span class="cat-picker-arrow">›</span>
-          </div>
-
-          <!-- 5. Daily Vegetables -->
-          <div class="cat-picker-card" onclick="window.marketApp.selectCategoryFromModal('vegetables')">
-            <div class="cat-picker-icon-box" style="background:#f1f5f9;">🥕</div>
-            <div class="cat-picker-details">
-              <h4 class="cat-picker-title">Daily Farm Vegetables</h4>
-              <p class="cat-picker-desc">Country tomatoes, onions, potatoes, green chillies & brinjal</p>
-            </div>
-            <span class="cat-picker-arrow">›</span>
-          </div>
-
-          <!-- 6. Traditional Specials -->
-          <div class="cat-picker-card" onclick="window.marketApp.selectCategoryFromModal('rayalaseema')">
-            <div class="cat-picker-icon-box" style="background:#fef2f2;">🌾</div>
-            <div class="cat-picker-details">
-              <h4 class="cat-picker-title">Traditional Specials</h4>
-              <p class="cat-picker-desc">Rayalaseema ragi flour, jowar, country eggs & stone-ground mixes</p>
-            </div>
-            <span class="cat-picker-arrow">›</span>
-          </div>
-
-          <!-- 7. Daily Fresh Dairy -->
-          <div class="cat-picker-card" onclick="window.marketApp.selectCategoryFromModal('dairy-morning')">
-            <div class="cat-picker-icon-box" style="background:#e0f2fe;">🥛</div>
-            <div class="cat-picker-details">
-              <h4 class="cat-picker-title">Fresh Dairy & Morning Essentials</h4>
-              <p class="cat-picker-desc">Pure cow milk, clay pot meegada curd & village paneer</p>
-            </div>
-            <span class="cat-picker-arrow">›</span>
-          </div>
-
-          <!-- 8. Atta, Rice & Dal -->
-          <div class="cat-picker-card" onclick="window.marketApp.selectCategoryFromModal('atta-rice-dal')">
-            <div class="cat-picker-icon-box" style="background:#fef9c3;">🍚</div>
-            <div class="cat-picker-details">
-              <h4 class="cat-picker-title">Atta, Rice & Staples</h4>
-              <p class="cat-picker-desc">Stone-ground wheat atta, Sona Masoori raw rice & unpolished dal</p>
-            </div>
-            <span class="cat-picker-arrow">›</span>
-          </div>
-
-          <!-- 9. Pure Oils & Ghee -->
-          <div class="cat-picker-card" onclick="window.marketApp.selectCategoryFromModal('oil-ghee-masala')">
-            <div class="cat-picker-icon-box" style="background:#fffbeb;">🛢️</div>
-            <div class="cat-picker-details">
-              <h4 class="cat-picker-title">Pure Cold-Pressed Oils & Ghee</h4>
-              <p class="cat-picker-desc">Wood-pressed groundnut oil, virgin sesame & desi cow ghee</p>
-            </div>
-            <span class="cat-picker-arrow">›</span>
-          </div>
-
-          <!-- 10. Bakery & Snacks -->
-          <div class="cat-picker-card" onclick="window.marketApp.selectCategoryFromModal('snacks-bakery')">
-            <div class="cat-picker-icon-box" style="background:#fae8ff;">🍪</div>
-            <div class="cat-picker-details">
-              <h4 class="cat-picker-title">Bakery & Healthy Snacks</h4>
-              <p class="cat-picker-desc">Whole wheat bread, crunchy rusks & roasted millet snacks</p>
-            </div>
-            <span class="cat-picker-arrow">›</span>
-          </div>
-
-          <!-- 11. Fresh Deals -->
-          <div class="cat-picker-card" onclick="window.marketApp.selectCategoryFromModal('fresh-deals')">
-            <div class="cat-picker-icon-box" style="background:#ecfdf5;">🏷️</div>
-            <div class="cat-picker-details">
-              <h4 class="cat-picker-title">Fresh Deals & Discounts</h4>
-              <p class="cat-picker-desc">Direct farm value combos and daily discounted produce</p>
-            </div>
-            <span class="cat-picker-arrow">›</span>
-          </div>
-
-          <!-- 12. All Items -->
-          <div class="cat-picker-card" onclick="window.marketApp.selectCategoryFromModal('all')">
-            <div class="cat-picker-icon-box" style="background:#f8fafc;">🛒</div>
-            <div class="cat-picker-details">
-              <h4 class="cat-picker-title">All Produce & Grocery</h4>
-              <p class="cat-picker-desc">View complete catalog of 100% farm-direct items</p>
-            </div>
-            <span class="cat-picker-arrow">›</span>
-          </div>
-        </div>
-      </div>
+    </div>
+  </div>
     </div>
   </div>
 
@@ -1350,6 +1385,6 @@
 
   <!-- Audio Chimes & Synthesis (Web Audio API in app.js) -->
   
-  <script src="app.js?v=5.7"></script>
+  <script src="app.js?v=5.8"></script>
 </body>
 </html>
