@@ -52,7 +52,7 @@
   <meta http-equiv="Expires" content="0">
   
   <link rel="icon" type="image/png" href="assets/blinkit_logo.png">
-  <link rel="stylesheet" href="style.css?v=5.6">
+  <link rel="stylesheet" href="style.css?v=5.7">
 </head>
 <body class="light-theme">
   <!-- Blinkit Official Pixel-Matched Header (Exact to user reference screenshot) -->
@@ -354,10 +354,8 @@
             </button>
           </div>
 
-          <!-- Active Filter Badges Container -->
-          <div class="active-filter-indicators hidden" id="active-filter-indicators">
-            <!-- Populated dynamically -->
-          </div>
+          <!-- Active Filter Badges Container (Removed as requested) -->
+          <div class="active-filter-indicators hidden" id="active-filter-indicators" style="display:none !important;"></div>
 
           <!-- Responsive Product Grid -->
           <div class="products-grid" id="products-grid">
@@ -657,37 +655,27 @@
         <span class="item-chevron">›</span>
       </button>
 
-      <!-- 3. Track Order -->
-      <button class="side-nav-item-btn item-track-highlight" onclick="window.marketApp.openTrackOrderModal()">
-        <span class="item-icon">🛵</span>
+      <!-- 3. Categories (Requirement 2: Shows ready to cook, masala, fruits, etc.) -->
+      <button class="side-nav-item-btn" onclick="window.marketApp.openCategoriesModal()">
+        <span class="item-icon">📁</span>
         <div class="item-content">
-          <span class="item-title">Track Order</span>
-          <span class="item-desc">Live 23-Min Delivery GPS & Status</span>
-        </div>
-        <span class="item-tag live-tag">Live ⚡</span>
-      </button>
-
-      <!-- 3b. Delivery Location & Address -->
-      <button class="side-nav-item-btn" onclick="window.marketApp.closeSideNav(); window.marketApp.openAddressModal();">
-        <span class="item-icon">📍</span>
-        <div class="item-content">
-          <span class="item-title">Delivery Address</span>
-          <span class="item-desc" id="side-nav-address-txt">Road #12, Banjara Hills, Hyderabad ▾</span>
+          <span class="item-title">Categories</span>
+          <span class="item-desc">Ready to Cook, Spices, Fruits, Veggies & More</span>
         </div>
         <span class="item-chevron">›</span>
       </button>
 
-      <!-- 4. Order History -->
-      <button class="side-nav-item-btn" onclick="window.marketApp.openOrderHistoryModal()">
-        <span class="item-icon">📜</span>
+      <!-- 4. Refer & Earn (Requirement 3: Added to main menu alongside About Us, Products) -->
+      <button class="side-nav-item-btn item-highlight" onclick="window.marketApp.openReferralModal()">
+        <span class="item-icon">🎁</span>
         <div class="item-content">
-          <span class="item-title">Order History</span>
-          <span class="item-desc">Past Orders, Tax Invoices & Receipts</span>
+          <span class="item-title">Refer & Earn</span>
+          <span class="item-desc">Invite Friends & Earn ₹100 Free Farm Cash</span>
         </div>
-        <span class="item-chevron">›</span>
+        <span class="item-tag" style="background:#fef08a; color:#854d0e; font-weight:700;">Earn ₹100</span>
       </button>
 
-      <!-- 3. Enquiry Form -->
+      <!-- 5. Enquiry Form -->
       <button class="side-nav-item-btn" onclick="window.marketApp.openEnquiryModal()">
         <span class="item-icon">📝</span>
         <div class="item-content">
@@ -697,7 +685,7 @@
         <span class="item-chevron">›</span>
       </button>
 
-      <!-- 4. Register -->
+      <!-- 6. Register Account -->
       <button class="side-nav-item-btn" onclick="window.marketApp.openRegisterModal()">
         <span class="item-icon">👤</span>
         <div class="item-content">
@@ -707,7 +695,7 @@
         <span class="item-chevron">›</span>
       </button>
 
-      <!-- 5. Subscription -->
+      <!-- 7. Subscription -->
       <button class="side-nav-item-btn item-highlight" onclick="window.marketApp.openSubscriptionModal()">
         <span class="item-icon">📦</span>
         <div class="item-content">
@@ -1163,8 +1151,205 @@
 
   <div id="toast-container" class="toast-container"></div>
 
+  
+  <!-- ============================================================== -->
+  <!-- MODAL: CATEGORIES SELECTION MODAL (Requirement 2)              -->
+  <!-- ============================================================== -->
+  <div class="custom-modal-backdrop hidden" id="categories-modal" onclick="window.marketApp.closeModalOnBackdrop(event, 'categories-modal')">
+    <div class="custom-modal-dialog modal-wide categories-modal-dialog" onclick="event.stopPropagation()">
+      <div class="custom-modal-header">
+        <div class="modal-heading-group">
+          <span class="modal-badge-icon">📁</span>
+          <div>
+            <h3>All Farm Categories</h3>
+            <p class="modal-subheading">Choose a department to browse fresh farm harvest</p>
+          </div>
+        </div>
+        <button class="modal-btn-close" onclick="window.marketApp.closeModal('categories-modal')">✕</button>
+      </div>
+      <div class="custom-modal-body">
+        <div class="categories-picker-grid">
+          <!-- 1. Ready to Cook -->
+          <div class="cat-picker-card" onclick="window.marketApp.selectCategoryFromModal('ready-to-cook')">
+            <div class="cat-picker-icon-box" style="background:#fee2e2;">🍲</div>
+            <div class="cat-picker-details">
+              <h4 class="cat-picker-title">Ready to Cook Items</h4>
+              <p class="cat-picker-desc">Curry kits, chopped veggies, sambar mix & fresh paneer packs</p>
+            </div>
+            <span class="cat-picker-arrow">›</span>
+          </div>
+
+          <!-- 2. Kitchen Spices & Masala Items -->
+          <div class="cat-picker-card" onclick="window.marketApp.selectCategoryFromModal('kitchen-spices')">
+            <div class="cat-picker-icon-box" style="background:#ffedd5;">🌶️</div>
+            <div class="cat-picker-details">
+              <h4 class="cat-picker-title">Masala & Spice Items</h4>
+              <p class="cat-picker-desc">Pure turmeric, chilli powder, whole jeera, mustard & garam masala</p>
+            </div>
+            <span class="cat-picker-arrow">›</span>
+          </div>
+
+          <!-- 3. Fresh Fruits -->
+          <div class="cat-picker-card" onclick="window.marketApp.selectCategoryFromModal('fresh-fruits')">
+            <div class="cat-picker-icon-box" style="background:#fef3c7;">🍎</div>
+            <div class="cat-picker-details">
+              <h4 class="cat-picker-title">Fresh Fruits</h4>
+              <p class="cat-picker-desc">Bananas, sweet papaya, crisp apples, lemons & seasonal fruits</p>
+            </div>
+            <span class="cat-picker-arrow">›</span>
+          </div>
+
+          <!-- 4. Leaf Items & Fresh Greens -->
+          <div class="cat-picker-card" onclick="window.marketApp.selectCategoryFromModal('leaf-items')">
+            <div class="cat-picker-icon-box" style="background:#dcfce7;">🥬</div>
+            <div class="cat-picker-details">
+              <h4 class="cat-picker-title">Leaf Items & Fresh Greens</h4>
+              <p class="cat-picker-desc">Palak, methi, fresh coriander, mint leaves & gongura</p>
+            </div>
+            <span class="cat-picker-arrow">›</span>
+          </div>
+
+          <!-- 5. Daily Vegetables -->
+          <div class="cat-picker-card" onclick="window.marketApp.selectCategoryFromModal('vegetables')">
+            <div class="cat-picker-icon-box" style="background:#f1f5f9;">🥕</div>
+            <div class="cat-picker-details">
+              <h4 class="cat-picker-title">Daily Farm Vegetables</h4>
+              <p class="cat-picker-desc">Country tomatoes, onions, potatoes, green chillies & brinjal</p>
+            </div>
+            <span class="cat-picker-arrow">›</span>
+          </div>
+
+          <!-- 6. Traditional Specials -->
+          <div class="cat-picker-card" onclick="window.marketApp.selectCategoryFromModal('rayalaseema')">
+            <div class="cat-picker-icon-box" style="background:#fef2f2;">🌾</div>
+            <div class="cat-picker-details">
+              <h4 class="cat-picker-title">Traditional Specials</h4>
+              <p class="cat-picker-desc">Rayalaseema ragi flour, jowar, country eggs & stone-ground mixes</p>
+            </div>
+            <span class="cat-picker-arrow">›</span>
+          </div>
+
+          <!-- 7. Daily Fresh Dairy -->
+          <div class="cat-picker-card" onclick="window.marketApp.selectCategoryFromModal('dairy-morning')">
+            <div class="cat-picker-icon-box" style="background:#e0f2fe;">🥛</div>
+            <div class="cat-picker-details">
+              <h4 class="cat-picker-title">Fresh Dairy & Morning Essentials</h4>
+              <p class="cat-picker-desc">Pure cow milk, clay pot meegada curd & village paneer</p>
+            </div>
+            <span class="cat-picker-arrow">›</span>
+          </div>
+
+          <!-- 8. Atta, Rice & Dal -->
+          <div class="cat-picker-card" onclick="window.marketApp.selectCategoryFromModal('atta-rice-dal')">
+            <div class="cat-picker-icon-box" style="background:#fef9c3;">🍚</div>
+            <div class="cat-picker-details">
+              <h4 class="cat-picker-title">Atta, Rice & Staples</h4>
+              <p class="cat-picker-desc">Stone-ground wheat atta, Sona Masoori raw rice & unpolished dal</p>
+            </div>
+            <span class="cat-picker-arrow">›</span>
+          </div>
+
+          <!-- 9. Pure Oils & Ghee -->
+          <div class="cat-picker-card" onclick="window.marketApp.selectCategoryFromModal('oil-ghee-masala')">
+            <div class="cat-picker-icon-box" style="background:#fffbeb;">🛢️</div>
+            <div class="cat-picker-details">
+              <h4 class="cat-picker-title">Pure Cold-Pressed Oils & Ghee</h4>
+              <p class="cat-picker-desc">Wood-pressed groundnut oil, virgin sesame & desi cow ghee</p>
+            </div>
+            <span class="cat-picker-arrow">›</span>
+          </div>
+
+          <!-- 10. Bakery & Snacks -->
+          <div class="cat-picker-card" onclick="window.marketApp.selectCategoryFromModal('snacks-bakery')">
+            <div class="cat-picker-icon-box" style="background:#fae8ff;">🍪</div>
+            <div class="cat-picker-details">
+              <h4 class="cat-picker-title">Bakery & Healthy Snacks</h4>
+              <p class="cat-picker-desc">Whole wheat bread, crunchy rusks & roasted millet snacks</p>
+            </div>
+            <span class="cat-picker-arrow">›</span>
+          </div>
+
+          <!-- 11. Fresh Deals -->
+          <div class="cat-picker-card" onclick="window.marketApp.selectCategoryFromModal('fresh-deals')">
+            <div class="cat-picker-icon-box" style="background:#ecfdf5;">🏷️</div>
+            <div class="cat-picker-details">
+              <h4 class="cat-picker-title">Fresh Deals & Discounts</h4>
+              <p class="cat-picker-desc">Direct farm value combos and daily discounted produce</p>
+            </div>
+            <span class="cat-picker-arrow">›</span>
+          </div>
+
+          <!-- 12. All Items -->
+          <div class="cat-picker-card" onclick="window.marketApp.selectCategoryFromModal('all')">
+            <div class="cat-picker-icon-box" style="background:#f8fafc;">🛒</div>
+            <div class="cat-picker-details">
+              <h4 class="cat-picker-title">All Produce & Grocery</h4>
+              <p class="cat-picker-desc">View complete catalog of 100% farm-direct items</p>
+            </div>
+            <span class="cat-picker-arrow">›</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- MODAL: REFER & EARN MODAL (Requirement 3: In Main Menu)         -->
+  <!-- ============================================================== -->
+  <div class="custom-modal-backdrop hidden" id="referral-modal" onclick="window.marketApp.closeModalOnBackdrop(event, 'referral-modal')">
+    <div class="custom-modal-dialog" onclick="event.stopPropagation()">
+      <div class="custom-modal-header" style="background:#f0fdf4; border-bottom:1px solid #bbf7d0;">
+        <div class="modal-heading-group">
+          <span class="modal-badge-icon" style="background:#dcfce7; color:#16a34a;">🎁</span>
+          <div>
+            <h3 style="color:#14532d;">Refer & Earn ₹100</h3>
+            <p class="modal-subheading" style="color:#166534;">Invite friends to FRESHCUTS & earn free farm cash</p>
+          </div>
+        </div>
+        <button class="modal-btn-close" onclick="window.marketApp.closeModal('referral-modal')">✕</button>
+      </div>
+      <div class="custom-modal-body" style="padding:20px;">
+        <div class="referral-lead-box" style="background:#ecfdf5; border:1px solid #a7f3d0; border-radius:12px; padding:16px; margin-bottom:16px; text-align:center;">
+          <div style="font-size:0.75rem; font-weight:800; color:#059669; text-transform:uppercase; letter-spacing:0.5px;">YOUR EXCLUSIVE REFERRAL CODE</div>
+          <div style="font-size:1.8rem; font-weight:800; color:#064e3b; letter-spacing:2px; margin:8px 0;" id="main-ref-code">JAYA-FARM-9848</div>
+          <button type="button" class="btn-primary-sm" onclick="window.marketApp.copyReferralCode()" style="padding:6px 16px; font-size:0.85rem; font-weight:700;">
+            📋 Copy Referral Code
+          </button>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:18px;">
+          <div style="display:flex; align-items:flex-start; gap:12px;">
+            <div style="width:28px; height:28px; border-radius:50%; background:#dcfce7; color:#16a34a; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0;">1</div>
+            <div>
+              <div style="font-size:0.9rem; font-weight:700; color:#0f172a;">Share with Friends & Neighbors</div>
+              <div style="font-size:0.8rem; color:#64748b;">Send your invite code via WhatsApp, SMS, or social media.</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:flex-start; gap:12px;">
+            <div style="width:28px; height:28px; border-radius:50%; background:#dcfce7; color:#16a34a; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0;">2</div>
+            <div>
+              <div style="font-size:0.9rem; font-weight:700; color:#0f172a;">They Get ₹50 Flat Discount</div>
+              <div style="font-size:0.8rem; color:#64748b;">Instant ₹50 discount deducted on their first farm harvest basket.</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:flex-start; gap:12px;">
+            <div style="width:28px; height:28px; border-radius:50%; background:#dcfce7; color:#16a34a; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0;">3</div>
+            <div>
+              <div style="font-size:0.9rem; font-weight:700; color:#0f172a;">You Get ₹100 Farm Cash</div>
+              <div style="font-size:0.8rem; color:#64748b;">₹100 credited to your Farm Cash Wallet upon delivery!</div>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="btn-whatsapp-share" style="width:100%; padding:14px; border-radius:12px; font-size:1rem; font-weight:800;" onclick="window.marketApp.shareReferralWhatsapp()">
+          💬 Share Referral via WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Audio Chimes & Synthesis (Web Audio API in app.js) -->
   
-  <script src="app.js?v=5.6"></script>
+  <script src="app.js?v=5.7"></script>
 </body>
 </html>

@@ -15137,3 +15137,165 @@ body.has-cart-open .wa-floating-widget,
     font-size: 0.65rem !important;
   }
 }
+
+
+/* ==========================================================================
+   REQUIREMENTS 1, 2, 3, 4 STYLES
+   ========================================================================== */
+
+/* 1. Never show active filter indicators / Sorted section */
+#active-filter-indicators,
+.active-filter-indicators {
+  display: none !important;
+}
+
+/* 2. Categories Picker Modal */
+.categories-modal-dialog {
+  max-width: 680px !important;
+  max-height: 88vh !important;
+  overflow-y: auto !important;
+}
+.categories-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 4px 0;
+}
+.cat-picker-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  position: relative;
+}
+.cat-picker-card:hover {
+  border-color: #0c831f;
+  background: #f0fdf4;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(12, 131, 31, 0.12);
+}
+.cat-picker-card:active {
+  transform: scale(0.98);
+}
+.cat-picker-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+.cat-picker-details {
+  flex: 1;
+  min-width: 0;
+}
+.cat-picker-title {
+  margin: 0 0 2px 0;
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #0f172a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cat-picker-desc {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #64748b;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.cat-picker-arrow {
+  font-size: 1.3rem;
+  color: #94a3b8;
+  font-weight: 300;
+}
+.cat-picker-card:hover .cat-picker-arrow {
+  color: #0c831f;
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .categories-picker-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .cat-picker-card {
+    padding: 10px 12px;
+  }
+}
+
+/* 3. Address Type Tabs & Selector Pills in Profile */
+.profile-addr-type-pills {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.addr-type-tab-btn {
+  flex: 1;
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 10px 8px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+.addr-type-tab-btn:hover {
+  background: #f1f5f9;
+  border-color: #0c831f;
+  color: #0c831f;
+}
+.addr-type-tab-btn.active {
+  background: #ffffff;
+  border: 2px solid #0c831f;
+  color: #0c831f;
+  box-shadow: 0 2px 8px rgba(12, 131, 31, 0.18);
+}
+
+/* Bottom Log Out button in Profile Modal */
+.profile-modal-bottom-logout {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: center;
+}
+.btn-profile-bottom-logout {
+  width: 100%;
+  background: #fff1f2;
+  border: 1.5px solid #fecdd3;
+  color: #e11d48;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+}
+.btn-profile-bottom-logout:hover {
+  background: #ffe4e6;
+  border-color: #fda4af;
+  color: #be123c;
+  transform: translateY(-1px);
+}

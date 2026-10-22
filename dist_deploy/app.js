@@ -4322,6 +4322,100 @@
       return 'vegetables';
     }
 
+
+    openCategoriesModal() {
+      this.closeSideNav();
+      const modal = document.getElementById('categories-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        document.body.classList.add('has-modal-open');
+      }
+    }
+
+    selectCategoryFromModal(catKey) {
+      this.closeModal('categories-modal');
+      this.selectCategory(catKey, true);
+      const grid = document.getElementById('products-grid');
+      if (grid) {
+        grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    openReferralModal() {
+      this.closeSideNav();
+      const code = this.userReferralCode || 'JAYA-FARM-9848';
+      const codeEl = document.getElementById('main-ref-code');
+      if (codeEl) codeEl.textContent = code;
+      const modal = document.getElementById('referral-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        document.body.classList.add('has-modal-open');
+      }
+    }
+
+    selectProfileAddressType(type) {
+      this.activeProfileAddressType = type;
+      document.querySelectorAll('.addr-type-tab-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.getElementById(`addr-pill-${type}`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const addresses = {
+        home: {
+          type: 'Home',
+          label: 'Primary Home Residence',
+          flat: 'Flat 402, Green Valley Apartments',
+          area: 'Road #12, Banjara Hills',
+          landmark: 'Opp. MLA Colony Junction',
+          city: 'Hyderabad',
+          pincode: '500034',
+          slot: 'Tomorrow 06:00 AM – 08:30 AM (Farm Morning Run)'
+        },
+        work: {
+          type: 'Work',
+          label: 'Office / Corporate Work Desk',
+          flat: 'Building 7, Cyber Towers',
+          area: 'HITEC City, Madhapur',
+          landmark: 'Near Mindspace Circle',
+          city: 'Hyderabad',
+          pincode: '500081',
+          slot: 'Tomorrow 09:30 AM – 12:00 PM (Midday Kitchen Express)'
+        },
+        others: {
+          type: 'Others',
+          label: 'Family / Secondary Address',
+          flat: 'Plot 18, Road #36',
+          area: 'Jubilee Hills',
+          landmark: 'Near Peddamma Temple Metro',
+          city: 'Hyderabad',
+          pincode: '500033',
+          slot: 'Today 06:30 PM – 09:00 PM (Evening Wave)'
+        }
+      };
+
+      const selected = addresses[type] || addresses.home;
+      const cardContainer = document.getElementById('profile-selected-address-card');
+      if (cardContainer) {
+        cardContainer.innerHTML = `
+          <div class="addr-saved-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <div class="addr-card-recipient">👤 ${this.user.name || 'Pradeep'}</div>
+              <span class="addr-type-tag">${selected.type} • Active</span>
+            </div>
+            <div class="addr-card-line">
+              🏢 ${selected.flat}, ${selected.area}, ${selected.city} - ${selected.pincode}
+              ${selected.landmark ? `<br><span style="font-size:0.8rem; color:var(--text-dim);">Landmark: ${selected.landmark}</span>` : ''}
+            </div>
+            <div class="addr-card-slot">
+              ⏱️ <strong>Preferred Dispatch Slot:</strong> ${selected.slot}
+            </div>
+            <button class="btn-secondary-sm" style="width:100%; margin-top:10px;" onclick="window.marketApp.toggleInlineAddressForm()">
+              ✏️ Edit Detailed Delivery Address & Time Slot
+            </button>
+          </div>
+        `;
+      }
+    }
+
     selectCategory(catKey, scrollToTop = false) {
       this.switchTab('supermarket-floor');
       this.selectedCategory = catKey || 'all';
@@ -4621,29 +4715,12 @@
         compactName.textContent = q.length > 0 ? `Search: "${q}"` : catMeta.name;
       }
 
-      // Update Active Filter Indicators
+      // Update Active Filter Indicators (Removed as requested)
       const indicatorsEl = document.getElementById('active-filter-indicators');
       if (indicatorsEl) {
-        const pills = [];
-        if (q.length > 0) {
-          pills.push(`<span class="filter-pill">Search: "${this.searchQuery || q}" <button class="filter-pill-remove" onclick="window.marketApp.clearHeaderSearch()">✕</button></span>`);
-        } else if (catKey !== 'all') {
-          pills.push(`<span class="filter-pill">Category: ${catMeta.name} <button class="filter-pill-remove" onclick="window.marketApp.selectCategory('all')">✕</button></span>`);
-        }
-
-        if (sortBy === 'price-asc') {
-          pills.push(`<span class="filter-pill">Sorted: Price Low to High</span>`);
-        } else if (sortBy === 'price-desc') {
-          pills.push(`<span class="filter-pill">Sorted: Price High to Low</span>`);
-        }
-
-        if (pills.length > 0) {
-          indicatorsEl.classList.remove('hidden');
-          indicatorsEl.innerHTML = pills.join('') + `<button type="button" class="btn-clear-all-pills" onclick="window.marketApp.clearAllFilters()">Clear all</button>`;
-        } else {
-          indicatorsEl.classList.add('hidden');
-          indicatorsEl.innerHTML = '';
-        }
+        indicatorsEl.classList.add('hidden');
+        indicatorsEl.style.display = 'none';
+        indicatorsEl.innerHTML = '';
       }
 
       // Update category count badges in sidebar
@@ -5968,10 +6045,11 @@
 
       const initials = (userName || 'P')
         .split(' ')
+        .filter(Boolean)
         .map(n => n[0])
         .join('')
         .substring(0, 2)
-        .toUpperCase();
+        .toUpperCase() || 'P';
 
       const addr = this.user.address || {
         recipient: this.user.name || 'Pradeep',
@@ -5985,46 +6063,33 @@
         slot: 'Tomorrow 06:00 AM – 08:30 AM (Farm Morning Run)'
       };
 
-      const code = this.userReferralCode || 'JAYA-FARM-9848';
       const credits = this.userWalletCredits || 150;
 
       this.dom.authModalContent.innerHTML = `
-        <!-- Profile Hub Top Card -->
+        <!-- Profile Hub Top Card (Requirement 3: Clean Name without Edit Option, No Top Logout) -->
         <div class="profile-hub-header-card">
           <div class="profile-user-left">
             <div class="profile-big-avatar">${initials}</div>
             <div class="profile-user-details">
-              <div style="display:flex; align-items:center; gap:8px;">
-                <h3 id="profile-display-name" style="margin:0; font-size:1.15rem; font-weight:700; color:var(--text-primary);">${this.user.name}</h3>
-                <button type="button" class="btn-edit-profile-name" onclick="window.marketApp.toggleEditProfileName()" title="Edit Name">✏️ Edit</button>
-              </div>
-              <div id="profile-name-edit-box" class="hidden" style="margin-top:6px;">
-                <div style="display:flex; gap:6px; align-items:center;">
-                  <input type="text" id="profile-inline-name-input" class="form-input" value="${this.user.name}" placeholder="Enter name (e.g. Naik)" style="padding:4px 8px; font-size:0.85rem; max-width:180px;" oninput="window.marketApp.updateCustomerNameLive(this.value)" />
-                  <button type="button" class="btn-primary-sm" onclick="window.marketApp.saveProfileNameInline()" style="padding:4px 10px; font-size:0.8rem;">Save</button>
-                </div>
-                <div style="font-size:0.72rem; color:#16a34a; margin-top:2px;">✓ Auto-syncs across profile</div>
-              </div>
+              <h3 id="profile-display-name" style="margin:0; font-size:1.2rem; font-weight:800; color:var(--text-primary);">${this.user.name}</h3>
+              <div style="font-size:0.78rem; color:#16a34a; font-weight:600; margin-top:2px;">✓ Verified Customer</div>
             </div>
           </div>
-          <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
+          <div style="display:flex; flex-direction:column; align-items:flex-end;">
             <div class="profile-wallet-pill">
               <div class="profile-wallet-lbl">Farm Cash Wallet</div>
               <div class="profile-wallet-val">₹${credits}.00</div>
             </div>
-            <button type="button" id="btn-profile-top-logout" class="btn-profile-top-logout" onclick="window.marketApp.logoutUser()" title="Log out from this account">
-              🚪 Log Out
-            </button>
           </div>
         </div>
 
-        <!-- Profile Hub Tab Bar -->
+        <!-- Profile Hub Tab Bar (Requirement 4: Delivery Address, Track Order, Order History directly in profile) -->
         <div class="profile-hub-nav-tabs">
           <button class="profile-hub-tab-btn ${activeTab === 'addresses' ? 'active' : ''}" id="tab-btn-addresses" onclick="window.marketApp.switchProfileTab('addresses')">
-            <span>📍 My Addresses</span>
+            <span>📍 Delivery Addresses</span>
           </button>
-          <button class="profile-hub-tab-btn ${activeTab === 'refer' ? 'active' : ''}" id="tab-btn-refer" onclick="window.marketApp.switchProfileTab('refer')">
-            <span>🎁 Refer & Earn (₹100)</span>
+          <button class="profile-hub-tab-btn ${activeTab === 'track' ? 'active' : ''}" id="tab-btn-track" onclick="window.marketApp.switchProfileTab('track')">
+            <span>🛵 Track Order</span>
           </button>
           <button class="profile-hub-tab-btn ${activeTab === 'history' ? 'active' : ''}" id="tab-btn-history" onclick="window.marketApp.switchProfileTab('history')">
             <span>📜 Order History (${this.orderHistory.length})</span>
@@ -6040,149 +6105,149 @@
         <!-- Profile Hub Body Panes -->
         <div class="profile-hub-body">
 
-          <!-- PANE 1: ADDRESSES -->
+          <!-- PANE 1: ADDRESSES (Requirement 3: Home, Work, Others selector; full address shown on click, no quick switch hyderabad locality) -->
           <div class="profile-hub-pane ${activeTab === 'addresses' ? 'active' : ''}" id="prof-pane-addresses">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-              <h4 style="margin:0; font-size:1rem; font-family:var(--font-heading); color:var(--text-primary);">Registered Hyderabad Delivery Address</h4>
-              <span class="addr-type-tag">Primary • ${addr.type}</span>
-            </div>
-
-            <div class="addr-saved-card">
-              <div class="addr-card-recipient">👤 ${this.user.name || addr.recipient || 'Pradeep'}</div>
-              <div class="addr-card-line">
-                🏢 ${addr.flat}, ${addr.area}, Hyderabad - ${addr.pincode}
-                ${addr.landmark ? `<br><span style="font-size:0.8rem; color:var(--text-dim);">Landmark: ${addr.landmark}</span>` : ''}
+            <div style="margin-bottom:12px;">
+              <div style="font-size:0.82rem; font-weight:700; color:var(--text-secondary); margin-bottom:8px;">
+                Select Delivery Address:
               </div>
-              <div class="addr-card-slot">
-                ⏱️ <strong>Preferred Dispatch Slot:</strong> ${addr.slot}
-              </div>
-            </div>
-
-            <!-- Quick Preset Neighborhood Switcher -->
-            <div style="margin-bottom:16px;">
-              <div style="font-size:0.78rem; font-weight:700; color:var(--text-secondary); margin-bottom:6px;">
-                Quick Switch Hyderabad Locality:
-              </div>
-              <div class="address-preset-chips" style="display:flex; flex-wrap:wrap; gap:8px;">
-                <button type="button" class="addr-preset-btn" onclick="window.marketApp.fillAddressPresetAndSave('banjara')">📍 Banjara Hills</button>
-                <button type="button" class="addr-preset-btn" onclick="window.marketApp.fillAddressPresetAndSave('jubilee')">📍 Jubilee Hills</button>
-                <button type="button" class="addr-preset-btn" onclick="window.marketApp.fillAddressPresetAndSave('madhapur')">📍 Madhapur (Hitec)</button>
-                <button type="button" class="addr-preset-btn" onclick="window.marketApp.fillAddressPresetAndSave('gachibowli')">📍 Gachibowli</button>
-                <button type="button" class="addr-preset-btn" onclick="window.marketApp.fillAddressPresetAndSave('kondapur')">📍 Kondapur</button>
+              <div class="profile-addr-type-pills">
+                <button type="button" class="addr-type-tab-btn ${this.activeProfileAddressType === 'home' ? 'active' : ''}" id="addr-pill-home" onclick="window.marketApp.selectProfileAddressType('home')">
+                  🏠 Home
+                </button>
+                <button type="button" class="addr-type-tab-btn ${this.activeProfileAddressType === 'work' ? 'active' : ''}" id="addr-pill-work" onclick="window.marketApp.selectProfileAddressType('work')">
+                  💼 Work
+                </button>
+                <button type="button" class="addr-type-tab-btn ${this.activeProfileAddressType === 'others' ? 'active' : ''}" id="addr-pill-others" onclick="window.marketApp.selectProfileAddressType('others')">
+                  📍 Others
+                </button>
               </div>
             </div>
 
-            <!-- Edit Address Accordion / Direct Form -->
-            <div style="border-top:1px solid var(--border-subtle); padding-top:14px; margin-top:14px;">
-              <button class="btn-secondary-sm" style="width:100%; margin-bottom:10px;" onclick="window.marketApp.toggleInlineAddressForm()">
-                ✏️ Edit Detailed Delivery Address & Time Slot
-              </button>
-
-              <div id="inline-addr-form" class="hidden" style="background:var(--bg-card); padding:14px; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
-                <form onsubmit="event.preventDefault(); window.marketApp.saveAddressFromProfile();">
-                  <div class="address-form-grid">
-                    <div>
-                      <label class="form-lbl">Recipient Name *</label>
-                      <input type="text" id="prof-addr-name" class="form-input" required value="${addr.recipient}">
-                    </div>
-                    <div>
-                      <label class="form-lbl">Contact Phone *</label>
-                      <input type="tel" id="prof-addr-phone" class="form-input" required value="${addr.phone}">
-                    </div>
-                    <div class="form-group-full">
-                      <label class="form-lbl">Flat / House / Building *</label>
-                      <input type="text" id="prof-addr-flat" class="form-input" required value="${addr.flat}">
-                    </div>
-                    <div class="form-group-full">
-                      <label class="form-lbl">Street / Area / Locality *</label>
-                      <input type="text" id="prof-addr-area" class="form-input" required value="${addr.area}">
-                    </div>
-                    <div>
-                      <label class="form-lbl">Landmark</label>
-                      <input type="text" id="prof-addr-landmark" class="form-input" value="${addr.landmark || ''}">
-                    </div>
-                    <div>
-                      <label class="form-lbl">Pincode *</label>
-                      <input type="text" id="prof-addr-pincode" class="form-input" required maxlength="6" value="${addr.pincode}">
-                    </div>
+            <!-- Full Address Display Card (Requirement 3: Don't show full address initially, show when Home/Work/Others clicked) -->
+            <div id="profile-selected-address-card">
+              ${this.activeProfileAddressType ? `
+                <div class="addr-saved-card">
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                    <div class="addr-card-recipient">👤 ${this.user.name || 'Pradeep'}</div>
+                    <span class="addr-type-tag">${this.activeProfileAddressType.toUpperCase()} • Active</span>
                   </div>
-
-                  <div style="margin-top:10px; margin-bottom:14px;">
-                    <label class="form-lbl">Preferred Farm Delivery Slot:</label>
-                    <select id="prof-addr-slot" class="delivery-slot-select">
-                      <option value="Tomorrow 06:00 AM – 08:30 AM (Farm Morning Run)" ${addr.slot.includes('06:00') ? 'selected' : ''}>🌅 Wave 1: Tomorrow 06:00 AM – 08:30 AM (Harvest Milk & Greens)</option>
-                      <option value="Tomorrow 09:30 AM – 12:00 PM (Midday Kitchen Sambar)" ${addr.slot.includes('09:30') ? 'selected' : ''}>☀️ Wave 2: Tomorrow 09:30 AM – 12:00 PM (Midday Kitchen Kits)</option>
-                      <option value="Today 06:30 PM – 09:00 PM (Tier 2 Fresh Save)" ${addr.slot.includes('06:30') ? 'selected' : ''}>🌙 Wave 3: Today 06:30 PM – 09:00 PM (Tier 2 Fresh Save Evening)</option>
-                      <option value="⚡ 30-Minute Hyperlocal Express (Banjara / Jubilee)" ${addr.slot.includes('30-Minute') ? 'selected' : ''}>⚡ 30-Minute Hyperlocal Express</option>
-                    </select>
+                  <div class="addr-card-line">
+                    🏢 ${addr.flat}, ${addr.area}, Hyderabad - ${addr.pincode}
+                    ${addr.landmark ? `<br><span style="font-size:0.8rem; color:var(--text-dim);">Landmark: ${addr.landmark}</span>` : ''}
                   </div>
-
-                  <button type="submit" class="btn-pay-submit">
-                    <span>💾 Save Changes & Update Delivery Address ➔</span>
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-
-          <!-- PANE 2: REFER & EARN -->
-          <div class="profile-hub-pane ${activeTab === 'refer' ? 'active' : ''}" id="prof-pane-refer">
-            <div class="referral-header" style="margin-bottom:16px;">
-              <div class="referral-badge">🎁 JAYA RAITHU NEIGHBORHOOD REWARDS</div>
-              <h4 style="font-family:var(--font-heading); font-size:1.15rem; color:#ffffff; margin:6px 0;">Refer a Neighbor & Earn ₹100 Farm Credit</h4>
-              <p style="font-size:0.84rem; color:var(--text-secondary); line-height:1.45;">
-                Spread farm-fresh zero-chemical greens in your apartment community. Your neighbor gets <strong>₹50 FLAT OFF</strong> on their first basket, and you receive <strong>₹100 Farm Credit</strong>.
-              </p>
-            </div>
-
-            <div class="referral-code-box" style="margin-bottom:18px;">
-              <div class="referral-code-label">Your Unique Referral Code:</div>
-              <div class="referral-code-display">
-                <div class="code-pill">
-                  <span class="code-text" id="prof-ref-code">${code}</span>
-                  <button class="btn-copy-code" id="btn-copy-prof-code" onclick="window.marketApp.copyReferralCode()">
-                    📋 Copy Code
+                  <div class="addr-card-slot">
+                    ⏱️ <strong>Preferred Dispatch Slot:</strong> ${addr.slot}
+                  </div>
+                  <button class="btn-secondary-sm" style="width:100%; margin-top:10px;" onclick="window.marketApp.toggleInlineAddressForm()">
+                    ✏️ Edit Detailed Delivery Address & Time Slot
                   </button>
                 </div>
-              </div>
-              <div class="referral-actions-grid" style="display:flex; gap:10px; margin-top:10px;">
-                <button class="btn-whatsapp-share" style="flex:1;" onclick="window.marketApp.shareReferralWhatsapp()">
-                  <span>💬 Share via WhatsApp</span>
-                </button>
-                <button class="btn-copy-code" style="flex:1; border-color:var(--emerald-400);" onclick="window.marketApp.applyReferralCoupon('${code}')">
-                  <span>⚡ Test Apply ₹50 in Basket</span>
-                </button>
-              </div>
+              ` : `
+                <div class="addr-tap-hint" style="background:#f8fafc; border:1.5px dashed #cbd5e1; border-radius:12px; padding:18px 14px; text-align:center; color:#64748b; font-size:0.86rem; cursor:pointer;" onclick="window.marketApp.selectProfileAddressType('home')">
+                  👆 Select <strong>🏠 Home</strong>, <strong>💼 Work</strong>, or <strong>📍 Others</strong> above to view full delivery address
+                </div>
+              `}
             </div>
 
-            <div class="refer-steps-container">
-              <div class="refer-step-box">
-                <div class="step-num-badge">1</div>
-                <div class="step-box-title">Share Code</div>
-                <div class="step-box-sub">Send invite to Hyderabad neighbors & friends.</div>
-              </div>
-              <div class="refer-step-box">
-                <div class="step-num-badge">2</div>
-                <div class="step-box-title">They Get ₹50</div>
-                <div class="step-box-sub">Flat ₹50 OFF deducted on their first harvest order.</div>
-              </div>
-              <div class="refer-step-box">
-                <div class="step-num-badge">3</div>
-                <div class="step-box-title">You Earn ₹100</div>
-                <div class="step-box-sub">₹100 Farm Cash added to wallet upon delivery!</div>
-              </div>
-            </div>
+            <!-- Inline Edit Address Form (Collapsible) -->
+            <div id="inline-addr-form" class="hidden" style="background:var(--bg-card); padding:14px; border-radius:var(--radius-sm); border:1px solid var(--border-subtle); margin-top:10px;">
+              <form onsubmit="event.preventDefault(); window.marketApp.saveAddressFromProfile();">
+                <div class="address-form-grid">
+                  <div>
+                    <label class="form-lbl">Recipient Name *</label>
+                    <input type="text" id="prof-addr-name" class="form-input" required value="${addr.recipient}">
+                  </div>
+                  <div>
+                    <label class="form-lbl">Contact Phone *</label>
+                    <input type="tel" id="prof-addr-phone" class="form-input" required value="${addr.phone}">
+                  </div>
+                  <div class="form-group-full">
+                    <label class="form-lbl">Flat / House / Building *</label>
+                    <input type="text" id="prof-addr-flat" class="form-input" required value="${addr.flat}">
+                  </div>
+                  <div class="form-group-full">
+                    <label class="form-lbl">Street / Area / Locality *</label>
+                    <input type="text" id="prof-addr-area" class="form-input" required value="${addr.area}">
+                  </div>
+                  <div>
+                    <label class="form-lbl">Landmark</label>
+                    <input type="text" id="prof-addr-landmark" class="form-input" value="${addr.landmark || ''}">
+                  </div>
+                  <div>
+                    <label class="form-lbl">Pincode *</label>
+                    <input type="text" id="prof-addr-pincode" class="form-input" required maxlength="6" value="${addr.pincode}">
+                  </div>
+                </div>
 
-            <div class="refer-wallet-banner">
-              <div>
-                <div class="refer-wallet-lbl">Total Referral Rewards Earned</div>
-                <div class="refer-wallet-amt">₹100.00 <span style="font-size:0.75rem; font-weight:600; color:var(--emerald-300);">(1 Neighbor Joined)</span></div>
-              </div>
-              <div class="badge-safe">Auto-Applied at Checkout</div>
+                <div style="margin-top:10px; margin-bottom:14px;">
+                  <label class="form-lbl">Preferred Farm Delivery Slot:</label>
+                  <select id="prof-addr-slot" class="delivery-slot-select">
+                    <option value="Tomorrow 06:00 AM – 08:30 AM (Farm Morning Run)" ${addr.slot.includes('06:00') ? 'selected' : ''}>🌅 Wave 1: Tomorrow 06:00 AM – 08:30 AM (Harvest Milk & Greens)</option>
+                    <option value="Tomorrow 09:30 AM – 12:00 PM (Midday Kitchen Sambar)" ${addr.slot.includes('09:30') ? 'selected' : ''}>☀️ Wave 2: Tomorrow 09:30 AM – 12:00 PM (Midday Kitchen Kits)</option>
+                    <option value="Today 06:30 PM – 09:00 PM (Tier 2 Fresh Save)" ${addr.slot.includes('06:30') ? 'selected' : ''}>🌙 Wave 3: Today 06:30 PM – 09:00 PM (Tier 2 Fresh Save Evening)</option>
+                    <option value="⚡ 30-Minute Hyperlocal Express (Banjara / Jubilee)" ${addr.slot.includes('30-Minute') ? 'selected' : ''}>⚡ 30-Minute Hyperlocal Express</option>
+                  </select>
+                </div>
+
+                <button type="submit" class="btn-pay-submit">
+                  <span>💾 Save Changes & Update Delivery Address ➔</span>
+                </button>
+              </form>
             </div>
           </div>
 
-          <!-- PANE 3: ORDER HISTORY -->
+          <!-- PANE 2: TRACK ORDER (Requirement 4: Directly in profile section) -->
+          <div class="profile-hub-pane ${activeTab === 'track' ? 'active' : ''}" id="prof-pane-track">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+              <h4 style="margin:0; font-family:var(--font-heading); font-size:1.05rem; color:var(--text-primary);">Live Order Tracking</h4>
+              <span class="order-status-badge transit">● In Transit</span>
+            </div>
+
+            <div class="track-active-order-card" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:14px; padding:16px; margin-bottom:14px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                <div>
+                  <div style="font-size:0.75rem; color:#64748b; font-weight:700;">ORDER ID</div>
+                  <div style="font-size:1rem; font-weight:800; color:#0f172a;">#FC-LIVE-84920</div>
+                </div>
+                <div style="text-align:right;">
+                  <div style="font-size:0.75rem; color:#059669; font-weight:700;">ESTIMATED ARRIVAL</div>
+                  <div style="font-size:1rem; font-weight:800; color:#059669;">⏱️ 14 Minutes</div>
+                </div>
+              </div>
+
+              <!-- Progress Steps -->
+              <div class="track-steps-bar" style="display:flex; justify-content:space-between; position:relative; margin:16px 0;">
+                <div style="text-align:center; flex:1;">
+                  <div style="width:26px; height:26px; border-radius:50%; background:#10b981; color:#ffffff; display:flex; align-items:center; justify-content:center; margin:0 auto 4px auto; font-size:0.75rem;">✓</div>
+                  <div style="font-size:0.72rem; font-weight:700; color:#0f172a;">Harvested</div>
+                </div>
+                <div style="text-align:center; flex:1;">
+                  <div style="width:26px; height:26px; border-radius:50%; background:#10b981; color:#ffffff; display:flex; align-items:center; justify-content:center; margin:0 auto 4px auto; font-size:0.75rem;">✓</div>
+                  <div style="font-size:0.72rem; font-weight:700; color:#0f172a;">Packed</div>
+                </div>
+                <div style="text-align:center; flex:1;">
+                  <div style="width:26px; height:26px; border-radius:50%; background:#3b82f6; color:#ffffff; display:flex; align-items:center; justify-content:center; margin:0 auto 4px auto; font-size:0.75rem;">🛵</div>
+                  <div style="font-size:0.72rem; font-weight:800; color:#1d4ed8;">Out for Delivery</div>
+                </div>
+                <div style="text-align:center; flex:1;">
+                  <div style="width:26px; height:26px; border-radius:50%; background:#e2e8f0; color:#94a3b8; display:flex; align-items:center; justify-content:center; margin:0 auto 4px auto; font-size:0.75rem;">🏠</div>
+                  <div style="font-size:0.72rem; color:#64748b;">Delivered</div>
+                </div>
+              </div>
+
+              <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:12px; margin-top:12px;">
+                <div style="font-size:0.8rem; font-weight:700; color:#0f172a; margin-bottom:2px;">🛵 Delivery Partner: Ramesh Kumar</div>
+                <div style="font-size:0.75rem; color:#64748b;">Zero-Emission Electric Delivery Van • Hyderabad Hub #3</div>
+                <div style="display:flex; gap:8px; margin-top:10px;">
+                  <a href="tel:+919876543210" class="btn-secondary-sm" style="flex:1; text-align:center; text-decoration:none; padding:6px;">📞 Call Partner</a>
+                  <button type="button" class="btn-primary-sm" style="flex:1; padding:6px;" onclick="window.marketApp.closeAuthModal(); window.marketApp.openTrackOrderModal();">🗺️ Live GPS View</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PANE 3: ORDER HISTORY (Requirement 4: Directly in profile section) -->
           <div class="profile-hub-pane ${activeTab === 'history' ? 'active' : ''}" id="prof-pane-history">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
               <h4 style="margin:0; font-family:var(--font-heading); font-size:1.05rem; color:var(--text-primary);">Your Past Orders & Settlement Slips</h4>
@@ -6213,22 +6278,10 @@
                     <div style="font-size:0.75rem; color:#059669; margin-top:4px; font-weight:700;">
                       💳 Payment Account: <span>${ord.paymentAccount || 'customer@okaxis (Same UPI Account)'}</span>
                     </div>
-                    ${ord.isCancelled ? `
-                      <div style="font-size:0.75rem; color:#059669; background:#ecfdf5; border:1px solid #a7f3d0; padding:6px 10px; border-radius:6px; margin-top:5px; font-weight:700;">
-                        💸 100% Refund of ₹${ord.total.toFixed(2)} reflected in ${ord.paymentAccount || 'same account'}. NPCI UTR: ${ord.refundDetails?.refundUtr || 'UTR984812049102'}.
-                      </div>
-                    ` : ''}
                   </div>
                   <div class="order-card-footer">
                     <div>
                       <span class="order-total-amount">₹${ord.total.toFixed(2)}</span>
-                      ${ord.isCancelled ? `
-                        <span class="order-farmer-share-pill" style="margin-left:8px; background:#fef2f2; color:#991b1b; border:1px solid #fecaca;">
-                          🛡️ Escrow Released: ₹${ord.farmerShare.toFixed(2)} safely unlocked
-                        </span>
-                      ` : `
-                        <span class="order-farmer-share-pill" style="margin-left:8px;">🌾 ₹${ord.farmerShare.toFixed(2)} (${ord.farmerPercent}%) to Farmer Escrow</span>
-                      `}
                     </div>
                     <div style="display:flex; gap:8px;">
                       ${!ord.isCancelled ? `
@@ -6271,13 +6324,10 @@
 
         </div>
 
-        <!-- Bottom Log Out & Close Row -->
-        <div class="profile-bottom-actions" style="padding:14px 24px; background:rgba(0,0,0,0.2);">
-          <button class="btn-secondary-sm" style="color:var(--rose-400); border-color:rgba(244,63,94,0.3);" onclick="window.marketApp.logoutUser()">
-            🚪 Log Out Account
-          </button>
-          <button class="btn-primary" style="padding:8px 22px;" onclick="window.marketApp.closeAuthModal()">
-            Done ✓
+        <!-- Requirement 3: Log Out button moved to the very bottom of the profile modal -->
+        <div class="profile-modal-bottom-logout">
+          <button type="button" id="btn-profile-bottom-logout" class="btn-profile-bottom-logout" onclick="window.marketApp.logoutUser()">
+            🚪 Log Out from Account
           </button>
         </div>
       `;
