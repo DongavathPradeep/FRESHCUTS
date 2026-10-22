@@ -16142,42 +16142,88 @@ body.has-cart-open .wa-floating-widget,
     max-width: 100% !important;
   }
 
-  /* On Mobile: Hide desktop header and desktop supermarket floor */
-  .site-header.blinkit-exact-header {
-    display: none !important;
-  }
-  .supermarket-layout {
-    display: none !important;
-  }
-
+  /* On Mobile: Show clean white FRESHCUTS exact header and 2-column supermarket layout matching reference Image 1 */
   .mobile-app-view {
-    display: block !important;
-    background: #ffffff;
-    min-height: 100vh;
-    min-height: 100dvh;
-    padding-bottom: 0 !important;
-    overflow-x: hidden;
+    display: none !important;
   }
 
-  .mobile-screen {
-    display: none;
-  }
-  .mobile-screen.active {
-    display: block;
-  }
-  #mobile-home-screen.active {
+  .site-header.blinkit-exact-header {
     display: block !important;
-    padding-bottom: 120px !important;
-  }
-  #mobile-aisle-screen.active {
-    display: flex !important;
-    flex-direction: column !important;
-    height: 100vh !important;
-    height: 100dvh !important;
-    overflow: hidden !important;
-    position: relative !important;
-    padding-bottom: 0 !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 999 !important;
+    padding: 6px 12px 8px 12px !important;
     background: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    box-sizing: border-box !important;
+  }
+
+  .supermarket-layout {
+    display: block !important;
+    padding-top: 104px !important;
+    padding-bottom: 74px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+  }
+
+  /* Hide category sidebar on mobile — clean 2-column view */
+  .supermarket-sidebar {
+    display: none !important;
+  }
+
+  .supermarket-main {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Modern Compact Filter Bar matching Image 1: Sort & Filter on left, All Items count on right */
+  .supermarket-compact-bar {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    background: #ffffff !important;
+    border: 1px solid #f1f5f9 !important;
+    border-radius: 14px !important;
+    padding: 8px 12px !important;
+    margin: 4px 0 12px 0 !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03) !important;
+  }
+
+  /* 2-Column Product Grid matching Image 1 */
+  .products-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 0 20px 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .product-card {
+    border-radius: 14px !important;
+    border: 1px solid #f1f5f9 !important;
+    background: #ffffff !important;
+    padding: 8px !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03) !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+  }
+
+  /* Floating WhatsApp button above bottom nav */
+  .wa-floating-widget {
+    bottom: 74px !important;
+    right: 14px !important;
+    z-index: 1001 !important;
   }
 
   /* Sticky Top Header Wrapper for Mobile Aisle Screen */
@@ -18015,8 +18061,16 @@ body.has-cart-open .wa-floating-widget,
     margin-bottom: 2px;
   }
   .active-label {
-    color: #0f172a !important;
+    color: #16a34a !important;
     font-weight: 800 !important;
+  }
+  #bottom-nav-home.active .nav-home-icon-box svg path,
+  #bottom-nav-home.active .nav-home-icon-box svg rect {
+    fill: #16a34a !important;
+    stroke: #16a34a !important;
+  }
+  #bottom-nav-print {
+    display: none !important;
   }
   .nav-zomato-btn {
     padding: 2px 4px !important;
