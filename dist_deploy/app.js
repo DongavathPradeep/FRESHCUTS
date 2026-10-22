@@ -160,6 +160,85 @@
 
     const PRODUCTS_DATA = [
     // =========================================================================
+    // 🪔 DIWALI CLEANING DEALS (Featured Diwali Cleaning Sale)
+    // =========================================================================
+    {
+      id: 'prod_deal_cera_clean',
+      title: 'Roff Cera Clean Advance Tile Floor Cleaner',
+      category: 'cleaning-essentials',
+      zoneName: 'Cleaning & Home Care',
+      harvestHoursAgo: 1,
+      grade: 'Professional Strength',
+      farmerKey: 'fpo_kurnool',
+      price: 99,
+      mandiPrice: 159,
+      unit: '500 ml',
+      image: 'assets/deal_cera_clean.jpg',
+      farmerPayoutPercent: 80,
+      lotNumber: 'CL-ROFF-500',
+      tier: 1,
+      isMarkdown: false,
+      isKitchen: false,
+      desc: 'Rapid action professional tile and ceramic floor cleaner for stubborn stains, water marks and grime.'
+    },
+    {
+      id: 'prod_deal_copper_clean',
+      title: 'Happi Planet Copper, Bronze & Brass Cleaner',
+      category: 'cleaning-essentials',
+      zoneName: 'Pooja & Metal Care',
+      harvestHoursAgo: 1,
+      grade: 'Plant-Based Eco Clean',
+      farmerKey: 'fpo_kurnool',
+      price: 39,
+      mandiPrice: 60,
+      unit: '70 ml',
+      image: 'assets/deal_copper_clean.jpg',
+      farmerPayoutPercent: 82,
+      lotNumber: 'CL-HAPPI-070',
+      tier: 1,
+      isMarkdown: false,
+      isKitchen: false,
+      desc: 'Natural eco-friendly cleaner for copper, brass, and bronze utensils and pooja items. Restores brilliant original shine.'
+    },
+    {
+      id: 'prod_deal_wm_cleaner',
+      title: 'Klenzmo Washing Machine Cleaner & Descaler',
+      category: 'cleaning-essentials',
+      zoneName: 'Appliance Care',
+      harvestHoursAgo: 1,
+      grade: 'Advanced Descaling Formula',
+      farmerKey: 'fpo_kurnool',
+      price: 59,
+      mandiPrice: 150,
+      unit: '60 g',
+      image: 'assets/deal_wm_cleaner.jpg',
+      farmerPayoutPercent: 80,
+      lotNumber: 'CL-KLENZ-060',
+      tier: 1,
+      isMarkdown: false,
+      isKitchen: false,
+      desc: 'Deep cleaning and descaling powder for front-load and top-load washing machines. Eliminates limescale, residue, and odors.'
+    },
+    {
+      id: 'prod_deal_pitambari',
+      title: 'Pitambari Shining Powder for Metal Utensils',
+      category: 'cleaning-essentials',
+      zoneName: 'Pooja & Metal Care',
+      harvestHoursAgo: 1,
+      grade: 'Classic Shining Formula',
+      farmerKey: 'fpo_kurnool',
+      price: 49,
+      mandiPrice: 60,
+      unit: '200 g',
+      image: 'assets/deal_pitambari.jpg',
+      farmerPayoutPercent: 85,
+      lotNumber: 'CL-PITAM-200',
+      tier: 1,
+      isMarkdown: false,
+      isKitchen: false,
+      desc: 'Authentic Pitambari shining powder for copper, brass, aluminum, and silver vessels. Removes dark tarnish effortlessly.'
+    },
+    // =========================================================================
     // 🍎 FRESH ORCHARD FRUITS & CITRUS (Direct Sourced Farm Fresh)
     // =========================================================================
     {
@@ -5672,6 +5751,20 @@
           }
         } else {
           this.dom.floatingCartBar.classList.add('hidden');
+        }
+      }
+
+      // Update Mobile Floating Green Cart Pill (Reference Image Exact Match)
+      const mobileGreenCart = document.getElementById('mobile-floating-green-cart');
+      const mobileGreenCartTxt = document.getElementById('mobile-floating-cart-items-txt');
+      if (mobileGreenCart) {
+        mobileGreenCart.style.display = 'flex';
+        if (mobileGreenCartTxt) {
+          if (totalCount > 0) {
+            mobileGreenCartTxt.textContent = `${totalCount} ${totalCount === 1 ? 'item' : 'items'}`;
+          } else {
+            mobileGreenCartTxt.textContent = '2 items';
+          }
         }
       }
 
