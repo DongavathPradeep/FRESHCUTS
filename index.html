@@ -52,7 +52,7 @@
   <meta http-equiv="Expires" content="0">
   
   <link rel="icon" type="image/png" href="assets/blinkit_logo.png">
-  <link rel="stylesheet" href="style.css?v=5.9">
+  <link rel="stylesheet" href="style.css?v=6.0">
 </head>
 <body class="light-theme">
   <!-- Blinkit Official Pixel-Matched Header (Exact to user reference screenshot) -->
@@ -157,155 +157,274 @@
       <!-- ============================================================== -->
       <!-- MOBILE ONLY: ALL CATEGORIES HOME SHOWCASE (Zepto Matched)      -->
       <!-- ============================================================== -->
-      <section class="mobile-only-home-categories" id="mobile-home-categories">
-        <!-- Section 1: Grocery & Kitchen -->
-        <h3 class="zepto-cat-section-heading">Grocery & Kitchen</h3>
-        <div class="zepto-cat-grid">
-          <!-- 1. Fruits & Vegetables -->
-          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromHome('vegetables', event)">
-            <div class="zepto-cat-img-box">
-              <img src="assets/mobile_tiles/tile_veg_fruits.png" alt="Fruits & Vegetables" />
+      <!-- ============================================================== -->
+      <!-- MOBILE APPLICATION VIEW (Exact Zepto Step 1 -> Step 2 -> Step 3)-->
+      <!-- ============================================================== -->
+      <div class="mobile-app-view" id="mobile-app-view">
+
+        <!-- VIEW 1: STEP 1 - MOBILE HOME SCREEN (Reference Image 1) -->
+        <div class="mobile-screen active" id="mobile-home-screen">
+
+          <!-- 1. Top Speed & Delivery Address Bar -->
+          <div class="mobile-top-delivery-bar">
+            <div class="mobile-delivery-left" onclick="window.marketApp.openAddressModal()">
+              <div class="mobile-speed-pill">⚡ <strong>5 minutes</strong></div>
+              <div class="mobile-address-line">
+                <span id="mobile-addr-label">Home - Ground Floor, koustabh appartment, 202, 2...</span>
+                <span class="mobile-addr-caret">▾</span>
+              </div>
             </div>
-            <span class="zepto-cat-name">Fruits &<br>Vegetables</span>
+            <button type="button" class="mobile-header-avatar-btn" onclick="window.marketApp.handleUserBtnClick()" title="Profile">
+              👤
+            </button>
           </div>
 
-          <!-- 2. Dairy, Bread & Eggs -->
-          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromHome('dairy-morning', event)">
-            <div class="zepto-cat-img-box">
-              <img src="assets/mobile_tiles/tile_dairy_bread_eggs.png" alt="Dairy, Bread & Eggs" />
+          <!-- 2. Search Bar + Meat Market Badge -->
+          <div class="mobile-search-row">
+            <div class="mobile-search-box" onclick="window.marketApp.focusSearchInput()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.2">
+                <circle cx="11" cy="11" r="7"></circle>
+                <line x1="21" y1="21" x2="16.5" y2="16.5"></line>
+              </svg>
+              <input type="text" placeholder='Search "Milk"' readonly />
             </div>
-            <span class="zepto-cat-name">Dairy, Bread<br>& Eggs</span>
+            <div class="mobile-meat-market-btn" onclick="window.marketApp.openAisleScreen('rayalaseema')">
+              <img src="assets/mobile_tiles/tile_chicken_meat_fish.png" alt="Meat Market" class="meat-thumb" />
+              <div class="meat-txt">Meat<br>Market</div>
+            </div>
           </div>
 
-          <!-- 3. Atta, Rice, Oil & Dals -->
-          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromHome('atta-rice-dal', event)">
-            <div class="zepto-cat-img-box">
-              <img src="assets/mobile_tiles/tile_atta_rice_dal.png" alt="Atta, Rice, Oil & Dals" />
+          <!-- 3. Two Promo Banners (₹0 FEES & EVERYDAY LOW PRICES) -->
+          <div class="mobile-promo-cards-row">
+            <div class="mobile-promo-card fee-card" onclick="window.marketApp.openReferralModal()">
+              <div class="promo-card-icon-box">
+                <span class="promo-z-badge">⚡</span>
+              </div>
+              <div class="promo-card-text">
+                <span class="promo-val">₹0 FEES</span>
+              </div>
             </div>
-            <span class="zepto-cat-name">Atta, Rice,<br>Oil & Dals</span>
+            <div class="mobile-promo-card price-card" onclick="window.marketApp.openAisleScreen('fresh-deals')">
+              <div class="promo-card-icon-box">
+                <span class="promo-star-badge">📉</span>
+              </div>
+              <div class="promo-card-text">
+                <span class="promo-everyday">EVERYDAY</span>
+                <span class="promo-low-prices">LOW PRICES*</span>
+              </div>
+            </div>
           </div>
 
-          <!-- 4. Meat, Fish & Eggs -->
-          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromHome('rayalaseema', event)">
-            <div class="zepto-cat-img-box">
-              <img src="assets/mobile_tiles/tile_chicken_meat_fish.png" alt="Meat, Fish & Eggs" />
+          <!-- 4. Guarantees Row -->
+          <div class="mobile-guarantees-strip">
+            <span><span class="g-chk">✓</span> ₹0 Handling Fee</span>
+            <span><span class="g-chk">✓</span> ₹0 Delivery Fee*</span>
+            <span><span class="g-chk">✓</span> ₹0 Rain & Surge Fee</span>
+          </div>
+          <div class="mobile-tc-note">*T&C Apply. Above specific minimum order value</div>
+
+          <!-- 5. Fresh Section (Handpicked daily essentials) -->
+          <div class="mobile-fresh-section">
+            <div class="fresh-section-header">
+              <div class="fresh-brand-title">
+                <span class="fresh-title-txt">Fresh</span>
+                <span class="fresh-leaf-dot">🌱</span>
+              </div>
+              <span class="fresh-sub-txt">Handpicked daily essentials</span>
             </div>
-            <span class="zepto-cat-name">Meat, Fish<br>& Eggs</span>
+
+            <!-- Horizontal Tab Pills -->
+            <div class="fresh-tabs-row" id="fresh-tabs-row">
+              <button type="button" class="fresh-tab-btn active" data-tab="veggies" onclick="window.marketApp.switchFreshTab('veggies', event)">
+                Veggies
+              </button>
+              <button type="button" class="fresh-tab-btn" data-tab="fruits" onclick="window.marketApp.switchFreshTab('fruits', event)">
+                Fruits
+              </button>
+              <button type="button" class="fresh-tab-btn" data-tab="asian-kitchen" onclick="window.marketApp.switchFreshTab('asian-kitchen', event)">
+                Asian Kitchen
+              </button>
+              <button type="button" class="fresh-tab-btn" data-tab="seasons-best" onclick="window.marketApp.switchFreshTab('seasons-best', event)">
+                Season's Best
+              </button>
+              <button type="button" class="fresh-tab-btn" data-tab="new-launches" onclick="window.marketApp.switchFreshTab('new-launches', event)">
+                New Launches
+              </button>
+            </div>
+
+            <!-- Horizontal Products Strip -->
+            <div class="fresh-prod-strip" id="fresh-prod-strip">
+              <!-- Dynamically populated by app.js -->
+            </div>
+
+            <!-- STEP 2: See All Button (leads to Step 3 Image 2) -->
+            <div class="fresh-see-all-container">
+              <button type="button" class="btn-fresh-see-all" onclick="window.marketApp.openAisleScreen('vegetables')">
+                <span>See All</span>
+                <span class="see-all-arrow">▸</span>
+              </button>
+            </div>
           </div>
 
-          <!-- 5. Masala & Dry Fruits -->
-          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromHome('kitchen-spices', event)">
-            <div class="zepto-cat-img-box">
-              <img src="assets/mobile_tiles/tile_oil_ghee_masala.png" alt="Masala & Dry Fruits" />
+          <!-- 6. Explore / All Categories Showcase -->
+          <div class="mobile-explore-section">
+            <h3 class="zepto-cat-section-heading">Explore By Category</h3>
+            <div class="zepto-cat-grid">
+              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('vegetables')">
+                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_veg_fruits.png" alt="Fruits & Vegetables" /></div>
+                <span class="zepto-cat-name">Fruits &<br>Vegetables</span>
+              </div>
+              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('dairy-morning')">
+                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_dairy_bread_eggs.png" alt="Dairy, Bread & Eggs" /></div>
+                <span class="zepto-cat-name">Dairy, Bread<br>& Eggs</span>
+              </div>
+              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('atta-rice-dal')">
+                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_atta_rice_dal.png" alt="Atta, Rice, Oil & Dals" /></div>
+                <span class="zepto-cat-name">Atta, Rice,<br>Oil & Dals</span>
+              </div>
+              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('rayalaseema')">
+                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_chicken_meat_fish.png" alt="Meat, Fish & Eggs" /></div>
+                <span class="zepto-cat-name">Meat, Fish<br>& Eggs</span>
+              </div>
+              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('kitchen-spices')">
+                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_oil_ghee_masala.png" alt="Masala & Dry Fruits" /></div>
+                <span class="zepto-cat-name">Masala &<br>Dry Fruits</span>
+              </div>
+              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('ready-to-cook')">
+                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_sauces_spreads.png" alt="Breakfast & Sauces" /></div>
+                <span class="zepto-cat-name">Breakfast &<br>Sauces</span>
+              </div>
+              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('ready-to-cook')">
+                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_instant_food.png" alt="Packaged Food" /></div>
+                <span class="zepto-cat-name">Packaged<br>Food</span>
+              </div>
+              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('leaf-items')">
+                <div class="zepto-cat-img-box"><img src="assets/cat_vegetables.jpg" alt="Leaf Items" /></div>
+                <span class="zepto-cat-name">Greens &<br>Leaf Items</span>
+              </div>
             </div>
-            <span class="zepto-cat-name">Masala &<br>Dry Fruits</span>
+
+            <h3 class="zepto-cat-section-heading">Snacks & Drinks</h3>
+            <div class="zepto-cat-grid">
+              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('dairy-morning')">
+                <div class="zepto-cat-img-box"><img src="assets/prod_rtc_sambar_curry.jpg" alt="Farm Cafe" /></div>
+                <span class="zepto-cat-name">Farm<br>Cafe</span>
+              </div>
+              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('oil-ghee-masala')">
+                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_tea_coffee.png" alt="Tea, Coffee & More" /></div>
+                <span class="zepto-cat-name">Tea, Coffee<br>& More</span>
+              </div>
+              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('dairy-morning')">
+                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_icecreams.png" alt="Ice Creams & More" /></div>
+                <span class="zepto-cat-name">Ice Creams<br>& More</span>
+              </div>
+              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('ready-to-cook')">
+                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_instant_food.png" alt="Frozen Food" /></div>
+                <span class="zepto-cat-name">Frozen<br>Food</span>
+              </div>
+              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('snacks-bakery')">
+                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_sweets_chocolates.png" alt="Sweet Cravings" /></div>
+                <span class="zepto-cat-name">Sweet<br>Cravings</span>
+              </div>
+              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('fresh-fruits')">
+                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_drinks_juices.png" alt="Cold Drinks & Juice" /></div>
+                <span class="zepto-cat-name">Cold Drinks<br>& Juice</span>
+              </div>
+              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('snacks-bakery')">
+                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_chips_namkeen.png" alt="Munchies" /></div>
+                <span class="zepto-cat-name">Munchies</span>
+              </div>
+              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('snacks-bakery')">
+                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_bakery_biscuits.png" alt="Biscuits & Cookies" /></div>
+                <span class="zepto-cat-name">Biscuits &<br>Cookies</span>
+              </div>
+            </div>
           </div>
 
-          <!-- 6. Breakfast & Sauces -->
-          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromHome('ready-to-cook', event)">
-            <div class="zepto-cat-img-box">
-              <img src="assets/mobile_tiles/tile_sauces_spreads.png" alt="Breakfast & Sauces" />
+        </div> <!-- /#mobile-home-screen -->
+
+        <!-- VIEW 2: STEP 3 - FRUITS & VEGETABLES AISLE SCREEN (Reference Image 2) -->
+        <div class="mobile-screen hidden" id="mobile-aisle-screen">
+          <!-- Top Header matching Image 2: < Fruits & Vegetables   ♡ 🔍 -->
+          <div class="zepto-cat-header">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <button type="button" class="zepto-nav-back-btn" onclick="window.marketApp.goBackToHome()" title="Back to Home">
+                ‹
+              </button>
+              <h2 class="zepto-cat-modal-title" id="aisle-screen-title">Fruits & Vegetables</h2>
             </div>
-            <span class="zepto-cat-name">Breakfast &<br>Sauces</span>
+            <div class="zepto-header-actions">
+              <button type="button" class="zepto-header-icon-btn" onclick="window.marketApp.openWishlistModal()" title="Wishlist">
+                ♡
+              </button>
+              <button type="button" class="zepto-header-icon-btn" onclick="window.marketApp.focusSearchInput()" title="Search">
+                🔍
+              </button>
+            </div>
           </div>
 
-          <!-- 7. Packaged Food -->
-          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromHome('ready-to-cook', event)">
-            <div class="zepto-cat-img-box">
-              <img src="assets/mobile_tiles/tile_instant_food.png" alt="Packaged Food" />
-            </div>
-            <span class="zepto-cat-name">Packaged<br>Food</span>
-          </div>
+          <!-- Aisle Layout: Left Vertical Sidebar + Right 2-Col Grid -->
+          <div class="mobile-aisle-layout">
+            <!-- Left Subcategories List -->
+            <aside class="mobile-aisle-sidebar" id="mobile-aisle-sidebar">
+              <button type="button" class="aisle-subcat-btn active" data-subcat="all" onclick="window.marketApp.selectAisleSubcat('all', event)">
+                <div class="aisle-subcat-icon-box">
+                  <img src="assets/mobile_tiles/tile_veg_fruits.png" alt="All" />
+                </div>
+                <span class="aisle-subcat-name">All</span>
+              </button>
+              <button type="button" class="aisle-subcat-btn" data-subcat="fresh-veg" onclick="window.marketApp.selectAisleSubcat('fresh-veg', event)">
+                <div class="aisle-subcat-icon-box">
+                  <img src="assets/prod_tomatoes.jpg" alt="Fresh Vegetables" />
+                </div>
+                <span class="aisle-subcat-name">Fresh<br>Vegetables</span>
+              </button>
+              <button type="button" class="aisle-subcat-btn" data-subcat="select" onclick="window.marketApp.selectAisleSubcat('select', event)">
+                <div class="aisle-subcat-icon-box select-badge-box">
+                  <span class="select-badge-letter">S</span>
+                </div>
+                <span class="aisle-subcat-name">Select</span>
+              </button>
+              <button type="button" class="aisle-subcat-btn" data-subcat="new-launches" onclick="window.marketApp.selectAisleSubcat('new-launches', event)">
+                <div class="aisle-subcat-icon-box">
+                  <img src="assets/prod_spinach.jpg" alt="New Launches" />
+                </div>
+                <span class="aisle-subcat-name">New<br>Launches</span>
+              </button>
+              <button type="button" class="aisle-subcat-btn" data-subcat="fresh-fruits" onclick="window.marketApp.selectAisleSubcat('fresh-fruits', event)">
+                <div class="aisle-subcat-icon-box">
+                  <img src="assets/cat_fruits.jpg" alt="Fresh Fruits" />
+                </div>
+                <span class="aisle-subcat-name">Fresh<br>Fruits</span>
+              </button>
+              <button type="button" class="aisle-subcat-btn" data-subcat="exotics" onclick="window.marketApp.selectAisleSubcat('exotics', event)">
+                <div class="aisle-subcat-icon-box">
+                  <img src="assets/prod_rtc_sambar_curry.jpg" alt="Exotics & Premium" />
+                </div>
+                <span class="aisle-subcat-name">Exotics &<br>Premium</span>
+              </button>
+            </aside>
 
-          <!-- 8. Greens & Leaf Items -->
-          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromHome('leaf-items', event)">
-            <div class="zepto-cat-img-box">
-              <img src="assets/cat_vegetables.jpg" alt="Leaf Items" />
-            </div>
-            <span class="zepto-cat-name">Greens &<br>Leaf Items</span>
-          </div>
-        </div>
+            <!-- Right Content Area -->
+            <div class="mobile-aisle-content">
+              <!-- Promo Flowers Banner matching Image 2 -->
+              <div class="aisle-promo-banner" onclick="window.marketApp.showToast('🌸 Fresh Farm Flowers Available for Morning Delivery!', 'info')">
+                <div class="aisle-banner-text">
+                  <span class="banner-title">Forgot The Flowers?</span>
+                  <span class="banner-sub">WE DIDN'T!</span>
+                </div>
+                <button type="button" class="btn-aisle-explore">Explore</button>
+              </div>
 
-        <!-- Section 2: Snacks & Drinks -->
-        <h3 class="zepto-cat-section-heading">Snacks & Drinks</h3>
-        <div class="zepto-cat-grid">
-          <!-- 1. Farm Cafe -->
-          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromHome('dairy-morning', event)">
-            <div class="zepto-cat-img-box">
-              <img src="assets/prod_rtc_sambar_curry.jpg" alt="Farm Cafe" />
+              <!-- 2-Column Product Grid matching Image 2 -->
+              <div class="mobile-aisle-grid" id="mobile-aisle-grid">
+                <!-- Dynamically populated by app.js -->
+              </div>
             </div>
-            <span class="zepto-cat-name">Farm<br>Cafe</span>
           </div>
+        </div> <!-- /#mobile-aisle-screen -->
 
-          <!-- 2. Tea, Coffee & More -->
-          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromHome('oil-ghee-masala', event)">
-            <div class="zepto-cat-img-box">
-              <img src="assets/mobile_tiles/tile_tea_coffee.png" alt="Tea, Coffee & More" />
-            </div>
-            <span class="zepto-cat-name">Tea, Coffee<br>& More</span>
-          </div>
-
-          <!-- 3. Ice Creams & More -->
-          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromHome('dairy-morning', event)">
-            <div class="zepto-cat-img-box">
-              <img src="assets/mobile_tiles/tile_icecreams.png" alt="Ice Creams & More" />
-            </div>
-            <span class="zepto-cat-name">Ice Creams<br>& More</span>
-          </div>
-
-          <!-- 4. Frozen Food -->
-          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromHome('ready-to-cook', event)">
-            <div class="zepto-cat-img-box">
-              <img src="assets/mobile_tiles/tile_instant_food.png" alt="Frozen Food" />
-            </div>
-            <span class="zepto-cat-name">Frozen<br>Food</span>
-          </div>
-
-          <!-- 5. Sweet Cravings -->
-          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromHome('snacks-bakery', event)">
-            <div class="zepto-cat-img-box">
-              <img src="assets/mobile_tiles/tile_sweets_chocolates.png" alt="Sweet Cravings" />
-            </div>
-            <span class="zepto-cat-name">Sweet<br>Cravings</span>
-          </div>
-
-          <!-- 6. Cold Drinks & Juice -->
-          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromHome('fresh-fruits', event)">
-            <div class="zepto-cat-img-box">
-              <img src="assets/mobile_tiles/tile_drinks_juices.png" alt="Cold Drinks & Juice" />
-            </div>
-            <span class="zepto-cat-name">Cold Drinks<br>& Juice</span>
-          </div>
-
-          <!-- 7. Munchies -->
-          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromHome('snacks-bakery', event)">
-            <div class="zepto-cat-img-box">
-              <img src="assets/mobile_tiles/tile_chips_namkeen.png" alt="Munchies" />
-            </div>
-            <span class="zepto-cat-name">Munchies</span>
-          </div>
-
-          <!-- 8. Biscuits & Cookies -->
-          <div class="zepto-cat-item" onclick="window.marketApp.selectCategoryFromHome('snacks-bakery', event)">
-            <div class="zepto-cat-img-box">
-              <img src="assets/mobile_tiles/tile_bakery_biscuits.png" alt="Biscuits & Cookies" />
-            </div>
-            <span class="zepto-cat-name">Biscuits &<br>Cookies</span>
-          </div>
-        </div>
-
-        <!-- Floating Free Delivery Pill at bottom matching Image 1 & 3 -->
-        <div class="mobile-home-delivery-banner" onclick="window.marketApp.openReferralModal()">
-          <div class="floating-pill-content">
-            <span class="floating-pill-icon">🚀</span>
-            <div>
-              <div style="font-size:0.85rem; font-weight:800; color:#ffffff;">Unlock Free Delivery</div>
-              <div style="font-size:0.75rem; color:#94a3b8;">Shop for ₹99 • Direct Farm-to-Fork</div>
-            </div>
-          </div>
-          <span class="floating-pill-badge">Offers ⌃</span>
-        </div>
-      </section>
+      </div> <!-- /.mobile-app-view -->
 
       <div class="supermarket-layout" id="supermarket-layout">
         <!-- 1. LEFT SIDEBAR CATEGORIES (Sticky on Desktop, Scrollable on Mobile) -->
@@ -1281,23 +1400,42 @@
   <!-- Floating Free Delivery Offer Bar (Screenshot Matched) -->
 
   <!-- Mobile Fixed Bottom Navigation Bar (Screenshot Matched: Home, Order Again, Categories, Print, Zomato) -->
+  <!-- Mobile Fixed Bottom Navigation Bar (Zepto Image 1 & 2 Exact Match) -->
   <nav class="mobile-bottom-nav-bar" id="mobile-bottom-nav-bar">
-    <button class="nav-tab-btn active" onclick="window.marketApp.scrollToVegetables()">
-      <span class="nav-icon">🏠</span>
+    <button class="nav-tab-btn active" id="bottom-nav-home" onclick="window.marketApp.goBackToHome()">
+      <span class="nav-icon zepto-nav-home-icon">⚡</span>
       <span class="nav-label">Home</span>
     </button>
-    <button class="nav-tab-btn" onclick="window.marketApp.openOrderHistoryModal()">
-      <span class="nav-icon">🛍️</span>
-      <span class="nav-label">Order Again</span>
-    </button>
-    <button class="nav-tab-btn" onclick="window.marketApp.toggleSideNav()">
+    <button class="nav-tab-btn" id="bottom-nav-categories" onclick="window.marketApp.openCategoriesModal()">
       <span class="nav-icon">⊞</span>
       <span class="nav-label">Categories</span>
     </button>
-    <button class="nav-tab-btn zomato-pill-btn" onclick="window.marketApp.showToastNotification('Zomato Delivery Link Active')">
-      <span class="zomato-txt">zomato</span>
+    <button class="nav-tab-btn" id="bottom-nav-cafe" onclick="window.marketApp.openAisleScreen('dairy-morning')">
+      <span class="nav-icon">☕</span>
+      <span class="nav-label">Cafe</span>
+    </button>
+    <button class="nav-tab-btn" id="bottom-nav-spotlight" onclick="window.marketApp.openAisleScreen('fresh-deals')">
+      <span class="nav-icon">🎯</span>
+      <span class="nav-label">Spotlight</span>
+    </button>
+    <button class="nav-tab-btn nav-select-finds-btn" id="bottom-nav-select" onclick="window.marketApp.openAisleScreen('vegetables')">
+      <div class="select-finds-pill">
+        <span class="select-finds-txt">Select<br>FINDS</span>
+      </div>
     </button>
   </nav>
+
+  <!-- Fixed Bottom Floating Free Delivery Pill matching Image 1 & 2 -->
+  <div class="mobile-fixed-delivery-pill" onclick="window.marketApp.openReferralModal()">
+    <div class="floating-pill-content">
+      <span class="floating-pill-icon">🚀</span>
+      <div>
+        <div style="font-size:0.82rem; font-weight:800; color:#ffffff;">Unlock free delivery</div>
+        <div style="font-size:0.72rem; color:#94a3b8;">Shop for ₹99 • Direct Farm-to-Fork</div>
+      </div>
+    </div>
+    <span class="floating-pill-badge">Offers ⌃</span>
+  </div>
 
   <div id="toast-container" class="toast-container"></div>
 
@@ -1560,6 +1698,6 @@
 
   <!-- Audio Chimes & Synthesis (Web Audio API in app.js) -->
   
-  <script src="app.js?v=5.9"></script>
+  <script src="app.js?v=6.0"></script>
 </body>
 </html>

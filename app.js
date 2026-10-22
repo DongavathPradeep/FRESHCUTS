@@ -3944,6 +3944,8 @@
       this.initBlinkitSearch();
       this.initDraggableWhatsAppWidget();
       this.startRotatingPlaceholder();
+      this.renderFreshStrip('veggies');
+      this.renderAisleProducts('all');
 
       // Expose to window for inline onclick handlers
       window.marketApp = this;
@@ -10348,6 +10350,457 @@
     openSuggestProductsModal() {
       prompt('Which farm product or grocery item would you like us to add?', 'Organic Country Mangoes');
       this.showToast('🙏 Thank you for your suggestion! Our farm team will review it.', 'success');
+    }
+
+    // =========================================================================
+    // ZEPTO MOBILE APP FLOW (Step 1 Home -> Step 2 See All -> Step 3 Aisle)
+    // =========================================================================
+
+    focusSearchInput() {
+      const searchBox = document.querySelector('.mobile-search-box input') || document.getElementById('product-search-input');
+      if (searchBox) {
+        searchBox.focus();
+        searchBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    goBackToHome() {
+      const homeScreen = document.getElementById('mobile-home-screen');
+      const aisleScreen = document.getElementById('mobile-aisle-screen');
+      if (homeScreen) {
+        homeScreen.classList.remove('hidden');
+        homeScreen.classList.add('active');
+      }
+      if (aisleScreen) {
+        aisleScreen.classList.remove('active');
+        aisleScreen.classList.add('hidden');
+      }
+
+      document.querySelectorAll('.mobile-bottom-nav-bar .nav-tab-btn').forEach(btn => btn.classList.remove('active'));
+      const homeBtn = document.getElementById('bottom-nav-home');
+      if (homeBtn) homeBtn.classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    openAisleScreen(catKey) {
+      const homeScreen = document.getElementById('mobile-home-screen');
+      const aisleScreen = document.getElementById('mobile-aisle-screen');
+      if (homeScreen) {
+        homeScreen.classList.remove('active');
+        homeScreen.classList.add('hidden');
+      }
+      if (aisleScreen) {
+        aisleScreen.classList.remove('hidden');
+        aisleScreen.classList.add('active');
+      }
+
+      document.querySelectorAll('.mobile-bottom-nav-bar .nav-tab-btn').forEach(btn => btn.classList.remove('active'));
+
+      const titleEl = document.getElementById('aisle-screen-title');
+      const titleMap = {
+        'vegetables': 'Fruits & Vegetables',
+        'fresh-fruits': 'Fresh Fruits',
+        'dairy-morning': 'Dairy, Bread & Eggs',
+        'atta-rice-dal': 'Atta, Rice, Oil & Dals',
+        'rayalaseema': 'Meat, Fish & Eggs',
+        'kitchen-spices': 'Masala & Dry Fruits',
+        'ready-to-cook': 'Packaged Food & Breakfast',
+        'leaf-items': 'Greens & Leaf Items',
+        'fresh-deals': 'Everyday Low Prices'
+      };
+      if (titleEl) {
+        titleEl.textContent = titleMap[catKey] || 'Fruits & Vegetables';
+      }
+
+      let defaultSubcat = 'all';
+      if (catKey === 'fresh-fruits') defaultSubcat = 'fresh-fruits';
+      else if (catKey === 'leaf-items' || catKey === 'vegetables') defaultSubcat = 'all';
+
+      this.selectAisleSubcat(defaultSubcat);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    switchFreshTab(tabKey, event) {
+      if (event) {
+        document.querySelectorAll('#fresh-tabs-row .fresh-tab-btn').forEach(b => b.classList.remove('active'));
+        if (event.currentTarget) event.currentTarget.classList.add('active');
+      }
+      this.renderFreshStrip(tabKey);
+    }
+
+    getFreshTabData(tabKey) {
+      const catalog = {
+        veggies: [
+          {
+            id: 'prod_kothimeera',
+            title: 'Coriander Leaves',
+            price: 22,
+            mrp: 32,
+            discount: 10,
+            unit: '100 g',
+            img: 'assets/prod_coriander.jpg'
+          },
+          {
+            id: 'prod_tomatoes',
+            title: 'Tomato Local',
+            price: 17,
+            mrp: 52,
+            discount: 35,
+            unit: '500 g',
+            img: 'assets/prod_tomatoes.jpg'
+          },
+          {
+            id: 'prod_onions',
+            title: 'Onion',
+            price: 59,
+            mrp: 126,
+            discount: 67,
+            unit: '900 g - 1 kg',
+            img: 'assets/prod_onions.jpg'
+          },
+          {
+            id: 'prod_chillies_green',
+            title: 'Chilli Green',
+            price: 14,
+            mrp: 25,
+            discount: 11,
+            unit: '100 g',
+            img: 'assets/prod_chillies_green.jpg'
+          },
+          {
+            id: 'prod_carrots',
+            title: 'Carrot Local',
+            price: 34,
+            mrp: 50,
+            discount: 16,
+            unit: '500 g',
+            img: 'assets/prod_carrots.jpg'
+          },
+          {
+            id: 'prod_palak',
+            title: 'Fresh Palak',
+            price: 18,
+            mrp: 30,
+            discount: 12,
+            unit: '1 bunch (250g)',
+            img: 'assets/prod_spinach.jpg'
+          }
+        ],
+        fruits: [
+          {
+            id: 'prod_fruit_banana',
+            title: 'Banana Robusta',
+            price: 37,
+            mrp: 72,
+            discount: 35,
+            unit: '4 pcs',
+            img: 'assets/prod_fruit_banana.jpg'
+          },
+          {
+            id: 'prod_coconut',
+            title: 'Coconut',
+            price: 39,
+            mrp: 96,
+            discount: 57,
+            unit: '1 pc',
+            img: 'assets/prod_coconut.jpg'
+          },
+          {
+            id: 'prod_fruit_apple',
+            title: 'Fresh Apple',
+            price: 110,
+            mrp: 140,
+            discount: 30,
+            unit: '500g',
+            img: 'assets/prod_fruit_apple.jpg'
+          },
+          {
+            id: 'prod_fruit_papaya',
+            title: 'Sweet Papaya',
+            price: 45,
+            mrp: 65,
+            discount: 20,
+            unit: '1 pc',
+            img: 'assets/cat_fruits.jpg'
+          }
+        ],
+        'asian-kitchen': [
+          {
+            id: 'prod_curry_mushroom_curry',
+            title: 'Mushroom Button',
+            price: 70,
+            mrp: 94,
+            discount: 24,
+            unit: '200 g',
+            img: 'assets/prod_rtc_mushroom_pepper_kit.jpg'
+          },
+          {
+            id: 'prod_gg_paste',
+            title: 'Ginger Garlic Paste',
+            price: 25,
+            mrp: 40,
+            discount: 15,
+            unit: '200 g',
+            img: 'assets/prod_gg_paste.jpg'
+          },
+          {
+            id: 'prod_curry_leaves',
+            title: 'Curry Leaves',
+            price: 10,
+            mrp: 18,
+            discount: 8,
+            unit: '100 g',
+            img: 'assets/prod_curry_leaves.jpg'
+          },
+          {
+            id: 'prod_lemons',
+            title: 'Fresh Lemon',
+            price: 15,
+            mrp: 25,
+            discount: 10,
+            unit: '4 pcs',
+            img: 'assets/prod_lemon.jpg'
+          }
+        ],
+        'seasons-best': [
+          {
+            id: 'prod_tomatoes',
+            title: 'Tomato Local',
+            price: 17,
+            mrp: 52,
+            discount: 35,
+            unit: '500 g',
+            img: 'assets/prod_tomatoes.jpg'
+          },
+          {
+            id: 'prod_palak',
+            title: 'Palak Leaves',
+            price: 18,
+            mrp: 30,
+            discount: 12,
+            unit: '1 bunch',
+            img: 'assets/prod_spinach.jpg'
+          },
+          {
+            id: 'prod_carrots',
+            title: 'Carrot Red',
+            price: 34,
+            mrp: 50,
+            discount: 16,
+            unit: '500 g',
+            img: 'assets/prod_carrots.jpg'
+          }
+        ],
+        'new-launches': [
+          {
+            id: 'prod_curry_mushroom_curry',
+            title: 'Mushroom Button Pack',
+            price: 70,
+            mrp: 94,
+            discount: 24,
+            unit: '200 g',
+            img: 'assets/prod_rtc_mushroom_pepper_kit.jpg'
+          },
+          {
+            id: 'prod_coconut',
+            title: 'Coconut Extra Sweet',
+            price: 39,
+            mrp: 96,
+            discount: 57,
+            unit: '1 pc',
+            img: 'assets/prod_coconut.jpg'
+          },
+          {
+            id: 'prod_palak',
+            title: 'Hydroponic Greens',
+            price: 35,
+            mrp: 55,
+            discount: 20,
+            unit: '200 g',
+            img: 'assets/prod_spinach.jpg'
+          }
+        ]
+      };
+      return catalog[tabKey] || catalog.veggies;
+    }
+
+    renderFreshStrip(tabKey = 'veggies') {
+      const container = document.getElementById('fresh-prod-strip');
+      if (!container) return;
+
+      const items = this.getFreshTabData(tabKey);
+      container.innerHTML = items.map(item => {
+        const isWish = this.wishlist && this.wishlist.has(item.id);
+        return `
+          <div class="fresh-prod-card" data-id="${item.id}">
+            <div class="fresh-card-img-box">
+              <img src="${item.img}" alt="${item.title}" class="fresh-card-img" />
+              <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('${item.id}', event)" title="Wishlist">
+                ${isWish ? '❤️' : '♡'}
+              </button>
+              <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('${item.id}', 1)" title="Add to Cart">
+                +
+              </button>
+            </div>
+            <div class="fresh-card-price-row">
+              <span class="fresh-price-pill">₹${item.price}</span>
+              <span class="fresh-mrp-strike">₹${item.mrp}</span>
+            </div>
+            <div class="fresh-discount-txt">₹${item.discount} OFF</div>
+            <div class="fresh-card-title">${item.title}</div>
+            <div class="fresh-card-weight">${item.unit}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    selectAisleSubcat(subcatKey, event) {
+      if (event) {
+        document.querySelectorAll('#mobile-aisle-sidebar .aisle-subcat-btn').forEach(b => b.classList.remove('active'));
+        if (event.currentTarget) event.currentTarget.classList.add('active');
+      } else {
+        document.querySelectorAll('#mobile-aisle-sidebar .aisle-subcat-btn').forEach(b => {
+          b.classList.toggle('active', b.dataset.subcat === subcatKey);
+        });
+      }
+      this.renderAisleProducts(subcatKey);
+    }
+
+    renderAisleProducts(subcatKey = 'all') {
+      const grid = document.getElementById('mobile-aisle-grid');
+      if (!grid) return;
+
+      const allItems = [
+        {
+          id: 'prod_coconut',
+          title: 'Coconut',
+          price: 39,
+          mrp: 96,
+          discount: 57,
+          unit: '1 pc',
+          subcat: ['all', 'select', 'new-launches'],
+          img: 'assets/prod_coconut.jpg'
+        },
+        {
+          id: 'prod_fruit_banana',
+          title: 'Banana Robusta',
+          price: 37,
+          mrp: 72,
+          discount: 35,
+          unit: '4 pcs',
+          subcat: ['all', 'fresh-fruits'],
+          img: 'assets/prod_fruit_banana.jpg'
+        },
+        {
+          id: 'prod_kothimeera',
+          title: 'Coriander Leaves',
+          price: 22,
+          mrp: 32,
+          discount: 10,
+          unit: '100 g',
+          subcat: ['all', 'fresh-veg'],
+          img: 'assets/prod_coriander.jpg'
+        },
+        {
+          id: 'prod_curry_mushroom_curry',
+          title: 'Mushroom Button',
+          price: 70,
+          mrp: 94,
+          discount: 24,
+          unit: '200 g',
+          subcat: ['all', 'fresh-veg', 'exotics'],
+          img: 'assets/prod_rtc_mushroom_pepper_kit.jpg'
+        },
+        {
+          id: 'prod_tomatoes',
+          title: 'Tomato Local',
+          price: 17,
+          mrp: 52,
+          discount: 35,
+          unit: '500 g',
+          subcat: ['all', 'fresh-veg'],
+          img: 'assets/prod_tomatoes.jpg'
+        },
+        {
+          id: 'prod_onions',
+          title: 'Onion',
+          price: 59,
+          mrp: 126,
+          discount: 67,
+          unit: '900 g - 1 kg',
+          subcat: ['all', 'fresh-veg'],
+          img: 'assets/prod_onions.jpg'
+        },
+        {
+          id: 'prod_chillies_green',
+          title: 'Chilli Green',
+          price: 14,
+          mrp: 25,
+          discount: 11,
+          unit: '100 g',
+          subcat: ['all', 'fresh-veg'],
+          img: 'assets/prod_chillies_green.jpg'
+        },
+        {
+          id: 'prod_fruit_apple',
+          title: 'Fresh Apple',
+          price: 110,
+          mrp: 140,
+          discount: 30,
+          unit: '500g',
+          subcat: ['all', 'fresh-fruits'],
+          img: 'assets/prod_fruit_apple.jpg'
+        },
+        {
+          id: 'prod_palak',
+          title: 'Palak Greens',
+          price: 18,
+          mrp: 30,
+          discount: 12,
+          unit: '1 bunch',
+          subcat: ['all', 'fresh-veg', 'new-launches'],
+          img: 'assets/prod_spinach.jpg'
+        },
+        {
+          id: 'prod_carrots',
+          title: 'Carrot Local',
+          price: 34,
+          mrp: 50,
+          discount: 16,
+          unit: '500 g',
+          subcat: ['all', 'fresh-veg'],
+          img: 'assets/prod_carrots.jpg'
+        }
+      ];
+
+      const filtered = subcatKey === 'all' 
+        ? allItems 
+        : allItems.filter(item => item.subcat.includes(subcatKey));
+
+      grid.innerHTML = (filtered.length ? filtered : allItems).map(item => {
+        const isWish = this.wishlist && this.wishlist.has(item.id);
+        return `
+          <div class="aisle-prod-card" data-id="${item.id}">
+            <div class="aisle-card-img-box">
+              <img src="${item.img}" alt="${item.title}" class="aisle-card-img" />
+              <button type="button" class="aisle-card-heart-btn" onclick="window.marketApp.toggleWishlist('${item.id}', event)" title="Wishlist">
+                ${isWish ? '❤️' : '♡'}
+              </button>
+              <button type="button" class="aisle-card-add-btn" onclick="window.marketApp.modifyCartQty('${item.id}', 1)">
+                ADD
+              </button>
+            </div>
+            <div class="aisle-card-price-row">
+              <span class="aisle-price-pill">₹${item.price}</span>
+              <span class="aisle-mrp-strike">₹${item.mrp}</span>
+            </div>
+            <div class="aisle-discount-txt">₹${item.discount} OFF</div>
+            <div class="aisle-card-title">${item.title}</div>
+            <div class="aisle-card-weight">${item.unit}</div>
+          </div>
+        `;
+      }).join('');
     }
 
     toggleNotifications() {
