@@ -14931,3 +14931,209 @@ body.has-cart-open .wa-floating-widget,
   }
 }
 
+
+
+/* ==========================================================================
+   PAYMENT GATEWAY PROMINENT & PROFILE AUTO-UPDATE STYLES
+   ========================================================================== */
+
+/* UPI Prominent Grid & Instant App Buttons */
+.upi-prominent-header {
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.upi-sec-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #334155;
+}
+.upi-apps-prominent-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.upi-prominent-btn {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 8px 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.15s ease;
+  text-align: left;
+}
+.upi-prominent-btn:hover {
+  border-color: #0c831f;
+  background: #f0fdf4;
+}
+.upi-prominent-btn.active {
+  border-color: #0c831f;
+  background: #f0fdf4;
+  box-shadow: 0 2px 8px rgba(12, 131, 31, 0.15);
+}
+.upi-app-badge-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.upi-app-text-block {
+  flex: 1;
+  min-width: 0;
+}
+.upi-app-name-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #0f172a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.upi-app-subtitle {
+  font-size: 0.68rem;
+  color: #64748b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.upi-selected-check {
+  display: none;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #0c831f;
+  position: absolute;
+  top: 4px;
+  right: 6px;
+}
+.upi-prominent-btn.active .upi-selected-check {
+  display: block;
+}
+
+/* Collapsible QR Code */
+.upi-collapsible-wrapper {
+  margin-top: 8px;
+  border-top: 1px dashed #e2e8f0;
+  padding-top: 8px;
+}
+.btn-toggle-qr-expand {
+  width: 100%;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+.btn-toggle-qr-expand:hover {
+  background: #f1f5f9;
+  color: #0c831f;
+  border-color: #0c831f;
+}
+.upi-qr-collapsible-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 8px;
+}
+.upi-qr-collapsible-box.hidden {
+  display: none !important;
+}
+
+/* Login Registration Customer Name & Live Update Sync */
+.customer-name-input-box {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 0 12px;
+  transition: border-color 0.15s ease;
+}
+.customer-name-input-box:focus-within {
+  border-color: #0c831f;
+  box-shadow: 0 0 0 3px rgba(12, 131, 31, 0.12);
+}
+.input-icon-prefix {
+  font-size: 1.1rem;
+  margin-right: 8px;
+}
+.customer-name-field {
+  border: none !important;
+  outline: none !important;
+  padding: 12px 0 !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  color: #0f172a !important;
+  width: 100% !important;
+  background: transparent !important;
+}
+.live-update-badge {
+  font-size: 0.68rem;
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-weight: 700;
+}
+.login-name-sync-status {
+  font-size: 0.76rem;
+  color: #64748b;
+  margin-top: 4px;
+  transition: all 0.2s ease;
+}
+.login-name-sync-status.active-sync {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+/* Inline Profile Name Editor */
+.btn-edit-profile-name {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.btn-edit-profile-name:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+@media (max-width: 768px) {
+  .upi-apps-prominent-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+  .upi-prominent-btn {
+    padding: 8px 6px !important;
+  }
+  .upi-app-name-title {
+    font-size: 0.8rem !important;
+  }
+  .upi-app-subtitle {
+    font-size: 0.65rem !important;
+  }
+}

@@ -5703,13 +5703,17 @@
 
     renderLoginStep1(errorMsg = '') {
       if (!this.dom.authModalContent) return;
+      const currentName = (this.user && this.user.name && !this.user.name.startsWith('Customer +91') && !this.user.name.match(/^Customer \d{4}$/))
+        ? this.user.name
+        : (localStorage.getItem('freshcuts_user_name') || 'Pradeep');
+
       this.dom.authModalContent.innerHTML = `
         <div class="login-otp-modal-container">
           <div class="login-modal-header">
-            <div class="login-icon-badge">📱</div>
-            <h3 class="login-title">Login with Mobile Number</h3>
+            <div class="login-icon-badge">👤</div>
+            <h3 class="login-title">Customer Login & Registration</h3>
             <p class="login-subtitle">
-              Mandatory 10-digit mobile login & OTP verification is required to place orders.
+              Enter your customer details. Your profile name updates instantly across the app.
             </p>
           </div>
 
@@ -5719,7 +5723,7 @@
               <div class="login-active-user-info">
                 <div class="login-active-user-avatar">👤</div>
                 <div>
-                  <div class="login-active-user-name">Logged in as ${this.user.name || 'Pradeep'}</div>
+                  <div class="login-active-user-name">Logged in as ${this.user.name || currentName}</div>
                   <div class="login-active-user-phone" style="color:#16a34a; font-weight:600;">Active Account</div>
                 </div>
               </div>
@@ -5728,13 +5732,38 @@
               </button>
             </div>
             <div class="login-divider-text">
-              — OR SWITCH / LOGIN WITH ANOTHER MOBILE NUMBER —
+              — OR SWITCH / REGISTER WITH ANOTHER NAME & MOBILE —
             </div>
           ` : ''}
 
           ${errorMsg ? `<div class="login-error-alert">⚠️ ${errorMsg}</div>` : ''}
 
           <form class="login-form-body" onsubmit="event.preventDefault(); window.marketApp.submitMobileForOtp();">
+            <!-- Customer Registration Name Input with Live Auto-Update -->
+            <div class="mobile-input-group">
+              <label class="mobile-input-lbl" style="display:flex; justify-content:space-between; align-items:center;">
+                <span>Customer Name (Profile Name) *</span>
+                <span class="live-update-badge">Instant Profile Sync ⚡</span>
+              </label>
+              <div class="customer-name-input-box">
+                <span class="input-icon-prefix">👤</span>
+                <input 
+                  type="text" 
+                  id="login-customer-name" 
+                  class="customer-name-field" 
+                  placeholder="Enter your name (e.g. Naik)" 
+                  value="${currentName}" 
+                  required 
+                  autocomplete="name" 
+                  oninput="window.marketApp.updateCustomerNameLive(this.value)"
+                />
+              </div>
+              <div id="login-name-sync-status" class="login-name-sync-status active-sync">
+                ✓ Profile Name will display: <strong id="login-live-name-preview">${currentName}</strong>
+              </div>
+            </div>
+
+            <!-- Mobile Phone Field -->
             <div class="mobile-input-group">
               <label class="mobile-input-lbl">Enter 10-Digit Mobile Number *</label>
               <div class="mobile-input-box">
@@ -5745,10 +5774,9 @@
                   class="mobile-phone-field" 
                   maxlength="10" 
                   placeholder="e.g. 9848023411" 
-                  value="${this.tempLoginMobile || ''}" 
+                  value="${this.tempLoginMobile || (this.user.phone ? this.user.phone.replace('+91 ', '') : '')}" 
                   autocomplete="tel" 
                   required 
-                  autofocus 
                   oninput="this.value = this.value.replace(/[^0-9]/g, '');"
                 />
               </div>
@@ -5756,7 +5784,7 @@
             </div>
 
             <button type="submit" class="btn-login-submit" id="btn-get-otp">
-              <span>Get OTP via SMS</span>
+              <span>Continue & Get Verification OTP</span>
               <span class="btn-arrow">➔</span>
             </button>
 
@@ -5776,12 +5804,21 @@
       `;
 
       setTimeout(() => {
-        const inp = document.getElementById('login-mobile-input');
-        if (inp) inp.focus();
+        const nameInp = document.getElementById('login-customer-name');
+        if (nameInp && !nameInp.value) {
+          nameInp.focus();
+        } else {
+          const inp = document.getElementById('login-mobile-input');
+          if (inp) inp.focus();
+        }
       }, 100);
     }
 
     submitMobileForOtp() {
+      const nameInp = document.getElementById('login-customer-name');
+      if (nameInp && nameInp.value.trim()) {
+        this.updateCustomerNameLive(nameInp.value.trim());
+      }
       const inp = document.getElementById('login-mobile-input');
       const val = inp ? inp.value.trim() : '';
       if (!val || !/^[6-9]\d{9}$/.test(val)) {
@@ -5882,11 +5919,12 @@
       // Success Login
       this.user.isLoggedIn = true;
       this.user.phone = `+91 ${this.tempLoginMobile}`;
-      const savedName = localStorage.getItem('freshcuts_user_name') || 'Pradeep';
-      this.user.name = savedName;
+      const nameInp = document.getElementById('login-customer-name');
+      const enteredName = nameInp ? nameInp.value.trim() : '';
+      const finalName = enteredName || this.user.name || localStorage.getItem('freshcuts_user_name') || 'Pradeep';
+      this.updateCustomerNameLive(finalName);
       if (this.user.address) {
         this.user.address.phone = this.tempLoginMobile;
-        this.user.address.recipient = this.user.name;
       }
 
       localStorage.setItem('freshcuts_user_logged_in', 'true');
@@ -5895,7 +5933,8 @@
       sound.playCheckoutSound();
       this.closeAuthModal();
       this.updateUserAndLocationBadges();
-      this.showToastNotification(`✓ Mobile +91 ${this.tempLoginMobile} verified! You can now place orders.`);
+      this.updateSideNavUser();
+      this.showToastNotification(`✓ Welcome, ${this.user.name}! Mobile +91 ${this.tempLoginMobile} verified.`);
 
       // Resume Pending Action
       const action = this.pendingAuthAction;
@@ -5955,7 +5994,17 @@
           <div class="profile-user-left">
             <div class="profile-big-avatar">${initials}</div>
             <div class="profile-user-details">
-              <h3 style="margin:0; font-size:1.15rem; font-weight:700; color:var(--text-primary);">${this.user.name}</h3>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <h3 id="profile-display-name" style="margin:0; font-size:1.15rem; font-weight:700; color:var(--text-primary);">${this.user.name}</h3>
+                <button type="button" class="btn-edit-profile-name" onclick="window.marketApp.toggleEditProfileName()" title="Edit Name">✏️ Edit</button>
+              </div>
+              <div id="profile-name-edit-box" class="hidden" style="margin-top:6px;">
+                <div style="display:flex; gap:6px; align-items:center;">
+                  <input type="text" id="profile-inline-name-input" class="form-input" value="${this.user.name}" placeholder="Enter name (e.g. Naik)" style="padding:4px 8px; font-size:0.85rem; max-width:180px;" oninput="window.marketApp.updateCustomerNameLive(this.value)" />
+                  <button type="button" class="btn-primary-sm" onclick="window.marketApp.saveProfileNameInline()" style="padding:4px 10px; font-size:0.8rem;">Save</button>
+                </div>
+                <div style="font-size:0.72rem; color:#16a34a; margin-top:2px;">✓ Auto-syncs across profile</div>
+              </div>
             </div>
           </div>
           <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
@@ -6820,6 +6869,130 @@
     // 6. INSTANT PAYMENT GATEWAY & FARMER ESCROW SETTLEMENT
     // =========================================================================
 
+
+    selectUpiApp(btn, appName, amount) {
+      this.selectedUpiApp = appName;
+      document.querySelectorAll('.upi-prominent-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      const submitBtn = document.getElementById('btn-upi-main-submit');
+      if (submitBtn) {
+        const amt = amount || this.paymentState.subtotal || 0;
+        submitBtn.innerHTML = `<span>⚡ Pay ₹${amt.toFixed(2)} via ${appName}</span>`;
+      }
+    }
+
+    toggleUpiQrExpand() {
+      const el = document.getElementById('upi-qr-collapsible-content');
+      const lbl = document.getElementById('qr-toggle-label');
+      if (el) {
+        el.classList.toggle('hidden');
+        if (lbl) {
+          lbl.textContent = el.classList.contains('hidden') 
+            ? '📷 Or Scan QR Code / Enter UPI ID ▾' 
+            : '📷 Hide QR Code ▴';
+        }
+      }
+    }
+
+    toggleEditProfileName() {
+      const box = document.getElementById('profile-name-edit-box');
+      if (box) {
+        box.classList.toggle('hidden');
+        if (!box.classList.contains('hidden')) {
+          const inp = document.getElementById('profile-inline-name-input');
+          if (inp) {
+            inp.value = this.user.name || 'Pradeep';
+            inp.focus();
+            inp.select();
+          }
+        }
+      }
+    }
+
+    saveProfileNameInline() {
+      const inp = document.getElementById('profile-inline-name-input');
+      const val = inp ? inp.value.trim() : '';
+      if (val) {
+        this.updateCustomerNameLive(val);
+      }
+      const box = document.getElementById('profile-name-edit-box');
+      if (box) box.classList.add('hidden');
+      this.showToastNotification(`✓ Profile name updated to ${this.user.name}`);
+    }
+
+    updateCustomerNameLive(newName) {
+      const clean = (newName !== undefined && newName !== null) ? newName.trim() : '';
+      const displayName = clean || 'Customer';
+
+      // 1. Update internal state
+      this.user.name = displayName;
+      if (!this.user.address) {
+        this.user.address = {
+          recipient: displayName,
+          phone: this.user.phone ? this.user.phone.replace('+91 ', '') : '9848023411',
+          flat: 'Flat 402, Green Valley Apartments',
+          area: 'Road #12, Banjara Hills',
+          landmark: 'Opp. MLA Colony Junction',
+          city: 'Hyderabad',
+          pincode: '500034',
+          type: 'Home',
+          slot: 'Tomorrow 06:00 AM – 08:30 AM (Farm Morning Run)'
+        };
+      } else {
+        this.user.address.recipient = displayName;
+      }
+
+      // 2. Persist to localStorage
+      localStorage.setItem('freshcuts_user_name', displayName);
+
+      // 3. Update live indicator in login modal (if open)
+      const livePreview = document.getElementById('login-live-name-preview');
+      if (livePreview) livePreview.textContent = displayName;
+
+      const syncStatus = document.getElementById('login-name-sync-status');
+      if (syncStatus) {
+        syncStatus.classList.add('active-sync');
+        syncStatus.innerHTML = `✓ Profile Name updated to: <strong>${displayName}</strong>`;
+      }
+
+      const activeLoginCardName = document.querySelector('.login-active-user-name');
+      if (activeLoginCardName) {
+        activeLoginCardName.textContent = `Logged in as ${displayName}`;
+      }
+
+      // 4. Update Profile Hub Modal (if open)
+      const profileDisplayName = document.getElementById('profile-display-name');
+      if (profileDisplayName) profileDisplayName.textContent = displayName;
+
+      const profileHeaderH3 = document.querySelector('.profile-user-details h3');
+      if (profileHeaderH3) profileHeaderH3.textContent = displayName;
+
+      const initials = displayName
+        .split(' ')
+        .filter(Boolean)
+        .map(n => n[0])
+        .join('')
+        .substring(0, 2)
+        .toUpperCase() || 'C';
+
+      const profileAvatar = document.querySelector('.profile-big-avatar');
+      if (profileAvatar) profileAvatar.textContent = initials;
+
+      const addrCardRecipient = document.querySelector('.addr-card-recipient');
+      if (addrCardRecipient) addrCardRecipient.innerHTML = `👤 ${displayName}`;
+
+      const profAddrNameInput = document.getElementById('prof-addr-name');
+      if (profAddrNameInput) profAddrNameInput.value = displayName;
+
+      // 5. Update Header User Button & Side Nav
+      this.updateUserAndLocationBadges();
+      this.updateSideNavUser();
+
+      // 6. Update Payment Gateway recipient (if open)
+      const payRecipient = document.querySelector('.pay-amount-card .delivering-to-val, .pay-delivery-address-banner .addr-recipient strong');
+      if (payRecipient) payRecipient.textContent = displayName;
+    }
+
     openPaymentModal() {
       // Ensure user session & delivery details exist
       if (!this.user.isLoggedIn) {
@@ -6912,81 +7085,45 @@
 
       this.dom.paymentModalContent.innerHTML = `
         <div class="pay-header">
-          <h3>Payment</h3>
-          <p>Choose your payment method to complete the order</p>
-        </div>
-
-        <div class="pay-amount-card">
-          <div class="pay-amount-left">
-            <div class="pay-lbl">
-              Total Payable Amount
-              ${(directSavings > 0 || couponDiscount > 0) ? `
-                <span style="font-size:0.75rem; color:#a7f3d0; margin-left:6px;">
-                  (Market: ₹${mandiTotal.toFixed(0)} ${directSavings > 0 ? `− ₹${directSavings.toFixed(0)} Direct Farm Savings` : ''} ${couponDiscount > 0 ? `− ₹${couponDiscount.toFixed(0)} (${activeCode})` : ''})
-                </span>
-              ` : ''}
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <h3 style="margin:0; font-size:1.2rem; font-weight:800; color:#0f172a;">Select Payment Method</h3>
+              <p style="margin:2px 0 0 0; font-size:0.78rem; color:#64748b;">Instant direct farm checkout</p>
             </div>
-            <div class="pay-sum">₹${payableAmount.toFixed(2)}</div>
+            <div class="pay-secure-badge" style="background:#ecfdf5; color:#059669; font-weight:700; font-size:0.72rem; padding:4px 8px; border-radius:6px; border:1px solid #a7f3d0;">
+              🔒 100% Safe
+            </div>
           </div>
         </div>
 
-        <!-- Coupon or Subscription Apply Bar -->
-        <div class="pay-coupon-bar">
-          <div class="coupon-title-row">
-            <span class="coupon-bar-title">🎟️ Apply Coupon or Subscription Pass</span>
-            ${couponDiscount > 0 ? `<span class="coupon-success-pill">✓ Applied: <strong>${activeCode}</strong> (Saved ₹${couponDiscount.toFixed(2)})</span>` : ''}
-          </div>
-          <div class="coupon-input-cluster">
-            <input type="text" id="pay-coupon-input" class="pay-coupon-input" placeholder="Enter Code: FRIEND50, SAVE20, FRESH50" value="${activeCode || ''}" onkeydown="if(event.key==='Enter') window.marketApp.applyPaymentCoupon()" />
-            ${couponDiscount > 0 ? `
-              <button type="button" class="btn-coupon-remove" onclick="window.marketApp.removePaymentCoupon()">Remove</button>
-            ` : `
-              <button type="button" class="btn-coupon-apply" onclick="window.marketApp.applyPaymentCoupon()">Apply</button>
-            `}
-          </div>
-          <div class="coupon-quick-chips">
-            <button type="button" class="coupon-chip ${activeCode === 'FRIEND50' ? 'active' : ''}" onclick="window.marketApp.quickApplyCoupon('FRIEND50')">
-              <strong>FRIEND50</strong> • ₹50 OFF
-            </button>
-            <button type="button" class="coupon-chip ${activeCode === 'SAVE20' ? 'active' : ''}" onclick="window.marketApp.quickApplyCoupon('SAVE20')">
-              <strong>SAVE20</strong> • ₹20 Direct OFF
-            </button>
-            <button type="button" class="coupon-chip ${activeCode === 'FRESH50' ? 'active' : ''}" onclick="window.marketApp.quickApplyCoupon('FRESH50')">
-              <strong>FRESH50</strong> • Flat ₹50 OFF
-            </button>
-            <button type="button" class="coupon-chip ${activeCode === 'VIPPASS' ? 'active' : ''}" onclick="window.marketApp.quickApplyCoupon('VIPPASS')">
-              <strong>VIPPASS</strong> • 15% VIP Discount
-            </button>
-            <button type="button" class="coupon-chip ${activeCode === 'SUB99' ? 'active' : ''}" onclick="window.marketApp.quickApplyCoupon('SUB99')">
-              <strong>SUB99</strong> • Pass: ₹30 OFF
-            </button>
+        <div class="pay-amount-card" style="padding:10px 14px; margin-bottom:12px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div class="pay-lbl" style="font-size:0.72rem; color:#a7f3d0; font-weight:700;">TOTAL PAYABLE AMOUNT</div>
+              <div class="pay-sum" style="font-size:1.55rem; font-weight:800; color:#ffffff;">₹${payableAmount.toFixed(2)}</div>
+              ${couponDiscount > 0 ? `<div style="font-size:0.72rem; color:#fef08a;">✓ Saved ₹${couponDiscount.toFixed(2)} (${activeCode})</div>` : ''}
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:0.68rem; color:#a7f3d0; font-weight:700; text-transform:uppercase;">DELIVERING TO</div>
+              <div class="delivering-to-val" style="font-size:0.85rem; font-weight:800; color:#ffffff;">${this.user.name || this.user.address.recipient}</div>
+              <div style="font-size:0.72rem; color:#d1fae5; opacity:0.9;">${this.user.address ? this.user.address.area.split(',')[0].trim() : 'Hyderabad'}</div>
+            </div>
           </div>
         </div>
 
-        <!-- Verified Delivery Destination Banner -->
-        <div class="pay-delivery-address-banner">
-          <div class="addr-icon">📍</div>
-          <div class="addr-details">
-            <div class="addr-recipient"><strong>Delivering to:</strong> ${this.user.name || this.user.address.recipient} (${this.user.phone || this.user.address.phone}) • <span class="badge-address-type" style="color:var(--emerald-400); font-weight:700;">${this.user.address.type}</span></div>
-            <div class="addr-line">${this.user.address.flat}, ${this.user.address.area}, Hyderabad - ${this.user.address.pincode}</div>
-            <div class="addr-slot">⏱️ <strong>Preferred Slot:</strong> ${this.user.address.slot}</div>
-          </div>
-          <button class="addr-change-btn" onclick="window.marketApp.closePaymentModal(); window.marketApp.openAddressModal('checkout');">Change</button>
-        </div>
-
-        <!-- Payment Method Tabs -->
+        <!-- Payment Method Tabs - Prominently Displayed at Top -->
         <div class="pay-nav-tabs">
           <button class="pay-tab-btn active" id="tab-btn-upi" onclick="window.marketApp.switchPaymentTab('upi')">
             <span class="tab-ico">📱</span>
-            <span>UPI / QR</span>
-          </button>
-          <button class="pay-tab-btn" id="tab-btn-card" onclick="window.marketApp.switchPaymentTab('card')">
-            <span class="tab-ico">💳</span>
-            <span>Card</span>
+            <span>UPI Apps</span>
           </button>
           <button class="pay-tab-btn" id="tab-btn-cash" onclick="window.marketApp.switchPaymentTab('cash')">
             <span class="tab-ico">💵</span>
             <span>Cash on Delivery</span>
+          </button>
+          <button class="pay-tab-btn" id="tab-btn-card" onclick="window.marketApp.switchPaymentTab('card')">
+            <span class="tab-ico">💳</span>
+            <span>Cards</span>
           </button>
           <button class="pay-tab-btn" id="tab-btn-nb" onclick="window.marketApp.switchPaymentTab('nb')">
             <span class="tab-ico">🏦</span>
@@ -6994,174 +7131,175 @@
           </button>
         </div>
 
-        <!-- PANE 1: UPI & DYNAMIC QR -->
+        <!-- PANE 1: UPI APPS -->
         <div class="pay-pane active" id="pay-pane-upi">
-          <div class="upi-layout">
-            <div class="upi-qr-card">
-              <div class="upi-qr-box">
-                <div class="qr-scan-line"></div>
-                <svg viewBox="0 0 160 160" class="qr-svg" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="160" height="160" fill="#ffffff"/>
-                  <rect x="10" y="10" width="40" height="40" fill="#047857"/>
-                  <rect x="16" y="16" width="28" height="28" fill="#ffffff"/>
-                  <rect x="22" y="22" width="16" height="16" fill="#047857"/>
-                  <rect x="110" y="10" width="40" height="40" fill="#047857"/>
-                  <rect x="116" y="16" width="28" height="28" fill="#ffffff"/>
-                  <rect x="122" y="22" width="16" height="16" fill="#047857"/>
-                  <rect x="10" y="110" width="40" height="40" fill="#047857"/>
-                  <rect x="16" y="116" width="28" height="28" fill="#ffffff"/>
-                  <rect x="22" y="122" width="16" height="16" fill="#047857"/>
-                  <path d="M60 15h10v10h-10zM80 15h10v10h-10zM60 35h15v10h-15zM85 35h10v15h-10zM15 65h15v10h-15zM35 65h10v15h-10zM55 60h10v10h-10zM75 60h10v10h-10zM95 60h15v10h-15zM120 65h10v15h-10zM140 65h10v10h-10zM60 80h10v10h-10zM90 80h15v10h-15zM115 80h10v15h-10zM135 85h15v10h-15zM20 90h15v10h-15zM45 90h10v10h-10zM65 100h10v15h-10zM85 105h15v10h-15zM110 100h10v10h-10zM130 105h20v10h-20zM60 125h15v10h-15zM85 125h10v15h-10zM105 120h15v10h-15zM130 125h10v15h-10zM65 140h20v10h-20zM95 140h15v10h-15zM120 140h20v10h-20z" fill="#064e3b"/>
-                  <circle cx="80" cy="80" r="16" fill="#10b981"/>
-                  <circle cx="80" cy="80" r="14" fill="#064e3b"/>
-                  <text x="80" y="85" font-family="'Outfit', sans-serif" font-weight="900" font-size="11" fill="#A7F3D0" text-anchor="middle">JR</text>
-                </svg>
-              </div>
-              <div class="upi-timer">⏱️ QR Expires in: <span id="upi-timer-val">05:00</span></div>
-              <div class="upi-vpa-pill" onclick="window.marketApp.copyUpiId()" title="Click to copy VPA">
-                <span id="upi-vpa-text">jayaraithu@icici</span> 📋
-              </div>
-            </div>
+          <div class="upi-prominent-header">
+            <span class="upi-sec-title">⚡ Instant UPI Apps (Select to Pay):</span>
+          </div>
 
-            <div class="upi-options">
-              <div class="upi-apps-label">Supported Instant UPI Apps:</div>
-              <div class="upi-apps-grid">
-                <button class="upi-app-chip" onclick="window.marketApp.processPayment('Google Pay')">
-                  <span class="upi-app-icon">🟢</span>
-                  <span class="upi-app-name">Google Pay</span>
-                </button>
-                <button class="upi-app-chip" onclick="window.marketApp.processPayment('PhonePe')">
-                  <span class="upi-app-icon">🟣</span>
-                  <span class="upi-app-name">PhonePe</span>
-                </button>
-                <button class="upi-app-chip" onclick="window.marketApp.processPayment('Paytm')">
-                  <span class="upi-app-icon">🔵</span>
-                  <span class="upi-app-name">Paytm UPI</span>
-                </button>
-                <button class="upi-app-chip" onclick="window.marketApp.processPayment('BHIM')">
-                  <span class="upi-app-icon">🟠</span>
-                  <span class="upi-app-name">BHIM</span>
-                </button>
-                <button class="upi-app-chip" onclick="window.marketApp.processPayment('CRED Pay')">
-                  <span class="upi-app-icon">⚫</span>
-                  <span class="upi-app-name">CRED Pay</span>
-                </button>
-                <button class="upi-app-chip" onclick="window.marketApp.processPayment('Any UPI')">
-                  <span class="upi-app-icon">📲</span>
-                  <span class="upi-app-name">Scan & Pay</span>
-                </button>
+          <div class="upi-apps-prominent-grid">
+            <button type="button" class="upi-prominent-btn active" id="upi-btn-gpay" onclick="window.marketApp.selectUpiApp(this, 'Google Pay', ${payableAmount})">
+              <span class="upi-app-badge-icon" style="background:#e8f0fe; color:#1a73e8;">🟢</span>
+              <div class="upi-app-text-block">
+                <div class="upi-app-name-title">Google Pay</div>
+                <div class="upi-app-subtitle">Fast UPI</div>
               </div>
+              <span class="upi-selected-check">✓</span>
+            </button>
+            <button type="button" class="upi-prominent-btn" id="upi-btn-phonepe" onclick="window.marketApp.selectUpiApp(this, 'PhonePe', ${payableAmount})">
+              <span class="upi-app-badge-icon" style="background:#f3e8fd; color:#5f259f;">🟣</span>
+              <div class="upi-app-text-block">
+                <div class="upi-app-name-title">PhonePe</div>
+                <div class="upi-app-subtitle">Instant</div>
+              </div>
+              <span class="upi-selected-check">✓</span>
+            </button>
+            <button type="button" class="upi-prominent-btn" id="upi-btn-paytm" onclick="window.marketApp.selectUpiApp(this, 'Paytm', ${payableAmount})">
+              <span class="upi-app-badge-icon" style="background:#e0f2fe; color:#002e6e;">🔵</span>
+              <div class="upi-app-text-block">
+                <div class="upi-app-name-title">Paytm</div>
+                <div class="upi-app-subtitle">UPI/Wallet</div>
+              </div>
+              <span class="upi-selected-check">✓</span>
+            </button>
+            <button type="button" class="upi-prominent-btn" id="upi-btn-bhim" onclick="window.marketApp.selectUpiApp(this, 'BHIM', ${payableAmount})">
+              <span class="upi-app-badge-icon" style="background:#ffedd5; color:#c2410c;">🟠</span>
+              <div class="upi-app-text-block">
+                <div class="upi-app-name-title">BHIM UPI</div>
+                <div class="upi-app-subtitle">Govt UPI</div>
+              </div>
+              <span class="upi-selected-check">✓</span>
+            </button>
+            <button type="button" class="upi-prominent-btn" id="upi-btn-cred" onclick="window.marketApp.selectUpiApp(this, 'CRED Pay', ${payableAmount})">
+              <span class="upi-app-badge-icon" style="background:#f1f5f9; color:#0f172a;">⚫</span>
+              <div class="upi-app-text-block">
+                <div class="upi-app-name-title">CRED Pay</div>
+                <div class="upi-app-subtitle">Rewards</div>
+              </div>
+              <span class="upi-selected-check">✓</span>
+            </button>
+            <button type="button" class="upi-prominent-btn" id="upi-btn-any" onclick="window.marketApp.selectUpiApp(this, 'Any UPI', ${payableAmount})">
+              <span class="upi-app-badge-icon" style="background:#dcfce7; color:#15803d;">📲</span>
+              <div class="upi-app-text-block">
+                <div class="upi-app-name-title">Any UPI</div>
+                <div class="upi-app-subtitle">Other App</div>
+              </div>
+              <span class="upi-selected-check">✓</span>
+            </button>
+          </div>
 
-              <div>
-                <label class="form-lbl">Or Enter Personal UPI ID (VPA):</label>
-                <div class="upi-vpa-input-wrap">
-                  <input type="text" id="custom-upi-vpa" class="upi-vpa-input" placeholder="e.g. yourname@oksbi" value="customer@okaxis">
-                  <button class="btn-upi-request" onclick="window.marketApp.processPayment('UPI Collect (' + document.getElementById('custom-upi-vpa').value + ')')">Send Request</button>
+          <button class="btn-pay-submit" id="btn-upi-main-submit" onclick="window.marketApp.processPayment(window.marketApp.selectedUpiApp || 'Google Pay')">
+            <span>⚡ Pay ₹${payableAmount.toFixed(2)} via Google Pay</span>
+          </button>
+
+          <!-- Collapsible QR Code & Manual VPA Option -->
+          <div class="upi-collapsible-wrapper">
+            <button type="button" class="btn-toggle-qr-expand" onclick="window.marketApp.toggleUpiQrExpand()">
+              <span id="qr-toggle-label">📷 Or Scan QR Code / Enter UPI ID ▾</span>
+            </button>
+            <div id="upi-qr-collapsible-content" class="hidden upi-qr-collapsible-box">
+              <div class="upi-qr-card">
+                <div class="upi-qr-box">
+                  <div class="qr-scan-line"></div>
+                  <svg viewBox="0 0 160 160" class="qr-svg" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="160" height="160" fill="#ffffff"/>
+                    <rect x="10" y="10" width="40" height="40" fill="#047857"/>
+                    <rect x="16" y="16" width="28" height="28" fill="#ffffff"/>
+                    <rect x="22" y="22" width="16" height="16" fill="#047857"/>
+                    <rect x="110" y="10" width="40" height="40" fill="#047857"/>
+                    <rect x="116" y="16" width="28" height="28" fill="#ffffff"/>
+                    <rect x="122" y="22" width="16" height="16" fill="#047857"/>
+                    <rect x="10" y="110" width="40" height="40" fill="#047857"/>
+                    <rect x="16" y="116" width="28" height="28" fill="#ffffff"/>
+                    <rect x="22" y="122" width="16" height="16" fill="#047857"/>
+                    <path d="M60 15h10v10h-10zM80 15h10v10h-10zM60 35h15v10h-15zM85 35h10v15h-10zM15 65h15v10h-15zM35 65h10v15h-10zM55 60h10v10h-10zM75 60h10v10h-10zM95 60h15v10h-15zM120 65h10v15h-10zM140 65h10v10h-10zM60 80h10v10h-10zM90 80h15v10h-15zM115 80h10v15h-10zM135 85h15v10h-15zM20 90h15v10h-15zM45 90h10v10h-10zM65 100h10v15h-10zM85 105h15v10h-15zM110 100h10v10h-10zM130 105h20v10h-20zM60 125h15v10h-15zM85 125h10v15h-10zM105 120h15v10h-15zM130 125h10v15h-10zM65 140h20v10h-20zM95 140h15v10h-15zM120 140h20v10h-20z" fill="#064e3b"/>
+                    <circle cx="80" cy="80" r="16" fill="#10b981"/>
+                    <circle cx="80" cy="80" r="14" fill="#064e3b"/>
+                    <text x="80" y="85" font-family="'Outfit', sans-serif" font-weight="900" font-size="11" fill="#A7F3D0" text-anchor="middle">JR</text>
+                  </svg>
+                </div>
+                <div class="upi-timer">⏱️ QR Expires in: <span id="upi-timer-val">05:00</span></div>
+                <div class="upi-vpa-pill" onclick="window.marketApp.copyUpiId()" title="Click to copy VPA">
+                  <span id="upi-vpa-text">freshcuts@icici</span> 📋
+                </div>
+                <div style="margin-top:10px; width:100%;">
+                  <label class="form-lbl" style="font-size:0.75rem;">Or Enter Personal UPI ID (VPA):</label>
+                  <div class="upi-vpa-input-wrap">
+                    <input type="text" id="custom-upi-vpa" class="upi-vpa-input" placeholder="e.g. yourname@oksbi" value="customer@okaxis">
+                    <button class="btn-upi-request" onclick="window.marketApp.processPayment('UPI Collect (' + document.getElementById('custom-upi-vpa').value + ')')">Send Request</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <button class="btn-pay-submit" onclick="window.marketApp.processPayment('Instant UPI')">
-            <span>⚡ Pay ₹${payableAmount.toFixed(2)} via Instant UPI</span>
+        <!-- PANE 2: CASH ON DELIVERY (COD) -->
+        <div class="pay-pane" id="pay-pane-cash">
+          <div class="cod-clean-card" style="padding:16px; background:#f0fdf4; border:1.5px solid #86efac; border-radius:14px; margin-bottom:14px;">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+              <span style="font-size:2rem;">💵</span>
+              <div>
+                <div style="font-size:1.05rem; font-weight:800; color:#14532d;">Cash on Delivery (COD)</div>
+                <div style="font-size:0.8rem; color:#166534;">Pay at Doorstep when your order arrives</div>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:4px; font-size:0.78rem; color:#15803d; margin-top:8px;">
+              <div>✓ Cash or UPI QR scan accepted by delivery partner</div>
+              <div>✓ Free delivery on your order</div>
+            </div>
+          </div>
+
+          <button class="btn-pay-submit" onclick="window.marketApp.processPayment('Cash on Delivery (COD)')">
+            <span>💵 Confirm Order (Cash on Delivery) ➔</span>
           </button>
         </div>
 
-        <!-- PANE 2: CREDIT / DEBIT CARDS -->
+        <!-- PANE 3: CREDIT / DEBIT CARDS -->
         <div class="pay-pane" id="pay-pane-card">
           <div class="card-view">
-            <!-- Virtual Card Preview -->
-            <div class="card-interactive-preview">
-              <div class="card-preview-top">
-                <div class="card-chip"></div>
-                <div class="card-brand-logo" id="preview-card-brand">VISA</div>
-              </div>
-              <div class="card-preview-number" id="preview-card-number">4532 •••• •••• 8920</div>
-              <div class="card-preview-bottom">
-                <div>
-                  <div style="font-size:0.68rem; opacity:0.8;">CARDHOLDER NAME</div>
-                  <div class="card-holder-name" id="preview-card-holder">S. RAMAKRISHNA</div>
-                </div>
-                <div>
-                  <div style="font-size:0.68rem; opacity:0.8;">EXPIRES</div>
-                  <div class="card-expiry-preview" id="preview-card-expiry">09/29</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card Form Fields -->
-            <div class="card-form-grid">
-              <div class="form-group-full">
+            <div class="card-form-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px;">
+              <div style="grid-column:span 2;">
                 <label class="form-lbl">Card Number</label>
-                <input type="text" id="card-num-input" class="form-input" placeholder="4532 8920 1142 8091" maxlength="19" value="4532 8920 1142 8091" oninput="window.marketApp.updateCardPreview()">
+                <input type="text" id="card-num-input" class="form-input" placeholder="4532 8920 1142 8091" maxlength="19" value="4532 8920 1142 8091">
               </div>
-              <div class="form-group-full">
+              <div style="grid-column:span 2;">
                 <label class="form-lbl">Cardholder Name</label>
-                <input type="text" id="card-name-input" class="form-input" placeholder="Name on card" value="S. RAMAKRISHNA" oninput="window.marketApp.updateCardPreview()">
+                <input type="text" id="card-name-input" class="form-input" placeholder="Name on card" value="${this.user.name || 'S. Ramakrishna'}">
               </div>
               <div>
-                <label class="form-lbl">Expiry Date (MM/YY)</label>
-                <input type="text" id="card-exp-input" class="form-input" placeholder="09/29" maxlength="5" value="09/29" oninput="window.marketApp.updateCardPreview()">
+                <label class="form-lbl">Expiry (MM/YY)</label>
+                <input type="text" id="card-exp-input" class="form-input" placeholder="09/29" maxlength="5" value="09/29">
               </div>
               <div>
-                <label class="form-lbl">CVV / CVC</label>
+                <label class="form-lbl">CVV</label>
                 <input type="password" id="card-cvv-input" class="form-input" placeholder="•••" maxlength="3" value="821">
               </div>
             </div>
           </div>
 
-          <button class="btn-pay-submit" onclick="window.marketApp.processPayment('Credit/Debit Card (•••• ' + document.getElementById('card-num-input').value.slice(-4) + ')')">
-            <span>🔒 Pay ₹${payableAmount.toFixed(2)}</span>
-          </button>
-        </div>
-
-        <!-- PANE 3: CASH ON DELIVERY (COD) -->
-        <div class="pay-pane" id="pay-pane-cash">
-          <div class="cod-clean-card">
-            <div class="cod-clean-title">💵 Cash on Delivery (COD)</div>
-            <p class="cod-clean-desc">
-              Pay with cash or scan the delivery partner's UPI QR when your order arrives at your doorstep.
-            </p>
-          </div>
-
-          <button class="btn-pay-submit" onclick="window.marketApp.processPayment('Cash on Delivery (COD)')">
-            <span>💵 Place Order (Cash on Delivery)</span>
+          <button class="btn-pay-submit" onclick="window.marketApp.processPayment('Card Payment')">
+            <span>🔒 Pay ₹${payableAmount.toFixed(2)} via Card</span>
           </button>
         </div>
 
         <!-- PANE 4: NET BANKING -->
         <div class="pay-pane" id="pay-pane-nb">
           <div class="nb-layout">
-            <div style="font-size:0.8rem; color:var(--text-secondary);">Select Bank for Direct Institutional Account Transfer:</div>
+            <div style="font-size:0.8rem; color:#64748b; margin-bottom:8px;">Select Bank:</div>
             <div class="nb-grid">
-              <div class="nb-bank-tile selected" onclick="window.marketApp.selectBank(this, 'SBI')">🏛️ State Bank of India</div>
-              <div class="nb-bank-tile" onclick="window.marketApp.selectBank(this, 'HDFC')">🏛️ HDFC Bank</div>
-              <div class="nb-bank-tile" onclick="window.marketApp.selectBank(this, 'ICICI')">🏛️ ICICI Bank</div>
-              <div class="nb-bank-tile" onclick="window.marketApp.selectBank(this, 'Axis')">🏛️ Axis Bank</div>
-              <div class="nb-bank-tile" onclick="window.marketApp.selectBank(this, 'Kotak')">🏛️ Kotak Mahindra</div>
-              <div class="nb-bank-tile" onclick="window.marketApp.selectBank(this, 'Union')">🏛️ Union Bank</div>
-            </div>
-
-            <div>
-              <label class="form-lbl">Or Select Other Scheduled Commercial Bank:</label>
-              <select id="other-bank-select" class="nb-select">
-                <option value="Bank of Baroda">Bank of Baroda</option>
-                <option value="Punjab National Bank">Punjab National Bank</option>
-                <option value="Canara Bank">Canara Bank</option>
-                <option value="IndusInd Bank">IndusInd Bank</option>
-                <option value="IDFC FIRST Bank">IDFC FIRST Bank</option>
-                <option value="Federal Bank">Federal Bank</option>
-              </select>
+              <div class="nb-bank-tile selected" onclick="window.marketApp.selectBank(this, 'SBI')">🏛️ SBI</div>
+              <div class="nb-bank-tile" onclick="window.marketApp.selectBank(this, 'HDFC')">🏛️ HDFC</div>
+              <div class="nb-bank-tile" onclick="window.marketApp.selectBank(this, 'ICICI')">🏛️ ICICI</div>
+              <div class="nb-bank-tile" onclick="window.marketApp.selectBank(this, 'Axis')">🏛️ Axis</div>
+              <div class="nb-bank-tile" onclick="window.marketApp.selectBank(this, 'Kotak')">🏛️ Kotak</div>
+              <div class="nb-bank-tile" onclick="window.marketApp.selectBank(this, 'Union')">🏛️ Union</div>
             </div>
           </div>
 
           <button class="btn-pay-submit" onclick="window.marketApp.processPayment('Net Banking (' + (window.selectedBankName || 'State Bank of India') + ')')">
             <span>🏦 Pay ₹${payableAmount.toFixed(2)} via Net Banking</span>
           </button>
-        </div>
-
-        <div class="pay-security-note">
-          <span>🔒 100% Safe & Secure Payments</span>
         </div>
       `;
 

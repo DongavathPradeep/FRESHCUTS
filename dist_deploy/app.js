@@ -160,11 +160,167 @@
 
     const PRODUCTS_DATA = [
     // =========================================================================
+    // 🍎 FRESH ORCHARD FRUITS & CITRUS (Direct Sourced Farm Fresh)
+    // =========================================================================
+    {
+      id: 'prod_fruit_banana',
+      title: 'Banana',
+      category: 'fresh-fruits',
+      zoneName: 'Farm Orchard Crates',
+      harvestHoursAgo: 6,
+      grade: 'Grade A+ Naturally Ripened',
+      farmerKey: 'anji_reddy',
+      price: 48,
+      mandiPrice: 60,
+      unit: '1kg (1 Dozen)',
+      image: 'assets/prod_fruit_banana.jpg',
+      farmerPayoutPercent: 72,
+      lotNumber: 'FR-BAN-101',
+      tier: 1,
+      isMarkdown: false,
+      isKitchen: false,
+      desc: 'Farm fresh naturally ripened sweet Robusta bananas. Rich in potassium and essential dietary fiber.'
+    },
+    {
+      id: 'prod_fruit_apple',
+      title: 'Apple',
+      category: 'fresh-fruits',
+      zoneName: 'Chilled Fruit Bay (4°C)',
+      harvestHoursAgo: 14,
+      grade: 'Grade A+ Crunchy Sweet',
+      farmerKey: 'fpo_chittoor',
+      price: 110,
+      mandiPrice: 140,
+      unit: '500g (Pack of 4)',
+      image: 'assets/prod_fruit_apple.jpg',
+      farmerPayoutPercent: 70,
+      lotNumber: 'FR-APL-202',
+      tier: 1,
+      isMarkdown: false,
+      isKitchen: false,
+      desc: 'Sweet, crunchy, and juicy Royal Gala apples sourced from high-altitude orchards. Wax-free and naturally crisp.'
+    },
+    {
+      id: 'prod_fruit_orange',
+      title: 'Orange',
+      category: 'fresh-fruits',
+      zoneName: 'Farm Orchard Crates',
+      harvestHoursAgo: 10,
+      grade: 'Grade A+ Citrus Delight',
+      farmerKey: 'fpo_kurnool',
+      price: 65,
+      mandiPrice: 85,
+      unit: '1kg',
+      image: 'assets/prod_fruit_orange.jpg',
+      farmerPayoutPercent: 74,
+      lotNumber: 'FR-ORG-303',
+      tier: 1,
+      isMarkdown: false,
+      isKitchen: false,
+      desc: 'Farm fresh sweet and tangy Nagpur oranges packed with natural vitamin C and juicy citrus pulp.'
+    },
+    {
+      id: 'prod_fruit_mango',
+      title: 'Mango',
+      category: 'fresh-fruits',
+      zoneName: 'Direct Orchard Harvest',
+      harvestHoursAgo: 8,
+      grade: 'Grade A+ Sweet Pulp',
+      farmerKey: 'fpo_chittoor',
+      price: 120,
+      mandiPrice: 160,
+      unit: '1kg',
+      image: 'assets/prod_fruit_mango.jpg',
+      farmerPayoutPercent: 75,
+      lotNumber: 'FR-MNG-404',
+      tier: 1,
+      isMarkdown: false,
+      isKitchen: false,
+      desc: 'Naturally tree-ripened famous Andhra Banganapalli sweet mangoes with tender fiberless golden pulp.'
+    },
+    {
+      id: 'prod_fruit_pomegranate',
+      title: 'Pomegranate',
+      category: 'fresh-fruits',
+      zoneName: 'Farm Orchard Crates',
+      harvestHoursAgo: 12,
+      grade: 'Grade A+ Ruby Arils',
+      farmerKey: 'fpo_anantapur',
+      price: 95,
+      mandiPrice: 125,
+      unit: '500g (3 pcs)',
+      image: 'assets/prod_fruit_pomegranate.jpg',
+      farmerPayoutPercent: 71,
+      lotNumber: 'FR-POM-505',
+      tier: 1,
+      isMarkdown: false,
+      isKitchen: false,
+      desc: 'Plump and juicy ruby red pomegranate arils packed with sweet-tart juice and natural antioxidants.'
+    },
+    {
+      id: 'prod_fruit_lemons',
+      title: 'Lemon',
+      category: 'fresh-fruits',
+      zoneName: 'Farm Orchard Crates',
+      harvestHoursAgo: 6,
+      grade: 'Grade A+ Thin Skin',
+      farmerKey: 'anji_reddy',
+      price: 20,
+      mandiPrice: 28,
+      unit: 'Pack of 4',
+      image: 'assets/prod_lemons.jpg',
+      farmerPayoutPercent: 78,
+      lotNumber: 'FR-LMN-606',
+      tier: 1,
+      isMarkdown: false,
+      isKitchen: false,
+      desc: 'Thin-skinned juicy country lemons brimming with fresh citrus juice and zesty aroma.'
+    },
+    {
+      id: 'prod_fruit_coconut',
+      title: 'Tender Coconut',
+      category: 'fresh-fruits',
+      zoneName: 'Farm Orchard Crates',
+      harvestHoursAgo: 8,
+      grade: 'Grade A+ Sweet Water',
+      farmerKey: 'srinivas_rao',
+      price: 35,
+      mandiPrice: 45,
+      unit: '1 pc',
+      image: 'assets/prod_coconut.jpg',
+      farmerPayoutPercent: 76,
+      lotNumber: 'FR-CCN-707',
+      tier: 1,
+      isMarkdown: false,
+      isKitchen: false,
+      desc: 'Fresh farm harvest coconut with thick sweet kernel and refreshing natural electrolyte water.'
+    },
+    {
+      id: 'prod_kitchen_dhaniya_powder',
+      title: 'Dhaniya Powder',
+      category: 'masala-spices',
+      zoneName: 'Spice Mill Fresh',
+      harvestHoursAgo: 8,
+      grade: 'Stoneground Pure',
+      farmerKey: 'fpo_kadapa',
+      price: 68,
+      mandiPrice: 85,
+      unit: '250g pack',
+      image: 'assets/prod_kitchen_dhaniyalu.jpg',
+      farmerPayoutPercent: 74,
+      lotNumber: 'SP-DHP-108',
+      tier: 1,
+      isMarkdown: false,
+      isKitchen: false,
+      desc: 'Slow-roasted and stone-ground pure coriander powder with rich earthy aroma and zero additives.'
+    },
+
+    // =========================================================================
     // 🥛 FRESH DAIRY, MILK, CURD & MORNING ESSENTIALS ( & )
     // =========================================================================
     {
       id: 'prod_milk_cow',
-      title: 'Pure Desi A2 Cow Milk (1L Glass Bottle)',
+      title: 'Cow Milk',
       category: 'dairy-morning',
       zoneName: 'Chilled Dairy Vault (3°C)',
       harvestHoursAgo: 3,
@@ -183,7 +339,7 @@
     },
     {
       id: 'prod_milk_buffalo',
-      title: 'Rich Farm Buffalo Milk (6.5% Fat - 1L)',
+      title: 'Buffalo Milk',
       category: 'dairy-morning',
       zoneName: 'Chilled Dairy Vault (3°C)',
       harvestHoursAgo: 4,
@@ -202,7 +358,7 @@
     },
     {
       id: 'prod_curd_meegada',
-      title: 'Clay Pot Farm Curd (500g)',
+      title: 'Meegada Curd',
       category: 'dairy-morning',
       zoneName: 'Chilled Dairy Vault (4°C)',
       harvestHoursAgo: 6,
@@ -221,7 +377,7 @@
     },
     {
       id: 'prod_curd_pot',
-      title: 'Clay Pot Farm Curd (500g)',
+      title: 'Curd',
       category: 'dairy-morning',
       zoneName: 'Chilled Dairy Vault (4°C)',
       harvestHoursAgo: 6,
@@ -241,7 +397,7 @@
     },
     {
       id: 'prod_paneer_fresh',
-      title: 'Fresh Farm Malai Paneer (200g Block)',
+      title: 'Paneer',
       category: 'dairy-morning',
       zoneName: 'Chilled Dairy Vault (4°C)',
       harvestHoursAgo: 5,
@@ -260,7 +416,7 @@
     },
     {
       id: 'prod_butter_white',
-      title: 'Farm White Butter (150g)',
+      title: 'White Butter',
       category: 'dairy-morning',
       zoneName: 'Chilled Dairy Vault (4°C)',
       harvestHoursAgo: 8,
@@ -279,7 +435,7 @@
     },
     {
       id: 'prod_ghee_bilona',
-      title: 'A2 Desi Cow Bilona Cultured Ghee (250ml)',
+      title: 'Desi Ghee',
       category: 'dairy-morning',
       zoneName: 'Heritage Pantry (Room Temp)',
       harvestHoursAgo: 24,
@@ -298,7 +454,7 @@
     },
     {
       id: 'prod_buttermilk_spiced',
-      title: 'Refreshing Spiced Buttermilk (300ml)',
+      title: 'Buttermilk',
       category: 'dairy-morning',
       zoneName: 'Chilled Dairy Vault (4°C)',
       harvestHoursAgo: 4,
@@ -317,7 +473,7 @@
     },
     {
       id: 'prod_batter_dosa',
-      title: 'Farm Stone-Ground Idli & Dosa Batter (1kg)',
+      title: 'Dosa Batter',
       category: 'dairy-morning',
       zoneName: 'Chilled Pantry (5°C)',
       harvestHoursAgo: 5,
@@ -336,7 +492,7 @@
     },
     {
       id: 'prod_eggs_country',
-      title: 'Free-Range Country Eggs (6 pcs)',
+      title: 'Eggs',
       category: 'dairy-morning',
       zoneName: 'Farm Fresh Crates (Room Temp)',
       harvestHoursAgo: 12,
@@ -359,7 +515,7 @@
     // =========================================================================
     {
       id: 'prod_tomatoes',
-      title: 'Heirloom Vine Tomatoes (Desi - 1kg)',
+      title: 'Tomato',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 8,
@@ -378,7 +534,7 @@
     },
     {
       id: 'prod_chillies_green',
-      title: 'Country Green Chillies (250g)',
+      title: 'Green Chilli',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 7,
@@ -397,7 +553,7 @@
     },
     {
       id: 'prod_carrots',
-      title: 'Crunchy Sweet Farm Carrots (500g)',
+      title: 'Carrot',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 10,
@@ -416,7 +572,7 @@
     },
     {
       id: 'prod_beans',
-      title: 'Tender Stringless French Beans (500g)',
+      title: 'Beans',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 9,
@@ -435,7 +591,7 @@
     },
     {
       id: 'prod_cauliflower',
-      title: 'Farm Fresh Crisp Cauliflower (1 Whole Head)',
+      title: 'Cauliflower',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 11,
@@ -454,7 +610,7 @@
     },
     {
       id: 'prod_cabbage',
-      title: 'Sweet Green Cabbage (1 Whole Head)',
+      title: 'Cabbage',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 12,
@@ -473,7 +629,7 @@
     },
     {
       id: 'prod_bottle_gourd',
-      title: 'Country Bottle Gourd',
+      title: 'Bottle Gourd',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 8,
@@ -492,7 +648,7 @@
     },
     {
       id: 'prod_ridge_gourd',
-      title: 'Country Ridge Gourd (500g)',
+      title: 'Ridge Gourd',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 9,
@@ -511,7 +667,7 @@
     },
     {
       id: 'prod_bitter_gourd',
-      title: 'Country Bitter Gourd (500g)',
+      title: 'Bitter Gourd',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 10,
@@ -530,7 +686,7 @@
     },
     {
       id: 'prod_bhendi',
-      title: 'Tender Lady Finger (1kg)',
+      title: 'Lady Finger',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 7,
@@ -549,7 +705,7 @@
     },
     {
       id: 'prod_vankaya',
-      title: 'Country Brinjal (1kg)',
+      title: 'Brinjal',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 8,
@@ -568,7 +724,7 @@
     },
     {
       id: 'prod_capsicum',
-      title: 'Crisp Green Bell Peppers (Capsicum - 1kg)',
+      title: 'Capsicum',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 10,
@@ -587,7 +743,7 @@
     },
     {
       id: 'prod_cucumber_salad',
-      title: 'Crisp Salad Keera Cucumber (500g)',
+      title: 'Cucumber',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 6,
@@ -606,7 +762,7 @@
     },
     {
       id: 'prod_cucumber_yellow',
-      title: 'Yellow Cucumber (1 pc)',
+      title: 'Yellow Cucumber',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 12,
@@ -625,7 +781,7 @@
     },
     {
       id: 'prod_drumstick',
-      title: 'Country Drumsticks (3 pcs)',
+      title: 'Drumstick',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 8,
@@ -644,7 +800,7 @@
     },
     {
       id: 'prod_lemons',
-      title: 'Fresh Country Lemons (Pack of 4)',
+      title: 'Lemon',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 14,
@@ -663,7 +819,7 @@
     },
     {
       id: 'prod_green_peas',
-      title: 'Sweet Green Peas (250g)',
+      title: 'Green Peas',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 9,
@@ -682,7 +838,7 @@
     },
     {
       id: 'prod_beetroot',
-      title: 'Organic Sweet Country Beetroot (500g)',
+      title: 'Beetroot',
       category: 'zone-b',
       zoneName: 'Zone B: 11°C Climate Island',
       harvestHoursAgo: 15,
@@ -705,7 +861,7 @@
     // =========================================================================
     {
       id: 'prod_palak',
-      title: 'Fresh Spinach (Palak - 250g)',
+      title: 'Palak',
       category: 'zone-a',
       zoneName: 'Zone A: 4°C Misting Rack',
       harvestHoursAgo: 6,
@@ -724,7 +880,7 @@
     },
     {
       id: 'prod_methi',
-      title: 'Fresh Fenugreek (Methi - 200g)',
+      title: 'Methi',
       category: 'zone-a',
       zoneName: 'Zone A: 4°C Misting Rack',
       harvestHoursAgo: 7,
@@ -743,7 +899,7 @@
     },
     {
       id: 'prod_kothimeera',
-      title: 'Fresh Coriander (150g bunch)',
+      title: 'Coriander',
       category: 'zone-a',
       zoneName: 'Zone A: 4°C Misting Rack',
       harvestHoursAgo: 5,
@@ -762,7 +918,7 @@
     },
     {
       id: 'prod_pudina',
-      title: 'Fresh Mint (Pudina - 150g)',
+      title: 'Mint',
       category: 'zone-a',
       zoneName: 'Zone A: 4°C Misting Rack',
       harvestHoursAgo: 6,
@@ -781,7 +937,7 @@
     },
     {
       id: 'prod_curry_leaves',
-      title: 'Fresh Curry Leaves (100g)',
+      title: 'Curry Leaves',
       category: 'zone-a',
       zoneName: 'Zone A: 4°C Misting Rack',
       harvestHoursAgo: 4,
@@ -800,7 +956,7 @@
     },
     {
       id: 'prod_gongura',
-      title: 'Tangy Andhra Red-Stem Gongura (1 Bunch)',
+      title: 'Gongura',
       category: 'zone-a',
       zoneName: 'Zone A: 4°C Misting Rack',
       harvestHoursAgo: 7,
@@ -819,7 +975,7 @@
     },
     {
       id: 'prod_thotakura',
-      title: 'Fresh Amaranth Leaves (1 Bunch)',
+      title: 'Thotakura',
       category: 'zone-a',
       zoneName: 'Zone A: 4°C Misting Rack',
       harvestHoursAgo: 8,
@@ -842,7 +998,7 @@
     // =========================================================================
     {
       id: 'prod_onions',
-      title: 'Kurnool Sweet Red Onions (1kg)',
+      title: 'Onion',
       category: 'zone-c',
       zoneName: 'Zone C: 22°C Aerated Racks',
       harvestHoursAgo: 48,
@@ -861,7 +1017,7 @@
     },
     {
       id: 'prod_potatoes',
-      title: 'Organic Mountain Potatoes (1kg)',
+      title: 'Potato',
       category: 'zone-c',
       zoneName: 'Zone C: 22°C Aerated Racks',
       harvestHoursAgo: 48,
@@ -880,7 +1036,7 @@
     },
     {
       id: 'prod_ginger',
-      title: 'Fresh Ginger Root (250g)',
+      title: 'Ginger',
       category: 'zone-c',
       zoneName: 'Zone C: 22°C Aerated Racks',
       harvestHoursAgo: 36,
@@ -899,7 +1055,7 @@
     },
     {
       id: 'prod_garlic_country',
-      title: 'Fresh Country Garlic (250g)',
+      title: 'Garlic',
       category: 'zone-c',
       zoneName: 'Zone C: 22°C Aerated Racks',
       harvestHoursAgo: 50,
@@ -918,7 +1074,7 @@
     },
     {
       id: 'prod_coconut',
-      title: 'Fresh Sweet Coconut (1 pc)',
+      title: 'Coconut',
       category: 'zone-c',
       zoneName: 'Farm Fresh Crates (Room Temp)',
       harvestHoursAgo: 24,
@@ -941,7 +1097,7 @@
     // =========================================================================
     {
       id: 'prod_fs_tomatoes',
-      title: 'Fresh Save: Ripe Vine Tomatoes (1kg)',
+      title: 'Tomato',
       category: 'tier2-clearance',
       zoneName: 'Tier 2 "Fresh Save" Clearance',
       harvestHoursAgo: 29,
@@ -960,7 +1116,7 @@
     },
     {
       id: 'prod_fs_palak',
-      title: 'Fresh Save: Day-1 Palak Greens (bunch)',
+      title: 'Palak',
       category: 'tier2-clearance',
       zoneName: 'Tier 2 "Fresh Save" Clearance',
       harvestHoursAgo: 26,
@@ -983,7 +1139,7 @@
     // =========================================================================
     {
       id: 'prod_rtc_gutti_vankaya',
-      title: 'Stuffed Baby Brinjal Slit & Stuffed Prep Kit (400g)',
+      title: 'Gutti Vankaya Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 8,
@@ -1004,7 +1160,7 @@
     },
     {
       id: 'prod_curry_bendakaya_pulusu',
-      title: 'Rayalaseema Ladyfinger Tangy Curry Cooking Kit (450g)',
+      title: 'Bendakaya Pulusu Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 8,
@@ -1025,7 +1181,7 @@
     },
     {
       id: 'prod_rtc_tomato_pappu',
-      title: 'Rayalaseema Tomato Lentil Dal Meal Kit (450g)',
+      title: 'Tomato Pappu Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 10,
@@ -1046,7 +1202,7 @@
     },
     {
       id: 'prod_rtc_palakura_pappu',
-      title: 'Rayalaseema Spinach Lentil Dal Meal Kit (400g)',
+      title: 'Palakura Pappu Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 6,
@@ -1067,7 +1223,7 @@
     },
     {
       id: 'prod_rtc_gongura_pappu',
-      title: 'Rayalaseema Sorrel Leaves Lentil Dal Ready Kit (400g)',
+      title: 'Gongura Pappu Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 8,
@@ -1088,7 +1244,7 @@
     },
     {
       id: 'prod_rtc_dosakaya_pappu',
-      title: 'Rayalaseema Yellow Cucumber Lentil Dal Cut Kit (450g)',
+      title: 'Dosakaya Pappu Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 10,
@@ -1109,7 +1265,7 @@
     },
     {
       id: 'prod_rtc_menthi_pappu',
-      title: 'Tender Fenugreek Leaves Lentil Dal Cooking Kit (350g)',
+      title: 'Menthi Pappu Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 6,
@@ -1130,7 +1286,7 @@
     },
     {
       id: 'prod_curry_dal_tadka',
-      title: 'Dhaba Style Dal Tadka & Jeera Tempering Kit (400g)',
+      title: 'Dal Tadka Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 12,
@@ -1151,7 +1307,7 @@
     },
     {
       id: 'prod_curry_chana_masala',
-      title: 'Desi Chana Masala / Senagala Curry Kit (400g)',
+      title: 'Chana Masala Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 14,
@@ -1172,7 +1328,7 @@
     },
     {
       id: 'prod_curry_dondakaya_fry',
-      title: 'Rayalaseema Crispy Ivy Gourd Fry / Tindora Masala Kit (400g)',
+      title: 'Dondakaya Fry Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 8,
@@ -1193,7 +1349,7 @@
     },
     {
       id: 'prod_curry_kakarakaya_fry',
-      title: 'Crispy Kakarakaya Vepudu / Bitter Gourd Kit (350g)',
+      title: 'Kakarakaya Fry Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 10,
@@ -1214,7 +1370,7 @@
     },
     {
       id: 'prod_curry_aratikaya_vepudu',
-      title: 'Andhra Raw Banana Pepper Roast / Raw Banana Fry Kit (400g)',
+      title: 'Aratikaya Fry Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 12,
@@ -1235,7 +1391,7 @@
     },
     {
       id: 'prod_curry_mirchi_ka_salan',
-      title: 'Hyderabadi Mirchi Ka Salan Prep Kit (400g)',
+      title: 'Mirchi Ka Salan Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 8,
@@ -1256,7 +1412,7 @@
     },
     {
       id: 'prod_curry_paneer_masala',
-      title: 'Creamy Farm Paneer Butter Masala Kit (450g)',
+      title: 'Paneer Masala Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 4,
@@ -1277,7 +1433,7 @@
     },
     {
       id: 'prod_curry_aloo_kurma',
-      title: 'Rayalaseema Aloo Kurma / Potato Gravy Kit (450g)',
+      title: 'Aloo Kurma Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 10,
@@ -1298,7 +1454,7 @@
     },
     {
       id: 'prod_curry_mushroom_curry',
-      title: 'Farm Fresh Mushroom Pepper Masala Kit (350g)',
+      title: 'Mushroom Curry Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 6,
@@ -1319,7 +1475,7 @@
     },
     {
       id: 'prod_rtc_sambar_deluxe',
-      title: 'Authentic Sambar Veggies Cut Kit (500g)',
+      title: 'Sambar Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 8,
@@ -1340,7 +1496,7 @@
     },
     {
       id: 'prod_kit_sambar',
-      title: 'Gourmet Sambar Cut Mix Kit (450g)',
+      title: 'Sambar Mix Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 32,
@@ -1360,7 +1516,7 @@
     },
     {
       id: 'prod_rtc_sambar_curry',
-      title: 'Sambar Ready Cook Kit (450g)',
+      title: 'Sambar Cook Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 12,
@@ -1381,7 +1537,7 @@
     },
     {
       id: 'prod_rtc_miriyala_chaaru',
-      title: 'Rayalaseema Pepper Rasam / Chaaru Kit (350g)',
+      title: 'Pepper Rasam Kit',
       category: 'curry-kits',
       zoneName: 'Curry Items & Fresh Kits',
       harvestHoursAgo: 10,
@@ -1406,7 +1562,7 @@
     // =========================================================================
     {
       id: 'prod_gg_paste',
-      title: 'Roti Pachadi Ginger-Garlic Paste (200g Jar)',
+      title: 'Ginger-Garlic Paste',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 12,
@@ -1426,7 +1582,7 @@
     },
     {
       id: 'prod_kit_garlic',
-      title: 'Peeled Fresh Country Garlic (250g)',
+      title: 'Peeled Garlic',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 40,
@@ -1447,7 +1603,7 @@
     },
     {
       id: 'prod_rtc_sambar_shallots',
-      title: 'Peeled Sambar Shallots (250g)',
+      title: 'Sambar Shallots',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 12,
@@ -1468,7 +1624,7 @@
     },
     {
       id: 'prod_kitchen_coconut',
-      title: 'Fresh Grated Country Coconut (200g Pouch)',
+      title: 'Grated Coconut',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 8,
@@ -1488,7 +1644,7 @@
     },
     {
       id: 'prod_kitchen_tadka_box',
-      title: 'Daily Popu / Tadka Master Spice Mix Box (350g)',
+      title: 'Tadka Box',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 24,
@@ -1509,7 +1665,7 @@
     },
     {
       id: 'prod_rtc_erra_karam',
-      title: 'Rayalaseema Stoneground Red Chilli Spice Paste (200g Jar)',
+      title: 'Erra Karam',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 14,
@@ -1530,7 +1686,7 @@
     },
     {
       id: 'prod_kitchen_dosa_batter',
-      title: 'Fresh Stoneground Dosa & Idli Batter (1kg Pouch)',
+      title: 'Dosa Batter',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 10,
@@ -1550,7 +1706,7 @@
     },
     {
       id: 'prod_kitchen_sesame_oil',
-      title: 'Cold-Pressed Pure Gingelly / Sesame Cooking Oil (500ml)',
+      title: 'Sesame Oil',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 48,
@@ -1571,7 +1727,7 @@
     },
     {
       id: 'prod_rtc_ragi_sankati',
-      title: 'Rayalaseema Ragi Ragi Meal Instant Mix (1kg)',
+      title: 'Ragi Sankati Mix',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 24,
@@ -1592,7 +1748,7 @@
     },
     {
       id: 'prod_rtc_uggani_mix',
-      title: 'Kurnool Spiced Puffed Rice Ready-to-Toss Kit (450g)',
+      title: 'Uggani Mix',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 12,
@@ -1613,7 +1769,7 @@
     },
     {
       id: 'prod_rtc_mirchi_bajji',
-      title: 'Rayalaseema Mirchi Bajji Ready-to-Fry Pack (6 pcs)',
+      title: 'Mirchi Bajji Pack',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 6,
@@ -1634,7 +1790,7 @@
     },
     {
       id: 'prod_kitchen_herb_trio',
-      title: 'Fresh Herb Trio: Coriander, Mint & Curry Leaves (250g)',
+      title: 'Herb Trio',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 6,
@@ -1654,7 +1810,7 @@
     },
     {
       id: 'prod_rtc_sambar_masala_dal',
-      title: 'Ready Sambar Dal & Roasted Spice Kit (350g)',
+      title: 'Sambar Dal Kit',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 24,
@@ -1675,7 +1831,7 @@
     },
     {
       id: 'prod_kit_juice',
-      title: 'Raw Sugarcane & Ginger Juice (300ml)',
+      title: 'Sugarcane Juice',
       category: 'kitchen-essentials',
       zoneName: 'Kitchen Essentials & Prep',
       harvestHoursAgo: 4,
@@ -1699,7 +1855,7 @@
     // =========================================================================
     {
       id: 'prod_kurnool_rice',
-      title: 'Kurnool Sona Masoori Raw Rice (5kg Bag)',
+      title: 'Sona Masoori Rice',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 720,
@@ -1719,7 +1875,7 @@
     },
     {
       id: 'prod_rayala_ragi',
-      title: 'Rayalaseema Stone-Ground Ragi Flour (1kg)',
+      title: 'Ragi Flour',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 36,
@@ -1739,7 +1895,7 @@
     },
     {
       id: 'prod_rayala_jonna',
-      title: 'Rayalaseema Jowar Flour (1kg)',
+      title: 'Jowar Flour',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 40,
@@ -1759,7 +1915,7 @@
     },
     {
       id: 'prod_anantapur_peanuts',
-      title: 'Anantapur Sweet Pod Groundnuts (1kg)',
+      title: 'Peanuts',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 48,
@@ -1779,7 +1935,7 @@
     },
     {
       id: 'prod_rayala_kandi_pappu',
-      title: 'Rayalaseema Unpolished Toor Dal (1kg)',
+      title: 'Toor Dal',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 60,
@@ -1799,7 +1955,7 @@
     },
     {
       id: 'prod_rayala_pesara_pappu',
-      title: 'Rayalaseema Moong Dal (Moong Dal - 1kg)',
+      title: 'Moong Dal',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 50,
@@ -1819,7 +1975,7 @@
     },
     {
       id: 'prod_kurnool_borugulu',
-      title: 'Kurnool Crisp Spiced Puffed Rice Borugulu / Murmura (500g)',
+      title: 'Puffed Rice',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 24,
@@ -1839,7 +1995,7 @@
     },
     {
       id: 'prod_kadapa_red_chillies',
-      title: 'Kadapa Gundu Dried Red Chillies (250g)',
+      title: 'Dried Red Chillies',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Spices',
       harvestHoursAgo: 72,
@@ -1859,7 +2015,7 @@
     },
     {
       id: 'prod_madanapalle_tomatoes',
-      title: 'Madanapalle Country Heirloom Tomatoes (1kg)',
+      title: 'Country Tomatoes',
       category: 'zone-b',
       zoneName: 'Zone B: Farm Fresh Direct',
       harvestHoursAgo: 14,
@@ -1879,7 +2035,7 @@
     },
     {
       id: 'prod_punganur_ghee',
-      title: 'Punganur Desi Cow Pure Bilona Ghee (500ml Glass Jar)',
+      title: 'Desi Cow Ghee',
       category: 'dairy-morning',
       zoneName: 'Chilled Dairy Vault (4°C)',
       harvestHoursAgo: 24,
@@ -1899,7 +2055,7 @@
     },
     {
       id: 'prod_rayala_tamarind',
-      title: 'Rayalaseema Desi Tart Tamarind (500g)',
+      title: 'Tamarind',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Spices',
       harvestHoursAgo: 96,
@@ -1919,7 +2075,7 @@
     },
     {
       id: 'prod_rayala_korralu',
-      title: 'Rayalaseema Korralu / Foxtail Millet (1kg)',
+      title: 'Foxtail Millet',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 48,
@@ -1939,7 +2095,7 @@
     },
     {
       id: 'prod_rayala_putnala',
-      title: 'Rayalaseema Putnala Pappu / Roasted Gram (500g)',
+      title: 'Putnala Pappu',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 24,
@@ -1959,7 +2115,7 @@
     },
     {
       id: 'prod_kadapa_turmeric',
-      title: 'Kadapa Pure Farm Turmeric Powder (250g)',
+      title: 'Turmeric Powder',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Spices',
       harvestHoursAgo: 120,
@@ -1979,7 +2135,7 @@
     },
     {
       id: 'prod_chittoor_jaggery',
-      title: 'Chittoor Organic Sugarcane Jaggery / Bellam (1kg)',
+      title: 'Jaggery (Bellam)',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 48,
@@ -1999,7 +2155,7 @@
     },
     {
       id: 'prod_rayala_dosakaya',
-      title: 'Rayalaseema Heirloom Round Dosakaya (1kg)',
+      title: 'Dosakaya',
       category: 'zone-b',
       zoneName: 'Zone B: Farm Fresh Direct',
       harvestHoursAgo: 12,
@@ -2019,7 +2175,7 @@
     },
     {
       id: 'prod_rayala_arikalu',
-      title: 'Rayalaseema Arikalu / Kodo Millet (1kg)',
+      title: 'Kodo Millet',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 48,
@@ -2039,7 +2195,7 @@
     },
     {
       id: 'prod_rayala_senaga_pappu',
-      title: 'Rayalaseema Desi Senaga Pappu / Chana Dal (1kg)',
+      title: 'Chana Dal',
       category: 'zone-c',
       zoneName: 'Heritage Staples & Grains',
       harvestHoursAgo: 55,
@@ -2059,7 +2215,7 @@
     },
     {
       id: 'prod_rayala_lemons',
-      title: 'Rayalaseema Thin-Skin Juicy Country Lemons (6 pcs)',
+      title: 'Country Lemons',
       category: 'zone-b',
       zoneName: 'Zone B: Farm Fresh Direct',
       harvestHoursAgo: 10,
@@ -2078,8 +2234,8 @@
       desc: 'Thin-skinned golden-yellow country lemons from Chittoor citrus groves. High natural acidity and overflowing juice; essential for Pulihora, rasam, sharbat and pickles.'
     },
     {
-      id: "prod_atta_aashirvaad",
-      title: "Aashirvaad Sharbati Whole Wheat Atta",
+      id: 'prod_atta_aashirvaad',
+      title: 'Aashirvaad Atta',
       department: "grocery",
       category: "atta-rice-dal",
       zoneName: "Grains & Flours Vault",
@@ -2099,8 +2255,8 @@
       desc: "Superior MP Sharbati golden wheat grains ground in traditional stone chakkis. 100% whole wheat with zero maida for soft rotis.",
     },
     {
-      id: "prod_atta_fortune",
-      title: "Fortune Chakki Fresh 100% Atta",
+      id: 'prod_atta_fortune',
+      title: 'Fortune Atta',
       department: "grocery",
       category: "atta-rice-dal",
       zoneName: "Grains & Flours Vault",
@@ -2120,8 +2276,8 @@
       desc: "Stone chakki fresh ground wheat flour with dietary fiber. Absorbs water evenly for stay-soft phulkas.",
     },
     {
-      id: "prod_rice_basmati",
-      title: "Royal Daawat Super Basmati Rice",
+      id: 'prod_rice_basmati',
+      title: 'Basmati Rice',
       department: "grocery",
       category: "atta-rice-dal",
       zoneName: "Grains & Flours Vault",
@@ -2141,8 +2297,8 @@
       desc: "Naturally aged Himalayan foothills long slender grains that elongate up to 2.5 times when cooked. Distinct aroma for biryanis.",
     },
     {
-      id: "prod_dal_moong",
-      title: "Tata Sampann Yellow Moong Dal",
+      id: 'prod_dal_moong',
+      title: 'Moong Dal',
       department: "grocery",
       category: "atta-rice-dal",
       zoneName: "Pulses & Dals Vault",
@@ -2162,8 +2318,8 @@
       desc: "Unpolished protein-rich yellow split moong dal with zero artificial coloring. Cooks soft and creamy for dal tadka and kichidi.",
     },
     {
-      id: "prod_dal_urad",
-      title: "Premium Urad Dal Gota (Minapa Pappu)",
+      id: 'prod_dal_urad',
+      title: 'Urad Dal',
       department: "grocery",
       category: "atta-rice-dal",
       zoneName: "Pulses & Dals Vault",
@@ -2183,8 +2339,8 @@
       desc: "Unpolished fat whole white urad gota. High fermentation power for fluffy soft Mallige idlis and crispy golden medu vadas.",
     },
     {
-      id: "prod_oil_sunflower",
-      title: "Fortune Sunlite Refined Sunflower Oil",
+      id: 'prod_oil_sunflower',
+      title: 'Sunflower Oil',
       department: "grocery",
       category: "oil-ghee-masala",
       zoneName: "Oils & Ghee Hub",
@@ -2204,8 +2360,8 @@
       desc: "Light, cholesterol-free cooking oil fortified with Vitamin A and D. Absorbs less oil into puries and daily curries.",
     },
     {
-      id: "prod_oil_groundnut",
-      title: "Wood-Pressed Pure Groundnut Oil",
+      id: 'prod_oil_groundnut',
+      title: 'Groundnut Oil',
       department: "grocery",
       category: "oil-ghee-masala",
       zoneName: "Oils & Ghee Hub",
@@ -2225,8 +2381,8 @@
       desc: "Crushed in traditional wooden cold-press (Ganuga/Mara Chekku) below 35°C from Anantapur farm peanuts. Rich nutty aroma and natural antioxidants.",
     },
     {
-      id: "prod_masala_tikhalal",
-      title: "Everest Tikhalal Hot Chilli Powder",
+      id: 'prod_masala_tikhalal',
+      title: 'Chilli Powder',
       department: "grocery",
       category: "oil-ghee-masala",
       zoneName: "Spices & Seasonings",
@@ -2246,8 +2402,8 @@
       desc: "Fiery red and deeply pungent chilli powder ground from sun-ripened red chillies. Gives rich natural red gravy without artificial color.",
     },
     {
-      id: "prod_salt_tata",
-      title: "Tata Salt Vacuum Evaporated Iodized",
+      id: 'prod_salt_tata',
+      title: 'Tata Salt',
       department: "grocery",
       category: "oil-ghee-masala",
       zoneName: "Spices & Seasonings",
@@ -2267,8 +2423,8 @@
       desc: "India's trusted vacuum-evaporated table salt ensuring the right iodine levels for family health and perfect dissolved balance in food.",
     },
     {
-      id: "prod_bread_wheat",
-      title: "English Oven 100% Whole Wheat Bread",
+      id: 'prod_bread_wheat',
+      title: 'Whole Wheat Bread',
       department: "grocery",
       category: "dairy-bread-eggs",
       zoneName: "Bakery Counter",
@@ -2288,8 +2444,8 @@
       desc: "Baked fresh every morning using whole wheat grain flour with zero trans fats. Soft, spongy crumb ideal for morning toast and sandwiches.",
     },
     {
-      id: "prod_bisc_goodday",
-      title: "Britannia Good Day Butter & Cashew",
+      id: 'prod_bisc_goodday',
+      title: 'Good Day',
       department: "grocery",
       category: "bakery-biscuits",
       zoneName: "Bakery Counter",
@@ -2309,8 +2465,8 @@
       desc: "Crispy golden baked cookies loaded with toasted cashew chunks and creamy dairy butter. The ultimate companion for evening chai.",
     },
     {
-      id: "prod_bisc_darkfantasy",
-      title: "Sunfeast Dark Fantasy Choco Fills",
+      id: 'prod_bisc_darkfantasy',
+      title: 'Dark Fantasy',
       department: "grocery",
       category: "bakery-biscuits",
       zoneName: "Bakery Counter",
@@ -2330,8 +2486,8 @@
       desc: "Crisp baked dark cocoa biscuit with a luscious molten chocolate center that melts in your mouth.",
     },
     {
-      id: "prod_dry_almonds",
-      title: "California Whole Almonds (Badam)",
+      id: 'prod_dry_almonds',
+      title: 'Almonds',
       department: "grocery",
       category: "dryfruits-cereals",
       zoneName: "Nuts & Superfoods",
@@ -2351,8 +2507,8 @@
       desc: "Sweet, crunchy nonpareil California almonds packed with Vitamin E and natural plant protein. Zero preservatives, uniform grading.",
     },
     {
-      id: "prod_dry_cashews",
-      title: "Farm Jumbo Cashew Nuts (Kaju W240)",
+      id: 'prod_dry_cashews',
+      title: 'Cashews',
       department: "grocery",
       category: "dryfruits-cereals",
       zoneName: "Nuts & Superfoods",
@@ -2372,8 +2528,8 @@
       desc: "Crisp, creamy whole white W240 cashew kernels sourced directly from coastal cashew groves. Perfect for payasam, kaju katli, and curries.",
     },
     {
-      id: "prod_cereal_cornflakes",
-      title: "Kellogg's Real Almond & Honey Corn Flakes",
+      id: 'prod_cereal_cornflakes',
+      title: 'Corn Flakes',
       department: "grocery",
       category: "dryfruits-cereals",
       zoneName: "Breakfast Cereals",
@@ -2393,8 +2549,8 @@
       desc: "Crispy golden toasted corn flakes enriched with real almond slices and natural honey. Provides essential B vitamins and iron.",
     },
     {
-      id: "prod_meat_chicken",
-      title: "Farm Tender Chicken Curry Cut (Skinless)",
+      id: 'prod_meat_chicken',
+      title: 'Chicken Curry Cut',
       department: "grocery",
       category: "chicken-meat-fish",
       zoneName: "Fresh Meat Cold Room (2°C)",
@@ -2414,8 +2570,8 @@
       desc: "Tender 10-14 piece curry cut including bone-in pieces for rich broth flavor. Farm-raised with no growth hormones; cleaned and chilled at 2°C.",
     },
     {
-      id: "prod_meat_boneless",
-      title: "Fresh Tender Boneless Chicken Breast",
+      id: 'prod_meat_boneless',
+      title: 'Boneless Chicken',
       department: "grocery",
       category: "chicken-meat-fish",
       zoneName: "Fresh Meat Cold Room (2°C)",
@@ -2435,8 +2591,8 @@
       desc: "Ultra-lean high-protein chicken breast trimmed of all excess fat. Juicy and tender for grilling, stir fry, salads, and butter chicken.",
     },
     {
-      id: "prod_meat_prawns",
-      title: "Fresh Cleaned & Deveined Sea Prawns",
+      id: 'prod_meat_prawns',
+      title: 'Prawns',
       department: "grocery",
       category: "chicken-meat-fish",
       zoneName: "Fresh Meat Cold Room (2°C)",
@@ -2456,8 +2612,8 @@
       desc: "Coastal catch prawns peeled and deveined for zero prep hassle. Sweet, tender flesh that cooks in 4 minutes for royyala vepudu and curry.",
     },
     {
-      id: "prod_kitchen_salt",
-      title: "Tata Salt Vacuum Evaporated Iodized",
+      id: 'prod_kitchen_salt',
+      title: 'Tata Salt',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2478,8 +2634,8 @@
       desc: "India's trusted vacuum evaporated iodized salt for everyday cooking, curries, dal, sambar and seasoning. Dissolves crystal clean with balanced salinity.",
     },
     {
-      id: "prod_kitchen_jilakara",
-      title: "Organic Jeera / Cumin Seeds",
+      id: 'prod_kitchen_jilakara',
+      title: 'Jeera',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2500,8 +2656,8 @@
       desc: "Rich earthy aromatic cumin seeds with high essential oil content. Essential for everyday popu/tadka, jeera rice, rasam, and digestive herbal decoctions.",
     },
     {
-      id: "prod_kitchen_avalu",
-      title: "Crisp Brown Mustard Seeds",
+      id: 'prod_kitchen_avalu',
+      title: 'Mustard Seeds',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2522,8 +2678,8 @@
       desc: "Crisp, pungent brown mustard seeds that crackle perfectly in hot gingelly or peanut oil. The cornerstone of Telugu talimpu, pachadis, and pickles.",
     },
     {
-      id: "prod_kitchen_chekka_lavangalu",
-      title: "Whole Cinnamon Bark & Cloves",
+      id: 'prod_kitchen_chekka_lavangalu',
+      title: 'Cinnamon & Cloves',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2544,8 +2700,8 @@
       desc: "Fragrant Ceylon-style cinnamon bark quills and plump whole clove buds with intense aromatic sweetness. Essential for Rayalaseema biryani, kurma, and mutton vepudu.",
     },
     {
-      id: "prod_kitchen_dhaniyalu",
-      title: "Aromatic Coriander Seeds",
+      id: 'prod_kitchen_dhaniyalu',
+      title: 'Coriander Seeds',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2566,8 +2722,8 @@
       desc: "Naturally sun-dried fragrant whole coriander seeds. Perfect for dry roasting into fresh rasam powder, sambar podi, and home spice blends.",
     },
     {
-      id: "prod_kitchen_mentulu",
-      title: "Golden Fenugreek Seeds",
+      id: 'prod_kitchen_mentulu',
+      title: 'Fenugreek Seeds',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2588,8 +2744,8 @@
       desc: "Clean golden fenugreek seeds known for cooling digestion, healthy blood sugar balance, and indispensable bitterness in fish pulusu, sambar and dosas.",
     },
     {
-      id: "prod_kitchen_pasupu",
-      title: "Salem Pure Turmeric Powder",
+      id: 'prod_kitchen_pasupu',
+      title: 'Turmeric Powder',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2610,8 +2766,8 @@
       desc: "Deep golden Salem turmeric powder stone-ground from pesticide-free finger roots. Naturally rich in curcumin for potent immunity and authentic curry vibrancy.",
     },
     {
-      id: "prod_kitchen_inguva",
-      title: "LG Compounded Asafoetida (Hing)",
+      id: 'prod_kitchen_inguva',
+      title: 'Hing',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2632,8 +2788,8 @@
       desc: "Signature strong compounded hing powder. Just a pinch in hot oil or ghee releases mouthwatering aroma in sambar, rasam, and all South Indian dal recipes.",
     },
     {
-      id: "prod_kitchen_yalukalu",
-      title: "Fragrant Green Cardamom",
+      id: 'prod_kitchen_yalukalu',
+      title: 'Cardamom',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2654,8 +2810,8 @@
       desc: "Whole green 8mm+ cardamom pods with pitch black oil-dense seeds inside. Imparts heavenly aroma to payasam, biryani, filter coffee and masala chai.",
     },
     {
-      id: "prod_kitchen_miriyalu",
-      title: "Malabar Black Peppercorns",
+      id: 'prod_kitchen_miriyalu',
+      title: 'Black Pepper',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2676,8 +2832,8 @@
       desc: "Sun-ripened black peppercorns with intense pungency and pine-citrus aroma. Essential for pongal, pepper rasam, chettinad curries, and soothing sore throats.",
     },
     {
-      id: "prod_kitchen_karam",
-      title: "Guntur Hot Red Chilli Powder",
+      id: 'prod_kitchen_karam',
+      title: 'Red Chilli Powder',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2698,8 +2854,8 @@
       desc: "Pure sun-dried Guntur red chillies stone-ground to vibrant scarlet perfection with zero artificial colors. Imparts fiery taste and deep crimson hue to curries, fryums, and chutneys.",
     },
     {
-      id: "prod_kitchen_sambar_podi",
-      title: "Authentic Homemade Sambar Powder",
+      id: 'prod_kitchen_sambar_podi',
+      title: 'Sambar Powder',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2720,8 +2876,8 @@
       desc: "Slow-roasted chana dal, coriander, fenugreek, red chillies, and curry leaves blended into heavenly aromatic sambar powder for soul-satisfying tiffin and meal sambars.",
     },
     {
-      id: "prod_kitchen_garam_masala",
-      title: "Royal Shahi Garam Masala Powder",
+      id: 'prod_kitchen_garam_masala',
+      title: 'Garam Masala',
       department: "kitchen",
       category: "kitchen-essentials",
       zoneName: "Kitchen Essentials & Spices",
@@ -2742,8 +2898,8 @@
       desc: "Aromatic blend of 14 whole spices including star anise, green cardamom, mace, nutmeg, and black pepper. Adds royal aroma and rich depth to kurmas and biryanis.",
     },
     {
-      id: "prod_app_copper_bottle",
-      title: "Pure Hammered Ayurvedic Copper Bottle (1000ml)",
+      id: 'prod_app_copper_bottle',
+      title: 'Copper Bottle',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -2764,8 +2920,8 @@
       desc: "Handcrafted seamless hammered pure copper vessel for overnight Tamra Jal health benefits. Natural antimicrobial properties and leakproof seal.",
     },
     {
-      id: "prod_app_mixer_grinder",
-      title: "Philips HL7756 750W 3-Jar Mixer Grinder",
+      id: 'prod_app_mixer_grinder',
+      title: 'Mixer Grinder',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -2786,8 +2942,8 @@
       desc: "Heavy-duty 750W copper motor with advanced air ventilation. Grinds hard turmeric, idli batter, wet chutneys, and spices in under 90 seconds.",
     },
     {
-      id: "prod_app_castiron_tawa",
-      title: "Heavy Pre-Seasoned Cast Iron Dosa Tawa (28cm)",
+      id: 'prod_app_castiron_tawa',
+      title: 'Cast Iron Tawa',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -2808,8 +2964,8 @@
       desc: "Pre-seasoned with 100% natural gingelly oil. Delivers hotel-style golden crispy dosas with uniform heat distribution and zero chemical Teflon coating.",
     },
     {
-      id: "prod_app_pressure_cooker",
-      title: "Prestige Deluxe Alpha Tri-Ply Cooker (3L)",
+      id: 'prod_app_pressure_cooker',
+      title: 'Pressure Cooker',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -2830,8 +2986,8 @@
       desc: "Heavy 304 food-grade stainless steel with encapsulated aluminum core. Faster cooking with zero hotspot burning for rice, dal, and stews.",
     },
     {
-      id: "prod_app_kadhai_steel",
-      title: "Tri-Ply Stainless Steel Kadhai with Lid (2.5L)",
+      id: 'prod_app_kadhai_steel',
+      title: 'Steel Kadhai',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -2852,8 +3008,8 @@
       desc: "Even-heating deep curved kadhai with riveted cool-touch handles. Ideal for deep frying, tadka, sautéing vegetables, and slow simmering curries.",
     },
     {
-      id: "prod_app_clay_handi",
-      title: "Traditional Terracotta Cooking Handi (2.5L)",
+      id: 'prod_app_clay_handi',
+      title: 'Clay Handi',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -2874,8 +3030,8 @@
       desc: "Kiln-baked porous red terracotta handi made by village potters. Imparts an authentic earthy aroma and retains 100% nutrients in slow-cooked dals.",
     },
     {
-      id: "prod_app_brass_tadka",
-      title: "Heavy Brass Talimpu Tadka Pan with Wood Handle",
+      id: 'prod_app_brass_tadka',
+      title: 'Tadka Pan',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -2896,8 +3052,8 @@
       desc: "Heavy gauge brass seasoning pan with ergonomic insulated handle. Retains searing heat to crackle mustard, cumin, and curry leaves to perfection.",
     },
     {
-      id: "prod_app_brass_mortar",
-      title: "Solid Brass Rolu Mortar & Pestle (Heavy Duty)",
+      id: 'prod_app_brass_mortar',
+      title: 'Mortar & Pestle',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -2918,8 +3074,8 @@
       desc: "Traditional kitchen rolu-pestle for hand-crushing fresh ginger, garlic, peppercorns, cardamom, and podis to release essential oils.",
     },
     {
-      id: "prod_app_veg_chopper",
-      title: "Pigeon Quick Pull 3-Blade Veg Chopper (900ml)",
+      id: 'prod_app_veg_chopper',
+      title: 'Veg Chopper',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -2940,8 +3096,8 @@
       desc: "Effortless pull-cord mechanism with 3 surgical stainless steel blades. Finely chops onions, tomatoes, chillies, and greens in 5 seconds.",
     },
     {
-      id: "prod_app_spatula_set",
-      title: "Natural Teakwood Cooking Spatulas (6 Pcs Set)",
+      id: 'prod_app_spatula_set',
+      title: 'Wooden Spatulas',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -2962,8 +3118,8 @@
       desc: "Handmade non-scratch wooden spoons and flat turner spatulas. Safe for cast iron, clay, and stainless cookware; will not heat up during cooking.",
     },
     {
-      id: "prod_app_knife_set",
-      title: "Chef Knife, Scissors & Peeler Set (3 Pcs)",
+      id: 'prod_app_knife_set',
+      title: 'Knife & Peeler Set',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -2984,8 +3140,8 @@
       desc: "Ergonomic textured grip handle with laser-tested edge retention. Glides smoothly through pumpkin, sweet potato, and meat with zero slipping.",
     },
     {
-      id: "prod_app_storage_jars",
-      title: "Modular Airtight Food Storage Jars (6 Pcs)",
+      id: 'prod_app_storage_jars',
+      title: 'Storage Jars',
       department: "kitchen",
       category: "kitchenware-appliances",
       zoneName: "Kitchenware & Appliances",
@@ -3006,8 +3162,8 @@
       desc: "Space-saving stackable clear square containers with silicone airtight seal. Keeps dals, rice, spices, and snacks fresh and insect-free.",
     },
     {
-      id: "prod_snack_lays",
-      title: "Lay's Classic Salted Potato Chips (50g)",
+      id: 'prod_snack_lays',
+      title: "Lay's",
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Snacks & Drinks",
@@ -3027,8 +3183,8 @@
       desc: "Crispy golden thinly sliced potato chips sprinkled with light mineral salt. The evergreen teatime crunch.",
     },
     {
-      id: "prod_snack_namkeen",
-      title: "Haldiram's Nagpur Spicy Aloo Bhujia (200g)",
+      id: 'prod_snack_namkeen',
+      title: 'Haldiram Namkeen',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Snacks & Drinks",
@@ -3048,8 +3204,8 @@
       desc: "Crispy thin potato and moth dal strands seasoned with mint, chilli, and dry mango spices. Great topping on upma and poha.",
     },
     {
-      id: "prod_choco_silk",
-      title: "Cadbury Dairy Milk Silk Chocolate (60g)",
+      id: 'prod_choco_silk',
+      title: 'Dairy Milk Silk',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Sweets & Chocolates",
@@ -3069,8 +3225,8 @@
       desc: "Creamier, smoother milk chocolate made with rich dairy milk. Melts delightfully on the tongue.",
     },
     {
-      id: "prod_drink_juice",
-      title: "Real Fruit Power Alphonso Mango Juice (1L)",
+      id: 'prod_drink_juice',
+      title: 'Mango Juice',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Drinks & Juices",
@@ -3090,8 +3246,8 @@
       desc: "Crafted from handpicked Ratnagiri Alphonso mangoes for authentic king-of-fruits thick mango sweetness with zero added preservatives.",
     },
     {
-      id: "prod_bev_tatatea",
-      title: "Tata Tea Gold Fine Leaves & CTC (500g)",
+      id: 'prod_bev_tatatea',
+      title: 'Tata Tea Gold',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Tea & Coffee",
@@ -3111,8 +3267,8 @@
       desc: "A master blend of robust Assam CTC granules and 15% gently rolled fragrant long leaves for unmatched color, strength, and aroma.",
     },
     {
-      id: "prod_instant_maggi",
-      title: "Maggi 2-Minute Masala Instant Noodles (Pack of 4)",
+      id: 'prod_instant_maggi',
+      title: 'Maggi Noodles',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Instant Foods",
@@ -3132,8 +3288,8 @@
       desc: "India's beloved 2-minute instant noodles blended with authentic roasted spices. Fortified with iron for energy.",
     },
     {
-      id: "prod_icecream_vanilla",
-      title: "Amul Vanilla Gold Ice Cream Tub (1L)",
+      id: 'prod_icecream_vanilla',
+      title: 'Vanilla Ice Cream',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Ice Creams & More",
@@ -3153,8 +3309,8 @@
       desc: "Made from 100% pure dairy milk cream with natural Madagascar vanilla extract. Velvety rich texture and zero frozen dessert vegetable oil.",
     },
     {
-      id: "prod_snack_kurkure",
-      title: "Kurkure Masala Munch Crispy Snacks (75g)",
+      id: 'prod_snack_kurkure',
+      title: 'Kurkure',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Snacks & Munchies",
@@ -3174,8 +3330,8 @@
       desc: "Made with trusted kitchen ingredients: rice meal, corn meal, and chickpea flour with authentic Indian spice seasoning.",
     },
     {
-      id: "prod_bisc_oreo",
-      title: "Cadbury Oreo Vanilla Creme Sandwich Biscuits (120g)",
+      id: 'prod_bisc_oreo',
+      title: 'Oreo',
       department: "grocery",
       category: "bakery-biscuits",
       zoneName: "Biscuits & Cookies",
@@ -3195,8 +3351,8 @@
       desc: "Rich dark cocoa biscuits embossed with classic Oreo detailing, filled with smooth and sweet vanilla creme.",
     },
     {
-      id: "prod_bisc_bourbon",
-      title: "Britannia Bourbon Chocolate Sandwich Biscuits (150g)",
+      id: 'prod_bisc_bourbon',
+      title: 'Bourbon',
       department: "grocery",
       category: "bakery-biscuits",
       zoneName: "Biscuits & Cookies",
@@ -3216,8 +3372,8 @@
       desc: "Crunchy chocolate biscuits sprinkled with sparkling sugar crystals and filled with rich chocolate fudge cream.",
     },
     {
-      id: "prod_snack_haldiram_aloo_bhujia",
-      title: "Haldiram's Nagpur Aloo Bhujia Namkeen (150g)",
+      id: 'prod_snack_haldiram_aloo_bhujia',
+      title: 'Aloo Bhujia',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Namkeen & Savouries",
@@ -3237,8 +3393,8 @@
       desc: "Crispy fried potato and gram flour sev tossed in tangy red chilli, fresh mint, and chaat spices.",
     },
     {
-      id: "prod_drink_thumsup",
-      title: "Thums Up Toofani Carbonated Soft Drink (750ml)",
+      id: 'prod_drink_thumsup',
+      title: 'Thums Up',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Cold Drinks & Juices",
@@ -3258,8 +3414,8 @@
       desc: "India's legendary strong spicy fizzy cola with an invigorating punch that tastes like thunder.",
     },
     {
-      id: "prod_dairy_butter_amul",
-      title: "Amul Pasteurised Salted Butter (100g)",
+      id: 'prod_dairy_butter_amul',
+      title: 'Amul Butter',
       department: "grocery",
       category: "snacks-drinks",
       zoneName: "Breakfast Dairy",
@@ -3448,11 +3604,124 @@
   // 3. MAIN APPLICATION STATE
   // =========================================================================
 
+  
+  // =========================================================================
+  // SUPERMARKET VERTICAL CATEGORIES SPECIFICATION
+  // =========================================================================
+    const SUPERMARKET_CATEGORIES = {
+    'all': {
+      id: 'all',
+      name: 'All Items',
+      subtitle: 'Showing all fresh supermarket groceries, direct farm produce & kitchen essentials',
+      icon: '🛒',
+      image: 'assets/cat_all_products.jpg'
+    },
+    'ready-to-cook': {
+      id: 'ready-to-cook',
+      name: 'Ready to Cook',
+      subtitle: 'Fresh meal kits, pre-cut vegetables, sambar prep kits & instant batters',
+      icon: '🍲',
+      image: 'assets/prod_rtc_sambar_curry.jpg'
+    },
+    'leaf-items': {
+      id: 'leaf-items',
+      name: 'Leaf Items',
+      subtitle: 'Freshly harvested Palak, Methi, Kothimeera, Pudina, Gongura & farm greens',
+      icon: '🌿',
+      image: 'assets/prod_spinach.jpg'
+    },
+    'vegetables': {
+      id: 'vegetables',
+      name: 'Daily Veg',
+      subtitle: 'Farm fresh tomatoes, sweet onions, country potatoes, brinjals & daily vegetables',
+      icon: '🍅',
+      image: 'assets/prod_tomatoes.jpg'
+    },
+    'fresh-fruits': {
+      id: 'fresh-fruits',
+      name: 'Fresh Fruits',
+      subtitle: 'Seasonal sweet oranges, bananas, Royal Gala apples, Banganapalli mangoes & citrus',
+      icon: '🍎',
+      image: 'assets/cat_fruits.jpg'
+    },
+    'kitchen-spices': {
+      id: 'kitchen-spices',
+      name: 'Kitchen Spices',
+      subtitle: 'Pure stoneground turmeric, red chilli powder, cumin, pepper & tadka master box',
+      icon: '🧂',
+      image: 'assets/cat_spices.jpg'
+    },
+    'rayalaseema': {
+      id: 'rayalaseema',
+      name: 'Traditional Specials',
+      subtitle: 'Stoneground red chilli paste, dried chillies, peanuts & millets',
+      icon: '🌶️',
+      image: 'assets/prod_erra_karam.jpg'
+    },
+    'dairy-morning': {
+      id: 'dairy-morning',
+      name: 'Fresh Dairy',
+      subtitle: 'Pure Desi A2 milk, buffalo milk, clay pot curd, malai paneer & bilona ghee',
+      icon: '🥛',
+      image: 'assets/cat_dairy.jpg'
+    },
+    'atta-rice-dal': {
+      id: 'atta-rice-dal',
+      name: 'Atta & Rice',
+      subtitle: 'Sona Masoori raw rice, chakki fresh wheat atta & unpolished dals',
+      icon: '🌾',
+      image: 'assets/cat_grains.jpg'
+    },
+    'oil-ghee-masala': {
+      id: 'oil-ghee-masala',
+      name: 'Pure Oils',
+      subtitle: 'Cold-pressed groundnut oil, sesame oil, sunflower cooking oil & rock salt',
+      icon: '🫒',
+      image: 'assets/cat_oils.jpg'
+    },
+    'snacks-bakery': {
+      id: 'snacks-bakery',
+      name: 'Bakery & Snacks',
+      subtitle: 'Crispy puffed rice, traditional namkeen, cookies, biscuits & tea',
+      icon: '🍪',
+      image: 'assets/cat_snacks.jpg'
+    },
+    'fresh-deals': {
+      id: 'fresh-deals',
+      name: 'Fresh Deals',
+      subtitle: 'Daily essentials combo packs, morning harvest discounts & value deals',
+      icon: '🏷️',
+      image: 'assets/prod_breakfast_staples.jpg'
+    }
+  };
+
+  // Compatibility aliases
+  SUPERMARKET_CATEGORIES['fresh-vegetables'] = SUPERMARKET_CATEGORIES['vegetables'];
+  SUPERMARKET_CATEGORIES['masala-spices'] = SUPERMARKET_CATEGORIES['kitchen-spices'];
+  SUPERMARKET_CATEGORIES['spices'] = SUPERMARKET_CATEGORIES['kitchen-spices'];
+  SUPERMARKET_CATEGORIES['rice-pulses-grains'] = SUPERMARKET_CATEGORIES['atta-rice-dal'];
+  SUPERMARKET_CATEGORIES['grains'] = SUPERMARKET_CATEGORIES['atta-rice-dal'];
+  SUPERMARKET_CATEGORIES['dairy-milk'] = SUPERMARKET_CATEGORIES['dairy-morning'];
+  SUPERMARKET_CATEGORIES['dairy'] = SUPERMARKET_CATEGORIES['dairy-morning'];
+  SUPERMARKET_CATEGORIES['oils-essentials'] = SUPERMARKET_CATEGORIES['oil-ghee-masala'];
+  SUPERMARKET_CATEGORIES['oils'] = SUPERMARKET_CATEGORIES['oil-ghee-masala'];
+  SUPERMARKET_CATEGORIES['snacks-packaged'] = SUPERMARKET_CATEGORIES['snacks-bakery'];
+  SUPERMARKET_CATEGORIES['snacks'] = SUPERMARKET_CATEGORIES['snacks-bakery'];
+  SUPERMARKET_CATEGORIES['deals'] = SUPERMARKET_CATEGORIES['fresh-deals'];
+  SUPERMARKET_CATEGORIES['tier2-clearance'] = SUPERMARKET_CATEGORIES['fresh-deals'];
+
   class MarketApp {
     constructor() {
       window.marketApp = this;
+      this.products = PRODUCTS_DATA;
+      window.PRODUCTS_DATA = PRODUCTS_DATA;
       this.activeTab = 'supermarket-floor';
       this.activeDepartment = 'all';
+      this.selectedCategory = 'all';
+      this.supermarketSearchQuery = '';
+      this.supermarketSort = 'featured';
+      this.minPrice = null;
+      this.maxPrice = null;
       this.searchQuery = '';
       this.sortBy = 'featured';
       this.fulfillment = 'walkin';
@@ -3464,12 +3733,13 @@
       const savedLogin = localStorage.getItem('freshcuts_user_logged_in') === 'true';
       const savedPhone = localStorage.getItem('freshcuts_user_phone') || '';
 
+      const savedName = localStorage.getItem('freshcuts_user_name') || 'Pradeep';
       this.user = {
         isLoggedIn: savedLogin,
-        name: savedLogin ? ('Customer ' + (savedPhone.slice(-4) || '9848')) : '',
+        name: savedLogin ? savedName : '',
         phone: savedPhone || '',
         address: {
-          recipient: savedLogin ? ('Customer ' + (savedPhone.slice(-4) || '9848')) : 'Customer',
+          recipient: savedLogin ? savedName : 'Customer',
           phone: savedPhone ? savedPhone.replace('+91 ', '') : '',
           flat: 'Flat 402, Green Valley Apartments',
           area: 'Road #12, Banjara Hills',
@@ -3548,7 +3818,7 @@
           date: '04 Oct 2026, 08:00 AM',
           slot: 'Walk-in Retail POS Till #03',
           status: 'Store POS Settlement',
-          items: 'Red Kurnool Onions (3 kg), Mountain Potatoes (2 kg), Fresh Ginger Root (500g)',
+          items: 'Fresh Red Onions (3 kg), Mountain Potatoes (2 kg), Fresh Ginger Root (500g)',
           total: 210.00,
           paymentMethod: 'Cash POS Till #03',
           paymentAccount: 'Farm Cash Wallet Credit',
@@ -3683,11 +3953,16 @@
     }
 
     bindEvents() {
-      // Tab Navigation
-      document.querySelectorAll('.nav-tab').forEach((tabBtn) => {
-        tabBtn.addEventListener('click', () => {
-          this.switchTab(tabBtn.dataset.tab);
-        });
+      // Sort & Filter Popover Click-Outside Listener
+      document.addEventListener('click', (e) => {
+        const popover = document.getElementById('sort-popover-dropdown');
+        const trigger = document.getElementById('btn-filter-trigger');
+        if (popover && !popover.classList.contains('hidden')) {
+          if (!popover.contains(e.target) && !trigger?.contains(e.target)) {
+            popover.classList.add('hidden');
+            if (trigger) trigger.setAttribute('aria-expanded', 'false');
+          }
+        }
       });
 
       // WhatsApp Inputs
@@ -3947,7 +4222,501 @@
       setEl('count-tier2', counts.tier2);
     }
 
-    renderProducts() {
+    
+    // =========================================================================
+    // SUPERMARKET CATEGORY CLASSIFICATION & COORDINATED FILTERING ENGINE
+    // =========================================================================
+        classifyCategory(p) {
+      if (!p) return 'vegetables';
+      const pid = (p.id || '').toLowerCase();
+      const cat = (p.category || '').toLowerCase();
+      const title = (p.title || '').toLowerCase();
+
+      // 1. Fresh Fruits
+      if (cat === 'fresh-fruits' || pid.startsWith('prod_fruit_')) {
+        return 'fresh-fruits';
+      }
+
+      // 2. Leaf Items (Zone A Greens)
+      const leafPids = ['prod_palak', 'prod_spinach', 'prod_methi', 'prod_kothimeera', 'prod_coriander', 'prod_pudina', 'prod_curry_leaves', 'prod_gongura', 'prod_thotakura'];
+      if (cat === 'zone-a' || cat === 'leaf-items' || leafPids.some(k => pid.includes(k))) {
+        return 'leaf-items';
+      }
+
+      // 3. Kitchen Spices (Checked BEFORE kits so prod_kitchen_ is never matched by 'kit')
+      const spicePids = [
+        'prod_kitchen_pasupu', 'prod_kadapa_turmeric', 'prod_kitchen_karam', 'prod_masala_tikhalal',
+        'prod_kitchen_dhaniyalu', 'prod_kitchen_dhaniya_powder', 'prod_kitchen_jilakara',
+        'prod_kitchen_miriyalu', 'prod_kitchen_avalu', 'prod_kitchen_mentulu', 'prod_kitchen_yalukalu',
+        'prod_kitchen_chekka_lavangalu', 'prod_kitchen_garam_masala', 'prod_kitchen_sambar_podi',
+        'prod_kitchen_tadka_box', 'prod_kitchen_inguva'
+      ];
+      if (cat === 'masala-spices' || cat === 'kitchen-spices' || spicePids.includes(pid) || 
+          (pid.startsWith('prod_kitchen_') && !pid.includes('dosa_batter') && !pid.includes('sesame_oil') && !pid.includes('salt') && !pid.includes('coconut'))) {
+        return 'kitchen-spices';
+      }
+
+      // 4. Ready to Cook (Meal Kits & Sambar Prep)
+      if (cat === 'curry-kits' || cat === 'ready-to-cook' || pid.startsWith('prod_rtc_') || p.isCurryKit || 
+          pid.endsWith('_kit') || pid.endsWith('-kit') || pid.includes('_kit_') || title.includes('ready cook') || title.includes('kit')) {
+        return 'ready-to-cook';
+      }
+
+      // 5. Rayalaseema Regional Specials
+      const rayalaPids = ['prod_erra_karam', 'prod_kadapa_red_chillies', 'prod_anantapur_peanuts', 'prod_kurnool_uggani', 'prod_ragi_sankati', 'prod_chittoor_jaggery', 'prod_rayala_tamarind'];
+      if (cat === 'rayalaseema' || p.isRayalaseema || rayalaPids.some(k => pid.includes(k))) {
+        return 'rayalaseema';
+      }
+
+      // 6. Fresh Dairy
+      const dairyPids = [
+        'prod_milk_cow', 'prod_milk_buffalo', 'prod_curd_meegada', 'prod_curd_pot',
+        'prod_paneer_fresh', 'prod_paneer', 'prod_butter_white', 'prod_dairy_butter_amul', 'prod_ghee_bilona',
+        'prod_punganur_ghee', 'prod_buttermilk', 'prod_buttermilk_spiced', 'prod_eggs_country', 'prod_dairy_fresh'
+      ];
+      if (cat === 'dairy-morning' || cat === 'dairy-milk' || cat === 'dairy-bread-eggs' || dairyPids.includes(pid) ||
+          ((pid.includes('milk') || pid.includes('curd') || pid.includes('paneer') || pid.includes('butter') || pid.includes('ghee')) && 
+           !pid.includes('peanut') && !pid.includes('bread'))) {
+        return 'dairy-morning';
+      }
+
+      // 7. Atta & Rice
+      const grainPids = [
+        'prod_atta_aashirvaad', 'prod_atta_fortune', 'prod_kurnool_rice', 'prod_rice_basmati',
+        'prod_dal_moong', 'prod_dal_urad', 'prod_rayala_kandi_pappu', 'prod_rayala_pesara_pappu',
+        'prod_rayala_senaga_pappu', 'prod_rayala_ragi', 'prod_rayala_jonna', 'prod_rayala_korralu',
+        'prod_rayala_arikalu', 'prod_rayala_putnala'
+      ];
+      if (cat === 'atta-rice-dal' || cat === 'rice-pulses-grains' || grainPids.includes(pid) || 
+          pid.startsWith('prod_atta_') || pid.startsWith('prod_rice_') || pid.startsWith('prod_dal_')) {
+        return 'atta-rice-dal';
+      }
+
+      // 8. Pure Oils
+      const oilPids = [
+        'prod_oil_sunflower', 'prod_oil_groundnut', 'prod_kitchen_sesame_oil',
+        'prod_kitchen_salt', 'prod_salt_tata',
+        'prod_gg_paste', 'prod_kit_garlic', 'prod_kitchen_coconut'
+      ];
+      if (cat === 'oil-ghee-masala' || cat === 'oils-essentials' || oilPids.includes(pid) || pid.startsWith('prod_oil_')) {
+        return 'oil-ghee-masala';
+      }
+
+      // 9. Bakery & Snacks
+      const snackPids = [
+        'prod_snack_lays', 'prod_snack_kurkure', 'prod_snack_namkeen', 'prod_snack_haldiram_aloo_bhujia',
+        'prod_instant_maggi', 'prod_choco_silk', 'prod_bisc_oreo', 'prod_bisc_bourbon',
+        'prod_bisc_goodday', 'prod_bisc_darkfantasy', 'prod_bread_wheat', 'prod_dry_almonds',
+        'prod_dry_cashews', 'prod_cereal_cornflakes', 'prod_drink_juice', 'prod_bev_tatatea', 'prod_drink_thumsup', 'prod_icecream_vanilla', 'prod_kurnool_borugulu'
+      ];
+      if (cat === 'snacks-bakery' || cat === 'snacks-packaged' || cat === 'snacks-drinks' || cat === 'bakery-biscuits' || cat === 'dryfruits-cereals' || snackPids.includes(pid)) {
+        return 'snacks-bakery';
+      }
+
+      // 10. Fresh Deals (Tier 2 / Clearance / Deals)
+      if (cat === 'tier2-clearance' || cat === 'fresh-deals' || p.isMarkdown || p.hasDeal || pid.includes('deal') || pid.includes('staples')) {
+        return 'fresh-deals';
+      }
+
+      // 11. Daily Veg (Default produce)
+      return 'vegetables';
+    }
+
+    selectCategory(catKey, scrollToTop = false) {
+      this.switchTab('supermarket-floor');
+      this.selectedCategory = catKey || 'all';
+      this.activeDepartment = this.selectedCategory;
+
+      // Clear any search query when a category is selected
+      if (this.searchQuery) {
+        this.searchQuery = '';
+        this.supermarketSearchQuery = '';
+        const searchInput = document.getElementById('header-search-input');
+        if (searchInput) searchInput.value = '';
+        const clearBtn = document.getElementById('header-clear-search');
+        if (clearBtn) clearBtn.classList.add('hidden');
+        const dropdown = document.getElementById('blinkit-search-dropdown');
+        if (dropdown) dropdown.classList.add('hidden');
+      }
+
+      // Update sidebar category active classes
+      document.querySelectorAll('.sidebar-cat-item').forEach((el) => {
+        el.classList.toggle('active', el.dataset.category === this.selectedCategory);
+      });
+
+      // Update any top horizontal category buttons if present
+      document.querySelectorAll('.cat-strip-item, .dept-btn').forEach((el) => {
+        const d = el.dataset.category || el.dataset.dept;
+        el.classList.toggle('active', d === this.selectedCategory);
+      });
+
+      // Update Main Top Bar Title & Subtitle
+      const catMeta = SUPERMARKET_CATEGORIES[this.selectedCategory] || SUPERMARKET_CATEGORIES['all'];
+      const iconEl = document.getElementById('selected-cat-icon');
+      const headEl = document.getElementById('selected-category-heading');
+      const subEl = document.getElementById('selected-category-subheading');
+      const secTitleEl = document.getElementById('section-title-text');
+      const compactName = document.getElementById('compact-cat-name');
+
+      if (iconEl) iconEl.textContent = catMeta.icon || '🛒';
+      if (headEl) headEl.textContent = catMeta.name;
+      if (subEl) subEl.textContent = catMeta.subtitle;
+      if (secTitleEl) secTitleEl.textContent = catMeta.name;
+      if (compactName) compactName.textContent = catMeta.name;
+
+      this.renderSupermarketProducts();
+
+      if (scrollToTop) {
+        const topEl = document.getElementById('supermarket-main') || document.getElementById('products-grid');
+        if (topEl) {
+          topEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    }
+
+    handleSupermarketSearch(query) {
+      this.supermarketSearchQuery = (query || '').trim();
+      const clearBtn = document.getElementById('supermarket-clear-search-btn');
+      if (clearBtn) {
+        clearBtn.classList.toggle('hidden', this.supermarketSearchQuery.length === 0);
+      }
+      this.renderSupermarketProducts();
+    }
+
+    clearSupermarketSearch() {
+      const input = document.getElementById('supermarket-search-input');
+      if (input) input.value = '';
+      this.handleSupermarketSearch('');
+    }
+
+    toggleSortMenu(e) {
+      if (e) e.stopPropagation();
+      const dropdown = document.getElementById('sort-popover-dropdown');
+      const trigger = document.getElementById('btn-filter-trigger');
+      if (!dropdown) return;
+      const isHidden = dropdown.classList.toggle('hidden');
+      if (trigger) trigger.setAttribute('aria-expanded', !isHidden ? 'true' : 'false');
+    }
+
+    selectSortOption(sortVal) {
+      this.handleSortChange(sortVal);
+      const dropdown = document.getElementById('sort-popover-dropdown');
+      const trigger = document.getElementById('btn-filter-trigger');
+      if (dropdown) dropdown.classList.add('hidden');
+      if (trigger) trigger.setAttribute('aria-expanded', 'false');
+    }
+
+    handleSortChange(sortVal) {
+      this.supermarketSort = sortVal || 'featured';
+      const sortSelect = document.getElementById('supermarket-sort-select');
+      if (sortSelect && sortSelect.value !== this.supermarketSort) {
+        sortSelect.value = this.supermarketSort;
+      }
+      document.querySelectorAll('.sort-pill-btn, .sort-option-btn').forEach((b) => {
+        b.classList.toggle('active', b.dataset.sort === this.supermarketSort);
+      });
+
+      const labelEl = document.getElementById('active-sort-text');
+      if (labelEl) {
+        if (this.supermarketSort === 'price-asc') {
+          labelEl.textContent = 'Price: Low to High';
+        } else if (this.supermarketSort === 'price-desc') {
+          labelEl.textContent = 'Price: High to Low';
+        } else {
+          labelEl.textContent = 'Sort & Filter';
+        }
+      }
+
+      const triggerBtn = document.getElementById('btn-filter-trigger');
+      if (triggerBtn) {
+        triggerBtn.classList.toggle('has-active-sort', this.supermarketSort !== 'featured');
+      }
+
+      const resetBtn = document.getElementById('btn-compact-reset');
+      if (resetBtn) {
+        resetBtn.classList.toggle('hidden', this.supermarketSort === 'featured' && !this.searchQuery);
+      }
+
+      this.renderSupermarketProducts();
+    }
+
+    setQuickSort(sortVal, btnEl) {
+      this.handleSortChange(sortVal);
+    }
+
+    handlePriceFilterChange() {
+      const minInput = document.getElementById('filter-min-price');
+      const maxInput = document.getElementById('filter-max-price');
+
+      const minVal = minInput && minInput.value ? parseFloat(minInput.value) : null;
+      const maxVal = maxInput && maxInput.value ? parseFloat(maxInput.value) : null;
+
+      this.minPrice = (minVal !== null && !isNaN(minVal) && minVal >= 0) ? minVal : null;
+      this.maxPrice = (maxVal !== null && !isNaN(maxVal) && maxVal >= 0) ? maxVal : null;
+
+      document.querySelectorAll('.filter-chip-btn').forEach((c) => {
+        const cMin = c.dataset.min ? parseFloat(c.dataset.min) : null;
+        const cMax = c.dataset.max ? parseFloat(c.dataset.max) : null;
+        const isMatch = (cMin === this.minPrice && cMax === this.maxPrice);
+        c.classList.toggle('active', isMatch);
+      });
+
+      this.renderSupermarketProducts();
+    }
+
+    setQuickPriceRange(min, max, chipEl) {
+      this.minPrice = (min !== null && min !== undefined) ? min : null;
+      this.maxPrice = (max !== null && max !== undefined) ? max : null;
+
+      const minInput = document.getElementById('filter-min-price');
+      const maxInput = document.getElementById('filter-max-price');
+      if (minInput) minInput.value = (min !== null && min !== undefined) ? min : '';
+      if (maxInput) maxInput.value = (max !== null && max !== undefined) ? max : '';
+
+      document.querySelectorAll('.filter-chip-btn').forEach((c) => {
+        c.classList.remove('active');
+      });
+      if (chipEl) {
+        chipEl.classList.add('active');
+      }
+
+      this.renderSupermarketProducts();
+    }
+
+    clearAllFilters() {
+      this.searchQuery = '';
+      this.supermarketSearchQuery = '';
+      this.supermarketSort = 'featured';
+      this.minPrice = null;
+      this.maxPrice = null;
+
+      const headerSearch = document.getElementById('header-search-input');
+      if (headerSearch) headerSearch.value = '';
+
+      const clearBtn = document.getElementById('header-clear-search');
+      if (clearBtn) clearBtn.classList.add('hidden');
+
+      const dropdown = document.getElementById('blinkit-search-dropdown');
+      if (dropdown) dropdown.classList.add('hidden');
+
+      const sortDropdown = document.getElementById('sort-popover-dropdown');
+      if (sortDropdown) sortDropdown.classList.add('hidden');
+
+      const labelEl = document.getElementById('active-sort-text');
+      if (labelEl) labelEl.textContent = 'Sort & Filter';
+
+      const triggerBtn = document.getElementById('btn-filter-trigger');
+      if (triggerBtn) {
+        triggerBtn.classList.remove('has-active-sort');
+        triggerBtn.setAttribute('aria-expanded', 'false');
+      }
+
+      const resetBtn = document.getElementById('btn-compact-reset');
+      if (resetBtn) resetBtn.classList.add('hidden');
+
+      const sortSelect = document.getElementById('supermarket-sort-select');
+      if (sortSelect) sortSelect.value = 'featured';
+
+      document.querySelectorAll('.sort-pill-btn, .sort-option-btn').forEach((b) => {
+        b.classList.toggle('active', b.dataset.sort === 'featured');
+      });
+
+      this.renderSupermarketProducts();
+    }
+
+    renderSupermarketProducts() {
+      const grid = document.getElementById('products-grid');
+      if (!grid) return;
+
+      const catKey = this.selectedCategory || 'all';
+      const q = (this.searchQuery || this.supermarketSearchQuery || '').trim().toLowerCase();
+      const sortBy = this.supermarketSort || 'featured';
+
+      let filtered;
+
+      // When searching from home page search bar, search across ALL products in FRESHCUTS
+      if (q.length > 0) {
+        filtered = PRODUCTS_DATA.filter((p) => this.matchVegetableQuery(p, q));
+      } else {
+        // 1. Filter by Category (Handles exact user departments & aliases)
+        const aliasMap = {
+          'all': ['all'],
+          'ready-to-cook': ['ready-to-cook', 'curry-kits'],
+          'leaf-items': ['leaf-items', 'zone-a'],
+          'vegetables': ['vegetables', 'fresh-vegetables', 'daily-veg'],
+          'fresh-vegetables': ['vegetables', 'fresh-vegetables', 'daily-veg'],
+          'fresh-fruits': ['fresh-fruits'],
+          'kitchen-spices': ['kitchen-spices', 'masala-spices', 'spices'],
+          'masala-spices': ['kitchen-spices', 'masala-spices', 'spices'],
+          'rayalaseema': ['rayalaseema'],
+          'dairy-morning': ['dairy-morning', 'dairy-milk', 'dairy'],
+          'dairy-milk': ['dairy-morning', 'dairy-milk', 'dairy'],
+          'atta-rice-dal': ['atta-rice-dal', 'rice-pulses-grains', 'grains'],
+          'rice-pulses-grains': ['atta-rice-dal', 'rice-pulses-grains', 'grains'],
+          'oil-ghee-masala': ['oil-ghee-masala', 'oils-essentials', 'oils'],
+          'oils-essentials': ['oil-ghee-masala', 'oils-essentials', 'oils'],
+          'snacks-bakery': ['snacks-bakery', 'snacks-packaged', 'snacks'],
+          'snacks-packaged': ['snacks-bakery', 'snacks-packaged', 'snacks'],
+          'fresh-deals': ['fresh-deals', 'deals', 'tier2-clearance']
+        };
+
+        const validKeys = aliasMap[catKey] || [catKey];
+
+        filtered = PRODUCTS_DATA.filter((p) => {
+          if (catKey === 'all') return true;
+          const pCat = this.classifyCategory(p);
+          if (validKeys.includes(pCat)) return true;
+          const pid = (p.id || '').toLowerCase();
+          if ((catKey === 'atta-rice-dal' || catKey === 'rice-pulses-grains') && 
+              (pid.includes('pappu') || pid.includes('rice') || pid.includes('ragi') || pid.includes('jonna') || pid.includes('korralu') || pid.includes('putnala') || pid.includes('atta'))) {
+            return true;
+          }
+          if (catKey === 'fresh-deals' || catKey === 'deals') {
+            const dealPids = [
+              'prod_milk_cow', 'prod_palak', 'prod_tomatoes', 'prod_curd_pot', 
+              'prod_methi', 'prod_kothimeera', 'prod_rtc_sambar_curry', 
+              'prod_onions', 'prod_bhendi', 'prod_vankaya', 'prod_breakfast_staples'
+            ];
+            if (dealPids.includes(pid) || p.isMarkdown || p.hasDeal || pid.includes('deal')) {
+              return true;
+            }
+          }
+          return false;
+        });
+      }
+
+      // Sort
+      if (sortBy === 'price-asc') {
+        filtered.sort((a, b) => Number(a.price) - Number(b.price));
+      } else if (sortBy === 'price-desc') {
+        filtered.sort((a, b) => Number(b.price) - Number(a.price));
+      }
+
+      // Update Headings & Counters
+      const iconEl = document.getElementById('selected-cat-icon');
+      const headEl = document.getElementById('selected-category-heading');
+      const subEl = document.getElementById('selected-category-subheading');
+      const counterEl = document.getElementById('active-item-counter');
+      const catMeta = SUPERMARKET_CATEGORIES[catKey] || SUPERMARKET_CATEGORIES['all'];
+
+      if (q.length > 0) {
+        if (iconEl) iconEl.textContent = '🔍';
+        if (headEl) headEl.textContent = `Search Results for "${this.searchQuery || q}"`;
+        if (subEl) subEl.textContent = `Showing ${filtered.length} matching item${filtered.length === 1 ? '' : 's'} across FRESHCUTS`;
+      } else {
+        if (iconEl) iconEl.textContent = catMeta.icon || '🛒';
+        if (headEl) headEl.textContent = catMeta.name;
+        if (subEl) subEl.textContent = catMeta.subtitle;
+      }
+
+      if (counterEl) {
+        counterEl.textContent = `${filtered.length} Product${filtered.length === 1 ? '' : 's'}`;
+      }
+      const compactCount = document.getElementById('compact-cat-count');
+      if (compactCount) {
+        compactCount.textContent = `${filtered.length} item${filtered.length === 1 ? '' : 's'}`;
+      }
+      const compactName = document.getElementById('compact-cat-name');
+      if (compactName) {
+        compactName.textContent = q.length > 0 ? `Search: "${q}"` : catMeta.name;
+      }
+
+      // Update Active Filter Indicators
+      const indicatorsEl = document.getElementById('active-filter-indicators');
+      if (indicatorsEl) {
+        const pills = [];
+        if (q.length > 0) {
+          pills.push(`<span class="filter-pill">Search: "${this.searchQuery || q}" <button class="filter-pill-remove" onclick="window.marketApp.clearHeaderSearch()">✕</button></span>`);
+        } else if (catKey !== 'all') {
+          pills.push(`<span class="filter-pill">Category: ${catMeta.name} <button class="filter-pill-remove" onclick="window.marketApp.selectCategory('all')">✕</button></span>`);
+        }
+
+        if (sortBy === 'price-asc') {
+          pills.push(`<span class="filter-pill">Sorted: Price Low to High</span>`);
+        } else if (sortBy === 'price-desc') {
+          pills.push(`<span class="filter-pill">Sorted: Price High to Low</span>`);
+        }
+
+        if (pills.length > 0) {
+          indicatorsEl.classList.remove('hidden');
+          indicatorsEl.innerHTML = pills.join('') + `<button type="button" class="btn-clear-all-pills" onclick="window.marketApp.clearAllFilters()">Clear all</button>`;
+        } else {
+          indicatorsEl.classList.add('hidden');
+          indicatorsEl.innerHTML = '';
+        }
+      }
+
+      // Update category count badges in sidebar
+      this.updateSupermarketSidebarCounts();
+
+      // Empty State vs Products Grid
+      grid.className = 'products-grid';
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="supermarket-empty-card" style="grid-column: 1 / -1; width: 100%;">
+            <div class="empty-icon-lg">🔍</div>
+            <h3 class="empty-heading">No matching items found for "${this.searchQuery || q}"</h3>
+            <p class="empty-sub">
+              We could not find any products matching "<em>${this.searchQuery || q}</em>" in FRESHCUTS.
+            </p>
+            <div class="empty-actions-row">
+              <button type="button" class="btn-primary" onclick="window.marketApp.clearHeaderSearch()">
+                Clear Search & View All Products
+              </button>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      // Render cards
+      grid.innerHTML = filtered.map((prod) => this.renderProductCardHtml(prod)).join('');
+    }
+
+    clearPriceFilter() {
+      const minInput = document.getElementById('filter-min-price');
+      const maxInput = document.getElementById('filter-max-price');
+      if (minInput) minInput.value = '';
+      if (maxInput) maxInput.value = '';
+      this.minPrice = null;
+      this.maxPrice = null;
+      document.querySelectorAll('.filter-chip-btn').forEach((c) => {
+        c.classList.toggle('active', !c.dataset.min && !c.dataset.max);
+      });
+      this.renderSupermarketProducts();
+    }
+
+    updateSupermarketSidebarCounts() {
+      const counts = {
+        'all': PRODUCTS_DATA.length,
+        'fresh-vegetables': 0,
+        'fresh-fruits': 0,
+        'masala-spices': 0,
+        'rice-pulses-grains': 0,
+        'dairy-milk': 0,
+        'oils-essentials': 0,
+        'snacks-packaged': 0
+      };
+
+      PRODUCTS_DATA.forEach((p) => {
+        const cat = this.classifyCategory(p);
+        if (counts[cat] !== undefined) counts[cat]++;
+      });
+
+      Object.entries(counts).forEach(([catKey, cnt]) => {
+        const badge = document.getElementById(`cat-count-${catKey}`);
+        if (badge) {
+          badge.textContent = `${cnt} item${cnt === 1 ? '' : 's'}`;
+        }
+      });
+    }
+
+        renderProducts() {
+      if (document.getElementById('supermarket-sidebar')) {
+        this.renderSupermarketProducts();
+        return;
+      }
+
       if (!this.dom.productsGrid) return;
 
       const q = (this.searchQuery || '').trim();
@@ -4335,16 +5104,16 @@
               ${actionBtnHtml}
             </div>
 
-            <!-- 2. Price row: Bold price + Strikethrough MRP -->
-            <div class="prod-pricing-row">
-              <span class="prod-price">₹${Math.round(Number(activePrice))}</span>
-              <span class="prod-mrp">₹${mrpPrice}</span>
+            <!-- 2. Product Name & Cost row (Name on left, Cost on right as requested) -->
+            <div class="prod-name-cost-row">
+              <h3 class="prod-title" title="${cleanTitle}">${cleanTitle}</h3>
+              <div class="prod-pricing-row">
+                <span class="prod-price">₹${Math.round(Number(activePrice))}</span>
+                <span class="prod-mrp">₹${mrpPrice}</span>
+              </div>
             </div>
 
-            <!-- 3. Clean Title -->
-            <h3 class="prod-title" title="${cleanTitle}">${cleanTitle}</h3>
-
-            <!-- 4. Delivery time guarantee pill -->
+            <!-- 3. Delivery time guarantee pill -->
             <div class="prod-delivery-time">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.5">
                 <circle cx="12" cy="12" r="10"/>
@@ -4640,10 +5409,10 @@
         } else {
           exactCartBtn.classList.remove('empty');
           exactCartBtn.classList.add('active');
-          if (exactCartText) exactCartText.textContent = `${totalCount} item${totalCount > 1 ? 's' : ''} • ₹${grandTotal.toFixed(0)}`;
+          if (exactCartText) exactCartText.textContent = `${totalCount}`;
           if (exactCartBubble) {
-            exactCartBubble.classList.remove('hidden');
-            exactCartBubble.innerHTML = `<span id="cart-count">${totalCount}</span> items • <span id="cart-total-badge">₹${grandTotal.toFixed(2)}</span>`;
+            exactCartBubble.classList.add('hidden');
+            exactCartBubble.style.display = 'none';
           }
         }
       }
@@ -4703,14 +5472,8 @@
       if (savingsBadge) {
         if (combinedTotalSavings > 0 && totalCount > 0) {
           savingsBadge.classList.remove('hidden');
-          savingsBadge.style.display = 'flex';
-          if (couponDiscount > 0 && totalSavings > 0) {
-            savingsBadge.innerHTML = `🎉 Total Savings: <strong>₹${combinedTotalSavings.toFixed(2)}</strong> (₹${totalSavings.toFixed(2)} Farm Direct + ₹${couponDiscount.toFixed(2)} Coupon)`;
-          } else if (couponDiscount > 0) {
-            savingsBadge.innerHTML = `🎉 Total Savings: <strong>₹${couponDiscount.toFixed(2)}</strong> (${activeCode} Coupon applied)`;
-          } else {
-            savingsBadge.innerHTML = `🎉 Customer Direct-Farm Savings: <strong>₹${totalSavings.toFixed(2)}</strong> lower than Mandi!`;
-          }
+          savingsBadge.style.display = 'block';
+          savingsBadge.innerHTML = `Customer Savings : ₹${combinedTotalSavings.toFixed(2)}`;
         } else {
           savingsBadge.classList.add('hidden');
           savingsBadge.style.display = 'none';
@@ -4792,20 +5555,23 @@
         } else {
           if (drawerFooter) drawerFooter.style.display = 'block';
           this.dom.cartItemsList.innerHTML = validCartItems.map(({ prod, qty, id }) => {
-            const farmer = (prod.farmerKey && FARMERS_DB[prod.farmerKey]) ? FARMERS_DB[prod.farmerKey] : null;
             const selWeight = this.getProductWeight(id) || prod.unit || '1 unit';
             const itemPrice = this.getProductPrice(id, selWeight) || prod.price || 0;
             const itemMandi = this.getProductMandiPrice(id, selWeight) || prod.mandiPrice || 0;
             const lineTotal = itemPrice * qty;
             const lineMandi = itemMandi * qty;
-            const farmerLabel = farmer ? `🌱 ${farmer.name} (${farmer.distanceKm} km)` : `✓ 100% Quality Checked (Direct Source)`;
+            const rawTitle = prod.title || prod.name || 'Fresh Item';
+            const cleanTitle = rawTitle
+              .replace(/^(Kurnool|Rayalaseema|Anantapur|Chittoor|Guntur|Mahbubnagar|Ranga\s*Reddy|Telangana|Andhra|Desi|Local|Farm-Fresh|Country)\s+/i, '')
+              .replace(/\b(Curry Cut|Stem-Cut|Leafy Greens|Fresh Bunch|Crisp & Clean|Vine-Ripened|Tender Picked)\b/gi, '')
+              .replace(/\s{2,}/g, ' ')
+              .trim();
 
             return `
               <div class="cart-item-row" data-id="${prod.id}">
-                <img src="${prod.image}" alt="${prod.title}" class="cart-item-thumb">
+                <img src="${prod.image}" alt="${cleanTitle}" class="cart-item-thumb">
                 <div class="cart-item-details">
-                  <div class="cart-item-title">${prod.title} <span class="cart-pack-tag">(${selWeight})</span></div>
-                  <div class="cart-item-farmer">${farmerLabel}</div>
+                  <div class="cart-item-title">${cleanTitle} <span class="cart-pack-tag">(${selWeight})</span></div>
                   <div class="cart-item-price-unit">
                     ₹${itemPrice} / ${selWeight}
                     ${itemMandi > itemPrice ? `<span class="cart-item-mandi-tag">(Mandi ₹${itemMandi})</span>` : ''}
@@ -4937,13 +5703,17 @@
 
     renderLoginStep1(errorMsg = '') {
       if (!this.dom.authModalContent) return;
+      const currentName = (this.user && this.user.name && !this.user.name.startsWith('Customer +91') && !this.user.name.match(/^Customer \d{4}$/))
+        ? this.user.name
+        : (localStorage.getItem('freshcuts_user_name') || 'Pradeep');
+
       this.dom.authModalContent.innerHTML = `
         <div class="login-otp-modal-container">
           <div class="login-modal-header">
-            <div class="login-icon-badge">📱</div>
-            <h3 class="login-title">Login with Mobile Number</h3>
+            <div class="login-icon-badge">👤</div>
+            <h3 class="login-title">Customer Login & Registration</h3>
             <p class="login-subtitle">
-              Mandatory 10-digit mobile login & OTP verification is required to place orders.
+              Enter your customer details. Your profile name updates instantly across the app.
             </p>
           </div>
 
@@ -4953,8 +5723,8 @@
               <div class="login-active-user-info">
                 <div class="login-active-user-avatar">👤</div>
                 <div>
-                  <div class="login-active-user-name">Logged in as ${this.user.name || 'Customer'}</div>
-                  <div class="login-active-user-phone">${(this.user.phone || '').startsWith('+91') ? this.user.phone : '+91 ' + (this.user.phone || '9848023411')} • Active Account</div>
+                  <div class="login-active-user-name">Logged in as ${this.user.name || currentName}</div>
+                  <div class="login-active-user-phone" style="color:#16a34a; font-weight:600;">Active Account</div>
                 </div>
               </div>
               <button type="button" id="btn-login-page-logout" class="btn-logout-loginpage" onclick="window.marketApp.logoutUser()" title="Log out from FRESHCUTS">
@@ -4962,13 +5732,38 @@
               </button>
             </div>
             <div class="login-divider-text">
-              — OR SWITCH / LOGIN WITH ANOTHER MOBILE NUMBER —
+              — OR SWITCH / REGISTER WITH ANOTHER NAME & MOBILE —
             </div>
           ` : ''}
 
           ${errorMsg ? `<div class="login-error-alert">⚠️ ${errorMsg}</div>` : ''}
 
           <form class="login-form-body" onsubmit="event.preventDefault(); window.marketApp.submitMobileForOtp();">
+            <!-- Customer Registration Name Input with Live Auto-Update -->
+            <div class="mobile-input-group">
+              <label class="mobile-input-lbl" style="display:flex; justify-content:space-between; align-items:center;">
+                <span>Customer Name (Profile Name) *</span>
+                <span class="live-update-badge">Instant Profile Sync ⚡</span>
+              </label>
+              <div class="customer-name-input-box">
+                <span class="input-icon-prefix">👤</span>
+                <input 
+                  type="text" 
+                  id="login-customer-name" 
+                  class="customer-name-field" 
+                  placeholder="Enter your name (e.g. Naik)" 
+                  value="${currentName}" 
+                  required 
+                  autocomplete="name" 
+                  oninput="window.marketApp.updateCustomerNameLive(this.value)"
+                />
+              </div>
+              <div id="login-name-sync-status" class="login-name-sync-status active-sync">
+                ✓ Profile Name will display: <strong id="login-live-name-preview">${currentName}</strong>
+              </div>
+            </div>
+
+            <!-- Mobile Phone Field -->
             <div class="mobile-input-group">
               <label class="mobile-input-lbl">Enter 10-Digit Mobile Number *</label>
               <div class="mobile-input-box">
@@ -4979,10 +5774,9 @@
                   class="mobile-phone-field" 
                   maxlength="10" 
                   placeholder="e.g. 9848023411" 
-                  value="${this.tempLoginMobile || ''}" 
+                  value="${this.tempLoginMobile || (this.user.phone ? this.user.phone.replace('+91 ', '') : '')}" 
                   autocomplete="tel" 
                   required 
-                  autofocus 
                   oninput="this.value = this.value.replace(/[^0-9]/g, '');"
                 />
               </div>
@@ -4990,7 +5784,7 @@
             </div>
 
             <button type="submit" class="btn-login-submit" id="btn-get-otp">
-              <span>Get OTP via SMS</span>
+              <span>Continue & Get Verification OTP</span>
               <span class="btn-arrow">➔</span>
             </button>
 
@@ -5010,12 +5804,21 @@
       `;
 
       setTimeout(() => {
-        const inp = document.getElementById('login-mobile-input');
-        if (inp) inp.focus();
+        const nameInp = document.getElementById('login-customer-name');
+        if (nameInp && !nameInp.value) {
+          nameInp.focus();
+        } else {
+          const inp = document.getElementById('login-mobile-input');
+          if (inp) inp.focus();
+        }
       }, 100);
     }
 
     submitMobileForOtp() {
+      const nameInp = document.getElementById('login-customer-name');
+      if (nameInp && nameInp.value.trim()) {
+        this.updateCustomerNameLive(nameInp.value.trim());
+      }
       const inp = document.getElementById('login-mobile-input');
       const val = inp ? inp.value.trim() : '';
       if (!val || !/^[6-9]\d{9}$/.test(val)) {
@@ -5116,10 +5919,12 @@
       // Success Login
       this.user.isLoggedIn = true;
       this.user.phone = `+91 ${this.tempLoginMobile}`;
-      this.user.name = `Customer ${this.tempLoginMobile.slice(-4)}`;
+      const nameInp = document.getElementById('login-customer-name');
+      const enteredName = nameInp ? nameInp.value.trim() : '';
+      const finalName = enteredName || this.user.name || localStorage.getItem('freshcuts_user_name') || 'Pradeep';
+      this.updateCustomerNameLive(finalName);
       if (this.user.address) {
         this.user.address.phone = this.tempLoginMobile;
-        this.user.address.recipient = this.user.name;
       }
 
       localStorage.setItem('freshcuts_user_logged_in', 'true');
@@ -5128,7 +5933,8 @@
       sound.playCheckoutSound();
       this.closeAuthModal();
       this.updateUserAndLocationBadges();
-      this.showToastNotification(`✓ Mobile +91 ${this.tempLoginMobile} verified! You can now place orders.`);
+      this.updateSideNavUser();
+      this.showToastNotification(`✓ Welcome, ${this.user.name}! Mobile +91 ${this.tempLoginMobile} verified.`);
 
       // Resume Pending Action
       const action = this.pendingAuthAction;
@@ -5155,7 +5961,12 @@
       sound.playAddSound();
       this.activeProfileTab = activeTab;
 
-      const initials = (this.user.name || 'SR')
+      const userName = (this.user && this.user.name && !this.user.name.startsWith('Customer +91') && !this.user.name.startsWith('Customer 9') && !this.user.name.match(/^Customer \d{4}$/))
+        ? this.user.name
+        : (localStorage.getItem('freshcuts_user_name') || 'Pradeep');
+      this.user.name = userName;
+
+      const initials = (userName || 'P')
         .split(' ')
         .map(n => n[0])
         .join('')
@@ -5163,7 +5974,7 @@
         .toUpperCase();
 
       const addr = this.user.address || {
-        recipient: this.user.name || 'S. Ramakrishna',
+        recipient: this.user.name || 'Pradeep',
         phone: this.user.phone || '9848023411',
         flat: 'Flat 402, Green Valley Apartments',
         area: 'Road #12, Banjara Hills',
@@ -5183,11 +5994,16 @@
           <div class="profile-user-left">
             <div class="profile-big-avatar">${initials}</div>
             <div class="profile-user-details">
-              <h3>${this.user.name}</h3>
-              <div class="profile-phone">📱 ${this.user.phone}</div>
-              <div class="profile-badge-row">
-                <span class="badge-prime">🌱 Prime Direct-Farm Member</span>
-                <span class="badge-safe" style="font-size:0.68rem; padding:2px 8px;">Verified ✓</span>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <h3 id="profile-display-name" style="margin:0; font-size:1.15rem; font-weight:700; color:var(--text-primary);">${this.user.name}</h3>
+                <button type="button" class="btn-edit-profile-name" onclick="window.marketApp.toggleEditProfileName()" title="Edit Name">✏️ Edit</button>
+              </div>
+              <div id="profile-name-edit-box" class="hidden" style="margin-top:6px;">
+                <div style="display:flex; gap:6px; align-items:center;">
+                  <input type="text" id="profile-inline-name-input" class="form-input" value="${this.user.name}" placeholder="Enter name (e.g. Naik)" style="padding:4px 8px; font-size:0.85rem; max-width:180px;" oninput="window.marketApp.updateCustomerNameLive(this.value)" />
+                  <button type="button" class="btn-primary-sm" onclick="window.marketApp.saveProfileNameInline()" style="padding:4px 10px; font-size:0.8rem;">Save</button>
+                </div>
+                <div style="font-size:0.72rem; color:#16a34a; margin-top:2px;">✓ Auto-syncs across profile</div>
               </div>
             </div>
           </div>
@@ -5232,7 +6048,7 @@
             </div>
 
             <div class="addr-saved-card">
-              <div class="addr-card-recipient">👤 ${addr.recipient} (${addr.phone})</div>
+              <div class="addr-card-recipient">👤 ${this.user.name || addr.recipient || 'Pradeep'}</div>
               <div class="addr-card-line">
                 🏢 ${addr.flat}, ${addr.area}, Hyderabad - ${addr.pincode}
                 ${addr.landmark ? `<br><span style="font-size:0.8rem; color:var(--text-dim);">Landmark: ${addr.landmark}</span>` : ''}
@@ -5610,7 +6426,15 @@
       if (this.user.isLoggedIn) {
         if (userBtn) {
           userBtn.classList.add('logged-in');
-          userBtn.textContent = this.user.phone || 'Account';
+          userBtn.innerHTML = `
+            <svg class="header-profile-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span class="user-btn-text">Profile</span>
+          `;
+          userBtn.title = `Profile (${this.user.phone || this.user.name || 'Account'})`;
+          userBtn.setAttribute('aria-label', `Profile (${this.user.phone || 'Account'})`);
         }
         if (nameEl) nameEl.textContent = this.user.name || 'S. Ramakrishna';
         if (avatarEl) {
@@ -5630,7 +6454,15 @@
       } else {
         if (userBtn) {
           userBtn.classList.remove('logged-in');
-          userBtn.textContent = 'Login';
+          userBtn.innerHTML = `
+            <svg class="header-profile-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            <span class="user-btn-text">Login</span>
+          `;
+          userBtn.title = 'Login / Profile';
+          userBtn.setAttribute('aria-label', 'Login / Profile');
         }
         if (nameEl) nameEl.textContent = 'My Account';
         if (avatarEl) {
@@ -6037,6 +6869,130 @@
     // 6. INSTANT PAYMENT GATEWAY & FARMER ESCROW SETTLEMENT
     // =========================================================================
 
+
+    selectUpiApp(btn, appName, amount) {
+      this.selectedUpiApp = appName;
+      document.querySelectorAll('.upi-prominent-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      const submitBtn = document.getElementById('btn-upi-main-submit');
+      if (submitBtn) {
+        const amt = amount || this.paymentState.subtotal || 0;
+        submitBtn.innerHTML = `<span>⚡ Pay ₹${amt.toFixed(2)} via ${appName}</span>`;
+      }
+    }
+
+    toggleUpiQrExpand() {
+      const el = document.getElementById('upi-qr-collapsible-content');
+      const lbl = document.getElementById('qr-toggle-label');
+      if (el) {
+        el.classList.toggle('hidden');
+        if (lbl) {
+          lbl.textContent = el.classList.contains('hidden') 
+            ? '📷 Or Scan QR Code / Enter UPI ID ▾' 
+            : '📷 Hide QR Code ▴';
+        }
+      }
+    }
+
+    toggleEditProfileName() {
+      const box = document.getElementById('profile-name-edit-box');
+      if (box) {
+        box.classList.toggle('hidden');
+        if (!box.classList.contains('hidden')) {
+          const inp = document.getElementById('profile-inline-name-input');
+          if (inp) {
+            inp.value = this.user.name || 'Pradeep';
+            inp.focus();
+            inp.select();
+          }
+        }
+      }
+    }
+
+    saveProfileNameInline() {
+      const inp = document.getElementById('profile-inline-name-input');
+      const val = inp ? inp.value.trim() : '';
+      if (val) {
+        this.updateCustomerNameLive(val);
+      }
+      const box = document.getElementById('profile-name-edit-box');
+      if (box) box.classList.add('hidden');
+      this.showToastNotification(`✓ Profile name updated to ${this.user.name}`);
+    }
+
+    updateCustomerNameLive(newName) {
+      const clean = (newName !== undefined && newName !== null) ? newName.trim() : '';
+      const displayName = clean || 'Customer';
+
+      // 1. Update internal state
+      this.user.name = displayName;
+      if (!this.user.address) {
+        this.user.address = {
+          recipient: displayName,
+          phone: this.user.phone ? this.user.phone.replace('+91 ', '') : '9848023411',
+          flat: 'Flat 402, Green Valley Apartments',
+          area: 'Road #12, Banjara Hills',
+          landmark: 'Opp. MLA Colony Junction',
+          city: 'Hyderabad',
+          pincode: '500034',
+          type: 'Home',
+          slot: 'Tomorrow 06:00 AM – 08:30 AM (Farm Morning Run)'
+        };
+      } else {
+        this.user.address.recipient = displayName;
+      }
+
+      // 2. Persist to localStorage
+      localStorage.setItem('freshcuts_user_name', displayName);
+
+      // 3. Update live indicator in login modal (if open)
+      const livePreview = document.getElementById('login-live-name-preview');
+      if (livePreview) livePreview.textContent = displayName;
+
+      const syncStatus = document.getElementById('login-name-sync-status');
+      if (syncStatus) {
+        syncStatus.classList.add('active-sync');
+        syncStatus.innerHTML = `✓ Profile Name updated to: <strong>${displayName}</strong>`;
+      }
+
+      const activeLoginCardName = document.querySelector('.login-active-user-name');
+      if (activeLoginCardName) {
+        activeLoginCardName.textContent = `Logged in as ${displayName}`;
+      }
+
+      // 4. Update Profile Hub Modal (if open)
+      const profileDisplayName = document.getElementById('profile-display-name');
+      if (profileDisplayName) profileDisplayName.textContent = displayName;
+
+      const profileHeaderH3 = document.querySelector('.profile-user-details h3');
+      if (profileHeaderH3) profileHeaderH3.textContent = displayName;
+
+      const initials = displayName
+        .split(' ')
+        .filter(Boolean)
+        .map(n => n[0])
+        .join('')
+        .substring(0, 2)
+        .toUpperCase() || 'C';
+
+      const profileAvatar = document.querySelector('.profile-big-avatar');
+      if (profileAvatar) profileAvatar.textContent = initials;
+
+      const addrCardRecipient = document.querySelector('.addr-card-recipient');
+      if (addrCardRecipient) addrCardRecipient.innerHTML = `👤 ${displayName}`;
+
+      const profAddrNameInput = document.getElementById('prof-addr-name');
+      if (profAddrNameInput) profAddrNameInput.value = displayName;
+
+      // 5. Update Header User Button & Side Nav
+      this.updateUserAndLocationBadges();
+      this.updateSideNavUser();
+
+      // 6. Update Payment Gateway recipient (if open)
+      const payRecipient = document.querySelector('.pay-amount-card .delivering-to-val, .pay-delivery-address-banner .addr-recipient strong');
+      if (payRecipient) payRecipient.textContent = displayName;
+    }
+
     openPaymentModal() {
       // Ensure user session & delivery details exist
       if (!this.user.isLoggedIn) {
@@ -6129,81 +7085,45 @@
 
       this.dom.paymentModalContent.innerHTML = `
         <div class="pay-header">
-          <h3>Payment</h3>
-          <p>Choose your payment method to complete the order</p>
-        </div>
-
-        <div class="pay-amount-card">
-          <div class="pay-amount-left">
-            <div class="pay-lbl">
-              Total Payable Amount
-              ${(directSavings > 0 || couponDiscount > 0) ? `
-                <span style="font-size:0.75rem; color:#a7f3d0; margin-left:6px;">
-                  (Market: ₹${mandiTotal.toFixed(0)} ${directSavings > 0 ? `− ₹${directSavings.toFixed(0)} Direct Farm Savings` : ''} ${couponDiscount > 0 ? `− ₹${couponDiscount.toFixed(0)} (${activeCode})` : ''})
-                </span>
-              ` : ''}
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <h3 style="margin:0; font-size:1.2rem; font-weight:800; color:#0f172a;">Select Payment Method</h3>
+              <p style="margin:2px 0 0 0; font-size:0.78rem; color:#64748b;">Instant direct farm checkout</p>
             </div>
-            <div class="pay-sum">₹${payableAmount.toFixed(2)}</div>
+            <div class="pay-secure-badge" style="background:#ecfdf5; color:#059669; font-weight:700; font-size:0.72rem; padding:4px 8px; border-radius:6px; border:1px solid #a7f3d0;">
+              🔒 100% Safe
+            </div>
           </div>
         </div>
 
-        <!-- Coupon or Subscription Apply Bar -->
-        <div class="pay-coupon-bar">
-          <div class="coupon-title-row">
-            <span class="coupon-bar-title">🎟️ Apply Coupon or Subscription Pass</span>
-            ${couponDiscount > 0 ? `<span class="coupon-success-pill">✓ Applied: <strong>${activeCode}</strong> (Saved ₹${couponDiscount.toFixed(2)})</span>` : ''}
-          </div>
-          <div class="coupon-input-cluster">
-            <input type="text" id="pay-coupon-input" class="pay-coupon-input" placeholder="Enter Code: FRIEND50, SAVE20, FRESH50" value="${activeCode || ''}" onkeydown="if(event.key==='Enter') window.marketApp.applyPaymentCoupon()" />
-            ${couponDiscount > 0 ? `
-              <button type="button" class="btn-coupon-remove" onclick="window.marketApp.removePaymentCoupon()">Remove</button>
-            ` : `
-              <button type="button" class="btn-coupon-apply" onclick="window.marketApp.applyPaymentCoupon()">Apply</button>
-            `}
-          </div>
-          <div class="coupon-quick-chips">
-            <button type="button" class="coupon-chip ${activeCode === 'FRIEND50' ? 'active' : ''}" onclick="window.marketApp.quickApplyCoupon('FRIEND50')">
-              <strong>FRIEND50</strong> • ₹50 OFF
-            </button>
-            <button type="button" class="coupon-chip ${activeCode === 'SAVE20' ? 'active' : ''}" onclick="window.marketApp.quickApplyCoupon('SAVE20')">
-              <strong>SAVE20</strong> • ₹20 Direct OFF
-            </button>
-            <button type="button" class="coupon-chip ${activeCode === 'FRESH50' ? 'active' : ''}" onclick="window.marketApp.quickApplyCoupon('FRESH50')">
-              <strong>FRESH50</strong> • Flat ₹50 OFF
-            </button>
-            <button type="button" class="coupon-chip ${activeCode === 'VIPPASS' ? 'active' : ''}" onclick="window.marketApp.quickApplyCoupon('VIPPASS')">
-              <strong>VIPPASS</strong> • 15% VIP Discount
-            </button>
-            <button type="button" class="coupon-chip ${activeCode === 'SUB99' ? 'active' : ''}" onclick="window.marketApp.quickApplyCoupon('SUB99')">
-              <strong>SUB99</strong> • Pass: ₹30 OFF
-            </button>
+        <div class="pay-amount-card" style="padding:10px 14px; margin-bottom:12px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div class="pay-lbl" style="font-size:0.72rem; color:#a7f3d0; font-weight:700;">TOTAL PAYABLE AMOUNT</div>
+              <div class="pay-sum" style="font-size:1.55rem; font-weight:800; color:#ffffff;">₹${payableAmount.toFixed(2)}</div>
+              ${couponDiscount > 0 ? `<div style="font-size:0.72rem; color:#fef08a;">✓ Saved ₹${couponDiscount.toFixed(2)} (${activeCode})</div>` : ''}
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:0.68rem; color:#a7f3d0; font-weight:700; text-transform:uppercase;">DELIVERING TO</div>
+              <div class="delivering-to-val" style="font-size:0.85rem; font-weight:800; color:#ffffff;">${this.user.name || this.user.address.recipient}</div>
+              <div style="font-size:0.72rem; color:#d1fae5; opacity:0.9;">${this.user.address ? this.user.address.area.split(',')[0].trim() : 'Hyderabad'}</div>
+            </div>
           </div>
         </div>
 
-        <!-- Verified Delivery Destination Banner -->
-        <div class="pay-delivery-address-banner">
-          <div class="addr-icon">📍</div>
-          <div class="addr-details">
-            <div class="addr-recipient"><strong>Delivering to:</strong> ${this.user.name || this.user.address.recipient} (${this.user.phone || this.user.address.phone}) • <span class="badge-address-type" style="color:var(--emerald-400); font-weight:700;">${this.user.address.type}</span></div>
-            <div class="addr-line">${this.user.address.flat}, ${this.user.address.area}, Hyderabad - ${this.user.address.pincode}</div>
-            <div class="addr-slot">⏱️ <strong>Preferred Slot:</strong> ${this.user.address.slot}</div>
-          </div>
-          <button class="addr-change-btn" onclick="window.marketApp.closePaymentModal(); window.marketApp.openAddressModal('checkout');">Change</button>
-        </div>
-
-        <!-- Payment Method Tabs -->
+        <!-- Payment Method Tabs - Prominently Displayed at Top -->
         <div class="pay-nav-tabs">
           <button class="pay-tab-btn active" id="tab-btn-upi" onclick="window.marketApp.switchPaymentTab('upi')">
             <span class="tab-ico">📱</span>
-            <span>UPI / QR</span>
-          </button>
-          <button class="pay-tab-btn" id="tab-btn-card" onclick="window.marketApp.switchPaymentTab('card')">
-            <span class="tab-ico">💳</span>
-            <span>Card</span>
+            <span>UPI Apps</span>
           </button>
           <button class="pay-tab-btn" id="tab-btn-cash" onclick="window.marketApp.switchPaymentTab('cash')">
             <span class="tab-ico">💵</span>
             <span>Cash on Delivery</span>
+          </button>
+          <button class="pay-tab-btn" id="tab-btn-card" onclick="window.marketApp.switchPaymentTab('card')">
+            <span class="tab-ico">💳</span>
+            <span>Cards</span>
           </button>
           <button class="pay-tab-btn" id="tab-btn-nb" onclick="window.marketApp.switchPaymentTab('nb')">
             <span class="tab-ico">🏦</span>
@@ -6211,174 +7131,175 @@
           </button>
         </div>
 
-        <!-- PANE 1: UPI & DYNAMIC QR -->
+        <!-- PANE 1: UPI APPS -->
         <div class="pay-pane active" id="pay-pane-upi">
-          <div class="upi-layout">
-            <div class="upi-qr-card">
-              <div class="upi-qr-box">
-                <div class="qr-scan-line"></div>
-                <svg viewBox="0 0 160 160" class="qr-svg" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="160" height="160" fill="#ffffff"/>
-                  <rect x="10" y="10" width="40" height="40" fill="#047857"/>
-                  <rect x="16" y="16" width="28" height="28" fill="#ffffff"/>
-                  <rect x="22" y="22" width="16" height="16" fill="#047857"/>
-                  <rect x="110" y="10" width="40" height="40" fill="#047857"/>
-                  <rect x="116" y="16" width="28" height="28" fill="#ffffff"/>
-                  <rect x="122" y="22" width="16" height="16" fill="#047857"/>
-                  <rect x="10" y="110" width="40" height="40" fill="#047857"/>
-                  <rect x="16" y="116" width="28" height="28" fill="#ffffff"/>
-                  <rect x="22" y="122" width="16" height="16" fill="#047857"/>
-                  <path d="M60 15h10v10h-10zM80 15h10v10h-10zM60 35h15v10h-15zM85 35h10v15h-10zM15 65h15v10h-15zM35 65h10v15h-10zM55 60h10v10h-10zM75 60h10v10h-10zM95 60h15v10h-15zM120 65h10v15h-10zM140 65h10v10h-10zM60 80h10v10h-10zM90 80h15v10h-15zM115 80h10v15h-10zM135 85h15v10h-15zM20 90h15v10h-15zM45 90h10v10h-10zM65 100h10v15h-10zM85 105h15v10h-15zM110 100h10v10h-10zM130 105h20v10h-20zM60 125h15v10h-15zM85 125h10v15h-10zM105 120h15v10h-15zM130 125h10v15h-10zM65 140h20v10h-20zM95 140h15v10h-15zM120 140h20v10h-20z" fill="#064e3b"/>
-                  <circle cx="80" cy="80" r="16" fill="#10b981"/>
-                  <circle cx="80" cy="80" r="14" fill="#064e3b"/>
-                  <text x="80" y="85" font-family="'Outfit', sans-serif" font-weight="900" font-size="11" fill="#A7F3D0" text-anchor="middle">JR</text>
-                </svg>
-              </div>
-              <div class="upi-timer">⏱️ QR Expires in: <span id="upi-timer-val">05:00</span></div>
-              <div class="upi-vpa-pill" onclick="window.marketApp.copyUpiId()" title="Click to copy VPA">
-                <span id="upi-vpa-text">jayaraithu@icici</span> 📋
-              </div>
-            </div>
+          <div class="upi-prominent-header">
+            <span class="upi-sec-title">⚡ Instant UPI Apps (Select to Pay):</span>
+          </div>
 
-            <div class="upi-options">
-              <div class="upi-apps-label">Supported Instant UPI Apps:</div>
-              <div class="upi-apps-grid">
-                <button class="upi-app-chip" onclick="window.marketApp.processPayment('Google Pay')">
-                  <span class="upi-app-icon">🟢</span>
-                  <span class="upi-app-name">Google Pay</span>
-                </button>
-                <button class="upi-app-chip" onclick="window.marketApp.processPayment('PhonePe')">
-                  <span class="upi-app-icon">🟣</span>
-                  <span class="upi-app-name">PhonePe</span>
-                </button>
-                <button class="upi-app-chip" onclick="window.marketApp.processPayment('Paytm')">
-                  <span class="upi-app-icon">🔵</span>
-                  <span class="upi-app-name">Paytm UPI</span>
-                </button>
-                <button class="upi-app-chip" onclick="window.marketApp.processPayment('BHIM')">
-                  <span class="upi-app-icon">🟠</span>
-                  <span class="upi-app-name">BHIM</span>
-                </button>
-                <button class="upi-app-chip" onclick="window.marketApp.processPayment('CRED Pay')">
-                  <span class="upi-app-icon">⚫</span>
-                  <span class="upi-app-name">CRED Pay</span>
-                </button>
-                <button class="upi-app-chip" onclick="window.marketApp.processPayment('Any UPI')">
-                  <span class="upi-app-icon">📲</span>
-                  <span class="upi-app-name">Scan & Pay</span>
-                </button>
+          <div class="upi-apps-prominent-grid">
+            <button type="button" class="upi-prominent-btn active" id="upi-btn-gpay" onclick="window.marketApp.selectUpiApp(this, 'Google Pay', ${payableAmount})">
+              <span class="upi-app-badge-icon" style="background:#e8f0fe; color:#1a73e8;">🟢</span>
+              <div class="upi-app-text-block">
+                <div class="upi-app-name-title">Google Pay</div>
+                <div class="upi-app-subtitle">Fast UPI</div>
               </div>
+              <span class="upi-selected-check">✓</span>
+            </button>
+            <button type="button" class="upi-prominent-btn" id="upi-btn-phonepe" onclick="window.marketApp.selectUpiApp(this, 'PhonePe', ${payableAmount})">
+              <span class="upi-app-badge-icon" style="background:#f3e8fd; color:#5f259f;">🟣</span>
+              <div class="upi-app-text-block">
+                <div class="upi-app-name-title">PhonePe</div>
+                <div class="upi-app-subtitle">Instant</div>
+              </div>
+              <span class="upi-selected-check">✓</span>
+            </button>
+            <button type="button" class="upi-prominent-btn" id="upi-btn-paytm" onclick="window.marketApp.selectUpiApp(this, 'Paytm', ${payableAmount})">
+              <span class="upi-app-badge-icon" style="background:#e0f2fe; color:#002e6e;">🔵</span>
+              <div class="upi-app-text-block">
+                <div class="upi-app-name-title">Paytm</div>
+                <div class="upi-app-subtitle">UPI/Wallet</div>
+              </div>
+              <span class="upi-selected-check">✓</span>
+            </button>
+            <button type="button" class="upi-prominent-btn" id="upi-btn-bhim" onclick="window.marketApp.selectUpiApp(this, 'BHIM', ${payableAmount})">
+              <span class="upi-app-badge-icon" style="background:#ffedd5; color:#c2410c;">🟠</span>
+              <div class="upi-app-text-block">
+                <div class="upi-app-name-title">BHIM UPI</div>
+                <div class="upi-app-subtitle">Govt UPI</div>
+              </div>
+              <span class="upi-selected-check">✓</span>
+            </button>
+            <button type="button" class="upi-prominent-btn" id="upi-btn-cred" onclick="window.marketApp.selectUpiApp(this, 'CRED Pay', ${payableAmount})">
+              <span class="upi-app-badge-icon" style="background:#f1f5f9; color:#0f172a;">⚫</span>
+              <div class="upi-app-text-block">
+                <div class="upi-app-name-title">CRED Pay</div>
+                <div class="upi-app-subtitle">Rewards</div>
+              </div>
+              <span class="upi-selected-check">✓</span>
+            </button>
+            <button type="button" class="upi-prominent-btn" id="upi-btn-any" onclick="window.marketApp.selectUpiApp(this, 'Any UPI', ${payableAmount})">
+              <span class="upi-app-badge-icon" style="background:#dcfce7; color:#15803d;">📲</span>
+              <div class="upi-app-text-block">
+                <div class="upi-app-name-title">Any UPI</div>
+                <div class="upi-app-subtitle">Other App</div>
+              </div>
+              <span class="upi-selected-check">✓</span>
+            </button>
+          </div>
 
-              <div>
-                <label class="form-lbl">Or Enter Personal UPI ID (VPA):</label>
-                <div class="upi-vpa-input-wrap">
-                  <input type="text" id="custom-upi-vpa" class="upi-vpa-input" placeholder="e.g. yourname@oksbi" value="customer@okaxis">
-                  <button class="btn-upi-request" onclick="window.marketApp.processPayment('UPI Collect (' + document.getElementById('custom-upi-vpa').value + ')')">Send Request</button>
+          <button class="btn-pay-submit" id="btn-upi-main-submit" onclick="window.marketApp.processPayment(window.marketApp.selectedUpiApp || 'Google Pay')">
+            <span>⚡ Pay ₹${payableAmount.toFixed(2)} via Google Pay</span>
+          </button>
+
+          <!-- Collapsible QR Code & Manual VPA Option -->
+          <div class="upi-collapsible-wrapper">
+            <button type="button" class="btn-toggle-qr-expand" onclick="window.marketApp.toggleUpiQrExpand()">
+              <span id="qr-toggle-label">📷 Or Scan QR Code / Enter UPI ID ▾</span>
+            </button>
+            <div id="upi-qr-collapsible-content" class="hidden upi-qr-collapsible-box">
+              <div class="upi-qr-card">
+                <div class="upi-qr-box">
+                  <div class="qr-scan-line"></div>
+                  <svg viewBox="0 0 160 160" class="qr-svg" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="160" height="160" fill="#ffffff"/>
+                    <rect x="10" y="10" width="40" height="40" fill="#047857"/>
+                    <rect x="16" y="16" width="28" height="28" fill="#ffffff"/>
+                    <rect x="22" y="22" width="16" height="16" fill="#047857"/>
+                    <rect x="110" y="10" width="40" height="40" fill="#047857"/>
+                    <rect x="116" y="16" width="28" height="28" fill="#ffffff"/>
+                    <rect x="122" y="22" width="16" height="16" fill="#047857"/>
+                    <rect x="10" y="110" width="40" height="40" fill="#047857"/>
+                    <rect x="16" y="116" width="28" height="28" fill="#ffffff"/>
+                    <rect x="22" y="122" width="16" height="16" fill="#047857"/>
+                    <path d="M60 15h10v10h-10zM80 15h10v10h-10zM60 35h15v10h-15zM85 35h10v15h-10zM15 65h15v10h-15zM35 65h10v15h-10zM55 60h10v10h-10zM75 60h10v10h-10zM95 60h15v10h-15zM120 65h10v15h-10zM140 65h10v10h-10zM60 80h10v10h-10zM90 80h15v10h-15zM115 80h10v15h-10zM135 85h15v10h-15zM20 90h15v10h-15zM45 90h10v10h-10zM65 100h10v15h-10zM85 105h15v10h-15zM110 100h10v10h-10zM130 105h20v10h-20zM60 125h15v10h-15zM85 125h10v15h-10zM105 120h15v10h-15zM130 125h10v15h-10zM65 140h20v10h-20zM95 140h15v10h-15zM120 140h20v10h-20z" fill="#064e3b"/>
+                    <circle cx="80" cy="80" r="16" fill="#10b981"/>
+                    <circle cx="80" cy="80" r="14" fill="#064e3b"/>
+                    <text x="80" y="85" font-family="'Outfit', sans-serif" font-weight="900" font-size="11" fill="#A7F3D0" text-anchor="middle">JR</text>
+                  </svg>
+                </div>
+                <div class="upi-timer">⏱️ QR Expires in: <span id="upi-timer-val">05:00</span></div>
+                <div class="upi-vpa-pill" onclick="window.marketApp.copyUpiId()" title="Click to copy VPA">
+                  <span id="upi-vpa-text">freshcuts@icici</span> 📋
+                </div>
+                <div style="margin-top:10px; width:100%;">
+                  <label class="form-lbl" style="font-size:0.75rem;">Or Enter Personal UPI ID (VPA):</label>
+                  <div class="upi-vpa-input-wrap">
+                    <input type="text" id="custom-upi-vpa" class="upi-vpa-input" placeholder="e.g. yourname@oksbi" value="customer@okaxis">
+                    <button class="btn-upi-request" onclick="window.marketApp.processPayment('UPI Collect (' + document.getElementById('custom-upi-vpa').value + ')')">Send Request</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <button class="btn-pay-submit" onclick="window.marketApp.processPayment('Instant UPI')">
-            <span>⚡ Pay ₹${payableAmount.toFixed(2)} via Instant UPI</span>
+        <!-- PANE 2: CASH ON DELIVERY (COD) -->
+        <div class="pay-pane" id="pay-pane-cash">
+          <div class="cod-clean-card" style="padding:16px; background:#f0fdf4; border:1.5px solid #86efac; border-radius:14px; margin-bottom:14px;">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+              <span style="font-size:2rem;">💵</span>
+              <div>
+                <div style="font-size:1.05rem; font-weight:800; color:#14532d;">Cash on Delivery (COD)</div>
+                <div style="font-size:0.8rem; color:#166534;">Pay at Doorstep when your order arrives</div>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:4px; font-size:0.78rem; color:#15803d; margin-top:8px;">
+              <div>✓ Cash or UPI QR scan accepted by delivery partner</div>
+              <div>✓ Free delivery on your order</div>
+            </div>
+          </div>
+
+          <button class="btn-pay-submit" onclick="window.marketApp.processPayment('Cash on Delivery (COD)')">
+            <span>💵 Confirm Order (Cash on Delivery) ➔</span>
           </button>
         </div>
 
-        <!-- PANE 2: CREDIT / DEBIT CARDS -->
+        <!-- PANE 3: CREDIT / DEBIT CARDS -->
         <div class="pay-pane" id="pay-pane-card">
           <div class="card-view">
-            <!-- Virtual Card Preview -->
-            <div class="card-interactive-preview">
-              <div class="card-preview-top">
-                <div class="card-chip"></div>
-                <div class="card-brand-logo" id="preview-card-brand">VISA</div>
-              </div>
-              <div class="card-preview-number" id="preview-card-number">4532 •••• •••• 8920</div>
-              <div class="card-preview-bottom">
-                <div>
-                  <div style="font-size:0.68rem; opacity:0.8;">CARDHOLDER NAME</div>
-                  <div class="card-holder-name" id="preview-card-holder">S. RAMAKRISHNA</div>
-                </div>
-                <div>
-                  <div style="font-size:0.68rem; opacity:0.8;">EXPIRES</div>
-                  <div class="card-expiry-preview" id="preview-card-expiry">09/29</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Card Form Fields -->
-            <div class="card-form-grid">
-              <div class="form-group-full">
+            <div class="card-form-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px;">
+              <div style="grid-column:span 2;">
                 <label class="form-lbl">Card Number</label>
-                <input type="text" id="card-num-input" class="form-input" placeholder="4532 8920 1142 8091" maxlength="19" value="4532 8920 1142 8091" oninput="window.marketApp.updateCardPreview()">
+                <input type="text" id="card-num-input" class="form-input" placeholder="4532 8920 1142 8091" maxlength="19" value="4532 8920 1142 8091">
               </div>
-              <div class="form-group-full">
+              <div style="grid-column:span 2;">
                 <label class="form-lbl">Cardholder Name</label>
-                <input type="text" id="card-name-input" class="form-input" placeholder="Name on card" value="S. RAMAKRISHNA" oninput="window.marketApp.updateCardPreview()">
+                <input type="text" id="card-name-input" class="form-input" placeholder="Name on card" value="${this.user.name || 'S. Ramakrishna'}">
               </div>
               <div>
-                <label class="form-lbl">Expiry Date (MM/YY)</label>
-                <input type="text" id="card-exp-input" class="form-input" placeholder="09/29" maxlength="5" value="09/29" oninput="window.marketApp.updateCardPreview()">
+                <label class="form-lbl">Expiry (MM/YY)</label>
+                <input type="text" id="card-exp-input" class="form-input" placeholder="09/29" maxlength="5" value="09/29">
               </div>
               <div>
-                <label class="form-lbl">CVV / CVC</label>
+                <label class="form-lbl">CVV</label>
                 <input type="password" id="card-cvv-input" class="form-input" placeholder="•••" maxlength="3" value="821">
               </div>
             </div>
           </div>
 
-          <button class="btn-pay-submit" onclick="window.marketApp.processPayment('Credit/Debit Card (•••• ' + document.getElementById('card-num-input').value.slice(-4) + ')')">
-            <span>🔒 Pay ₹${payableAmount.toFixed(2)}</span>
-          </button>
-        </div>
-
-        <!-- PANE 3: CASH ON DELIVERY (COD) -->
-        <div class="pay-pane" id="pay-pane-cash">
-          <div class="cod-clean-card">
-            <div class="cod-clean-title">💵 Cash on Delivery (COD)</div>
-            <p class="cod-clean-desc">
-              Pay with cash or scan the delivery partner's UPI QR when your order arrives at your doorstep.
-            </p>
-          </div>
-
-          <button class="btn-pay-submit" onclick="window.marketApp.processPayment('Cash on Delivery (COD)')">
-            <span>💵 Place Order (Cash on Delivery)</span>
+          <button class="btn-pay-submit" onclick="window.marketApp.processPayment('Card Payment')">
+            <span>🔒 Pay ₹${payableAmount.toFixed(2)} via Card</span>
           </button>
         </div>
 
         <!-- PANE 4: NET BANKING -->
         <div class="pay-pane" id="pay-pane-nb">
           <div class="nb-layout">
-            <div style="font-size:0.8rem; color:var(--text-secondary);">Select Bank for Direct Institutional Account Transfer:</div>
+            <div style="font-size:0.8rem; color:#64748b; margin-bottom:8px;">Select Bank:</div>
             <div class="nb-grid">
-              <div class="nb-bank-tile selected" onclick="window.marketApp.selectBank(this, 'SBI')">🏛️ State Bank of India</div>
-              <div class="nb-bank-tile" onclick="window.marketApp.selectBank(this, 'HDFC')">🏛️ HDFC Bank</div>
-              <div class="nb-bank-tile" onclick="window.marketApp.selectBank(this, 'ICICI')">🏛️ ICICI Bank</div>
-              <div class="nb-bank-tile" onclick="window.marketApp.selectBank(this, 'Axis')">🏛️ Axis Bank</div>
-              <div class="nb-bank-tile" onclick="window.marketApp.selectBank(this, 'Kotak')">🏛️ Kotak Mahindra</div>
-              <div class="nb-bank-tile" onclick="window.marketApp.selectBank(this, 'Union')">🏛️ Union Bank</div>
-            </div>
-
-            <div>
-              <label class="form-lbl">Or Select Other Scheduled Commercial Bank:</label>
-              <select id="other-bank-select" class="nb-select">
-                <option value="Bank of Baroda">Bank of Baroda</option>
-                <option value="Punjab National Bank">Punjab National Bank</option>
-                <option value="Canara Bank">Canara Bank</option>
-                <option value="IndusInd Bank">IndusInd Bank</option>
-                <option value="IDFC FIRST Bank">IDFC FIRST Bank</option>
-                <option value="Federal Bank">Federal Bank</option>
-              </select>
+              <div class="nb-bank-tile selected" onclick="window.marketApp.selectBank(this, 'SBI')">🏛️ SBI</div>
+              <div class="nb-bank-tile" onclick="window.marketApp.selectBank(this, 'HDFC')">🏛️ HDFC</div>
+              <div class="nb-bank-tile" onclick="window.marketApp.selectBank(this, 'ICICI')">🏛️ ICICI</div>
+              <div class="nb-bank-tile" onclick="window.marketApp.selectBank(this, 'Axis')">🏛️ Axis</div>
+              <div class="nb-bank-tile" onclick="window.marketApp.selectBank(this, 'Kotak')">🏛️ Kotak</div>
+              <div class="nb-bank-tile" onclick="window.marketApp.selectBank(this, 'Union')">🏛️ Union</div>
             </div>
           </div>
 
           <button class="btn-pay-submit" onclick="window.marketApp.processPayment('Net Banking (' + (window.selectedBankName || 'State Bank of India') + ')')">
             <span>🏦 Pay ₹${payableAmount.toFixed(2)} via Net Banking</span>
           </button>
-        </div>
-
-        <div class="pay-security-note">
-          <span>🔒 100% Safe & Secure Payments</span>
         </div>
       `;
 
@@ -7353,7 +8274,7 @@
           const reply = `
             👨‍👩‍👧‍👦 <strong>Weekly Family Veggie Pack Added! (8 Fresh Items)</strong><br>
             • 2kg Vine Country Tomatoes: ₹76.00<br>
-            • 2kg Kurnool Red Onions: ₹64.00<br>
+            • 2kg Fresh Red Onions: ₹64.00<br>
             • 1kg Mountain Potatoes: ₹34.00<br>
             • 1kg Tender Green Bhendi: ₹42.00<br>
             • 250g Country Green Chillies: ₹18.00<br>
@@ -7401,7 +8322,7 @@
           const reply = `
             🥕🧅 <strong>Everyday Home Cooking Pack Added! (₹137.00)</strong><br>
             • 1kg Vine Country Tomatoes: ₹38<br>
-            • 1kg Kurnool Red Onions: ₹32<br>
+            • 1kg Fresh Red Onions: ₹32<br>
             • 1kg Organic Mountain Potatoes: ₹34<br>
             • 250g Country Green Chillies: ₹18<br>
             • 1x Fragrant Coriander : ₹15<br>
@@ -7464,7 +8385,7 @@
           sound.playWaIncomingSound();
         }, 400);
       } else if (promptType === 'staples') {
-        const userMsg = '🧅 Send 1kg Kurnool Onions and 1kg Mountain Potatoes.';
+        const userMsg = '🧅 Send 1kg Fresh Red Onions and 1kg Mountain Potatoes.';
         this.appendWaMessage(userMsg, 'user', target);
         sound.playWaOutgoingSound();
 
@@ -7474,7 +8395,7 @@
         setTimeout(() => {
           const reply = `
             🧅🥔 <strong>Kitchen Staples Pack Added! (₹66.00)</strong><br>
-            • 1kg Kurnool Sweet Red Onions: ₹32<br>
+            • 1kg Fresh Red Onions: ₹32<br>
             • 1kg Organic Mountain Potatoes: ₹34<br>
           `;
           this.appendWaMessage(reply, 'bot', target);
@@ -7605,7 +8526,7 @@
             • Country Spinach (Palak): <strong>₹24/bunch</strong> (Mandi: ₹34)<br>
             • Tender Bhendi: <strong>₹42/kg</strong> (Mandi: ₹56)<br>
             • Stuffed Baby Brinjal: <strong>₹44/kg</strong> (Mandi: ₹58)<br>
-            • Kurnool Onions: <strong>₹32/kg</strong> (Mandi: ₹42)<br>
+            • Fresh Red Onions: <strong>₹32/kg</strong> (Mandi: ₹42)<br>
             • Mountain Potatoes: <strong>₹34/kg</strong> (Mandi: ₹44)<br>
             • Pure A2 Milk: <strong>₹68/L</strong> (Store: ₹80)<br>
           `;
@@ -8621,7 +9542,7 @@
         'Search in FRESHCUTS "milk"',
         'Search in FRESHCUTS "fresh vegetables"',
         'Search in FRESHCUTS "tomatoes"',
-        'Search in FRESHCUTS "kurnool onions"',
+        'Search in FRESHCUTS "fresh onions"',
         'Search in FRESHCUTS "palak greens"',
         'Search in FRESHCUTS "potatoes"',
         'Search in FRESHCUTS "tender bhendi"',
@@ -8660,10 +9581,10 @@
 
         if (query.length === 0) {
           if (dropdown) dropdown.classList.add('hidden');
-          this.renderProducts();
+          this.renderSupermarketProducts();
         } else {
           this.renderBlinkitSearchDropdown(this.searchQuery);
-          this.renderProducts();
+          this.renderSupermarketProducts();
           if (dropdown) dropdown.classList.remove('hidden');
         }
       });
@@ -8710,24 +9631,42 @@
       if (!q) return true;
 
       const pTitle = (prod.title || '').toLowerCase();
+      const pName = (prod.name || '').toLowerCase();
       const pTelugu = (prod.teluguTitle || '').toLowerCase();
       const pId = (prod.id || '').toLowerCase();
+      const pDesc = (prod.description || '').toLowerCase();
+      const pBrand = (prod.brand || '').toLowerCase();
 
-      // 1. Broad category queries ONLY (when user explicitly searches for a whole department)
+      // 1. Broad category queries
       if (/^(veg|veggie|veggies|vegitables?|vegetables?|all veg|kooragayalu)$/i.test(q)) {
-        return prod.category === 'zone-b' || prod.category === 'zone-c' || prod.category === 'zone-a';
+        return prod.category === 'zone-b' || prod.category === 'zone-c' || prod.category === 'zone-a' || prod.category === 'vegetables' || prod.category === 'fresh-vegetables';
       }
-      if (/^(leafy|leafy greens?|aaku kuralu|aakukoorallu|all greens)$/i.test(q)) {
-        return this.classifyProduct(prod) === 'leaf-items';
+      if (/^(fruit|fruits|fresh fruits|pallu|pandlu)$/i.test(q)) {
+        return this.classifyCategory(prod) === 'fresh-fruits';
+      }
+      if (/^(leafy|leafy greens?|aaku kuralu|aakukoorallu|all greens|greens)$/i.test(q)) {
+        return this.classifyCategory(prod) === 'leaf-items';
       }
       if (/^(dairy|dairy items?|milk products?|paala uthpathulu)$/i.test(q)) {
-        return this.classifyProduct(prod) === 'dairy-morning';
+        return this.classifyCategory(prod) === 'dairy-morning';
       }
       if (/^(ready to cook|rtc|meal kits?|curry kits?|cooking kits?|koora kitlu)$/i.test(q)) {
-        return this.classifyProduct(prod) === 'ready-to-cook';
+        return this.classifyCategory(prod) === 'ready-to-cook';
       }
       if (/^(spices|masalas?|powders?|powers?|kitchen essentials|vantagadi sarukulu)$/i.test(q)) {
-        return this.classifyProduct(prod) === 'kitchen-spices';
+        return this.classifyCategory(prod) === 'kitchen-spices';
+      }
+      if (/^(oil|oils|ghee|pure oils|cooking oils|nune|telu)$/i.test(q)) {
+        return this.classifyCategory(prod) === 'oil-ghee-masala';
+      }
+      if (/^(atta|rice|dal|dals|grains|pulses|flour|biyyam|pappu)$/i.test(q)) {
+        return this.classifyCategory(prod) === 'atta-rice-dal';
+      }
+      if (/^(snacks|bakery|packaged|biscuits|chips|namkeen)$/i.test(q)) {
+        return this.classifyCategory(prod) === 'snacks-bakery';
+      }
+      if (/^(deals|fresh deals|discounts|offers)$/i.test(q)) {
+        return this.classifyCategory(prod) === 'fresh-deals';
       }
       if (/^(appliances|cookware|kitchenware|vanta patralu)$/i.test(q)) {
         return this.classifyProduct(prod) === 'appliances';
@@ -8736,71 +9675,90 @@
         return prod.isRayalaseema || (prod.farmerKey && prod.farmerKey.includes('fpo_'));
       }
 
-      // 2. Direct exact title, id, or Telugu title substring match
-      if (pTitle.includes(q) || pId.includes(q) || pTelugu.includes(q)) {
+      // 2. Direct exact title, id, name, Telugu title, or description substring match
+      if (pTitle.includes(q) || pName.includes(q) || pId.includes(q) || pTelugu.includes(q) || pDesc.includes(q) || pBrand.includes(q)) {
         return true;
       }
 
-      // 3. Strict synonym lookup dictionary for specific items
+      // 3. Multi-word queries: all words in query match across product fields
+      const qWords = q.split(/\s+/).filter(w => w.length > 0);
+      if (qWords.length > 1) {
+        const fullText = `${pTitle} ${pName} ${pTelugu} ${pId} ${pDesc} ${pBrand}`;
+        if (qWords.every(w => fullText.includes(w))) {
+          return true;
+        }
+      }
+
+      // 4. Strict synonym lookup dictionary for specific items
       const synonyms = {
-        'tomato': ['tomato', 'tomatoes', 'tamatar', 'thakkali', '', ''],
-        'palak': ['palak', 'spinach', 'paalak', 'palakura', ''],
-        'methi': ['methi', 'fenugreek', 'menthi', 'menthikura', ''],
-        'curry leaves': ['curry leaves', 'karivepaku', 'curry leaf', ''],
-        'coriander': ['coriander', 'kothimeera', 'dhaniyalu leaves', 'cilantro', ''],
-        'pudina': ['pudina', 'mint', ''],
-        'gongura': ['gongura', 'sour greens', 'erra gongura', ''],
-        'thotakura': ['thotakura', 'amaranth', ''],
-        'onion': ['onion', 'onions', 'pyaz', 'ullipaya', 'ullipayalu', 'shallots', 'shallot', ''],
-        'potato': ['potato', 'potatoes', 'aloo', 'alu', 'bangaladumpa', ''],
-        'bhendi': ['bhendi', 'bhindi', 'okra', 'lady finger', 'bendakaya', ''],
-        'brinjal': ['brinjal', 'brinjals', 'eggplant', 'vankaya', 'baingan', 'gutti vankaya', ''],
-        'chilli': ['chilli', 'chillies', 'chilly', 'mirchi', 'pachi mirchi', '', ''],
-        'carrot': ['carrot', 'carrots', 'gajar', ''],
-        'beetroot': ['beetroot', 'beet', '‌'],
-        'cabbage': ['cabbage', 'patta gobi', ''],
-        'cauliflower': ['cauliflower', 'gobi', 'phool gobi', ''],
-        'garlic': ['garlic', 'vellulli', 'lahsun', ''],
-        'ginger': ['ginger', 'allam', 'adrak', ''],
-        'peas': ['peas', 'green peas', 'matar', 'batani', ''],
-        'cucumber': ['cucumber', 'keera', 'dosakaya', '', ''],
-        'drumstick': ['drumstick', 'drumsticks', 'munakkada', 'munagakaya', ''],
-        'bitter gourd': ['bitter gourd', 'karela', 'kakarakaya', ''],
-        'bottle gourd': ['bottle gourd', 'sorakaya', 'lauki', ''],
-        'ridge gourd': ['ridge gourd', 'beerakaya', 'turai', ''],
-        'lemon': ['lemon', 'lemons', 'nimma', 'nimmakaya', ''],
-        'milk': ['milk', 'doodh', 'paalu', 'cow milk', 'buffalo milk', ''],
-        'curd': ['curd', 'dahi', 'perugu', 'meegada perugu', ''],
-        'paneer': ['paneer', 'cottage cheese', 'malai paneer', ''],
-        'butter': ['butter', 'makhan', 'venna', 'white butter', ''],
-        'buttermilk': ['buttermilk', 'chaas', 'majjiga', ''],
-        'ghee': ['ghee', 'neyyi', 'bilona ghee', ''],
-        'egg': ['egg', 'eggs', 'guddu', 'gudlu', 'anda', ''],
-        'batter': ['batter', 'dosa batter', 'idli batter', ' '],
-        'sambar': ['sambar', 'saambar', 'sambhar', ''],
-        'rasam': ['rasam', 'chaaru', 'miriyala chaaru', '', ''],
-        'ragi': ['ragi', 'sankati', 'ragi mudda', ''],
-        'uggani': ['uggani', 'borugulu', '', ''],
-        'bajji': ['bajji', 'mirchi bajji', ''],
-        'salt': ['salt', 'uppu', 'tata salt', ''],
-        'turmeric': ['turmeric', 'pasupu', 'haldi', ''],
-        'jeera': ['jeera', 'jilakara', 'cumin', ''],
-        'mustard': ['mustard', 'avalu', ''],
-        'pepper': ['pepper', 'black pepper', 'miriyalu', ''],
-        'cardamom': ['cardamom', 'yalukalu', ''],
-        'cloves': ['clove', 'cloves', 'lavangalu', ''],
-        'cinnamon': ['cinnamon', 'chekka', ''],
-        'hing': ['hing', 'inguva', ''],
-        'knife': ['knife', 'knives', 'chef knife', 'peeler', 'scissors', ''],
-        'cooker': ['cooker', 'pressure cooker', ''],
-        'tawa': ['tawa', 'cast iron tawa', 'dosa tawa', ''],
-        'kadhai': ['kadhai', 'kadai', 'frying pan', ''],
-        'mixer': ['mixer', 'grinder', 'mixer grinder', ''],
-        'chopper': ['chopper', 'veg chopper', ''],
-        'handi': ['handi', 'terracotta handi', ''],
-        'mortar': ['mortar', 'pestle', 'rolu', ''],
-        'bottle': ['copper bottle', 'water bottle', ''],
-        'spatula': ['spatula', 'spatulas', '']
+        'tomato': ['tomato', 'tomatoes', 'tamatar', 'thakkali', 'tamata', 'tomat'],
+        'palak': ['palak', 'spinach', 'paalak', 'palakura'],
+        'methi': ['methi', 'fenugreek', 'menthi', 'menthikura'],
+        'curry leaves': ['curry leaves', 'karivepaku', 'curry leaf'],
+        'coriander': ['coriander', 'kothimeera', 'dhaniyalu leaves', 'cilantro'],
+        'pudina': ['pudina', 'mint'],
+        'gongura': ['gongura', 'sour greens', 'erra gongura'],
+        'thotakura': ['thotakura', 'amaranth'],
+        'onion': ['onion', 'onions', 'pyaz', 'ullipaya', 'ullipayalu', 'shallots', 'shallot'],
+        'potato': ['potato', 'potatoes', 'aloo', 'alu', 'bangaladumpa'],
+        'bhendi': ['bhendi', 'bhindi', 'okra', 'lady finger', 'bendakaya'],
+        'brinjal': ['brinjal', 'brinjals', 'eggplant', 'vankaya', 'baingan', 'gutti vankaya'],
+        'chilli': ['chilli', 'chillies', 'chilly', 'mirchi', 'pachi mirchi'],
+        'carrot': ['carrot', 'carrots', 'gajar'],
+        'beetroot': ['beetroot', 'beet'],
+        'cabbage': ['cabbage', 'patta gobi'],
+        'cauliflower': ['cauliflower', 'gobi', 'phool gobi'],
+        'garlic': ['garlic', 'vellulli', 'lahsun'],
+        'ginger': ['ginger', 'allam', 'adrak'],
+        'peas': ['peas', 'green peas', 'matar', 'batani'],
+        'cucumber': ['cucumber', 'keera', 'dosakaya'],
+        'drumstick': ['drumstick', 'drumsticks', 'munakkada', 'munagakaya'],
+        'bitter gourd': ['bitter gourd', 'karela', 'kakarakaya'],
+        'bottle gourd': ['bottle gourd', 'sorakaya', 'lauki'],
+        'ridge gourd': ['ridge gourd', 'beerakaya', 'turai'],
+        'lemon': ['lemon', 'lemons', 'nimma', 'nimmakaya'],
+        'milk': ['milk', 'doodh', 'paalu', 'cow milk', 'buffalo milk', 'a2 milk'],
+        'curd': ['curd', 'dahi', 'perugu', 'meegada perugu', 'pot curd'],
+        'paneer': ['paneer', 'cottage cheese', 'malai paneer'],
+        'butter': ['butter', 'makhan', 'venna', 'white butter'],
+        'buttermilk': ['buttermilk', 'chaas', 'majjiga'],
+        'ghee': ['ghee', 'neyyi', 'bilona ghee'],
+        'egg': ['egg', 'eggs', 'guddu', 'gudlu', 'anda'],
+        'batter': ['batter', 'dosa batter', 'idli batter'],
+        'sambar': ['sambar', 'saambar', 'sambhar'],
+        'rasam': ['rasam', 'chaaru', 'miriyala chaaru'],
+        'apple': ['apple', 'apples', 'seba', 'kashmiri apple'],
+        'banana': ['banana', 'bananas', 'kela', 'arati pandu', 'yelakki'],
+        'mango': ['mango', 'mangoes', 'aam', 'mamidi', 'banganapalli'],
+        'orange': ['orange', 'oranges', 'santra', 'kamala', 'mosambi'],
+        'pomegranate': ['pomegranate', 'danimma', 'anar'],
+        'oil': ['oil', 'oils', 'groundnut oil', 'sunflower oil', 'telu', 'nune', 'mustard oil'],
+        'rice': ['rice', 'sona masoori', 'biyyam', 'chawal', 'basmati', 'wada kolam'],
+        'atta': ['atta', 'wheat', 'godhumalu', 'flour', 'aashirvaad'],
+        'dal': ['dal', 'dall', 'pappu', 'toor dal', 'moong dal', 'urad dal', 'chana dal'],
+        'snack': ['snack', 'snacks', 'mixture', 'murukku', 'biscuits', 'cookies', 'chips', 'lays', 'kurkure', 'maggi'],
+        'ragi': ['ragi', 'sankati', 'ragi mudda'],
+        'uggani': ['uggani', 'borugulu'],
+        'bajji': ['bajji', 'mirchi bajji'],
+        'salt': ['salt', 'uppu', 'tata salt'],
+        'turmeric': ['turmeric', 'pasupu', 'haldi'],
+        'jeera': ['jeera', 'jilakara', 'cumin'],
+        'mustard': ['mustard', 'avalu'],
+        'pepper': ['pepper', 'black pepper', 'miriyalu'],
+        'cardamom': ['cardamom', 'yalukalu'],
+        'cloves': ['clove', 'cloves', 'lavangalu'],
+        'cinnamon': ['cinnamon', 'chekka'],
+        'hing': ['hing', 'inguva'],
+        'knife': ['knife', 'knives', 'chef knife', 'peeler', 'scissors'],
+        'cooker': ['cooker', 'pressure cooker'],
+        'tawa': ['tawa', 'cast iron tawa', 'dosa tawa'],
+        'kadhai': ['kadhai', 'kadai', 'frying pan'],
+        'mixer': ['mixer', 'grinder', 'mixer grinder'],
+        'chopper': ['chopper', 'veg chopper'],
+        'handi': ['handi', 'terracotta handi'],
+        'mortar': ['mortar', 'pestle', 'rolu'],
+        'bottle': ['copper bottle', 'water bottle'],
+        'spatula': ['spatula', 'spatulas']
       };
 
       for (const [key, aliasList] of Object.entries(synonyms)) {
@@ -8953,6 +9911,7 @@
     submitHeaderSearch() {
       const dropdown = document.getElementById('blinkit-search-dropdown');
       if (dropdown) dropdown.classList.add('hidden');
+      this.renderSupermarketProducts();
       this.scrollToVegetables();
     }
 
@@ -8960,86 +9919,54 @@
       const dropdown = document.getElementById('blinkit-search-dropdown');
       if (dropdown) dropdown.classList.add('hidden');
       this.switchTab('supermarket-floor');
-      const card = document.getElementById(`card-${prodId}`);
-      if (card) {
-        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        card.classList.add('highlight-pulse');
-        setTimeout(() => card.classList.remove('highlight-pulse'), 2500);
+      const prod = PRODUCTS_DATA.find((p) => p.id === prodId);
+      if (prod) {
+        const input = document.getElementById('header-search-input');
+        if (input) input.value = prod.title;
+        this.searchQuery = prod.title.toLowerCase();
+        this.renderSupermarketProducts();
       }
+      this.scrollToVegetables();
+      setTimeout(() => {
+        const card = document.getElementById(`card-${prodId}`);
+        if (card) {
+          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          card.classList.add('highlight-pulse');
+          setTimeout(() => card.classList.remove('highlight-pulse'), 2500);
+        }
+      }, 300);
     }
 
     scrollToVegetables() {
       this.switchTab('supermarket-floor');
-      const target = document.getElementById('products-grid') || document.querySelector('.products-section');
+      const target = document.getElementById('supermarket-main') || document.getElementById('products-grid') || document.querySelector('.products-section');
       if (target) {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }
 
-    filterDepartment(dept) {
-      this.switchTab('supermarket-floor');
-      this.activeDepartment = dept;
-
-      const isDeptMatch = (targetDept, activeDept) => {
-        if (!targetDept || !activeDept) return false;
-        if (targetDept === activeDept) return true;
-        if ((targetDept === 'leaf-items' || targetDept === 'zone-a') && (activeDept === 'leaf-items' || activeDept === 'zone-a')) return true;
-        if ((targetDept === 'ready-to-cook' || targetDept === 'curry-kits') && (activeDept === 'ready-to-cook' || activeDept === 'curry-kits')) return true;
-        if ((targetDept === 'kitchen-spices' || targetDept === 'kitchen-essentials') && (activeDept === 'kitchen-spices' || activeDept === 'kitchen-essentials')) return true;
-        if ((targetDept === 'vegetables' || targetDept === 'zone-b' || targetDept === 'zone-c' || targetDept === 'vegetables-fruits') && 
-            (activeDept === 'vegetables' || activeDept === 'zone-b' || activeDept === 'zone-c' || activeDept === 'vegetables-fruits')) return true;
-        if ((targetDept === 'appliances' || targetDept === 'kitchenware-appliances') && (activeDept === 'appliances' || activeDept === 'kitchenware-appliances')) return true;
-        if ((targetDept === 'dairy-morning' || targetDept === 'dairy-bread-eggs') && (activeDept === 'dairy-morning' || activeDept === 'dairy-bread-eggs')) return true;
-        if ((targetDept === 'snacks-bakery' || targetDept === 'snacks-drinks' || targetDept === 'bakery-biscuits') && 
-            (activeDept === 'snacks-bakery' || activeDept === 'snacks-drinks' || activeDept === 'bakery-biscuits')) return true;
-        return false;
+        filterDepartment(dept) {
+      const mapping = {
+        'all': 'all',
+        'vegetables': 'fresh-vegetables',
+        'leaf-items': 'fresh-vegetables',
+        'ready-to-cook': 'fresh-vegetables',
+        'fruits': 'fresh-fruits',
+        'kitchen-spices': 'masala-spices',
+        'spices': 'masala-spices',
+        'atta-rice-dal': 'rice-pulses-grains',
+        'grains': 'rice-pulses-grains',
+        'dairy-morning': 'dairy-milk',
+        'dairy': 'dairy-milk',
+        'oil-ghee-masala': 'oils-essentials',
+        'oils': 'oils-essentials',
+        'snacks-bakery': 'snacks-packaged',
+        'snacks': 'snacks-packaged'
       };
-
-      document.querySelectorAll('.dept-btn').forEach((b) => {
-        b.classList.toggle('active', isDeptMatch(b.dataset.dept, dept));
-      });
-      document.querySelectorAll('.blinkit-cat-item').forEach((b) => {
-        b.classList.toggle('active', isDeptMatch(b.dataset.dept, dept));
-      });
-
-      const titleEl = document.getElementById('section-title-text');
-      if (titleEl) {
-        if (dept === 'leaf-items' || dept === 'zone-a') {
-          titleEl.textContent = 'Leaf Items & Fresh Greens';
-        } else if (dept === 'ready-to-cook' || dept === 'curry-kits') {
-          titleEl.textContent = 'Ready to Cook Curry Kits & Meal Prep';
-        } else if (dept === 'kitchen-spices' || dept === 'kitchen-essentials') {
-          titleEl.textContent = 'Kitchen Spices, Salts & Podis';
-        } else if (dept === 'vegetables' || dept === 'zone-b' || dept === 'zone-c' || dept === 'vegetables-fruits') {
-          titleEl.textContent = 'Daily Vegetables & Produce';
-        } else if (dept === 'rayalaseema') {
-          titleEl.textContent = 'Rayalaseema Regional Produce';
-        } else if (dept === 'appliances' || dept === 'kitchenware-appliances') {
-          titleEl.textContent = 'Cookware & Daily Appliances';
-        } else if (dept === 'dairy-morning' || dept === 'dairy-bread-eggs') {
-          titleEl.textContent = 'Fresh Morning Dairy & Pot Curd';
-        } else if (dept === 'atta-rice-dal') {
-          titleEl.textContent = 'Atta, Rice & Dals';
-        } else if (dept === 'oil-ghee-masala') {
-          titleEl.textContent = 'Pure Oils & Ghee';
-        } else if (dept === 'snacks-bakery' || dept === 'snacks-drinks' || dept === 'bakery-biscuits') {
-          titleEl.textContent = 'Bakery & Snacks';
-        } else if (dept === 'chicken-meat-fish') {
-          titleEl.textContent = 'Fresh Chicken, Meat & Fish';
-        } else if (dept === 'tier2-clearance') {
-          titleEl.textContent = 'Fresh Deals';
-        } else if (dept === 'grocery') {
-          titleEl.textContent = 'All Fresh Grocery';
-        } else if (dept === 'kitchen') {
-          titleEl.textContent = 'Kitchenware & Prep Kits';
-        } else {
-          titleEl.textContent = 'Fresh Produce';
-        }
-      }
-
-      this.renderProducts();
-      this.scrollToVegetables();
+      const cat = mapping[dept] || dept;
+      this.selectCategory(cat, true);
     }
+
 
     filterCategoryQuick(dept, el) {
       this.filterDepartment(dept);
@@ -9069,8 +9996,8 @@
             <div class="side-nav-user-meta">
               <div class="side-nav-user-avatar">${initial}</div>
               <div>
-                <div class="side-nav-user-name">${this.user.name || 'Customer'}</div>
-                <div class="side-nav-user-phone">${this.user.phone || ''} • Logged In</div>
+                <div class="side-nav-user-name">${this.user.name || 'Pradeep'}</div>
+                <div class="side-nav-user-phone" style="color:#16a34a; font-weight:600;">Active Account</div>
               </div>
             </div>
             <button type="button" id="btn-side-nav-logout" class="btn-side-nav-logout" onclick="window.marketApp.logoutUser()" title="Log out">
