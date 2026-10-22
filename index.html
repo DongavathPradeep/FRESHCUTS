@@ -228,7 +228,7 @@
                 <input 
                   type="text" 
                   id="mobile-search-input" 
-                  placeholder='Search "healthy snacks"' 
+                  placeholder='Search "veggies, masalas, appliances, snacks"' 
                   autocomplete="off"
                   oninput="window.marketApp.handleMobileSearch(this.value)"
                 />
@@ -253,9 +253,9 @@
               <div class="mobile-search-results-grid" id="mobile-search-results-grid"></div>
             </div>
 
-            <!-- 3. Festive Category Icons Strip (Maroon Background) -->
+                        <!-- 3. Festive Category Icons Strip (Maroon Background) -->
             <div class="festive-cats-strip">
-              <div class="festive-cat-pill active" onclick="window.marketApp.openAisleScreen('all')">
+              <div class="festive-cat-pill active" onclick="window.marketApp.filterHomeCategory('all', this)">
                 <div class="festive-cat-icon">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2">
                     <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
@@ -267,37 +267,31 @@
                 <div class="festive-cat-indicator"></div>
               </div>
 
-              <div class="festive-cat-pill" onclick="window.marketApp.openAisleScreen('cleaning-essentials')">
-                <span class="festive-new-bubble">New</span>
-                <div class="festive-cat-icon">🪔</div>
-                <span class="festive-cat-label">Diwali</span>
+              <div class="festive-cat-pill" onclick="window.marketApp.filterHomeCategory('vegetables', this)">
+                <div class="festive-cat-icon">🥬</div>
+                <span class="festive-cat-label">Vegetables</span>
               </div>
 
-              <div class="festive-cat-pill" onclick="window.marketApp.openAisleScreen('snacks-bakery')">
-                <div class="festive-cat-icon">♠</div>
-                <span class="festive-cat-label">Party</span>
+              <div class="festive-cat-pill" onclick="window.marketApp.filterHomeCategory('masalas', this)">
+                <div class="festive-cat-icon">🌶️</div>
+                <span class="festive-cat-label">Masalas</span>
               </div>
 
-              <div class="festive-cat-pill" onclick="window.marketApp.openAisleScreen('kitchen-spices')">
-                <div class="festive-cat-icon">🎧</div>
-                <span class="festive-cat-label">Electronics</span>
+              <div class="festive-cat-pill" onclick="window.marketApp.filterHomeCategory('appliances', this)">
+                <div class="festive-cat-icon">🍳</div>
+                <span class="festive-cat-label">Appliances</span>
               </div>
 
-              <div class="festive-cat-pill" onclick="window.marketApp.openAisleScreen('ready-to-cook')">
-                <div class="festive-cat-icon">💄</div>
-                <span class="festive-cat-label">Beauty</span>
-              </div>
-
-              <div class="festive-cat-pill" onclick="window.marketApp.openAisleScreen('vegetables')">
-                <div class="festive-cat-icon">💊</div>
-                <span class="festive-cat-label">Pharmacy</span>
+              <div class="festive-cat-pill" onclick="window.marketApp.filterHomeCategory('snacks', this)">
+                <div class="festive-cat-icon">🍟</div>
+                <span class="festive-cat-label">Snacks</span>
               </div>
             </div>
 
-            <!-- 4. DIWALI CLEANING SALE Banner -->
+            <!-- 4. FRESHCUTS MEGA SAVINGS Banner -->
             <div class="festive-sale-banner-wrap">
               <div class="festive-stars-decor">❖</div>
-              <h2 class="festive-sale-headline">DIWALI CLEANING SALE</h2>
+              <h2 class="festive-sale-headline">FRESHCUTS MEGA SAVINGS</h2>
               <div class="festive-stars-decor">❖</div>
             </div>
             <div class="festive-arch-crest">
@@ -307,154 +301,149 @@
 
           <!-- 5. Cream Section: Deals Categories + Product Cards (Exact Reference Match) -->
           <div class="festive-cream-deals-section">
-            <!-- Circular Categories Row -->
+            <!-- Circular Categories Row (Only 4 Requested Categories) -->
             <div class="festive-deal-circles-row">
-              <div class="festive-deal-circle-card featured" onclick="window.marketApp.openAisleScreen('cleaning-essentials')">
+              <div class="festive-deal-circle-card featured" onclick="window.marketApp.scrollToHomeSection('section-vegetables')">
                 <div class="deal-circle-img-box">
-                  <img src="assets/deal_cat_diya.jpg" alt="Diwali Deep Cleaning" class="deal-circle-img" />
-                  <span class="deal-yellow-pill">Starting at<br><strong>₹19</strong></span>
+                  <img src="assets/prod_tomatoes.jpg" alt="Vegetable Items" class="deal-circle-img" />
+                  <span class="deal-yellow-pill">Starting at<br><strong>₹14</strong></span>
                 </div>
-                <span class="deal-circle-text featured-txt">Diwali Deep<br>Cleaning</span>
+                <span class="deal-circle-text featured-txt">Vegetable<br>Items</span>
               </div>
 
-              <div class="festive-deal-circle-card" onclick="window.marketApp.openAisleScreen('cleaning-essentials')">
+              <div class="festive-deal-circle-card" onclick="window.marketApp.scrollToHomeSection('section-masalas')">
                 <div class="deal-circle-img-box">
-                  <img src="assets/deal_cat_laundry.jpg" alt="Laundry Essentials" class="deal-circle-img" />
-                  <span class="deal-yellow-pill">Up to<br><strong>70% OFF</strong></span>
+                  <img src="assets/prod_kadapa_turmeric.jpg" alt="Masala Items" class="deal-circle-img" />
+                  <span class="deal-yellow-pill">Starting at<br><strong>₹22</strong></span>
                 </div>
-                <span class="deal-circle-text">Laundry<br>Essentials</span>
+                <span class="deal-circle-text">Masala<br>Items</span>
               </div>
 
-              <div class="festive-deal-circle-card" onclick="window.marketApp.openAisleScreen('cleaning-essentials')">
+              <div class="festive-deal-circle-card" onclick="window.marketApp.scrollToHomeSection('section-appliances')">
                 <div class="deal-circle-img-box">
-                  <img src="assets/deal_cat_surface.jpg" alt="Surface Cleaners" class="deal-circle-img" />
-                  <span class="deal-yellow-pill">Up to<br><strong>70% OFF</strong></span>
+                  <img src="assets/prod_app_veg_chopper.jpg" alt="Kitchen Appliances" class="deal-circle-img" />
+                  <span class="deal-yellow-pill">Up to<br><strong>50% OFF</strong></span>
                 </div>
-                <span class="deal-circle-text">Surface<br>Cleaners</span>
+                <span class="deal-circle-text">Kitchen<br>Appliances</span>
               </div>
 
-              <div class="festive-deal-circle-card" onclick="window.marketApp.openAisleScreen('cleaning-essentials')">
+              <div class="festive-deal-circle-card" onclick="window.marketApp.scrollToHomeSection('section-snacks')">
                 <div class="deal-circle-img-box">
-                  <img src="assets/deal_cat_wiper.jpg" alt="Cleaning Tools" class="deal-circle-img" />
-                  <span class="deal-yellow-pill">Starting at<br><strong>₹79</strong></span>
+                  <img src="assets/prod_snack_haldiram_aloo_bhujia.jpg" alt="Snacks Items" class="deal-circle-img" />
+                  <span class="deal-yellow-pill">Starting at<br><strong>₹20</strong></span>
                 </div>
-                <span class="deal-circle-text">Cleaning<br>Tools</span>
-              </div>
-
-              <div class="festive-deal-circle-card" onclick="window.marketApp.openAisleScreen('cleaning-essentials')">
-                <div class="deal-circle-img-box">
-                  <img src="assets/deal_cat_dishwash.jpg" alt="Dishwashing Essentials" class="deal-circle-img" />
-                  <span class="deal-yellow-pill">Up to<br><strong>80% OFF</strong></span>
-                </div>
-                <span class="deal-circle-text">Dishwashing<br>Essentials</span>
+                <span class="deal-circle-text">Snacks<br>Items</span>
               </div>
             </div>
 
-            <!-- Horizontal Product Cards Carousel -->
+            <!-- Horizontal Product Cards Carousel (4 Featured Deal Cards) -->
             <div class="festive-products-carousel">
-              <!-- Card 1: Roff Cera Clean -->
-              <div class="festive-prod-card" data-prod-id="prod_deal_cera_clean">
+              <!-- Card 1: Vegetable - Fresh Farm Desi Tomatoes -->
+              <div class="festive-prod-card" data-prod-id="prod_tomatoes">
                 <div class="f-card-top-action">
-                  <span class="f-card-ad-tag">Ad</span>
-                  <button type="button" class="f-card-heart" onclick="window.marketApp.toggleWishlist('prod_deal_cera_clean', event)">♡</button>
+                  <span class="f-card-ad-tag">Fresh</span>
+                  <button type="button" class="f-card-heart" onclick="window.marketApp.toggleWishlist('prod_tomatoes', event)">♡</button>
                 </div>
-                <div class="f-card-img-box" onclick="window.marketApp.openAisleWithProduct('prod_deal_cera_clean')">
-                  <img src="assets/deal_cera_clean.jpg" alt="Roff Cera Clean" class="f-prod-thumb" />
+                <div class="f-card-img-box" onclick="window.marketApp.openAisleWithProduct('prod_tomatoes')">
+                  <img src="assets/prod_tomatoes.jpg" alt="Fresh Farm Desi Tomatoes" class="f-prod-thumb" />
                 </div>
                 <div class="f-card-weight-row">
-                  <span class="f-card-weight">500 ml</span>
-                  <button type="button" class="f-card-add-btn" onclick="window.marketApp.modifyCartQty('prod_deal_cera_clean', 1)">
+                  <span class="f-card-weight">500 g</span>
+                  <button type="button" class="f-card-add-btn" onclick="window.marketApp.modifyCartQty('prod_tomatoes', 1)">
                     <span class="f-btn-plus">+</span>
                     <span class="f-btn-more">more</span>
                   </button>
                 </div>
                 <div class="f-card-price-row">
-                  <span class="f-card-price">₹99</span>
-                  <span class="f-card-mrp">₹159</span>
+                  <span class="f-card-price">₹18</span>
+                  <span class="f-card-mrp">₹30</span>
                 </div>
-                <div class="f-card-discount-blue">37% OFF on MRP</div>
-                <div class="f-card-name">Roff Cera Clean Advance Tile Floo...</div>
+                <div class="f-card-discount-blue">40% OFF on MRP</div>
+                <div class="f-card-name">Fresh Farm Desi Tomatoes...</div>
+                <div class="f-card-tag-pill">Vegetables</div>
               </div>
 
-              <!-- Card 2: Happi Planet Copper Clean -->
-              <div class="festive-prod-card" data-prod-id="prod_deal_copper_clean">
+              <!-- Card 2: Masala - Kadapa Turmeric Powder (Pasupu) -->
+              <div class="festive-prod-card" data-prod-id="prod_kadapa_turmeric">
                 <div class="f-card-top-action">
-                  <span></span>
-                  <button type="button" class="f-card-heart" onclick="window.marketApp.toggleWishlist('prod_deal_copper_clean', event)">♡</button>
+                  <span class="f-card-ad-tag" style="background:#fef3c7;color:#b45309;">Pure</span>
+                  <button type="button" class="f-card-heart" onclick="window.marketApp.toggleWishlist('prod_kadapa_turmeric', event)">♡</button>
                 </div>
-                <div class="f-card-img-box" onclick="window.marketApp.openAisleWithProduct('prod_deal_copper_clean')">
-                  <img src="assets/deal_copper_clean.jpg" alt="Happi Planet Copper" class="f-prod-thumb" />
+                <div class="f-card-img-box" onclick="window.marketApp.openAisleWithProduct('prod_kadapa_turmeric')">
+                  <img src="assets/prod_kadapa_turmeric.jpg" alt="Kadapa Turmeric Powder" class="f-prod-thumb" />
                 </div>
                 <div class="f-card-weight-row">
-                  <span class="f-card-weight">70 ml</span>
-                  <button type="button" class="f-card-add-btn simple-plus" onclick="window.marketApp.modifyCartQty('prod_deal_copper_clean', 1)">
+                  <span class="f-card-weight">100 g</span>
+                  <button type="button" class="f-card-add-btn simple-plus" onclick="window.marketApp.modifyCartQty('prod_kadapa_turmeric', 1)">
                     <span class="f-btn-plus">+</span>
                   </button>
                 </div>
                 <div class="f-card-price-row">
-                  <span class="f-card-price-badge-yellow">₹39</span>
+                  <span class="f-card-price-badge-yellow">₹38</span>
+                  <span class="f-card-mrp">₹55</span>
+                </div>
+                <div class="f-card-discount-blue">₹17 OFF</div>
+                <div class="f-card-name">Kadapa Turmeric Powder (Pasupu)...</div>
+                <div class="f-card-tag-pill">Masalas</div>
+              </div>
+
+              <!-- Card 3: Kitchen Appliance - Prestige Quick Vegetable Chopper -->
+              <div class="festive-prod-card" data-prod-id="prod_app_veg_chopper">
+                <div class="f-card-top-action">
+                  <span class="f-card-ad-tag" style="background:#e0f2fe;color:#0369a1;">50% Off</span>
+                  <button type="button" class="f-card-heart" onclick="window.marketApp.toggleWishlist('prod_app_veg_chopper', event)">♡</button>
+                </div>
+                <div class="f-card-img-box" onclick="window.marketApp.openAisleWithProduct('prod_app_veg_chopper')">
+                  <img src="assets/prod_app_veg_chopper.jpg" alt="Prestige Quick Vegetable Chopper" class="f-prod-thumb" />
+                </div>
+                <div class="f-card-weight-row">
+                  <span class="f-card-weight">1 pc</span>
+                  <button type="button" class="f-card-add-btn simple-plus" onclick="window.marketApp.modifyCartQty('prod_app_veg_chopper', 1)">
+                    <span class="f-btn-plus">+</span>
+                  </button>
+                </div>
+                <div class="f-card-price-row">
+                  <span class="f-card-price-badge-yellow">₹249</span>
+                  <span class="f-card-mrp">₹499</span>
+                </div>
+                <div class="f-card-discount-blue">50% OFF</div>
+                <div class="f-card-name">Prestige Quick Vegetable Chopper...</div>
+                <div class="f-card-tag-pill">Appliances</div>
+              </div>
+
+              <!-- Card 4: Snacks - Haldiram's Aloo Bhujia Namkeen -->
+              <div class="festive-prod-card" data-prod-id="prod_snack_haldiram_aloo_bhujia">
+                <div class="f-card-top-action">
+                  <span class="f-card-ad-tag" style="background:#fce7f3;color:#be185d;">Crispy</span>
+                  <button type="button" class="f-card-heart" onclick="window.marketApp.toggleWishlist('prod_snack_haldiram_aloo_bhujia', event)">♡</button>
+                </div>
+                <div class="f-card-img-box" onclick="window.marketApp.openAisleWithProduct('prod_snack_haldiram_aloo_bhujia')">
+                  <img src="assets/prod_snack_haldiram_aloo_bhujia.jpg" alt="Haldiram's Aloo Bhujia" class="f-prod-thumb" />
+                </div>
+                <div class="f-card-weight-row">
+                  <span class="f-card-weight">150 g</span>
+                  <button type="button" class="f-card-add-btn simple-plus" onclick="window.marketApp.modifyCartQty('prod_snack_haldiram_aloo_bhujia', 1)">
+                    <span class="f-btn-plus">+</span>
+                  </button>
+                </div>
+                <div class="f-card-price-row">
+                  <span class="f-card-price">₹45</span>
                   <span class="f-card-mrp">₹60</span>
                 </div>
-                <div class="f-card-discount-blue">₹21 OFF</div>
-                <div class="f-card-name">Happi Planet Copper, Bronze & ...</div>
-                <div class="f-card-tag-pill">Brass, Copper, Met...</div>
-              </div>
-
-              <!-- Card 3: Klenzmo Washing Machine Cleaner -->
-              <div class="festive-prod-card" data-prod-id="prod_deal_wm_cleaner">
-                <div class="f-card-top-action">
-                  <span></span>
-                  <button type="button" class="f-card-heart" onclick="window.marketApp.toggleWishlist('prod_deal_wm_cleaner', event)">♡</button>
-                </div>
-                <div class="f-card-img-box" onclick="window.marketApp.openAisleWithProduct('prod_deal_wm_cleaner')">
-                  <img src="assets/deal_wm_cleaner.jpg" alt="Klenzmo Washing Machine" class="f-prod-thumb" />
-                </div>
-                <div class="f-card-weight-row">
-                  <span class="f-card-weight">60 g</span>
-                  <button type="button" class="f-card-add-btn simple-plus" onclick="window.marketApp.modifyCartQty('prod_deal_wm_cleaner', 1)">
-                    <span class="f-btn-plus">+</span>
-                  </button>
-                </div>
-                <div class="f-card-price-row">
-                  <span class="f-card-price-badge-yellow">₹59</span>
-                  <span class="f-card-mrp">₹150</span>
-                </div>
-                <div class="f-card-discount-blue">₹91 OFF</div>
-                <div class="f-card-name">Klenzmo Washing Machine Cleaner &...</div>
-              </div>
-
-              <!-- Card 4: Pitambari Shining Powder -->
-              <div class="festive-prod-card" data-prod-id="prod_deal_pitambari">
-                <div class="f-card-top-action">
-                  <span></span>
-                  <button type="button" class="f-card-heart" onclick="window.marketApp.toggleWishlist('prod_deal_pitambari', event)">♡</button>
-                </div>
-                <div class="f-card-img-box" onclick="window.marketApp.openAisleWithProduct('prod_deal_pitambari')">
-                  <img src="assets/deal_pitambari.jpg" alt="Pitambari Powder" class="f-prod-thumb" />
-                </div>
-                <div class="f-card-weight-row">
-                  <span class="f-card-weight">200 g</span>
-                  <button type="button" class="f-card-add-btn simple-plus" onclick="window.marketApp.modifyCartQty('prod_deal_pitambari', 1)">
-                    <span class="f-btn-plus">+</span>
-                  </button>
-                </div>
-                <div class="f-card-price-row">
-                  <span class="f-card-price">₹49</span>
-                  <span class="f-card-mrp">₹60</span>
-                </div>
-                <div class="f-card-discount-blue">18% OFF</div>
-                <div class="f-card-name">Pitambari Brass Met...</div>
-                <div class="f-card-tag-pill">Metal</div>
+                <div class="f-card-discount-blue">25% OFF</div>
+                <div class="f-card-name">Haldiram's Aloo Bhujia Namkeen...</div>
+                <div class="f-card-tag-pill">Snacks</div>
               </div>
             </div>
 
             <!-- "See all products ❯" Pill Button -->
             <div class="festive-see-all-wrap">
-              <button type="button" class="festive-see-all-pill-btn" onclick="window.marketApp.openAisleScreen('cleaning-essentials')">
+              <button type="button" class="festive-see-all-pill-btn" onclick="window.marketApp.scrollToHomeSection('section-vegetables')">
                 <span class="see-all-thumbs-group">
-                  <img src="assets/deal_cera_clean.jpg" alt="" class="see-thumb" />
-                  <img src="assets/deal_cat_surface.jpg" alt="" class="see-thumb" />
-                  <img src="assets/deal_pitambari.jpg" alt="" class="see-thumb" />
+                  <img src="assets/prod_tomatoes.jpg" alt="" class="see-thumb" />
+                  <img src="assets/prod_kadapa_turmeric.jpg" alt="" class="see-thumb" />
+                  <img src="assets/prod_app_veg_chopper.jpg" alt="" class="see-thumb" />
+                  <img src="assets/prod_snack_haldiram_aloo_bhujia.jpg" alt="" class="see-thumb" />
                 </span>
                 <span class="see-all-label">See all products</span>
                 <span class="see-all-chevron">❯</span>
@@ -469,120 +458,544 @@
             <span class="f-star">✦</span>
           </div>
 
-          <!-- 5. Fresh Section (Handpicked daily essentials) -->
-          <div class="mobile-fresh-section">
-            <div class="fresh-section-header">
-              <div class="fresh-brand-title">
-                <span class="fresh-title-txt">Fresh</span>
-                <span class="fresh-leaf-dot">🌱</span>
+                    <!-- 4 Category Sections: Vegetables, Masalas, Kitchen Appliances, Snacks Only -->
+
+          <!-- SECTION 1: VEGETABLE ITEMS -->
+          <div class="home-cat-section" id="section-vegetables">
+            <div class="home-cat-header">
+              <div class="home-cat-title-group">
+                <h3 class="home-cat-title"><span>🥬</span> Vegetable Items</h3>
+                <span class="home-cat-subtitle">Farm-fresh daily vegetables, greens & roots</span>
               </div>
-              <span class="fresh-sub-txt">Handpicked daily essentials</span>
-            </div>
-
-            <!-- Horizontal Tab Pills -->
-            <div class="fresh-tabs-row" id="fresh-tabs-row">
-              <button type="button" class="fresh-tab-btn active" data-tab="veggies" onclick="window.marketApp.switchFreshTab('veggies', event)">
-                Veggies
-              </button>
-              <button type="button" class="fresh-tab-btn" data-tab="fruits" onclick="window.marketApp.switchFreshTab('fruits', event)">
-                Fruits
-              </button>
-              <button type="button" class="fresh-tab-btn" data-tab="asian-kitchen" onclick="window.marketApp.switchFreshTab('asian-kitchen', event)">
-                Asian Kitchen
-              </button>
-              <button type="button" class="fresh-tab-btn" data-tab="seasons-best" onclick="window.marketApp.switchFreshTab('seasons-best', event)">
-                Season's Best
-              </button>
-              <button type="button" class="fresh-tab-btn" data-tab="new-launches" onclick="window.marketApp.switchFreshTab('new-launches', event)">
-                New Launches
+              <button type="button" class="home-cat-see-all-btn" onclick="window.marketApp.openAisleScreen('vegetables')">
+                See all ❯
               </button>
             </div>
-
-            <!-- Horizontal Products Strip -->
-            <div class="fresh-prod-strip" id="fresh-prod-strip">
-              <!-- Dynamically populated by app.js -->
-            </div>
-
-            <!-- STEP 2: See All Button (leads to Step 3 Image 2) -->
-            <div class="fresh-see-all-container">
-              <button type="button" class="btn-fresh-see-all" onclick="window.marketApp.openAisleScreen('vegetables')">
-                <span>See All</span>
-                <span class="see-all-arrow">▸</span>
-              </button>
+            <div class="fresh-prod-strip">
+              <!-- Item 1: Tomatoes -->
+              <div class="fresh-prod-card" data-id="prod_tomatoes">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_tomatoes.jpg" alt="Desi Tomatoes" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_tomatoes', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_tomatoes', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹18</span>
+                  <span class="fresh-mrp-strike">₹30</span>
+                </div>
+                <div class="fresh-discount-txt">40% OFF</div>
+                <div class="fresh-card-title">Desi Tomatoes</div>
+                <div class="fresh-card-weight">500 g</div>
+              </div>
+              <!-- Item 2: Bhendi -->
+              <div class="fresh-prod-card" data-id="prod_bhendi">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_bhendi.jpg" alt="Fresh Bhendi" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_bhendi', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_bhendi', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹24</span>
+                  <span class="fresh-mrp-strike">₹38</span>
+                </div>
+                <div class="fresh-discount-txt">36% OFF</div>
+                <div class="fresh-card-title">Fresh Bhendi (Okra)</div>
+                <div class="fresh-card-weight">500 g</div>
+              </div>
+              <!-- Item 3: Palak -->
+              <div class="fresh-prod-card" data-id="prod_palak">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_spinach.jpg" alt="Palak Greens" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_palak', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_palak', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹18</span>
+                  <span class="fresh-mrp-strike">₹30</span>
+                </div>
+                <div class="fresh-discount-txt">40% OFF</div>
+                <div class="fresh-card-title">Fresh Palak Greens</div>
+                <div class="fresh-card-weight">1 bunch</div>
+              </div>
+              <!-- Item 4: Carrots -->
+              <div class="fresh-prod-card" data-id="prod_carrots">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_carrots.jpg" alt="Ooty Carrots" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_carrots', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_carrots', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹34</span>
+                  <span class="fresh-mrp-strike">₹50</span>
+                </div>
+                <div class="fresh-discount-txt">32% OFF</div>
+                <div class="fresh-card-title">Ooty Fresh Carrots</div>
+                <div class="fresh-card-weight">500 g</div>
+              </div>
+              <!-- Item 5: Potatoes -->
+              <div class="fresh-prod-card" data-id="prod_potatoes">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_potatoes.jpg" alt="Farm Potatoes" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_potatoes', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_potatoes', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹32</span>
+                  <span class="fresh-mrp-strike">₹45</span>
+                </div>
+                <div class="fresh-discount-txt">28% OFF</div>
+                <div class="fresh-card-title">Farm Fresh Potatoes</div>
+                <div class="fresh-card-weight">1 kg</div>
+              </div>
+              <!-- Item 6: Onions -->
+              <div class="fresh-prod-card" data-id="prod_onions">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_onions.jpg" alt="Nashik Onions" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_onions', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_onions', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹38</span>
+                  <span class="fresh-mrp-strike">₹55</span>
+                </div>
+                <div class="fresh-discount-txt">30% OFF</div>
+                <div class="fresh-card-title">Nashik Pink Onions</div>
+                <div class="fresh-card-weight">1 kg</div>
+              </div>
+              <!-- Item 7: Green Chillies -->
+              <div class="fresh-prod-card" data-id="prod_chillies_green">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_chillies_green.jpg" alt="Green Chillies" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_chillies_green', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_chillies_green', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹14</span>
+                  <span class="fresh-mrp-strike">₹22</span>
+                </div>
+                <div class="fresh-discount-txt">36% OFF</div>
+                <div class="fresh-card-title">Fresh Green Chillies</div>
+                <div class="fresh-card-weight">100 g</div>
+              </div>
+              <!-- Item 8: Country Garlic -->
+              <div class="fresh-prod-card" data-id="prod_garlic_country">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_garlic_country.jpg" alt="Country Garlic" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_garlic_country', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_garlic_country', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹42</span>
+                  <span class="fresh-mrp-strike">₹60</span>
+                </div>
+                <div class="fresh-discount-txt">30% OFF</div>
+                <div class="fresh-card-title">Country Garlic (Vellulli)</div>
+                <div class="fresh-card-weight">200 g</div>
+              </div>
             </div>
           </div>
 
-          <!-- 6. Explore / All Categories Showcase -->
-          <div class="mobile-explore-section">
-            <h3 class="zepto-cat-section-heading">Explore By Category</h3>
-            <div class="zepto-cat-grid">
-              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('vegetables')">
-                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_veg_fruits.png" alt="Fruits & Vegetables" /></div>
-                <span class="zepto-cat-name">Fruits &<br>Vegetables</span>
+          <!-- SECTION 2: MASALA ITEMS -->
+          <div class="home-cat-section" id="section-masalas">
+            <div class="home-cat-header">
+              <div class="home-cat-title-group">
+                <h3 class="home-cat-title"><span>🌶️</span> Masala Items</h3>
+                <span class="home-cat-subtitle">Authentic Andhra spices, ground podis & whole tadka</span>
               </div>
-              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('dairy-morning')">
-                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_dairy_bread_eggs.png" alt="Dairy, Bread & Eggs" /></div>
-                <span class="zepto-cat-name">Dairy, Bread<br>& Eggs</span>
+              <button type="button" class="home-cat-see-all-btn" onclick="window.marketApp.openAisleScreen('kitchen-spices')">
+                See all ❯
+              </button>
+            </div>
+            <div class="fresh-prod-strip">
+              <!-- Item 1: Kadapa Turmeric -->
+              <div class="fresh-prod-card" data-id="prod_kadapa_turmeric">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_kadapa_turmeric.jpg" alt="Kadapa Turmeric" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_kadapa_turmeric', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_kadapa_turmeric', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹38</span>
+                  <span class="fresh-mrp-strike">₹55</span>
+                </div>
+                <div class="fresh-discount-txt">31% OFF</div>
+                <div class="fresh-card-title">Kadapa Turmeric (Pasupu)</div>
+                <div class="fresh-card-weight">100 g</div>
               </div>
-              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('atta-rice-dal')">
-                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_atta_rice_dal.png" alt="Atta, Rice, Oil & Dals" /></div>
-                <span class="zepto-cat-name">Atta, Rice,<br>Oil & Dals</span>
+              <!-- Item 2: Erra Karam -->
+              <div class="fresh-prod-card" data-id="prod_kitchen_karam">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_erra_karam.jpg" alt="Guntur Red Chilli" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_kitchen_karam', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_kitchen_karam', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹58</span>
+                  <span class="fresh-mrp-strike">₹85</span>
+                </div>
+                <div class="fresh-discount-txt">32% OFF</div>
+                <div class="fresh-card-title">Guntur Chilli Karam</div>
+                <div class="fresh-card-weight">200 g</div>
               </div>
-              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('rayalaseema')">
-                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_chicken_meat_fish.png" alt="Meat, Fish & Eggs" /></div>
-                <span class="zepto-cat-name">Meat, Fish<br>& Eggs</span>
+              <!-- Item 3: Garam Masala -->
+              <div class="fresh-prod-card" data-id="prod_kitchen_garam_masala">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_kitchen_garam_masala.jpg" alt="Garam Masala" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_kitchen_garam_masala', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_kitchen_garam_masala', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹48</span>
+                  <span class="fresh-mrp-strike">₹70</span>
+                </div>
+                <div class="fresh-discount-txt">31% OFF</div>
+                <div class="fresh-card-title">Royal Garam Masala</div>
+                <div class="fresh-card-weight">100 g</div>
               </div>
-              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('kitchen-spices')">
-                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_oil_ghee_masala.png" alt="Masala & Dry Fruits" /></div>
-                <span class="zepto-cat-name">Masala &<br>Dry Fruits</span>
+              <!-- Item 4: Dhaniyalu -->
+              <div class="fresh-prod-card" data-id="prod_kitchen_dhaniyalu">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_kitchen_dhaniyalu.jpg" alt="Whole Dhaniyalu" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_kitchen_dhaniyalu', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_kitchen_dhaniyalu', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹42</span>
+                  <span class="fresh-mrp-strike">₹60</span>
+                </div>
+                <div class="fresh-discount-txt">30% OFF</div>
+                <div class="fresh-card-title">Whole Dhaniyalu Seeds</div>
+                <div class="fresh-card-weight">200 g</div>
               </div>
-              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('ready-to-cook')">
-                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_sauces_spreads.png" alt="Breakfast & Sauces" /></div>
-                <span class="zepto-cat-name">Breakfast &<br>Sauces</span>
+              <!-- Item 5: Jeera Cumin -->
+              <div class="fresh-prod-card" data-id="prod_kitchen_jilakara">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_kitchen_jilakara.jpg" alt="Jeera Seeds" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_kitchen_jilakara', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_kitchen_jilakara', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹45</span>
+                  <span class="fresh-mrp-strike">₹65</span>
+                </div>
+                <div class="fresh-discount-txt">30% OFF</div>
+                <div class="fresh-card-title">Premium Jeera (Jilakara)</div>
+                <div class="fresh-card-weight">100 g</div>
               </div>
-              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('ready-to-cook')">
-                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_instant_food.png" alt="Packaged Food" /></div>
-                <span class="zepto-cat-name">Packaged<br>Food</span>
+              <!-- Item 6: Sambar Podi -->
+              <div class="fresh-prod-card" data-id="prod_kitchen_sambar_podi">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_kitchen_sambar_podi.jpg" alt="Sambar Podi" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_kitchen_sambar_podi', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_kitchen_sambar_podi', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹36</span>
+                  <span class="fresh-mrp-strike">₹50</span>
+                </div>
+                <div class="fresh-discount-txt">28% OFF</div>
+                <div class="fresh-card-title">Traditional Sambar Podi</div>
+                <div class="fresh-card-weight">100 g</div>
               </div>
-              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('leaf-items')">
-                <div class="zepto-cat-img-box"><img src="assets/cat_vegetables.jpg" alt="Leaf Items" /></div>
-                <span class="zepto-cat-name">Greens &<br>Leaf Items</span>
+              <!-- Item 7: Miriyalu -->
+              <div class="fresh-prod-card" data-id="prod_kitchen_miriyalu">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_kitchen_miriyalu.jpg" alt="Black Pepper" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_kitchen_miriyalu', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_kitchen_miriyalu', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹65</span>
+                  <span class="fresh-mrp-strike">₹90</span>
+                </div>
+                <div class="fresh-discount-txt">28% OFF</div>
+                <div class="fresh-card-title">Black Pepper (Miriyalu)</div>
+                <div class="fresh-card-weight">100 g</div>
+              </div>
+              <!-- Item 8: Rock Salt -->
+              <div class="fresh-prod-card" data-id="prod_kitchen_salt">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_kitchen_salt.jpg" alt="Crystal Rock Salt" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_kitchen_salt', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_kitchen_salt', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹22</span>
+                  <span class="fresh-mrp-strike">₹30</span>
+                </div>
+                <div class="fresh-discount-txt">26% OFF</div>
+                <div class="fresh-card-title">Crystal Rock Salt (Uppu)</div>
+                <div class="fresh-card-weight">1 kg</div>
               </div>
             </div>
+          </div>
 
-            <h3 class="zepto-cat-section-heading">Snacks & Drinks</h3>
-            <div class="zepto-cat-grid">
-              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('dairy-morning')">
-                <div class="zepto-cat-img-box"><img src="assets/prod_rtc_sambar_curry.jpg" alt="Farm Cafe" /></div>
-                <span class="zepto-cat-name">Farm<br>Cafe</span>
+          <!-- SECTION 3: KITCHEN APPLIANCES -->
+          <div class="home-cat-section" id="section-appliances">
+            <div class="home-cat-header">
+              <div class="home-cat-title-group">
+                <h3 class="home-cat-title"><span>🍳</span> Kitchen Appliances & Cookware</h3>
+                <span class="home-cat-subtitle">Choppers, cookers, mixer grinders, heavy cast iron & tawas</span>
               </div>
-              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('oil-ghee-masala')">
-                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_tea_coffee.png" alt="Tea, Coffee & More" /></div>
-                <span class="zepto-cat-name">Tea, Coffee<br>& More</span>
+              <button type="button" class="home-cat-see-all-btn" onclick="window.marketApp.openAisleScreen('appliances')">
+                See all ❯
+              </button>
+            </div>
+            <div class="fresh-prod-strip">
+              <!-- Item 1: Chopper -->
+              <div class="fresh-prod-card" data-id="prod_app_veg_chopper">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_app_veg_chopper.jpg" alt="Prestige Chopper" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_app_veg_chopper', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_app_veg_chopper', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹249</span>
+                  <span class="fresh-mrp-strike">₹499</span>
+                </div>
+                <div class="fresh-discount-txt">50% OFF</div>
+                <div class="fresh-card-title">Prestige Quick Chopper</div>
+                <div class="fresh-card-weight">1 pc</div>
               </div>
-              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('dairy-morning')">
-                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_icecreams.png" alt="Ice Creams & More" /></div>
-                <span class="zepto-cat-name">Ice Creams<br>& More</span>
+              <!-- Item 2: Cooker -->
+              <div class="fresh-prod-card" data-id="prod_app_pressure_cooker">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_app_pressure_cooker.jpg" alt="Pressure Cooker" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_app_pressure_cooker', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_app_pressure_cooker', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹1,299</span>
+                  <span class="fresh-mrp-strike">₹1,750</span>
+                </div>
+                <div class="fresh-discount-txt">25% OFF</div>
+                <div class="fresh-card-title">Hawkins Pressure Cooker 3L</div>
+                <div class="fresh-card-weight">1 pc</div>
               </div>
-              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('ready-to-cook')">
-                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_instant_food.png" alt="Frozen Food" /></div>
-                <span class="zepto-cat-name">Frozen<br>Food</span>
+              <!-- Item 3: Mixer Grinder -->
+              <div class="fresh-prod-card" data-id="prod_app_mixer_grinder">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_app_mixer_grinder.jpg" alt="Mixer Grinder" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_app_mixer_grinder', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_app_mixer_grinder', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹3,199</span>
+                  <span class="fresh-mrp-strike">₹4,295</span>
+                </div>
+                <div class="fresh-discount-txt">25% OFF</div>
+                <div class="fresh-card-title">Philips Mixer Grinder 750W</div>
+                <div class="fresh-card-weight">1 pc</div>
               </div>
-              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('snacks-bakery')">
-                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_sweets_chocolates.png" alt="Sweet Cravings" /></div>
-                <span class="zepto-cat-name">Sweet<br>Cravings</span>
+              <!-- Item 4: Cast Iron Tawa -->
+              <div class="fresh-prod-card" data-id="prod_app_castiron_tawa">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_app_castiron_tawa.jpg" alt="Cast Iron Tawa" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_app_castiron_tawa', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_app_castiron_tawa', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹599</span>
+                  <span class="fresh-mrp-strike">₹899</span>
+                </div>
+                <div class="fresh-discount-txt">33% OFF</div>
+                <div class="fresh-card-title">Cast Iron Dosa Tawa</div>
+                <div class="fresh-card-weight">1 pc</div>
               </div>
-              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('fresh-fruits')">
-                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_drinks_juices.png" alt="Cold Drinks & Juice" /></div>
-                <span class="zepto-cat-name">Cold Drinks<br>& Juice</span>
+              <!-- Item 5: Brass Tadka Pan -->
+              <div class="fresh-prod-card" data-id="prod_app_brass_tadka">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_app_brass_tadka.jpg" alt="Brass Tadka Pan" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_app_brass_tadka', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_app_brass_tadka', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹349</span>
+                  <span class="fresh-mrp-strike">₹520</span>
+                </div>
+                <div class="fresh-discount-txt">32% OFF</div>
+                <div class="fresh-card-title">Brass Tadka Pan</div>
+                <div class="fresh-card-weight">1 pc</div>
               </div>
-              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('snacks-bakery')">
-                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_chips_namkeen.png" alt="Munchies" /></div>
-                <span class="zepto-cat-name">Munchies</span>
+              <!-- Item 6: Copper Bottle -->
+              <div class="fresh-prod-card" data-id="prod_app_copper_bottle">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_app_copper_bottle.jpg" alt="Copper Bottle" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_app_copper_bottle', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_app_copper_bottle', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹699</span>
+                  <span class="fresh-mrp-strike">₹1,199</span>
+                </div>
+                <div class="fresh-discount-txt">41% OFF</div>
+                <div class="fresh-card-title">Hammered Copper Bottle (1L)</div>
+                <div class="fresh-card-weight">1 pc</div>
               </div>
-              <div class="zepto-cat-item" onclick="window.marketApp.openAisleScreen('snacks-bakery')">
-                <div class="zepto-cat-img-box"><img src="assets/mobile_tiles/tile_bakery_biscuits.png" alt="Biscuits & Cookies" /></div>
-                <span class="zepto-cat-name">Biscuits &<br>Cookies</span>
+              <!-- Item 7: Chef Knife Set -->
+              <div class="fresh-prod-card" data-id="prod_app_knife_set">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_app_knife_set.jpg" alt="Chef Knife Set" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_app_knife_set', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_app_knife_set', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹329</span>
+                  <span class="fresh-mrp-strike">₹599</span>
+                </div>
+                <div class="fresh-discount-txt">45% OFF</div>
+                <div class="fresh-card-title">Chef Knife Set (3 Pcs)</div>
+                <div class="fresh-card-weight">1 set</div>
+              </div>
+              <!-- Item 8: Clay Handi -->
+              <div class="fresh-prod-card" data-id="prod_app_clay_handi">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_app_clay_handi.jpg" alt="Clay Cooking Handi" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_app_clay_handi', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_app_clay_handi', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹280</span>
+                  <span class="fresh-mrp-strike">₹420</span>
+                </div>
+                <div class="fresh-discount-txt">33% OFF</div>
+                <div class="fresh-card-title">Natural Clay Cooking Handi</div>
+                <div class="fresh-card-weight">1 pc</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 4: SNACKS & MUNCHIES -->
+          <div class="home-cat-section" id="section-snacks">
+            <div class="home-cat-header">
+              <div class="home-cat-title-group">
+                <h3 class="home-cat-title"><span>🍟</span> Snacks Items</h3>
+                <span class="home-cat-subtitle">Crispy namkeens, chips, borugulu & sweet treats</span>
+              </div>
+              <button type="button" class="home-cat-see-all-btn" onclick="window.marketApp.openAisleScreen('snacks-bakery')">
+                See all ❯
+              </button>
+            </div>
+            <div class="fresh-prod-strip">
+              <!-- Item 1: Aloo Bhujia -->
+              <div class="fresh-prod-card" data-id="prod_snack_haldiram_aloo_bhujia">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_snack_haldiram_aloo_bhujia.jpg" alt="Haldiram's Aloo Bhujia" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_snack_haldiram_aloo_bhujia', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_snack_haldiram_aloo_bhujia', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹45</span>
+                  <span class="fresh-mrp-strike">₹60</span>
+                </div>
+                <div class="fresh-discount-txt">25% OFF</div>
+                <div class="fresh-card-title">Haldiram's Aloo Bhujia</div>
+                <div class="fresh-card-weight">150 g</div>
+              </div>
+              <!-- Item 2: Kurkure -->
+              <div class="fresh-prod-card" data-id="prod_snack_kurkure">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_snack_kurkure.jpg" alt="Kurkure Masala Munch" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_snack_kurkure', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_snack_kurkure', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹20</span>
+                  <span class="fresh-mrp-strike">₹20</span>
+                </div>
+                <div class="fresh-discount-txt">Best Value</div>
+                <div class="fresh-card-title">Kurkure Masala Munch</div>
+                <div class="fresh-card-weight">82 g</div>
+              </div>
+              <!-- Item 3: Lays -->
+              <div class="fresh-prod-card" data-id="prod_snack_lays">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_snack_lays.jpg" alt="Lay's Magic Masala" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_snack_lays', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_snack_lays', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹20</span>
+                  <span class="fresh-mrp-strike">₹20</span>
+                </div>
+                <div class="fresh-discount-txt">Popular</div>
+                <div class="fresh-card-title">Lay's Magic Masala</div>
+                <div class="fresh-card-weight">73 g</div>
+              </div>
+              <!-- Item 4: Khatta Meetha -->
+              <div class="fresh-prod-card" data-id="prod_snack_namkeen">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_snack_namkeen.jpg" alt="Haldiram's Khatta Meetha" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_snack_namkeen', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_snack_namkeen', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹52</span>
+                  <span class="fresh-mrp-strike">₹65</span>
+                </div>
+                <div class="fresh-discount-txt">20% OFF</div>
+                <div class="fresh-card-title">Haldiram's Khatta Meetha</div>
+                <div class="fresh-card-weight">200 g</div>
+              </div>
+              <!-- Item 5: Borugulu -->
+              <div class="fresh-prod-card" data-id="prod_kurnool_borugulu">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_kurnool_borugulu.jpg" alt="Kurnool Spicy Borugulu" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_kurnool_borugulu', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_kurnool_borugulu', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹35</span>
+                  <span class="fresh-mrp-strike">₹48</span>
+                </div>
+                <div class="fresh-discount-txt">27% OFF</div>
+                <div class="fresh-card-title">Kurnool Spicy Borugulu</div>
+                <div class="fresh-card-weight">250 g</div>
+              </div>
+              <!-- Item 6: Bourbon -->
+              <div class="fresh-prod-card" data-id="prod_bisc_bourbon">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_bisc_bourbon.jpg" alt="Britannia Bourbon" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_bisc_bourbon', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_bisc_bourbon', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹35</span>
+                  <span class="fresh-mrp-strike">₹45</span>
+                </div>
+                <div class="fresh-discount-txt">22% OFF</div>
+                <div class="fresh-card-title">Britannia Bourbon Biscuits</div>
+                <div class="fresh-card-weight">150 g</div>
+              </div>
+              <!-- Item 7: Oreo -->
+              <div class="fresh-prod-card" data-id="prod_bisc_oreo">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_bisc_oreo.jpg" alt="Cadbury Oreo" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_bisc_oreo', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_bisc_oreo', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹35</span>
+                  <span class="fresh-mrp-strike">₹40</span>
+                </div>
+                <div class="fresh-discount-txt">12% OFF</div>
+                <div class="fresh-card-title">Cadbury Oreo Cookies</div>
+                <div class="fresh-card-weight">120 g</div>
+              </div>
+              <!-- Item 8: Dark Fantasy -->
+              <div class="fresh-prod-card" data-id="prod_bisc_darkfantasy">
+                <div class="fresh-card-img-box">
+                  <img src="assets/prod_bisc_darkfantasy.jpg" alt="Sunfeast Dark Fantasy" class="fresh-card-img" />
+                  <button type="button" class="fresh-card-heart-btn" onclick="window.marketApp.toggleWishlist('prod_bisc_darkfantasy', event)">♡</button>
+                  <button type="button" class="fresh-card-add-plus-btn" onclick="window.marketApp.modifyCartQty('prod_bisc_darkfantasy', 1)">+</button>
+                </div>
+                <div class="fresh-card-price-row">
+                  <span class="fresh-price-pill">₹120</span>
+                  <span class="fresh-mrp-strike">₹160</span>
+                </div>
+                <div class="fresh-discount-txt">25% OFF</div>
+                <div class="fresh-card-title">Dark Fantasy Choco Fills</div>
+                <div class="fresh-card-weight">300 g</div>
               </div>
             </div>
           </div>
@@ -644,7 +1057,7 @@
                 <input 
                   type="text" 
                   id="mobile-aisle-search-input" 
-                  placeholder="Search products in Freshcuts..." 
+                  placeholder='Search "vegetables, masalas, appliances, snacks" 
                   autocomplete="off"
                   oninput="window.marketApp.handleAisleSearch(this.value)"
                 />
@@ -1692,8 +2105,8 @@
   <!-- Floating Green Cart Bar (Reference Image Exact Match: 2 items, View cart, chevron) -->
   <div class="mobile-floating-green-cart" id="mobile-floating-green-cart" onclick="window.marketApp.toggleCartDrawer()">
     <div class="floating-cart-thumbs">
-      <img src="assets/deal_cera_clean.jpg" alt="Cart Item 1" class="f-cart-thumb" />
-      <img src="assets/deal_copper_clean.jpg" alt="Cart Item 2" class="f-cart-thumb second" />
+      <img src="assets/prod_tomatoes.jpg" alt="Cart Item 1" class="f-cart-thumb" />
+      <img src="assets/prod_snack_haldiram_aloo_bhujia.jpg" alt="Cart Item 2" class="f-cart-thumb second" />
     </div>
     <div class="floating-cart-info">
       <span class="f-cart-title">View cart</span>

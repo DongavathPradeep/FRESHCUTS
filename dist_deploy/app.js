@@ -5766,6 +5766,19 @@
             mobileGreenCartTxt.textContent = '2 items';
           }
         }
+        // Update floating thumbnails to real cart items if available
+        const thumbImgs = mobileGreenCart.querySelectorAll('.floating-cart-thumbs .f-cart-thumb');
+        if (thumbImgs && thumbImgs.length >= 2) {
+          const activeIds = itemIds.filter(id => (this.cart[id] || 0) > 0);
+          if (activeIds.length >= 1) {
+            const p1 = PRODUCTS_DATA.find(p => p.id === activeIds[0]);
+            if (p1 && p1.image) thumbImgs[0].src = p1.image;
+          }
+          if (activeIds.length >= 2) {
+            const p2 = PRODUCTS_DATA.find(p => p.id === activeIds[1]);
+            if (p2 && p2.image) thumbImgs[1].src = p2.image;
+          }
+        }
       }
 
       // Render Drawer Item Rows
@@ -10795,6 +10808,42 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    filterHomeCategory(catKey, el) {
+      if (el) {
+        document.querySelectorAll('.festive-cats-strip .festive-cat-pill').forEach(p => p.classList.remove('active'));
+        el.classList.add('active');
+      }
+      if (catKey === 'all') {
+        const homeScreen = document.getElementById('mobile-home-screen');
+        if (homeScreen) homeScreen.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      const sectionMap = {
+        'vegetables': 'section-vegetables',
+        'masalas': 'section-masalas',
+        'appliances': 'section-appliances',
+        'snacks': 'section-snacks'
+      };
+      const secId = sectionMap[catKey];
+      if (secId) {
+        this.scrollToHomeSection(secId);
+      }
+    },
+
+    scrollToHomeSection(sectionId) {
+      const target = document.getElementById(sectionId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        target.style.transition = 'background-color 0.4s ease';
+        const origBg = target.style.backgroundColor;
+        target.style.backgroundColor = '#f0fdf4';
+        setTimeout(() => {
+          target.style.backgroundColor = origBg || '';
+        }, 1000);
+      }
+    },
+
     openAisleScreen(catKey) {
       const homeScreen = document.getElementById('mobile-home-screen');
       const aisleScreen = document.getElementById('mobile-aisle-screen');
@@ -10811,12 +10860,17 @@
 
       const titleEl = document.getElementById('aisle-screen-title');
       const titleMap = {
-        'vegetables': 'Fruits & Vegetables',
+        'vegetables': 'Fresh Farm Vegetables',
+        'masalas': 'Authentic Masalas & Spices',
+        'kitchen-spices': 'Authentic Masalas & Spices',
+        'appliances': 'Kitchen Appliances & Cookware',
+        'kitchenware-appliances': 'Kitchen Appliances & Cookware',
+        'snacks': 'Crispy Snacks & Munchies',
+        'snacks-bakery': 'Crispy Snacks & Munchies',
         'fresh-fruits': 'Fresh Fruits',
         'dairy-morning': 'Dairy, Bread & Eggs',
         'atta-rice-dal': 'Atta, Rice, Oil & Dals',
         'rayalaseema': 'Meat, Fish & Eggs',
-        'kitchen-spices': 'Masala & Dry Fruits',
         'ready-to-cook': 'Packaged Food & Breakfast',
         'leaf-items': 'Greens & Leaf Items',
         'fresh-deals': 'Everyday Low Prices'

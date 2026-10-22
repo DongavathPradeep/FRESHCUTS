@@ -17549,8 +17549,9 @@ body.has-cart-open .wa-floating-widget,
     display: flex;
     align-items: flex-start;
     gap: 8px;
+    justify-content: space-around;
     overflow-x: auto;
-    padding-bottom: 12px;
+    padding: 0 4px 12px;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
   }
@@ -17847,6 +17848,74 @@ body.has-cart-open .wa-floating-widget,
   }
   .f-ribbon-text {
     letter-spacing: 1.2px;
+  }
+
+  /* =========================================================================
+     4 DEDICATED HOME CATEGORIES SECTIONS (VEGETABLES, MASALAS, APPLIANCES, SNACKS)
+     ========================================================================= */
+  .home-cat-section {
+    padding: 16px 0 12px;
+    background: #ffffff;
+    border-bottom: 8px solid #f8fafc;
+  }
+  .home-cat-section:last-of-type {
+    border-bottom: none;
+    padding-bottom: 80px; /* spacing for floating cart & bottom bar */
+  }
+  .home-cat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px 10px;
+  }
+  .home-cat-title-group {
+    display: flex;
+    flex-direction: column;
+  }
+  .home-cat-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    line-height: 1.2;
+    margin: 0;
+  }
+  .home-cat-subtitle {
+    font-size: 0.76rem;
+    color: #64748b;
+    font-weight: 500;
+    margin-top: 2px;
+  }
+  .home-cat-see-all-btn {
+    background: #f0fdf4;
+    color: #16a34a;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 6px 13px;
+    border-radius: 999px;
+    border: 1px solid #bbf7d0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+  .home-cat-see-all-btn:hover {
+    background: #dcfce7;
+  }
+  .home-cat-section .fresh-prod-strip {
+    padding: 4px 16px 12px;
+  }
+  .home-cat-section .fresh-prod-card {
+    border: 1px solid #e2e8f0;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .home-cat-section .fresh-prod-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   }
 
   /* =========================================================================
