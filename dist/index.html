@@ -1277,6 +1277,58 @@
 
         <!-- 2. RIGHT MAIN CONTENT AREA: COMPACT FILTER BAR & PRODUCT GRID -->
         <section class="supermarket-main" id="supermarket-main">
+          <!-- Horizontal Category Carousel with Related Category Images -->
+          <div class="home-categories-carousel" id="home-categories-carousel" aria-label="Explore Categories">
+            <button type="button" class="home-cat-chip-card active" data-cat="all" onclick="window.marketApp.selectCategory('all', true)" title="All Items">
+              <div class="cat-chip-img-box">
+                <img src="assets/cat_all_products.jpg" alt="All Items" class="cat-chip-img" loading="lazy" />
+              </div>
+              <span class="cat-chip-name">All Items</span>
+            </button>
+            <button type="button" class="home-cat-chip-card" data-cat="ready-to-cook" onclick="window.marketApp.selectCategory('ready-to-cook', true)" title="Ready to Cook Kits">
+              <div class="cat-chip-img-box">
+                <img src="assets/prod_rtc_sambar_curry.jpg" alt="Ready to Cook" class="cat-chip-img" loading="lazy" />
+              </div>
+              <span class="cat-chip-name">Ready to Cook</span>
+            </button>
+            <button type="button" class="home-cat-chip-card" data-cat="leaf-items" onclick="window.marketApp.selectCategory('leaf-items', true)" title="Fresh Leaf Items">
+              <div class="cat-chip-img-box">
+                <img src="assets/prod_spinach.jpg" alt="Leaf Items" class="cat-chip-img" loading="lazy" />
+              </div>
+              <span class="cat-chip-name">Leaf Items</span>
+            </button>
+            <button type="button" class="home-cat-chip-card" data-cat="vegetables" onclick="window.marketApp.selectCategory('vegetables', true)" title="Daily Fresh Vegetables">
+              <div class="cat-chip-img-box">
+                <img src="assets/prod_tomatoes.jpg" alt="Vegetables" class="cat-chip-img" loading="lazy" />
+              </div>
+              <span class="cat-chip-name">Vegetables</span>
+            </button>
+            <button type="button" class="home-cat-chip-card" data-cat="fresh-drinks" onclick="window.marketApp.selectCategory('fresh-drinks', true)" title="Fresh Drinks & Juices">
+              <div class="cat-chip-img-box">
+                <img src="assets/prod_sugarcane_juice.jpg" alt="Fresh Drinks" class="cat-chip-img" loading="lazy" />
+              </div>
+              <span class="cat-chip-name">Fresh Drinks</span>
+            </button>
+            <button type="button" class="home-cat-chip-card" data-cat="kitchen-spices" onclick="window.marketApp.selectCategory('kitchen-spices', true)" title="Kitchen Spices & Masalas">
+              <div class="cat-chip-img-box">
+                <img src="assets/cat_spices.jpg" alt="Masalas" class="cat-chip-img" loading="lazy" />
+              </div>
+              <span class="cat-chip-name">Masalas</span>
+            </button>
+            <button type="button" class="home-cat-chip-card" data-cat="appliances" onclick="window.marketApp.selectCategory('appliances', true)" title="Kitchen Appliances">
+              <div class="cat-chip-img-box">
+                <img src="assets/prod_app_veg_chopper.jpg" alt="Kitchen Appliances" class="cat-chip-img" loading="lazy" />
+              </div>
+              <span class="cat-chip-name">Appliances</span>
+            </button>
+            <button type="button" class="home-cat-chip-card" data-cat="snacks" onclick="window.marketApp.selectCategory('snacks', true)" title="Crispy Snacks & Munchies">
+              <div class="cat-chip-img-box">
+                <img src="assets/cat_snacks.jpg" alt="Snacks" class="cat-chip-img" loading="lazy" />
+              </div>
+              <span class="cat-chip-name">Snacks</span>
+            </button>
+          </div>
+
           <!-- Compact Modern Filter & Sort Bar -->
           <div class="supermarket-compact-bar" id="supermarket-compact-bar">
             <!-- Left: Filter & Sort Trigger Button -->

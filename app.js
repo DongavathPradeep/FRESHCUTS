@@ -3758,6 +3758,20 @@
       icon: '🫒',
       image: 'assets/cat_oils.jpg'
     },
+    'fresh-drinks': {
+      id: 'fresh-drinks',
+      name: 'Fresh Drinks',
+      subtitle: 'Sugarcane juice, chilled drinks, fruit juices & tender coconut',
+      icon: '🧃',
+      image: 'assets/prod_sugarcane_juice.jpg'
+    },
+    'appliances': {
+      id: 'appliances',
+      name: 'Kitchen Appliances',
+      subtitle: 'Quick vegetable choppers, cookers, tawas & kitchen tools',
+      icon: '🍳',
+      image: 'assets/prod_app_veg_chopper.jpg'
+    },
     'snacks-bakery': {
       id: 'snacks-bakery',
       name: 'Bakery & Snacks',
@@ -3778,6 +3792,9 @@
   SUPERMARKET_CATEGORIES['fresh-vegetables'] = SUPERMARKET_CATEGORIES['vegetables'];
   SUPERMARKET_CATEGORIES['masala-spices'] = SUPERMARKET_CATEGORIES['kitchen-spices'];
   SUPERMARKET_CATEGORIES['spices'] = SUPERMARKET_CATEGORIES['kitchen-spices'];
+  SUPERMARKET_CATEGORIES['masalas'] = SUPERMARKET_CATEGORIES['kitchen-spices'];
+  SUPERMARKET_CATEGORIES['drinks'] = SUPERMARKET_CATEGORIES['fresh-drinks'];
+  SUPERMARKET_CATEGORIES['kitchenware-appliances'] = SUPERMARKET_CATEGORIES['appliances'];
   SUPERMARKET_CATEGORIES['rice-pulses-grains'] = SUPERMARKET_CATEGORIES['atta-rice-dal'];
   SUPERMARKET_CATEGORIES['grains'] = SUPERMARKET_CATEGORIES['atta-rice-dal'];
   SUPERMARKET_CATEGORIES['dairy-milk'] = SUPERMARKET_CATEGORIES['dairy-morning'];
@@ -4531,6 +4548,15 @@
         el.classList.toggle('active', d === this.selectedCategory);
       });
 
+      // Update home categories carousel chips
+      document.querySelectorAll('.home-cat-chip-card').forEach((el) => {
+        el.classList.toggle('active', el.dataset.cat === this.selectedCategory);
+      });
+      const activeChip = document.querySelector(`.home-cat-chip-card[data-cat="${this.selectedCategory}"]`);
+      if (activeChip) {
+        activeChip.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+
       // Update Main Top Bar Title & Subtitle
       const catMeta = SUPERMARKET_CATEGORIES[this.selectedCategory] || SUPERMARKET_CATEGORIES['all'];
       const iconEl = document.getElementById('selected-cat-icon');
@@ -4548,10 +4574,7 @@
       this.renderSupermarketProducts();
 
       if (scrollToTop) {
-        const topEl = document.getElementById('supermarket-main') || document.getElementById('products-grid');
-        if (topEl) {
-          topEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }
 
@@ -4692,9 +4715,6 @@
         triggerBtn.setAttribute('aria-expanded', 'false');
       }
 
-      const resetBtn = document.getElementById('btn-compact-reset');
-      if (resetBtn) resetBtn.classList.add('hidden');
-
       const sortSelect = document.getElementById('supermarket-sort-select');
       if (sortSelect) sortSelect.value = 'featured';
 
@@ -4702,7 +4722,98 @@
         b.classList.toggle('active', b.dataset.sort === 'featured');
       });
 
+      this.selectedCategory = 'all';
+      this.activeDepartment = 'all';
+      document.querySelectorAll('.home-cat-chip-card').forEach((b) => {
+        b.classList.toggle('active', b.dataset.cat === 'all');
+      });
+
       this.renderSupermarketProducts();
+    }
+
+    classifyHomeCategory(p) {
+      if (!p) return null;
+      const pid = (p.id || '').toLowerCase();
+      const cat = (p.category || '').toLowerCase();
+      const title = (p.title || '').toLowerCase();
+
+      // Exclude non-food / non-allowed categories from home page
+      if (cat === 'cleaning-essentials' || cat === 'chicken-meat-fish' || pid.startsWith('prod_deal_') || pid.startsWith('prod_meat_')) {
+        return null;
+      }
+
+      // 1. Fresh Drinks (natural sugarcane juice, tender coconut, chilled drinks, juices, spiced buttermilk)
+      const drinkPids = [
+        'prod_kit_juice', 'prod_sugarcane_juice', 'prod_drink_juice', 'prod_drink_thumsup', 
+        'prod_drink_coke', 'prod_bev_thumsup', 'prod_fruit_coconut', 'prod_tender_coconut', 
+        'prod_buttermilk_spiced', 'prod_buttermilk'
+      ];
+      if (drinkPids.some(k => pid.includes(k)) || ['sugarcane juice', 'mango juice', 'thums up', 'coca cola', 'tender coconut', 'buttermilk'].some(k => title.includes(k))) {
+        return 'fresh-drinks';
+      }
+
+      // 2. Kitchen Appliances & Cookware
+      const appliancePids = [
+        'prod_app_veg_chopper', 'prod_app_pressure_cooker', 'prod_app_mixer_grinder', 
+        'prod_app_castiron_tawa', 'prod_app_brass_tadka', 'prod_app_copper_bottle', 
+        'prod_app_knife_set', 'prod_app_clay_handi', 'prod_app_spatula_set', 
+        'prod_app_kadhai_steel', 'prod_app_storage_jars', 'prod_app_brass_mortar'
+      ];
+      if (cat === 'kitchenware-appliances' || cat === 'appliances' || p.isKitchenware || pid.startsWith('prod_app_') || appliancePids.some(k => pid.includes(k))) {
+        return 'appliances';
+      }
+
+      // 3. Ready to Cook (curry kits, sambar kits, meal kits, dal kits, aloo kurma kit)
+      if (cat === 'curry-kits' || cat === 'ready-to-cook' || pid.startsWith('prod_rtc_') || p.isCurryKit || (pid.endsWith('_kit') && !pid.startsWith('prod_kitchen_')) || title.includes('kit') || title.includes('ready cook')) {
+        return 'ready-to-cook';
+      }
+
+      // 4. Leaf Items (Zone A Greens: Palak, Methi, Kothimeera, Pudina, Gongura, Thotakura, Curry Leaves)
+      const leafPids = [
+        'prod_palak', 'prod_spinach', 'prod_methi', 'prod_kothimeera', 'prod_coriander', 
+        'prod_pudina', 'prod_curry_leaves', 'prod_gongura', 'prod_thotakura'
+      ];
+      if (cat === 'zone-a' || cat === 'leaf-items' || leafPids.some(k => pid.includes(k)) || ['palak', 'methi', 'coriander', 'kothimeera', 'pudina', 'curry leaves', 'gongura', 'thotakura', 'spinach'].some(k => title.includes(k))) {
+        return 'leaf-items';
+      }
+
+      // 5. Kitchen Spices & Masala (Kadapa Turmeric, Erra Karam, Dhaniyalu, Jeera, Garam Masala, Sambar Podi, Whole Spices)
+      const spicePids = [
+        'prod_kitchen_pasupu', 'prod_kadapa_turmeric', 'prod_kitchen_karam', 'prod_masala_tikhalal',
+        'prod_kitchen_dhaniyalu', 'prod_kitchen_dhaniya_powder', 'prod_kitchen_jilakara',
+        'prod_kitchen_miriyalu', 'prod_kitchen_avalu', 'prod_kitchen_mentulu', 'prod_kitchen_yalukalu',
+        'prod_kitchen_chekka_lavangalu', 'prod_kitchen_garam_masala', 'prod_kitchen_sambar_podi',
+        'prod_kitchen_tadka_box', 'prod_kitchen_inguva', 'prod_kitchen_salt', 'prod_salt_tata', 
+        'prod_kadapa_red_chillies', 'prod_erra_karam'
+      ];
+      if (cat === 'masala-spices' || cat === 'kitchen-spices' || spicePids.some(k => pid.includes(k)) || (pid.startsWith('prod_kitchen_') && !pid.includes('dosa_batter') && !pid.includes('sesame_oil') && !pid.includes('coconut') && !pid.includes('peeled_garlic')) || ['turmeric', 'karam', 'dhaniyalu', 'garam masala', 'jeera', 'jilakara', 'miriyalu', 'sambar podi', 'tadka box', 'black pepper', 'rock salt', 'cloves', 'cardamom', 'fenugreek', 'mustard seeds', 'asafoetida'].some(k => title.includes(k))) {
+        return 'kitchen-spices';
+      }
+
+      // 6. Snacks & Munchies (Aloo Bhujia, Kurkure, Lays, Namkeen, Biscuits, Cookies, Borugulu)
+      const snackPids = [
+        'prod_snack_lays', 'prod_snack_kurkure', 'prod_snack_namkeen', 'prod_snack_haldiram_aloo_bhujia',
+        'prod_instant_maggi', 'prod_choco_silk', 'prod_bisc_oreo', 'prod_bisc_bourbon',
+        'prod_bisc_goodday', 'prod_bisc_darkfantasy', 'prod_bread_wheat', 'prod_dry_almonds',
+        'prod_dry_cashews', 'prod_cereal_cornflakes', 'prod_bev_tatatea', 'prod_bev_nescafe', 
+        'prod_icecream_vanilla', 'prod_kurnool_borugulu'
+      ];
+      if (cat === 'snacks-bakery' || cat === 'snacks-packaged' || cat === 'bakery-biscuits' || cat === 'dryfruits-cereals' || snackPids.some(k => pid.includes(k)) || pid.startsWith('prod_snack_') || pid.startsWith('prod_bisc_') || ['bhujia', 'lays', 'kurkure', 'namkeen', 'maggi', 'biscuit', 'cookie', 'borugulu', 'cashews', 'almonds'].some(k => title.includes(k))) {
+        return 'snacks';
+      }
+
+      // 7. Vegetables (Tomatoes, Onions, Potatoes, Bhendi, Vankaya, Chillies, Carrots, Beans, etc.)
+      const vegPids = [
+        'tomatoes', 'onions', 'potatoes', 'bhendi', 'vankaya', 'chillies', 'carrots', 'beans', 
+        'cabbage', 'cauliflower', 'capsicum', 'beetroot', 'cucumber', 'bitter_gourd', 
+        'bottle_gourd', 'drumstick', 'peas', 'garlic', 'ginger', 'dondakaya', 'sorakaya', 
+        'beerapothu', 'peeled_garlic'
+      ];
+      if (cat === 'zone-b' || cat === 'zone-c' || cat === 'vegetables' || cat === 'fresh-vegetables' || pid.startsWith('prod_veg_') || vegPids.some(k => pid.includes(k)) || ['tomato', 'onion', 'potato', 'bhendi', 'okra', 'brinjal', 'vankaya', 'chilli', 'carrot', 'beans', 'cabbage', 'cauliflower', 'capsicum', 'beetroot', 'cucumber', 'gourd', 'drumstick', 'garlic', 'ginger'].some(k => title.includes(k))) {
+        return 'vegetables';
+      }
+
+      return null;
     }
 
     renderSupermarketProducts() {
@@ -4713,171 +4824,243 @@
       const q = (this.searchQuery || this.supermarketSearchQuery || '').trim().toLowerCase();
       const sortBy = this.supermarketSort || 'featured';
 
-      let filtered;
+      // Update category chips in top carousel
+      document.querySelectorAll('.home-cat-chip-card').forEach((b) => {
+        b.classList.toggle('active', b.dataset.cat === catKey);
+      });
 
-      // When searching from home page search bar, search across allowed categories in FRESHCUTS
+      // 1. Search Mode: search across all allowed home categories
       if (q.length > 0) {
-        filtered = PRODUCTS_DATA.filter((p) => {
-          const cat = (p.category || '').toLowerCase();
-          const pid = (p.id || '').toLowerCase();
-          const isFruit = cat === 'fresh-fruits' || pid.startsWith('prod_fruit_') || pid === 'prod_coconut' || pid === 'prod_tender_coconut';
-          const isDairy = cat === 'dairy-morning' || cat === 'dairy-milk' || pid.startsWith('prod_milk_') || pid.startsWith('prod_curd_') || pid.startsWith('prod_paneer_') || pid.startsWith('prod_butter_') || pid.startsWith('prod_ghee_') || pid.startsWith('prod_buttermilk_') || pid.startsWith('prod_eggs_') || pid.includes('dosa_batter');
-          const isCleaning = cat === 'cleaning-essentials' || pid.startsWith('prod_deal_');
-          const isMeat = cat === 'chicken-meat-fish' || pid.startsWith('prod_meat_');
-          if (isFruit || isDairy || isCleaning || isMeat) return false;
+        let filtered = PRODUCTS_DATA.filter((p) => {
+          const homeCat = this.classifyHomeCategory(p);
+          if (!homeCat) return false;
           return this.matchVegetableQuery(p, q);
         });
-      } else {
-        // 1. Filter by Category (Handles exact user departments & aliases)
-        const aliasMap = {
-          'all': ['all'],
-          'ready-to-cook': ['ready-to-cook', 'curry-kits'],
-          'leaf-items': ['leaf-items', 'zone-a'],
-          'vegetables': ['vegetables', 'fresh-vegetables', 'daily-veg'],
-          'fresh-vegetables': ['vegetables', 'fresh-vegetables', 'daily-veg'],
-          'fresh-fruits': ['fresh-fruits'],
-          'kitchen-spices': ['kitchen-spices', 'masala-spices', 'spices'],
-          'masala-spices': ['kitchen-spices', 'masala-spices', 'spices'],
-          'rayalaseema': ['rayalaseema'],
-          'dairy-morning': ['dairy-morning', 'dairy-milk', 'dairy'],
-          'dairy-milk': ['dairy-morning', 'dairy-milk', 'dairy'],
-          'atta-rice-dal': ['atta-rice-dal', 'rice-pulses-grains', 'grains'],
-          'rice-pulses-grains': ['atta-rice-dal', 'rice-pulses-grains', 'grains'],
-          'oil-ghee-masala': ['oil-ghee-masala', 'oils-essentials', 'oils'],
-          'oils-essentials': ['oil-ghee-masala', 'oils-essentials', 'oils'],
-          'snacks-bakery': ['snacks-bakery', 'snacks-packaged', 'snacks'],
-          'snacks-packaged': ['snacks-bakery', 'snacks-packaged', 'snacks'],
-          'appliances': ['kitchenware-appliances', 'appliances'],
-          'fresh-deals': ['fresh-deals', 'deals', 'tier2-clearance']
-        };
 
-        const validKeys = aliasMap[catKey] || [catKey];
+        if (sortBy === 'price-asc') {
+          filtered.sort((a, b) => Number(a.price) - Number(b.price));
+        } else if (sortBy === 'price-desc') {
+          filtered.sort((a, b) => Number(b.price) - Number(a.price));
+        }
 
-        filtered = PRODUCTS_DATA.filter((p) => {
-          const pCat = this.classifyCategory(p);
-          const pid = (p.id || '').toLowerCase();
-          const cat = (p.category || '').toLowerCase();
-          const title = (p.title || '').toLowerCase();
+        const compactCount = document.getElementById('compact-cat-count');
+        if (compactCount) compactCount.textContent = `${filtered.length} item${filtered.length === 1 ? '' : 's'}`;
+        const compactName = document.getElementById('compact-cat-name');
+        if (compactName) compactName.textContent = `Search: "${q}"`;
 
-          // Exclude fruits, dairy, cleaning chemicals, meat/fish from home screen
-          const isFruit = cat === 'fresh-fruits' || pid.startsWith('prod_fruit_') || pid === 'prod_coconut' || pid === 'prod_tender_coconut';
-          const isDairy = cat === 'dairy-morning' || cat === 'dairy-milk' || pid.startsWith('prod_milk_') || pid.startsWith('prod_curd_') || pid.startsWith('prod_paneer_') || pid.startsWith('prod_butter_') || pid.startsWith('prod_ghee_') || pid.startsWith('prod_buttermilk_') || pid.startsWith('prod_eggs_') || pid.includes('dosa_batter');
-          const isCleaning = cat === 'cleaning-essentials' || pid.startsWith('prod_deal_');
-          const isMeat = cat === 'chicken-meat-fish' || pid.startsWith('prod_meat_');
+        grid.className = 'products-grid';
+        if (filtered.length === 0) {
+          grid.innerHTML = `
+            <div class="supermarket-empty-card" style="grid-column: 1 / -1; width: 100%;">
+              <div class="empty-icon-lg">🔍</div>
+              <h3 class="empty-heading">No matching items found for "${this.searchQuery || q}"</h3>
+              <p class="empty-sub">
+                We could not find any products matching "<em>${this.searchQuery || q}</em>" in FRESHCUTS.
+              </p>
+              <div class="empty-actions-row">
+                <button type="button" class="btn-primary" onclick="window.marketApp.clearHeaderSearch()">
+                  Clear Search & View All Products
+                </button>
+              </div>
+            </div>
+          `;
+          return;
+        }
 
-          if (isFruit || isDairy || isCleaning || isMeat) {
-            return false;
-          }
-
-          if (catKey === 'all') {
-            // Strictly ONLY 4 categories on homescreen: Vegetables, Masala items, Kitchen appliances, and Snacks
-            const isVeg = pCat === 'vegetables' || pCat === 'leaf-items' || cat === 'zone-a' || cat === 'zone-b' || cat === 'zone-c' ||
-                          pid.startsWith('prod_veg_') || pid.startsWith('prod_zone_') ||
-                          ['prod_tomatoes', 'prod_onions', 'prod_potatoes', 'prod_bhendi', 'prod_vankaya', 'prod_chillies',
-                           'prod_palak', 'prod_methi', 'prod_kothimeera', 'prod_carrots', 'prod_french_beans', 'prod_cabbage',
-                           'prod_cauliflower', 'prod_capsicum', 'prod_beetroot', 'prod_cucumber', 'prod_dondakaya',
-                           'prod_sorakaya', 'prod_beerapothu', 'prod_bittergourd', 'prod_ginger', 'prod_garlic'].includes(pid);
-
-            const isMasala = pCat === 'kitchen-spices' || pCat === 'masala-spices' || cat === 'kitchen-spices' || cat === 'masala-spices' || cat === 'spices' ||
-                             pid.startsWith('prod_kitchen_') || pid.startsWith('prod_masala_') ||
-                             pid === 'prod_kadapa_turmeric' || pid === 'prod_erra_karam' ||
-                             pid.includes('turmeric') || pid.includes('karam') || pid.includes('dhaniya') ||
-                             pid.includes('jilakara') || pid.includes('miriyalu') || pid.includes('garam_masala') ||
-                             pid.includes('sambar_podi') || pid.includes('tadka_box') || pid.includes('inguva') ||
-                             pid.includes('avalu') || pid.includes('mentulu');
-
-            const isAppliance = cat === 'kitchenware-appliances' || cat === 'appliances' || p.isKitchenware || pid.startsWith('prod_app_') ||
-                                ['prod_app_veg_chopper', 'prod_app_spatula_set', 'prod_app_knife_set',
-                                 'prod_app_peeler_set', 'prod_app_blender', 'prod_app_kettle'].includes(pid) ||
-                                 title.includes('chopper') || title.includes('spatula') || title.includes('knife') || title.includes('peeler') || title.includes('blender') || title.includes('kettle');
-
-            const isSnack = pCat === 'snacks-bakery' || cat === 'snacks-bakery' || cat === 'snacks-packaged' || cat === 'snacks' ||
-                            cat === 'munchies' || cat === 'bakery-biscuits' || pid.startsWith('prod_snack_') || pid.startsWith('prod_bisc_') ||
-                            title.includes('bhujia') || title.includes('lays') || title.includes('kurkure') || title.includes('namkeen') || title.includes('biscuit') || title.includes('cookie') || title.includes('murukku');
-
-            return isVeg || isMasala || isAppliance || isSnack;
-          }
-
-          if (validKeys.includes(pCat)) return true;
-          if (catKey === 'appliances' && (cat === 'kitchenware-appliances' || pid.startsWith('prod_app_'))) return true;
-          if ((catKey === 'atta-rice-dal' || catKey === 'rice-pulses-grains') && 
-              (pid.includes('pappu') || pid.includes('rice') || pid.includes('ragi') || pid.includes('jonna') || pid.includes('korralu') || pid.includes('putnala') || pid.includes('atta'))) {
-            return true;
-          }
-          if (catKey === 'fresh-deals' || catKey === 'deals') {
-            const dealPids = [
-              'prod_palak', 'prod_tomatoes', 
-              'prod_methi', 'prod_kothimeera', 
-              'prod_onions', 'prod_bhendi', 'prod_vankaya'
-            ];
-            if (dealPids.includes(pid) || p.isMarkdown || p.hasDeal || pid.includes('deal')) {
-              return true;
-            }
-          }
-          return false;
-        });
+        const safeQuery = q.replace(/[&<>"']/g, '');
+        const resultsBanner = `
+          <div class="catalog-search-results-banner" style="grid-column: 1 / -1; width: 100%;">
+            <div class="search-banner-left">
+              <span class="search-badge-icon">🔍</span>
+              <div class="search-banner-text">
+                <h3 class="search-banner-title">Search Results for "${safeQuery}"</h3>
+                <span class="search-banner-sub">Showing matching items (${filtered.length} found)</span>
+              </div>
+            </div>
+            <button type="button" class="btn-clear-search-filter" onclick="window.marketApp.clearHeaderSearch()">
+              ✕ Clear Search
+            </button>
+          </div>
+        `;
+        grid.innerHTML = resultsBanner + filtered.map((prod) => this.renderProductCardHtml(prod)).join('');
+        return;
       }
 
-      // Sort
+      // 2. All Items Mode: Divided into distinct Category Sections with related images
+      if (catKey === 'all') {
+        const homeSections = [
+          {
+            id: 'ready-to-cook',
+            name: 'Ready to Cook',
+            subtitle: 'Curry kits, sambar kits & recipe prep kits',
+            icon: '🍲',
+            image: 'assets/prod_rtc_sambar_curry.jpg',
+            filter: (p) => this.classifyHomeCategory(p) === 'ready-to-cook'
+          },
+          {
+            id: 'leaf-items',
+            name: 'Leaf Items',
+            subtitle: 'Farm-fresh palak, methi, kothimeera & gongura',
+            icon: '🌿',
+            image: 'assets/prod_spinach.jpg',
+            filter: (p) => this.classifyHomeCategory(p) === 'leaf-items'
+          },
+          {
+            id: 'vegetables',
+            name: 'Daily Fresh Vegetables',
+            subtitle: 'Desi tomatoes, pink onions, potatoes, bhendi & fresh veggies',
+            icon: '🍅',
+            image: 'assets/prod_tomatoes.jpg',
+            filter: (p) => this.classifyHomeCategory(p) === 'vegetables'
+          },
+          {
+            id: 'fresh-drinks',
+            name: 'Fresh Drinks & Juices',
+            subtitle: 'Natural sugarcane juice, tender coconut, cold drinks & juices',
+            icon: '🧃',
+            image: 'assets/prod_sugarcane_juice.jpg',
+            filter: (p) => this.classifyHomeCategory(p) === 'fresh-drinks'
+          },
+          {
+            id: 'kitchen-spices',
+            name: 'Kitchen Spices & Masalas',
+            subtitle: 'Stoneground Kadapa turmeric, Erra Karam, dhaniyalu & whole spices',
+            icon: '🌶️',
+            image: 'assets/cat_spices.jpg',
+            filter: (p) => this.classifyHomeCategory(p) === 'kitchen-spices'
+          },
+          {
+            id: 'appliances',
+            name: 'Kitchen Appliances',
+            subtitle: 'Prestige choppers, cookers, tawas & cookware tools',
+            icon: '🍳',
+            image: 'assets/prod_app_veg_chopper.jpg',
+            filter: (p) => this.classifyHomeCategory(p) === 'appliances'
+          },
+          {
+            id: 'snacks',
+            name: 'Snacks & Munchies',
+            subtitle: 'Haldiram aloo bhujia, crispy namkeen, chips & biscuits',
+            icon: '🥨',
+            image: 'assets/cat_snacks.jpg',
+            filter: (p) => this.classifyHomeCategory(p) === 'snacks'
+          }
+        ];
+
+        let totalItems = 0;
+        let sectionsHtml = '';
+
+        homeSections.forEach((sec) => {
+          let secItems = PRODUCTS_DATA.filter(sec.filter);
+          if (sortBy === 'price-asc') {
+            secItems.sort((a, b) => Number(a.price) - Number(b.price));
+          } else if (sortBy === 'price-desc') {
+            secItems.sort((a, b) => Number(b.price) - Number(a.price));
+          }
+
+          if (secItems.length > 0) {
+            totalItems += secItems.length;
+            sectionsHtml += `
+              <section class="home-cat-divided-section" id="section-${sec.id}">
+                <div class="home-cat-section-header">
+                  <div class="home-sec-header-left">
+                    <div class="home-sec-thumb-box">
+                      <img src="${sec.image}" alt="${sec.name}" class="home-sec-thumb-img" loading="lazy" />
+                    </div>
+                    <div class="home-sec-titles">
+                      <h3 class="home-sec-title">${sec.icon} ${sec.name}</h3>
+                      <span class="home-sec-sub">${sec.subtitle}</span>
+                    </div>
+                  </div>
+                  <div class="home-sec-header-right">
+                    <span class="home-sec-count-badge">${secItems.length} items</span>
+                    <button type="button" class="btn-home-sec-see-all" onclick="window.marketApp.selectCategory('${sec.id}', true)">
+                      See All ›
+                    </button>
+                  </div>
+                </div>
+                <div class="products-grid home-sec-grid">
+                  ${secItems.map((prod) => this.renderProductCardHtml(prod)).join('')}
+                </div>
+              </section>
+            `;
+          }
+        });
+
+        const compactCount = document.getElementById('compact-cat-count');
+        if (compactCount) compactCount.textContent = `${totalItems} items`;
+        const compactName = document.getElementById('compact-cat-name');
+        if (compactName) compactName.textContent = 'All Categories';
+
+        grid.className = 'products-container-divided';
+        grid.innerHTML = sectionsHtml;
+        return;
+      }
+
+      // 3. Single Category Mode (Filtered by chosen category)
+      const aliasMap = {
+        'ready-to-cook': 'ready-to-cook',
+        'curry-kits': 'ready-to-cook',
+        'leaf-items': 'leaf-items',
+        'zone-a': 'leaf-items',
+        'vegetables': 'vegetables',
+        'fresh-vegetables': 'vegetables',
+        'daily-veg': 'vegetables',
+        'fresh-drinks': 'fresh-drinks',
+        'drinks': 'fresh-drinks',
+        'kitchen-spices': 'kitchen-spices',
+        'masala-spices': 'kitchen-spices',
+        'masalas': 'kitchen-spices',
+        'spices': 'kitchen-spices',
+        'appliances': 'appliances',
+        'kitchenware-appliances': 'appliances',
+        'snacks': 'snacks',
+        'snacks-bakery': 'snacks',
+        'snacks-packaged': 'snacks'
+      };
+
+      const targetCat = aliasMap[catKey] || catKey;
+      let filtered = PRODUCTS_DATA.filter((p) => this.classifyHomeCategory(p) === targetCat);
+
       if (sortBy === 'price-asc') {
         filtered.sort((a, b) => Number(a.price) - Number(b.price));
       } else if (sortBy === 'price-desc') {
         filtered.sort((a, b) => Number(b.price) - Number(a.price));
       }
 
-      // Update Headings & Counters
-      const iconEl = document.getElementById('selected-cat-icon');
-      const headEl = document.getElementById('selected-category-heading');
-      const subEl = document.getElementById('selected-category-subheading');
-      const counterEl = document.getElementById('active-item-counter');
-      const catMeta = SUPERMARKET_CATEGORIES[catKey] || SUPERMARKET_CATEGORIES['all'];
+      const catMeta = SUPERMARKET_CATEGORIES[catKey] || SUPERMARKET_CATEGORIES[targetCat] || SUPERMARKET_CATEGORIES['all'];
 
-      if (q.length > 0) {
-        if (iconEl) iconEl.textContent = '🔍';
-        if (headEl) headEl.textContent = `Search Results for "${this.searchQuery || q}"`;
-        if (subEl) subEl.textContent = `Showing ${filtered.length} matching item${filtered.length === 1 ? '' : 's'} across FRESHCUTS`;
-      } else {
-        if (iconEl) iconEl.textContent = catMeta.icon || '🛒';
-        if (headEl) headEl.textContent = catMeta.name;
-        if (subEl) subEl.textContent = catMeta.subtitle;
-      }
-
-      if (counterEl) {
-        counterEl.textContent = `${filtered.length} Product${filtered.length === 1 ? '' : 's'}`;
-      }
       const compactCount = document.getElementById('compact-cat-count');
-      if (compactCount) {
-        compactCount.textContent = `${filtered.length} item${filtered.length === 1 ? '' : 's'}`;
-      }
+      if (compactCount) compactCount.textContent = `${filtered.length} item${filtered.length === 1 ? '' : 's'}`;
       const compactName = document.getElementById('compact-cat-name');
-      if (compactName) {
-        compactName.textContent = q.length > 0 ? `Search: "${q}"` : catMeta.name;
-      }
+      if (compactName) compactName.textContent = catMeta.name;
 
-      // Update Active Filter Indicators (Removed as requested)
-      const indicatorsEl = document.getElementById('active-filter-indicators');
-      if (indicatorsEl) {
-        indicatorsEl.classList.add('hidden');
-        indicatorsEl.style.display = 'none';
-        indicatorsEl.innerHTML = '';
-      }
-
-      // Update category count badges in sidebar
-      this.updateSupermarketSidebarCounts();
-
-      // Empty State vs Products Grid
       grid.className = 'products-grid';
+
+      const bannerHtml = `
+        <div class="cat-active-filter-banner" style="grid-column: 1 / -1; width: 100%;">
+          <div class="cat-filter-banner-left">
+            <img src="${catMeta.image}" alt="${catMeta.name}" class="cat-filter-thumb" />
+            <div>
+              <h3 class="cat-filter-banner-title">${catMeta.icon || '🛍️'} ${catMeta.name}</h3>
+              <span class="cat-filter-banner-sub">${filtered.length} item${filtered.length === 1 ? '' : 's'} available</span>
+            </div>
+          </div>
+          <button type="button" class="btn-cat-filter-reset" onclick="window.marketApp.selectCategory('all', true)">
+            ✕ View All
+          </button>
+        </div>
+      `;
+
       if (filtered.length === 0) {
-        grid.innerHTML = `
+        grid.innerHTML = bannerHtml + `
           <div class="supermarket-empty-card" style="grid-column: 1 / -1; width: 100%;">
-            <div class="empty-icon-lg">🔍</div>
-            <h3 class="empty-heading">No matching items found for "${this.searchQuery || q}"</h3>
-            <p class="empty-sub">
-              We could not find any products matching "<em>${this.searchQuery || q}</em>" in FRESHCUTS.
-            </p>
+            <div class="empty-icon-lg">🧺</div>
+            <h3 class="empty-heading">No items in this category currently</h3>
+            <p class="empty-sub">Please explore other fresh categories or view all products.</p>
             <div class="empty-actions-row">
-              <button type="button" class="btn-primary" onclick="window.marketApp.clearHeaderSearch()">
-                Clear Search & View All Products
+              <button type="button" class="btn-primary" onclick="window.marketApp.selectCategory('all', true)">
+                View All Categories
               </button>
             </div>
           </div>
@@ -4885,8 +5068,7 @@
         return;
       }
 
-      // Render cards
-      grid.innerHTML = filtered.map((prod) => this.renderProductCardHtml(prod)).join('');
+      grid.innerHTML = bannerHtml + filtered.map((prod) => this.renderProductCardHtml(prod)).join('');
     }
 
     clearPriceFilter() {
