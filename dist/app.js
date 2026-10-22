@@ -5374,6 +5374,29 @@
           }
         }
       }
+
+      // 5. Update mobile search card button if search tray is open
+      const searchCard = document.querySelector(`.mobile-search-card[data-id="${prodId}"]`);
+      if (searchCard) {
+        const actionBox = searchCard.querySelector('.mobile-search-card-action');
+        if (actionBox) {
+          if (cartQty > 0) {
+            actionBox.innerHTML = `
+              <div class="mobile-search-stepper" onclick="event.stopPropagation();">
+                <button type="button" class="mobile-search-stepper-btn" onclick="window.marketApp.modifyCartQty('${prodId}', -1)" aria-label="Decrease quantity">−</button>
+                <span class="mobile-search-stepper-val">${cartQty}</span>
+                <button type="button" class="mobile-search-stepper-btn" onclick="window.marketApp.modifyCartQty('${prodId}', 1)" aria-label="Increase quantity">+</button>
+              </div>
+            `;
+          } else {
+            actionBox.innerHTML = `
+              <button type="button" class="mobile-search-add-btn" onclick="event.stopPropagation(); window.marketApp.modifyCartQty('${prodId}', 1)">
+                + ADD
+              </button>
+            `;
+          }
+        }
+      }
     }
 
     openImageLightbox(prodId) {
@@ -6400,6 +6423,15 @@
       const avatarEl = document.getElementById('header-user-avatar');
       const userBtn = document.getElementById('header-user-btn');
       const headerLoc = document.getElementById('header-location-txt');
+      const mobileAddrEl = document.getElementById('mobile-addr-label');
+
+      if (mobileAddrEl) {
+        let type = (this.user.address && this.user.address.type) ? this.user.address.type : 'Home';
+        if (type.toLowerCase().includes('work') || type.toLowerCase().includes('office')) type = 'Work';
+        else if (type.toLowerCase().includes('other')) type = 'Others';
+        else type = 'Home';
+        mobileAddrEl.textContent = type;
+      }
 
       if (this.user.address && headerLoc) {
         const areaStr = this.user.address.area || '9/3, 3rd Cross Rd, Dinnur, Hebbal';
@@ -6457,6 +6489,22 @@
       }
     }
 
+    setAddressType(type) {
+      if (!this.user.address) this.user.address = {};
+      this.user.address.type = type;
+      this.activeAddrType = type;
+      document.querySelectorAll('.loc-type-chip').forEach(c => {
+        c.classList.toggle('active', c.getAttribute('data-type') === type);
+      });
+      const mobileAddrEl = document.getElementById('mobile-addr-label');
+      if (mobileAddrEl) mobileAddrEl.textContent = type;
+      sound.playCheckoutSound();
+      this.showToastNotification(`📍 Delivery address set to: ${type}`);
+      setTimeout(() => {
+        this.closeAddressModal();
+      }, 300);
+    }
+
     // =========================================================================
     // 5C. DELIVERY ADDRESS & HYDERABAD LOCATION ENGINE
     // =========================================================================
@@ -6487,6 +6535,16 @@
                 <h3>Select Delivery Location</h3>
                 <p class="loc-header-sub">Delivery in 23 minutes • Guaranteed farm freshness from nearest hub</p>
               </div>
+            </div>
+          </div>
+
+          <!-- Location Type Selector: Home / Work / Others -->
+          <div class="loc-type-selector-row">
+            <span class="loc-type-title">Deliver To:</span>
+            <div class="loc-type-chips">
+              <button type="button" class="loc-type-chip ${this.activeAddrType === 'Home' ? 'active' : ''}" data-type="Home" onclick="window.marketApp.setAddressType('Home')">🏠 Home</button>
+              <button type="button" class="loc-type-chip ${this.activeAddrType === 'Work' ? 'active' : ''}" data-type="Work" onclick="window.marketApp.setAddressType('Work')">💼 Work</button>
+              <button type="button" class="loc-type-chip ${this.activeAddrType === 'Others' ? 'active' : ''}" data-type="Others" onclick="window.marketApp.setAddressType('Others')">📍 Others</button>
             </div>
           </div>
 
@@ -10400,11 +10458,229 @@
     // =========================================================================
 
     focusSearchInput() {
-      const searchBox = document.querySelector('.mobile-search-box input') || document.getElementById('product-search-input');
-      if (searchBox) {
-        searchBox.focus();
-        searchBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const aisleScreen = document.getElementById('mobile-aisle-screen');
+      if (aisleScreen && !aisleScreen.classList.contains('hidden') && aisleScreen.classList.contains('active')) {
+        this.toggleAisleSearch(true);
+        return;
       }
+
+      const mobileInput = document.getElementById('mobile-search-input');
+      if (mobileInput && window.innerWidth <= 768) {
+        mobileInput.focus();
+        mobileInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      const desktopInput = document.getElementById('header-search-input');
+      if (desktopInput) {
+        desktopInput.focus();
+        desktopInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    handleMobileSearch(query) {
+      const tray = document.getElementById('mobile-search-results-tray');
+      const grid = document.getElementById('mobile-search-results-grid');
+      const countEl = document.getElementById('mobile-search-tray-count');
+      const clearBtn = document.getElementById('mobile-search-clear-btn');
+
+      if (!query || !query.trim()) {
+        if (tray) tray.classList.add('hidden');
+        if (clearBtn) clearBtn.classList.add('hidden');
+        return;
+      }
+
+      if (clearBtn) clearBtn.classList.remove('hidden');
+
+      const q = query.trim().toLowerCase();
+      const matches = PRODUCTS_DATA.filter(p => this.matchVegetableQuery(p, q));
+
+      if (tray) tray.classList.remove('hidden');
+      if (countEl) countEl.textContent = `Found ${matches.length} fresh item${matches.length === 1 ? '' : 's'} for "${query}"`;
+
+      if (!grid) return;
+
+      if (matches.length === 0) {
+        grid.innerHTML = `
+          <div class="mobile-search-empty">
+            <span style="font-size: 28px; display: block; margin-bottom: 6px;">🔍</span>
+            <strong>No items found for "${query}"</strong>
+            <p style="font-size: 0.78rem; margin-top: 4px; color: #94a3b8;">Try searching for "banana", "coconut", "tomato", "milk", "onion", or "curd"</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = matches.map(prod => {
+        const cartQty = (this.cart && this.cart[prod.id]) || 0;
+        let actionBtn = '';
+        if (cartQty > 0) {
+          actionBtn = `
+            <div class="mobile-search-stepper" onclick="event.stopPropagation();">
+              <button type="button" class="mobile-search-stepper-btn" onclick="window.marketApp.modifyCartQty('${prod.id}', -1)" aria-label="Decrease quantity">−</button>
+              <span class="mobile-search-stepper-val">${cartQty}</span>
+              <button type="button" class="mobile-search-stepper-btn" onclick="window.marketApp.modifyCartQty('${prod.id}', 1)" aria-label="Increase quantity">+</button>
+            </div>
+          `;
+        } else {
+          actionBtn = `
+            <button type="button" class="mobile-search-add-btn" onclick="event.stopPropagation(); window.marketApp.modifyCartQty('${prod.id}', 1)">
+              + ADD
+            </button>
+          `;
+        }
+
+        const mrpHtml = prod.mandiPrice ? `<span class="mobile-search-mrp">₹${prod.mandiPrice}</span>` : '';
+        const weight = prod.unit || '1 pc';
+
+        return `
+          <div class="mobile-search-card" data-id="${prod.id}" onclick="window.marketApp.openAisleWithProduct('${prod.id}')">
+            <div class="mobile-search-card-img-wrap">
+              <img src="${prod.image}" alt="${prod.title}" class="mobile-search-card-img" loading="lazy" />
+            </div>
+            <div class="mobile-search-card-title">${prod.title}</div>
+            <div class="mobile-search-card-weight">${weight}</div>
+            <div class="mobile-search-card-footer">
+              <div class="mobile-search-price-box">
+                <span class="mobile-search-price">₹${prod.price.toFixed(0)}</span>
+                ${mrpHtml}
+              </div>
+              <div class="mobile-search-card-action">
+                ${actionBtn}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    clearMobileSearch() {
+      const input = document.getElementById('mobile-search-input');
+      if (input) input.value = '';
+      const tray = document.getElementById('mobile-search-results-tray');
+      if (tray) tray.classList.add('hidden');
+      const clearBtn = document.getElementById('mobile-search-clear-btn');
+      if (clearBtn) clearBtn.classList.add('hidden');
+    }
+
+    toggleAisleSearch(forceOpen) {
+      const row = document.getElementById('mobile-aisle-search-bar-row');
+      const input = document.getElementById('mobile-aisle-search-input');
+      if (!row) return;
+
+      if (forceOpen === true) {
+        row.classList.remove('hidden');
+        if (input) input.focus();
+        return;
+      }
+
+      if (row.classList.contains('hidden')) {
+        row.classList.remove('hidden');
+        if (input) {
+          input.focus();
+          if (input.value.trim()) {
+            this.handleAisleSearch(input.value);
+          }
+        }
+      } else {
+        row.classList.add('hidden');
+        this.clearAisleSearch();
+      }
+    }
+
+    handleAisleSearch(query) {
+      const grid = document.getElementById('mobile-aisle-grid');
+      if (!grid) return;
+
+      if (!query || !query.trim()) {
+        this.renderAisleProducts(this.activeAisleSubcat || 'all');
+        return;
+      }
+
+      const q = query.trim().toLowerCase();
+      const matches = PRODUCTS_DATA.filter(p => this.matchVegetableQuery(p, q));
+
+      if (matches.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 40px 16px; color: #64748b;">
+            <span style="font-size: 32px; display: block; margin-bottom: 8px;">🔍</span>
+            <strong style="color: #0f172a; font-size: 1rem; display: block;">No items found for "${query}"</strong>
+            <p style="font-size: 0.8rem; margin-top: 4px;">Try searching for coconut, banana, tomato, milk, onion...</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = matches.map(item => {
+        const isWish = this.wishlist && this.wishlist.has(item.id);
+        const cartQty = (this.cart && this.cart[item.id]) || 0;
+        let actionBtn = '';
+        if (cartQty > 0) {
+          actionBtn = `
+            <div class="aisle-card-stepper">
+              <button type="button" class="aisle-step-btn" onclick="window.marketApp.modifyCartQty('${item.id}', -1)" aria-label="Decrease quantity">−</button>
+              <span class="aisle-step-num">${cartQty}</span>
+              <button type="button" class="aisle-step-btn" onclick="window.marketApp.modifyCartQty('${item.id}', 1)" aria-label="Increase quantity">+</button>
+            </div>
+          `;
+        } else {
+          actionBtn = `
+            <button type="button" class="aisle-card-add-btn" onclick="window.marketApp.modifyCartQty('${item.id}', 1)">
+              ADD
+            </button>
+          `;
+        }
+        const mrp = item.mandiPrice || Math.round(item.price * 1.35);
+        const discount = Math.max(0, mrp - Math.round(item.price));
+
+        return `
+          <div class="aisle-prod-card" data-id="${item.id}">
+            <div class="aisle-card-img-box">
+              <img src="${item.image}" alt="${item.title}" class="aisle-card-img" />
+              <button type="button" class="aisle-card-heart-btn" onclick="window.marketApp.toggleWishlist('${item.id}', event)" title="Wishlist">
+                ${isWish ? '❤️' : '♡'}
+              </button>
+              ${actionBtn}
+            </div>
+            <div class="aisle-card-price-row">
+              <span class="aisle-price-pill">₹${Math.round(item.price)}</span>
+              <span class="aisle-mrp-strike">₹${mrp}</span>
+            </div>
+            ${discount > 0 ? `<div class="aisle-discount-txt">₹${discount} OFF</div>` : ''}
+            <div class="aisle-card-title">${item.title}</div>
+            <div class="aisle-card-weight">${item.unit || '1 pc'}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    clearAisleSearch() {
+      const input = document.getElementById('mobile-aisle-search-input');
+      if (input) input.value = '';
+      this.renderAisleProducts(this.activeAisleSubcat || 'all');
+    }
+
+    openAisleWithProduct(prodId) {
+      this.clearMobileSearch();
+      this.openAisleScreen('all');
+      setTimeout(() => {
+        const card = document.querySelector(`.aisle-prod-card[data-id="${prodId}"]`);
+        if (card) {
+          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          card.style.boxShadow = '0 0 0 3px #0c831f';
+          setTimeout(() => { card.style.boxShadow = ''; }, 1500);
+        } else {
+          const prod = PRODUCTS_DATA.find(p => p.id === prodId);
+          if (prod) {
+            this.toggleAisleSearch(true);
+            const input = document.getElementById('mobile-aisle-search-input');
+            if (input) {
+              input.value = prod.title;
+              this.handleAisleSearch(prod.title);
+            }
+          }
+        }
+      }, 300);
     }
 
     goBackToHome() {

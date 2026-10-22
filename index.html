@@ -168,9 +168,14 @@
           <!-- 1. Top Speed & Delivery Address Bar -->
           <div class="mobile-top-delivery-bar">
             <div class="mobile-delivery-left" onclick="window.marketApp.openAddressModal()">
-              <div class="mobile-speed-pill">⚡ <strong>5 minutes</strong></div>
+              <div class="mobile-brand-speed-row">
+                <span class="mobile-home-brand-logo">
+                  <span class="freshcuts-logo-txt"><span class="fc-fresh">fresh</span><span class="fc-cuts">cuts</span></span>
+                </span>
+                <div class="mobile-speed-pill">⚡ <strong>5 minutes</strong></div>
+              </div>
               <div class="mobile-address-line">
-                <span id="mobile-addr-label">Home - Ground Floor, koustabh appartment, 202, 2...</span>
+                <span id="mobile-addr-label">Home</span>
                 <span class="mobile-addr-caret">▾</span>
               </div>
             </div>
@@ -194,17 +199,33 @@
 
           <!-- 2. Search Bar + Meat Market Badge -->
           <div class="mobile-search-row">
-            <div class="mobile-search-box" onclick="window.marketApp.focusSearchInput()">
+            <div class="mobile-search-box" onclick="document.getElementById('mobile-search-input')?.focus()">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.2">
                 <circle cx="11" cy="11" r="7"></circle>
                 <line x1="21" y1="21" x2="16.5" y2="16.5"></line>
               </svg>
-              <input type="text" placeholder='Search "Milk"' readonly />
+              <input 
+                type="text" 
+                id="mobile-search-input" 
+                placeholder='Search "milk", "onion", "chicken", "apple"...' 
+                autocomplete="off"
+                oninput="window.marketApp.handleMobileSearch(this.value)"
+              />
+              <button type="button" class="mobile-search-clear-btn hidden" id="mobile-search-clear-btn" onclick="window.marketApp.clearMobileSearch()" title="Clear">✕</button>
             </div>
             <div class="mobile-meat-market-btn" onclick="window.marketApp.openAisleScreen('rayalaseema')">
               <img src="assets/mobile_tiles/tile_chicken_meat_fish.png" alt="Meat Market" class="meat-thumb" />
               <div class="meat-txt">Meat<br>Market</div>
             </div>
+          </div>
+
+          <!-- Mobile Live Search Results Container -->
+          <div class="mobile-search-results-tray hidden" id="mobile-search-results-tray">
+            <div class="mobile-search-tray-header">
+              <span id="mobile-search-tray-count">Matching Products</span>
+              <button type="button" class="mobile-search-tray-close" onclick="window.marketApp.clearMobileSearch()">Close ✕</button>
+            </div>
+            <div class="mobile-search-results-grid" id="mobile-search-results-grid"></div>
           </div>
 
           <!-- 3. Two Promo Banners (₹0 FEES & EVERYDAY LOW PRICES) -->
@@ -395,9 +416,27 @@
                 <button type="button" class="zepto-header-icon-btn" onclick="window.marketApp.openWishlistModal()" title="Wishlist">
                   ♡
                 </button>
-                <button type="button" class="zepto-header-icon-btn" onclick="window.marketApp.focusSearchInput()" title="Search">
+                <button type="button" class="zepto-header-icon-btn" onclick="window.marketApp.toggleAisleSearch()" title="Search" id="btn-toggle-aisle-search">
                   🔍
                 </button>
+              </div>
+            </div>
+
+            <!-- Expandable Aisle Search Bar -->
+            <div class="mobile-aisle-search-bar-row hidden" id="mobile-aisle-search-bar-row">
+              <div class="mobile-aisle-search-box">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.2">
+                  <circle cx="11" cy="11" r="7"></circle>
+                  <line x1="21" y1="21" x2="16.5" y2="16.5"></line>
+                </svg>
+                <input 
+                  type="text" 
+                  id="mobile-aisle-search-input" 
+                  placeholder="Search products in Freshcuts..." 
+                  autocomplete="off"
+                  oninput="window.marketApp.handleAisleSearch(this.value)"
+                />
+                <button type="button" class="mobile-search-clear-btn" onclick="window.marketApp.clearAisleSearch()" title="Clear">✕</button>
               </div>
             </div>
           </div>
